@@ -5,107 +5,109 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>유튜브 종목분석 보고서 게시판</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif; background: #f5f7fa; color: #222; min-height: 100vh; }
-  header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: #fff; padding: 28px 24px 20px; box-shadow: 0 2px 8px rgba(0,0,0,.3); }
-  header h1 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 6px; }
-  header .meta { font-size: 0.82rem; opacity: 0.75; }
-  .container { max-width: 900px; margin: 24px auto; padding: 0 16px; }
-  .toolbar { display: flex; gap: 8px; margin-bottom: 16px; align-items: center; flex-wrap: wrap; }
-  .toolbar input { flex: 1; min-width: 180px; padding: 10px 14px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.9rem; outline: none; transition: border-color .2s; }
-  .toolbar input:focus { border-color: #0f3460; }
-  .page-size-wrap { display: flex; align-items: center; gap: 6px; font-size: 0.82rem; color: #666; white-space: nowrap; }
-  .page-size-wrap select { padding: 7px 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.82rem; outline: none; cursor: pointer; }
-  .card { background: #fff; border-radius: 12px; box-shadow: 0 1px 4px rgba(0,0,0,.08); overflow: hidden; }
-  table { width: 100%; border-collapse: collapse; }
-  thead tr { background: #f0f4f8; font-size: 0.78rem; color: #666; text-transform: uppercase; letter-spacing: 0.5px; }
-  thead th { padding: 10px 14px; text-align: left; font-weight: 600; }
-  tbody tr { border-top: 1px solid #f0f0f0; transition: background .15s; }
-  tbody tr:hover { background: #f8faff; }
-  td { padding: 13px 14px; vertical-align: middle; }
-  td.num { color: #aaa; font-size: 0.82rem; width: 42px; text-align: center; }
-  td.date { font-size: 0.83rem; color: #666; white-space: nowrap; width: 100px; }
-  td.title a { color: #0f3460; text-decoration: none; font-size: 0.92rem; font-weight: 500; line-height: 1.4; }
-  td.title a:hover { text-decoration: underline; color: #e94560; }
-  .source { display: inline-block; margin-left: 8px; padding: 2px 7px; background: #eef2ff; color: #5c6bc0; border-radius: 4px; font-size: 0.72rem; vertical-align: middle; }
-  .empty { text-align: center; padding: 48px; color: #aaa; font-size: 0.9rem; }
-  .pagination { display: flex; justify-content: center; align-items: center; gap: 4px; margin-top: 20px; flex-wrap: wrap; }
-  .pagination .page-info { font-size: 0.82rem; color: #666; margin: 0 8px; white-space: nowrap; }
-  .pagination button { padding: 7px 13px; border: 1px solid #ddd; background: #fff; border-radius: 7px; font-size: 0.85rem; cursor: pointer; transition: all .15s; color: #444; }
-  .pagination button:hover:not(:disabled) { background: #0f3460; color: #fff; border-color: #0f3460; }
-  .pagination button.active { background: #0f3460; color: #fff; border-color: #0f3460; font-weight: 700; }
-  .pagination button:disabled { opacity: 0.35; cursor: not-allowed; }
-  footer { text-align: center; padding: 24px; font-size: 0.75rem; color: #aaa; }
-  @media (max-width: 600px) { td.num { display: none; } td.date { width: 80px; font-size: 0.76rem; } }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif; background: #f5f7fa; color: #222; min-height: 100vh; }
+header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: #fff; padding: 28px 24px 20px; box-shadow: 0 2px 8px rgba(0,0,0,.3); }
+header h1 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 6px; }
+header .meta { font-size: 0.82rem; opacity: 0.75; }
+.container { max-width: 900px; margin: 24px auto; padding: 0 16px; }
+.toolbar { display: flex; gap: 8px; margin-bottom: 16px; align-items: center; flex-wrap: wrap; }
+.toolbar input { flex: 1; min-width: 180px; padding: 10px 14px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.9rem; outline: none; transition: border-color .2s; }
+.toolbar input:focus { border-color: #0f3460; }
+.page-size-wrap { display: flex; align-items: center; gap: 6px; font-size: 0.82rem; color: #666; white-space: nowrap; }
+.page-size-wrap select { padding: 7px 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.82rem; outline: none; cursor: pointer; }
+.card { background: #fff; border-radius: 12px; box-shadow: 0 1px 4px rgba(0,0,0,.08); overflow: hidden; }
+table { width: 100%; border-collapse: collapse; }
+thead tr { background: #f0f4f8; font-size: 0.78rem; color: #666; text-transform: uppercase; letter-spacing: 0.5px; }
+thead th { padding: 10px 14px; text-align: left; font-weight: 600; }
+tbody tr { border-top: 1px solid #f0f0f0; transition: background .15s; }
+tbody tr:hover { background: #f8faff; }
+td { padding: 13px 14px; vertical-align: middle; }
+td.num { color: #aaa; font-size: 0.82rem; width: 42px; text-align: center; }
+td.date { font-size: 0.83rem; color: #666; white-space: nowrap; width: 100px; }
+td.title a { color: #0f3460; text-decoration: none; font-size: 0.92rem; font-weight: 500; line-height: 1.4; }
+td.title a:hover { text-decoration: underline; color: #e94560; }
+.source { display: inline-block; margin-left: 8px; padding: 2px 7px; background: #eef2ff; color: #5c6bc0; border-radius: 4px; font-size: 0.72rem; vertical-align: middle; }
+.empty { text-align: center; padding: 48px; color: #aaa; font-size: 0.9rem; }
+.pagination { display: flex; justify-content: center; align-items: center; gap: 4px; margin-top: 20px; flex-wrap: wrap; }
+.pagination .page-info { font-size: 0.82rem; color: #666; margin: 0 8px; white-space: nowrap; }
+.pagination button { padding: 7px 13px; border: 1px solid #ddd; background: #fff; border-radius: 7px; font-size: 0.85rem; cursor: pointer; transition: all .15s; color: #444; }
+.pagination button:hover:not(:disabled) { background: #0f3460; color: #fff; border-color: #0f3460; }
+.pagination button.active { background: #0f3460; color: #fff; border-color: #0f3460; font-weight: 700; }
+.pagination button:disabled { opacity: 0.35; cursor: not-allowed; }
+footer { text-align: center; padding: 24px; font-size: 0.75rem; color: #aaa; }
+@media (max-width: 600px) { td.num { display: none; } td.date { width: 80px; font-size: 0.76rem; } }
 </style>
 </head>
 <body>
 <header>
-  <h1>📊 유튜브 종목분석 보고서 게시판</h1>
-  <div class="meta">총 <span id="totalCount">13</span>개 보고서 · 최종 업데이트: 2026-05-08</div>
+<h1>📊 유튜브 종목분석 보고서 게시판</h1>
+<div class="meta">총 <span id="totalCount">15</span>개 보고서 · 최종 업데이트: 2026-05-12</div>
 </header>
 <div class="container">
-  <div class="toolbar">
-    <input type="text" id="searchInput" placeholder="🔍 보고서 제목 검색..." oninput="onSearch()">
-    <div class="page-size-wrap">
-      <span>페이지당</span>
-      <select id="pageSize" onchange="onPageSizeChange()">
-        <option value="5">5개</option>
-        <option value="10" selected>10개</option>
-        <option value="20">20개</option>
-        <option value="9999">전체</option>
-      </select>
-    </div>
-  </div>
-  <div class="card">
-    <table>
-      <thead><tr><th>#</th><th>날짜</th><th>보고서</th></tr></thead>
-      <tbody id="tableBody"></tbody>
-    </table>
-    <div id="emptyMsg" class="empty" style="display:none;">검색 결과가 없습니다.</div>
-  </div>
-  <div class="pagination" id="pagination"></div>
+<div class="toolbar">
+<input type="text" id="searchInput" placeholder="🔍 보고서 제목 검색..." oninput="onSearch()">
+<div class="page-size-wrap">
+<span>페이지당</span>
+<select id="pageSize" onchange="onPageSizeChange()">
+<option value="5">5개</option>
+<option value="10" selected>10개</option>
+<option value="20">20개</option>
+<option value="9999">전체</option>
+</select>
+</div>
+</div>
+<div class="card">
+<table>
+<thead><tr><th>#</th><th>날짜</th><th>보고서</th></tr></thead>
+<tbody id="tableBody"></tbody>
+</table>
+<div id="emptyMsg" class="empty" style="display:none;">검색 결과가 없습니다.</div>
+</div>
+<div class="pagination" id="pagination"></div>
 </div>
 <footer>NotebookLM x YouTube 종목분석 보고서 게시판 | Powered by GitHub Pages</footer>
 <script>
 const ALL_REPORTS = [
-  {title:"초보 투자자를 위한 ISA(개인종합관리계좌) 완전 정복 가이드",date:"2026-05-08",url:"https://docs.google.com/document/d/10TkEpBA4lVxXABvDqtH9Xi2llV1GiJ2sOJlT3zVyM7k/edit"},
-  {title:"[AI 공부법으로 마스터하는 금융 문해력: ISA & ETF 실전 가이드]",date:"2026-05-08",url:"https://docs.google.com/document/d/1wNoSVeEJ-jXpOYud3i38lkeTmWSR-15JeE5aSk2gbls/edit"},
-  {title:"[금융 정책 대응 보고서] 슈퍼 ISA 시대의 도래와 자본시장 활성화를 위한 전략적 자산 배분 방안",date:"2026-05-08",url:"https://docs.google.com/document/d/1gDmb9h_UF24GqcmCMb7wb6uoweSJupIGu8_XXW5mYXY/edit"},
-  {title:"[고자산가 맞춤형] 슈퍼 ISA 기반 자산 최적화 및 연금 전환 절세 지침서",date:"2026-05-08",url:"https://docs.google.com/document/d/1Nl7Va5V_BvV9H2C5Kc2K_q0E2bCigEHQh_Q-ZjZ_dPo/edit"},
-  {title:"2025-2026 개정 세법 반영 ISA 세무 최적화 및 연금 전환 복리 극대화 가이드",date:"2026-05-08",url:"https://docs.google.com/document/d/1JgE5muoQiGKNFjc3rx9NZkoBGW6e9aj2iOIt17ht1eI/edit"},
-  {title:"ISA 세무 최적화 및 연금 전환을 통한 복리 극대화 지침서",date:"2026-05-08",url:"https://docs.google.com/document/d/1x3WLp3dpoJBS4ri22ap8IjICbQOb0KIbzRg_3jWABOQ/edit"},
-  {title:"[전략 제안서] 은퇴 자금 마련 및 현금 흐름 창출을 위한 4대 ETF 쿼드러플 엔진 포트폴리오 전략",date:"2026-05-07",url:"https://docs.google.com/document/d/1PxaQof5vIOqZO9dyi6vEP1nUtlR4uagWmO5FsP0-LnY/edit"},
-  {title:"디지털 월급 기계: ISA와 ETF 투자 전략 보고서",date:"2026-05-07",url:"https://docs.google.com/document/d/1b4yng149X8oebGg3IowAwSgezih7RokSSBWj5ryOQOk/edit"},
-  {title:"AI 인프라 시대의 생애주기별 ETF 투자 전략과 실전 가이드",date:"2026-05-07",url:"https://docs.google.com/document/d/1MWofJ-JHWOBTT1nJXFC0kf0ibfUY08r1kXHMW7oQ1OU/edit"},
-  {title:"[보고서] 나이제한 소득제한 없는 연금 통장의 핵심 혜택 및 운용 전략",date:"2026-04-30",url:"https://docs.google.com/document/d/1A1hMcqF8t3mASVERsMLfXaZkvxmlyU6upEiAUXxzO44/edit"},
-  {title:"5월 증시 전망 및 5천만 원 자산운용 투자 전략 보고서",date:"2026-04-30",url:"https://docs.google.com/document/d/18WPqta-Rn5B_nReXOoo9tVFHjRUV7UH3DTtjqczkWUQ/edit"},
-  {title:"홍춘욱의 자산 운용 전략: 시장 위기 징후 분석과 자산 증식 로드맵",date:"2026-04-30",url:"https://docs.google.com/document/d/1gE-KTku1k_uXljvgtrsux1N0NmuumrKSnpKY670W2Hk/edit"},
-  {title:"5월 증시 대응과 50대 노후 자산 관리 전략",date:"2026-04-30",url:"https://docs.google.com/document/d/1P49E3Xhrtzlau1HDzwOu4hzykrRYSDCrd92VwNwSZKw/edit"}
+{title:"클로드(Claude) 핵심 기능 해설서: 당신의 완벽한 AI 파트너와 시작하기",date:"2026-05-12",url:"https://docs.google.com/document/d/1wQD89tCMEhopx_vMtSeo7MioUBPWwzaKh_EG2WMVowQ/edit"},
+{title:"[경기 순환 대응] 선행지수 기반 자산배분 전략 및 리밸런싱 매뉴얼",date:"2026-05-12",url:"https://docs.google.com/document/d/1eBoIv2fPPDnmk3fNiE1PjXd06h45A8jBi1XnaWSSC-8/edit"},
+{title:"초보 투자자를 위한 ISA(개인종합관리계좌) 완전 정복 가이드",date:"2026-05-08",url:"https://docs.google.com/document/d/10TkEpBA4lVxXABvDqtH9Xi2llV1GiJ2sOJlT3zVyM7k/edit"},
+{title:"[AI 공부법으로 마스터하는 금융 문해력: ISA & ETF 실전 가이드]",date:"2026-05-08",url:"https://docs.google.com/document/d/1wNoSVeEJ-jXpOYud3i38lkeTmWSR-15JeE5aSk2gbls/edit"},
+{title:"[금융 정책 대응 보고서] 슈퍼 ISA 시대의 도래와 자본시장 활성화를 위한 전략적 자산 배분 방안",date:"2026-05-08",url:"https://docs.google.com/document/d/1gDmb9h_UF24GqcmCMb7wb6uoweSJupIGu8_XXW5mYXY/edit"},
+{title:"[고자산가 맞춤형] 슈퍼 ISA 기반 자산 최적화 및 연금 전환 절세 지침서",date:"2026-05-08",url:"https://docs.google.com/document/d/1Nl7Va5V_BvV9H2C5Kc2K_q0E2bCigEHQh_Q-ZjZ_dPo/edit"},
+{title:"2025-2026 개정 세법 반영 ISA 세무 최적화 및 연금 전환 복리 극대화 가이드",date:"2026-05-08",url:"https://docs.google.com/document/d/1JgE5muoQiGKNFjc3rx9NZkoBGW6e9aj2iOIt17ht1eI/edit"},
+{title:"ISA 세무 최적화 및 연금 전환을 통한 복리 극대화 지침서",date:"2026-05-08",url:"https://docs.google.com/document/d/1x3WLp3dpoJBS4ri22ap8IjICbQOb0KIbzRg_3jWABOQ/edit"},
+{title:"[전략 제안서] 은퇴 자금 마련 및 현금 흐름 창출을 위한 4대 ETF 쿼드러플 엔진 포트폴리오 전략",date:"2026-05-07",url:"https://docs.google.com/document/d/1PxaQof5vIOqZO9dyi6vEP1nUtlR4uagWmO5FsP0-LnY/edit"},
+{title:"디지털 월급 기계: ISA와 ETF 투자 전략 보고서",date:"2026-05-07",url:"https://docs.google.com/document/d/1b4yng149X8oebGg3IowAwSgezih7RokSSBWj5ryOQOk/edit"},
+{title:"AI 인프라 시대의 생애주기별 ETF 투자 전략과 실전 가이드",date:"2026-05-07",url:"https://docs.google.com/document/d/1MWofJ-JHWOBTT1nJXFC0kf0ibfUY08r1kXHMW7oQ1OU/edit"},
+{title:"[보고서] 나이제한 소득제한 없는 연금 통장의 핵심 혜택 및 운용 전략",date:"2026-04-30",url:"https://docs.google.com/document/d/1A1hMcqF8t3mASVERsMLfXaZkvxmlyU6upEiAUXxzO44/edit"},
+{title:"5월 증시 전망 및 5천만 원 자산운용 투자 전략 보고서",date:"2026-04-30",url:"https://docs.google.com/document/d/18WPqta-Rn5B_nReXOoo9tVFHjRUV7UH3DTtjqczkWUQ/edit"},
+{title:"홍춘욱의 자산 운용 전략: 시장 위기 징후 분석과 자산 증식 로드맵",date:"2026-04-30",url:"https://docs.google.com/document/d/1gE-KTku1k_uXljvgtrsux1N0NmuumrKSnpKY670W2Hk/edit"},
+{title:"5월 증시 대응과 50대 노후 자산 관리 전략",date:"2026-04-30",url:"https://docs.google.com/document/d/1P49E3Xhrtzlau1HDzwOu4hzykrRYSDCrd92VwNwSZKw/edit"}
 ];
 let filtered=[...ALL_REPORTS],currentPage=1,pageSize=10;
 function onSearch(){const q=document.getElementById('searchInput').value.toLowerCase();filtered=ALL_REPORTS.filter(r=>r.title.toLowerCase().includes(q)||r.date.includes(q));currentPage=1;render();}
 function onPageSizeChange(){pageSize=parseInt(document.getElementById('pageSize').value);currentPage=1;render();}
 function render(){
-  const tbody=document.getElementById('tableBody'),emptyMsg=document.getElementById('emptyMsg');
-  document.getElementById('totalCount').textContent=filtered.length;
-  if(filtered.length===0){tbody.innerHTML='';emptyMsg.style.display='';document.getElementById('pagination').innerHTML='';return;}
-  emptyMsg.style.display='none';
-  const totalPages=pageSize>=9999?1:Math.ceil(filtered.length/pageSize);
-  if(currentPage>totalPages)currentPage=totalPages;
-  const start=pageSize>=9999?0:(currentPage-1)*pageSize;
-  const end=pageSize>=9999?filtered.length:Math.min(start+pageSize,filtered.length);
-  tbody.innerHTML=filtered.slice(start,end).map((r,i)=>'<tr><td class="num">'+(start+i+1)+'</td><td class="date">'+r.date+'</td><td class="title"><a href="'+r.url+'" target="_blank" rel="noopener">'+r.title+'</a><span class="source">NotebookLM</span></td></tr>').join('');
-  const pg=document.getElementById('pagination');
-  if(totalPages<=1){pg.innerHTML='';return;}
-  let btns='<button onclick="goPage('+(currentPage-1)+')" '+(currentPage===1?'disabled':'')+'>&#8249; 이전</button>';
-  let pages=new Set([1,totalPages]);
-  for(let p=Math.max(1,currentPage-2);p<=Math.min(totalPages,currentPage+2);p++)pages.add(p);
-  pages=[...pages].sort((a,b)=>a-b);let prev=0;
-  for(const p of pages){if(prev&&p-prev>1)btns+='<button disabled>…</button>';btns+='<button class="'+(p===currentPage?'active':'')+'" onclick="goPage('+p+')">'+p+'</button>';prev=p;}
-  btns+='<button onclick="goPage('+(currentPage+1)+')" '+(currentPage===totalPages?'disabled':'')+'>다음 &#8250;</button>';
-  btns+='<span class="page-info">'+currentPage+' / '+totalPages+' 페이지</span>';
-  pg.innerHTML=btns;
+const tbody=document.getElementById('tableBody'),emptyMsg=document.getElementById('emptyMsg');
+document.getElementById('totalCount').textContent=filtered.length;
+if(filtered.length===0){tbody.innerHTML='';emptyMsg.style.display='';document.getElementById('pagination').innerHTML='';return;}
+emptyMsg.style.display='none';
+const totalPages=pageSize>=9999?1:Math.ceil(filtered.length/pageSize);
+if(currentPage>totalPages)currentPage=totalPages;
+const start=pageSize>=9999?0:(currentPage-1)*pageSize;
+const end=pageSize>=9999?filtered.length:Math.min(start+pageSize,filtered.length);
+tbody.innerHTML=filtered.slice(start,end).map((r,i)=>'<tr><td class="num">'+(start+i+1)+'</td><td class="date">'+r.date+'</td><td class="title"><a href="'+r.url+'" target="_blank" rel="noopener">'+r.title+'</a><span class="source">NotebookLM</span></td></tr>').join('');
+const pg=document.getElementById('pagination');
+if(totalPages<=1){pg.innerHTML='';return;}
+let btns='<button onclick="goPage('+(currentPage-1)+')" '+(currentPage===1?'disabled':'')+'>&#8249; 이전</button>';
+let pages=new Set([1,totalPages]);
+for(let p=Math.max(1,currentPage-2);p<=Math.min(totalPages,currentPage+2);p++)pages.add(p);
+pages=[...pages].sort((a,b)=>a-b);let prev=0;
+for(const p of pages){if(prev&&p-prev>1)btns+='<button disabled>…</button>';btns+='<button class="'+(p===currentPage?'active':'')+'" onclick="goPage('+p+')">'+p+'</button>';prev=p;}
+btns+='<button onclick="goPage('+(currentPage+1)+')" '+(currentPage===totalPages?'disabled':'')+'>다음 &#8250;</button>';
+btns+='<span class="page-info">'+currentPage+' / '+totalPages+' 페이지</span>';
+pg.innerHTML=btns;
 }
 function goPage(p){const t=Math.ceil(filtered.length/pageSize);if(p<1||p>t)return;currentPage=p;render();window.scrollTo({top:0,behavior:'smooth'});}
 render();
