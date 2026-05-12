@@ -28,6 +28,7 @@ td.date { font-size: 0.83rem; color: #666; white-space: nowrap; width: 100px; }
 td.title a { color: #0f3460; text-decoration: none; font-size: 0.92rem; font-weight: 500; line-height: 1.4; }
 td.title a:hover { text-decoration: underline; color: #e94560; }
 .source { display: inline-block; margin-left: 8px; padding: 2px 7px; background: #eef2ff; color: #5c6bc0; border-radius: 4px; font-size: 0.72rem; vertical-align: middle; }
+.source.guide { background: #e8f5e9; color: #2e7d32; }
 .empty { text-align: center; padding: 48px; color: #aaa; font-size: 0.9rem; }
 .pagination { display: flex; justify-content: center; align-items: center; gap: 4px; margin-top: 20px; flex-wrap: wrap; }
 .pagination .page-info { font-size: 0.82rem; color: #666; margin: 0 8px; white-space: nowrap; }
@@ -42,7 +43,7 @@ footer { text-align: center; padding: 24px; font-size: 0.75rem; color: #aaa; }
 <body>
 <header>
 <h1>📊 유튜브 종목분석 보고서 게시판</h1>
-<div class="meta">총 <span id="totalCount">15</span>개 보고서 · 최종 업데이트: 2026-05-12</div>
+<div class="meta">총 <span id="totalCount">16</span>개 보고서 · 최종 업데이트: 2026-05-12</div>
 </header>
 <div class="container">
 <div class="toolbar">
@@ -83,7 +84,8 @@ const ALL_REPORTS = [
 {title:"[보고서] 나이제한 소득제한 없는 연금 통장의 핵심 혜택 및 운용 전략",date:"2026-04-30",url:"https://docs.google.com/document/d/1A1hMcqF8t3mASVERsMLfXaZkvxmlyU6upEiAUXxzO44/edit"},
 {title:"5월 증시 전망 및 5천만 원 자산운용 투자 전략 보고서",date:"2026-04-30",url:"https://docs.google.com/document/d/18WPqta-Rn5B_nReXOoo9tVFHjRUV7UH3DTtjqczkWUQ/edit"},
 {title:"홍춘욱의 자산 운용 전략: 시장 위기 징후 분석과 자산 증식 로드맵",date:"2026-04-30",url:"https://docs.google.com/document/d/1gE-KTku1k_uXljvgtrsux1N0NmuumrKSnpKY670W2Hk/edit"},
-{title:"5월 증시 대응과 50대 노후 자산 관리 전략",date:"2026-04-30",url:"https://docs.google.com/document/d/1P49E3Xhrtzlau1HDzwOu4hzykrRYSDCrd92VwNwSZKw/edit"}
+{title:"5월 증시 대응과 50대 노후 자산 관리 전략",date:"2026-04-30",url:"https://docs.google.com/document/d/1P49E3Xhrtzlau1HDzwOu4hzykrRYSDCrd92VwNwSZKw/edit"},
+{title:"🍎 Windows → Mac 단축키 가이드",date:"2026-04-23",url:"windowtomac.html",tag:"guide"}
 ];
 let filtered=[...ALL_REPORTS],currentPage=1,pageSize=10;
 function onSearch(){const q=document.getElementById('searchInput').value.toLowerCase();filtered=ALL_REPORTS.filter(r=>r.title.toLowerCase().includes(q)||r.date.includes(q));currentPage=1;render();}
@@ -97,7 +99,10 @@ const totalPages=pageSize>=9999?1:Math.ceil(filtered.length/pageSize);
 if(currentPage>totalPages)currentPage=totalPages;
 const start=pageSize>=9999?0:(currentPage-1)*pageSize;
 const end=pageSize>=9999?filtered.length:Math.min(start+pageSize,filtered.length);
-tbody.innerHTML=filtered.slice(start,end).map((r,i)=>'<tr><td class="num">'+(start+i+1)+'</td><td class="date">'+r.date+'</td><td class="title"><a href="'+r.url+'" target="_blank" rel="noopener">'+r.title+'</a><span class="source">NotebookLM</span></td></tr>').join('');
+tbody.innerHTML=filtered.slice(start,end).map((r,i)=>{
+const tag=r.tag==='guide'?'<span class="source guide">가이드</span>':'<span class="source">NotebookLM</span>';
+return '<tr><td class="num">'+(start+i+1)+'</td><td class="date">'+r.date+'</td><td class="title"><a href="'+r.url+'" target="_blank" rel="noopener">'+r.title+'</a>'+tag+'</td></tr>';
+}).join('');
 const pg=document.getElementById('pagination');
 if(totalPages<=1){pg.innerHTML='';return;}
 let btns='<button onclick="goPage('+(currentPage-1)+')" '+(currentPage===1?'disabled':'')+'>&#8249; 이전</button>';
