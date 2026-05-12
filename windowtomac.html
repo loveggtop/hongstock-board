@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🍎 Windows → Mac 단축키 가이드</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif; background: #f5f7fa; color: #222; min-height: 100vh; }
+header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: #fff; padding: 28px 24px 20px; box-shadow: 0 2px 8px rgba(0,0,0,.3); }
+header h1 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 6px; }
+header .meta { font-size: 0.82rem; opacity: 0.75; }
+header .back { display: inline-block; margin-top: 10px; font-size: 0.82rem; color: rgba(255,255,255,0.7); text-decoration: none; }
+header .back:hover { color: #fff; }
+.container { max-width: 900px; margin: 24px auto; padding: 0 16px 48px; }
+h2 { font-size: 1.1rem; font-weight: 700; color: #0f3460; margin: 32px 0 12px; padding-bottom: 8px; border-bottom: 2px solid #e0e8f5; display: flex; align-items: center; gap: 8px; }
+h3 { font-size: 0.95rem; font-weight: 700; color: #333; margin: 20px 0 10px; }
+p { font-size: 0.9rem; color: #444; line-height: 1.7; margin-bottom: 12px; }
+.card { background: #fff; border-radius: 12px; box-shadow: 0 1px 4px rgba(0,0,0,.08); overflow: hidden; margin-bottom: 8px; }
+table { width: 100%; border-collapse: collapse; }
+thead tr { background: #f0f4f8; font-size: 0.78rem; color: #666; text-transform: uppercase; letter-spacing: 0.5px; }
+thead th { padding: 10px 14px; text-align: left; font-weight: 600; }
+tbody tr { border-top: 1px solid #f0f0f0; transition: background .15s; }
+tbody tr:hover { background: #f8faff; }
+td { padding: 11px 14px; font-size: 0.88rem; vertical-align: middle; }
+td:first-child { font-weight: 500; color: #333; width: 35%; }
+td.kbd { font-family: 'SF Mono', 'Consolas', monospace; color: #0f3460; background: #eef2ff; border-radius: 4px; padding: 2px 8px; display: inline-block; font-size: 0.82rem; }
+.tip { background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; font-size: 0.88rem; color: #444; line-height: 1.6; }
+.warn { background: #fff1f0; border-left: 4px solid #e94560; border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; font-size: 0.88rem; color: #444; line-height: 1.6; }
+.key-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+.key-box { background: #fff; border-radius: 10px; padding: 14px 16px; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+.key-box h4 { font-size: 0.82rem; color: #888; margin-bottom: 8px; }
+.key-box .key { display: inline-block; background: #f0f4f8; border: 1px solid #ddd; border-radius: 6px; padding: 4px 10px; font-size: 0.88rem; font-family: monospace; margin: 3px 2px; box-shadow: 0 2px 0 #bbb; }
+footer { text-align: center; padding: 24px; font-size: 0.75rem; color: #aaa; }
+@media (max-width: 600px) { .key-compare { grid-template-columns: 1fr; } td { font-size: 0.8rem; padding: 9px 10px; } }
+</style>
+</head>
+<body>
+<header>
+<h1>🍎 Windows → Mac 전환자를 위한 필수 단축키 가이드</h1>
+<div class="meta">윈도우에서 맥으로 막 넘어온 분들을 위한 핵심 단축키 정리</div>
+<a class="back" href="/">← 게시판으로 돌아가기</a>
+</header>
+<div class="container">
+
+  <h2>🔑 키 이름 비교</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>Windows 키</th><th>Mac 키</th><th>기호</th></tr></thead>
+      <tbody>
+        <tr><td>Ctrl</td><td>Command</td><td><span class="kbd">⌘</span></td></tr>
+        <tr><td>Alt</td><td>Option</td><td><span class="kbd">⌥</span></td></tr>
+        <tr><td>Windows</td><td>Control</td><td><span class="kbd">⌃</span></td></tr>
+        <tr><td>Backspace</td><td>Delete</td><td><span class="kbd">⌫</span></td></tr>
+        <tr><td>Delete</td><td>Fn + Delete</td><td><span class="kbd">⌦</span></td></tr>
+        <tr><td>Enter</td><td>Return</td><td><span class="kbd">↩</span></td></tr>
+        <tr><td>Shift</td><td>Shift</td><td><span class="kbd">⇧</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>⌨️ Windows 키보드를 Mac에 연결했을 때 키 대응</h2>
+  <p>Mac 전용 키보드 없이 Windows 키보드를 그대로 Mac에 연결해서 사용할 때의 핵심 정보입니다.</p>
+  <div class="tip">💡 <strong>가장 중요한 포인트:</strong> Mac의 Command(⌘) = Windows 키보드의 <strong>Windows 키(⊞)</strong></div>
+  <div class="card">
+    <table>
+      <thead><tr><th>Mac 키보드 키</th><th>기호</th><th>Windows 키보드의 해당 키</th><th>위치 힌트</th></tr></thead>
+      <tbody>
+        <tr><td>Command</td><td><span class="kbd">⌘</span></td><td>Windows 키 (⊞)</td><td>스페이스바 왼쪽/오른쪽</td></tr>
+        <tr><td>Option</td><td><span class="kbd">⌥</span></td><td>Alt 키</td><td>Windows 키 옆</td></tr>
+        <tr><td>Control</td><td><span class="kbd">⌃</span></td><td>Ctrl 키</td><td>왼쪽 하단 모서리</td></tr>
+        <tr><td>Delete (←)</td><td><span class="kbd">⌫</span></td><td>Backspace</td><td>백스페이스</td></tr>
+        <tr><td>Forward Delete</td><td><span class="kbd">⌦</span></td><td>Delete</td><td>Backspace 오른쪽 별도 키</td></tr>
+        <tr><td>Return</td><td><span class="kbd">↩</span></td><td>Enter</td><td>같은 위치</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="warn">⚠️ <strong>주의:</strong> Windows 키보드에서 <strong>Ctrl ≠ Command</strong> 입니다! Mac의 Command 역할을 하는 건 Ctrl이 아니라 <strong>Windows 키(⊞)</strong>입니다.</div>
+
+  <h2>🔄 Windows 키보드로 주요 Mac 단축키 입력</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>기능</th><th>Mac 단축키</th><th>Windows 키보드로 입력</th></tr></thead>
+      <tbody>
+        <tr><td>Spotlight 검색 열기</td><td><span class="kbd">⌘ + Space</span></td><td>Windows 키 + Space</td></tr>
+        <tr><td>복사</td><td><span class="kbd">⌘ + C</span></td><td>Windows 키 + C</td></tr>
+        <tr><td>붙여넣기</td><td><span class="kbd">⌘ + V</span></td><td>Windows 키 + V</td></tr>
+        <tr><td>잘라내기</td><td><span class="kbd">⌘ + X</span></td><td>Windows 키 + X</td></tr>
+        <tr><td>전체 선택</td><td><span class="kbd">⌘ + A</span></td><td>Windows 키 + A</td></tr>
+        <tr><td>실행 취소</td><td><span class="kbd">⌘ + Z</span></td><td>Windows 키 + Z</td></tr>
+        <tr><td>저장</td><td><span class="kbd">⌘ + S</span></td><td>Windows 키 + S</td></tr>
+        <tr><td>앱 종료</td><td><span class="kbd">⌘ + Q</span></td><td>Windows 키 + Q</td></tr>
+        <tr><td>창 닫기</td><td><span class="kbd">⌘ + W</span></td><td>Windows 키 + W</td></tr>
+        <tr><td>앱 전환</td><td><span class="kbd">⌘ + Tab</span></td><td>Windows 키 + Tab</td></tr>
+        <tr><td>강제 종료</td><td><span class="kbd">⌘ + ⌥ + Esc</span></td><td>Windows 키 + Alt + Esc</td></tr>
+        <tr><td>화면 잠금</td><td><span class="kbd">⌃ + ⌘ + Q</span></td><td>Ctrl + Windows 키 + Q</td></tr>
+        <tr><td>스크린샷 (전체)</td><td><span class="kbd">⌘ + Shift + 3</span></td><td>Windows 키 + Shift + 3</td></tr>
+        <tr><td>스크린샷 (영역)</td><td><span class="kbd">⌘ + Shift + 4</span></td><td>Windows 키 + Shift + 4</td></tr>
+        <tr><td>이모지 입력</td><td><span class="kbd">⌃ + ⌘ + Space</span></td><td>Ctrl + Windows 키 + Space</td></tr>
+        <tr><td>프린트</td><td><span class="kbd">⌘ + P</span></td><td>Windows 키 + P</td></tr>
+        <tr><td>찾기</td><td><span class="kbd">⌘ + F</span></td><td>Windows 키 + F</td></tr>
+        <tr><td>새 창</td><td><span class="kbd">⌘ + N</span></td><td>Windows 키 + N</td></tr>
+        <tr><td>환경설정 열기</td><td><span class="kbd">⌘ + ,</span></td><td>Windows 키 + ,</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="tip">💡 Windows 키보드에서 Alt 키가 Mac의 Option(⌥) 역할을 합니다.<br>예) ⌘ + ⌥ + Esc (강제 종료) → Windows 키보드에서는 Windows 키 + Alt + Esc</div>
+
+  <h2>⚙️ Windows 키보드 키 배열 커스터마이징</h2>
+  <p>Mac에서 Windows 키보드의 키 배열을 바꾸고 싶다면:<br>
+  <strong>시스템 설정 → 키보드 → 키보드 단축키 → 보조 키</strong>에서 변경 가능합니다.</p>
+
+  <h2>📋 기본 편집 단축키</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>기능</th><th>Windows</th><th>Mac</th></tr></thead>
+      <tbody>
+        <tr><td>복사</td><td>Ctrl + C</td><td><span class="kbd">⌘ + C</span></td></tr>
+        <tr><td>붙여넣기</td><td>Ctrl + V</td><td><span class="kbd">⌘ + V</span></td></tr>
+        <tr><td>잘라내기</td><td>Ctrl + X</td><td><span class="kbd">⌘ + X</span></td></tr>
+        <tr><td>전체 선택</td><td>Ctrl + A</td><td><span class="kbd">⌘ + A</span></td></tr>
+        <tr><td>실행 취소</td><td>Ctrl + Z</td><td><span class="kbd">⌘ + Z</span></td></tr>
+        <tr><td>다시 실행</td><td>Ctrl + Y</td><td><span class="kbd">⌘ + Shift + Z</span></td></tr>
+        <tr><td>저장</td><td>Ctrl + S</td><td><span class="kbd">⌘ + S</span></td></tr>
+        <tr><td>다른 이름으로 저장</td><td>Ctrl + Shift + S</td><td><span class="kbd">⌘ + Shift + S</span></td></tr>
+        <tr><td>찾기</td><td>Ctrl + F</td><td><span class="kbd">⌘ + F</span></td></tr>
+        <tr><td>찾기 및 바꾸기</td><td>Ctrl + H</td><td><span class="kbd">⌘ + H</span> (앱마다 다름)</td></tr>
+        <tr><td>인쇄</td><td>Ctrl + P</td><td><span class="kbd">⌘ + P</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>🖥️ 앱 &amp; 시스템 제어</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>기능</th><th>Windows</th><th>Mac</th></tr></thead>
+      <tbody>
+        <tr><td>앱 전환</td><td>Alt + Tab</td><td><span class="kbd">⌘ + Tab</span></td></tr>
+        <tr><td>앱 종료</td><td>Alt + F4</td><td><span class="kbd">⌘ + Q</span></td></tr>
+        <tr><td>창 닫기</td><td>Ctrl + W</td><td><span class="kbd">⌘ + W</span></td></tr>
+        <tr><td>새 창 열기</td><td>Ctrl + N</td><td><span class="kbd">⌘ + N</span></td></tr>
+        <tr><td>새 탭 열기</td><td>Ctrl + T</td><td><span class="kbd">⌘ + T</span></td></tr>
+        <tr><td>설정 열기</td><td>Windows + I</td><td><span class="kbd">⌘ + ,</span> (앱 환경설정)</td></tr>
+        <tr><td>작업 관리자</td><td>Ctrl + Shift + Esc</td><td>⌘ + Space → "활성 상태 보기"</td></tr>
+        <tr><td>강제 종료</td><td>—</td><td><span class="kbd">⌘ + ⌥ + Esc</span></td></tr>
+        <tr><td>잠금 화면</td><td>Windows + L</td><td><span class="kbd">⌃ + ⌘ + Q</span></td></tr>
+        <tr><td>시스템 설정</td><td>—</td><td>⌘ + Space → "시스템 설정"</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>🔍 Spotlight 검색 (Mac의 핵심 기능!)</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>기능</th><th>단축키</th></tr></thead>
+      <tbody>
+        <tr><td>Spotlight 열기</td><td><span class="kbd">⌘ + Space</span></td></tr>
+        <tr><td>앱 검색 및 실행</td><td>⌘ + Space → 앱 이름 입력</td></tr>
+        <tr><td>파일 검색</td><td>⌘ + Space → 파일명 입력</td></tr>
+        <tr><td>계산기 사용</td><td>⌘ + Space → 수식 입력 (예: 1+1)</td></tr>
+        <tr><td>환율/단위 변환</td><td>⌘ + Space → "1달러" 입력</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="tip">💡 Spotlight는 Windows의 검색창보다 훨씬 강력합니다. 앱 실행, 파일 검색, 계산, 사전 검색까지 모두 됩니다!</div>
+
+  <h2>🪟 창 &amp; 화면 관리</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>기능</th><th>Windows</th><th>Mac</th></tr></thead>
+      <tbody>
+        <tr><td>창 최소화</td><td>Windows + ↓</td><td><span class="kbd">⌘ + M</span></td></tr>
+        <tr><td>전체 화면 전환</td><td>F11</td><td><span class="kbd">⌃ + ⌘ + F</span></td></tr>
+        <tr><td>미션 컨트롤 (모든 창 보기)</td><td>—</td><td><span class="kbd">⌃ + ↑</span> (또는 F3)</td></tr>
+        <tr><td>같은 앱의 창 전환</td><td>—</td><td><span class="kbd">⌘ + `</span> (백틱)</td></tr>
+        <tr><td>화면 분할</td><td>Windows + ←/→</td><td>⌘을 누른 채 녹색 버튼 클릭</td></tr>
+        <tr><td>Dock 숨기기/보이기</td><td>—</td><td><span class="kbd">⌥ + ⌘ + D</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>📸 스크린샷</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>기능</th><th>Windows</th><th>Mac</th></tr></thead>
+      <tbody>
+        <tr><td>전체 화면 캡처</td><td>PrtScn</td><td><span class="kbd">⌘ + Shift + 3</span></td></tr>
+        <tr><td>영역 선택 캡처</td><td>Shift + PrtScn</td><td><span class="kbd">⌘ + Shift + 4</span></td></tr>
+        <tr><td>특정 창 캡처</td><td>Alt + PrtScn</td><td>⌘ + Shift + 4 → Space → 창 클릭</td></tr>
+        <tr><td>스크린샷 도구 열기</td><td>—</td><td><span class="kbd">⌘ + Shift + 5</span></td></tr>
+        <tr><td>클립보드에 복사</td><td>Ctrl + PrtScn</td><td>위 단축키 + ⌃ 추가</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="tip">💡 기본적으로 스크린샷은 바탕화면에 자동 저장됩니다. ⌃를 추가하면 클립보드에만 복사됩니다.</div>
+
+  <h2>📂 Finder (파일 탐색기)</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>기능</th><th>Windows</th><th>Mac</th></tr></thead>
+      <tbody>
+        <tr><td>파일 탐색기 열기</td><td>Windows + E</td><td>⌘ + Space → "Finder"</td></tr>
+        <tr><td>새 Finder 창</td><td>—</td><td><span class="kbd">⌘ + N</span> (Finder에서)</td></tr>
+        <tr><td>파일 삭제 (휴지통으로)</td><td>Delete</td><td><span class="kbd">⌘ + Delete</span></td></tr>
+        <tr><td>파일 영구 삭제</td><td>Shift + Delete</td><td><span class="kbd">⌘ + Shift + Delete</span></td></tr>
+        <tr><td>파일 이름 변경</td><td>F2</td><td><span class="kbd">Return</span> (엔터)</td></tr>
+        <tr><td>파일 미리보기</td><td>—</td><td><span class="kbd">Space</span> (Quick Look)</td></tr>
+        <tr><td>숨김 파일 보기</td><td>—</td><td><span class="kbd">⌘ + Shift + .</span> (점)</td></tr>
+        <tr><td>폴더 새로 만들기</td><td>Ctrl + Shift + N</td><td><span class="kbd">⌘ + Shift + N</span></td></tr>
+        <tr><td>경로 입력창 열기</td><td>—</td><td><span class="kbd">⌘ + Shift + G</span></td></tr>
+        <tr><td>복사 후 붙여넣기 이동</td><td>—</td><td>⌘ + C 후 <span class="kbd">⌘ + ⌥ + V</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>🌐 브라우저 (Safari / Chrome)</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>기능</th><th>Windows</th><th>Mac</th></tr></thead>
+      <tbody>
+        <tr><td>새 탭</td><td>Ctrl + T</td><td><span class="kbd">⌘ + T</span></td></tr>
+        <tr><td>탭 닫기</td><td>Ctrl + W</td><td><span class="kbd">⌘ + W</span></td></tr>
+        <tr><td>탭 전환 (다음)</td><td>Ctrl + Tab</td><td><span class="kbd">⌃ + Tab</span></td></tr>
+        <tr><td>주소창 포커스</td><td>Ctrl + L</td><td><span class="kbd">⌘ + L</span></td></tr>
+        <tr><td>새로고침</td><td>F5</td><td><span class="kbd">⌘ + R</span></td></tr>
+        <tr><td>강력 새로고침</td><td>Ctrl + Shift + R</td><td><span class="kbd">⌘ + Shift + R</span></td></tr>
+        <tr><td>개발자 도구</td><td>F12</td><td><span class="kbd">⌘ + ⌥ + I</span></td></tr>
+        <tr><td>페이지 내 검색</td><td>Ctrl + F</td><td><span class="kbd">⌘ + F</span></td></tr>
+        <tr><td>북마크 추가</td><td>Ctrl + D</td><td><span class="kbd">⌘ + D</span></td></tr>
+        <tr><td>히스토리</td><td>Ctrl + H</td><td><span class="kbd">⌘ + Y</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>⌨️ 텍스트 커서 이동 &amp; 선택</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>기능</th><th>Windows</th><th>Mac</th></tr></thead>
+      <tbody>
+        <tr><td>줄 처음으로</td><td>Home</td><td><span class="kbd">⌘ + ←</span></td></tr>
+        <tr><td>줄 끝으로</td><td>End</td><td><span class="kbd">⌘ + →</span></td></tr>
+        <tr><td>문서 처음으로</td><td>Ctrl + Home</td><td><span class="kbd">⌘ + ↑</span></td></tr>
+        <tr><td>문서 끝으로</td><td>Ctrl + End</td><td><span class="kbd">⌘ + ↓</span></td></tr>
+        <tr><td>단어 단위 이동</td><td>Ctrl + ←/→</td><td><span class="kbd">⌥ + ←/→</span></td></tr>
+        <tr><td>줄 전체 선택</td><td>Home → Shift + End</td><td><span class="kbd">⌘ + Shift + ←/→</span></td></tr>
+        <tr><td>앞 글자 삭제</td><td>Backspace</td><td><span class="kbd">Delete (⌫)</span></td></tr>
+        <tr><td>뒷 글자 삭제</td><td>Delete</td><td><span class="kbd">Fn + Delete</span></td></tr>
+        <tr><td>단어 단위 삭제</td><td>Ctrl + Backspace</td><td><span class="kbd">⌥ + Delete</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>🎛️ 기타 유용한 단축키</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>기능</th><th>단축키</th><th>설명</th></tr></thead>
+      <tbody>
+        <tr><td>이모지 입력</td><td><span class="kbd">⌃ + ⌘ + Space</span></td><td>이모지 팝업 열기 😊</td></tr>
+        <tr><td>클립보드 히스토리</td><td>—</td><td>기본 미지원 (Maccy 앱 추천)</td></tr>
+        <tr><td>알림 센터</td><td>—</td><td>화면 우상단 시계 클릭</td></tr>
+        <tr><td>방해 금지 모드</td><td><span class="kbd">⌥ + 알림센터 클릭</span></td><td>—</td></tr>
+        <tr><td>화면 밝기 조절</td><td>—</td><td>F1 / F2</td></tr>
+        <tr><td>볼륨 조절</td><td>—</td><td>F10 / F11 / F12</td></tr>
+        <tr><td>앱 숨기기</td><td>—</td><td><span class="kbd">⌘ + H</span></td></tr>
+        <tr><td>다른 앱 모두 숨기기</td><td>—</td><td><span class="kbd">⌘ + ⌥ + H</span></td></tr>
+        <tr><td>딕테이션(음성 입력)</td><td>—</td><td>Fn 두 번 빠르게</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>💡 Windows와 다른 Mac만의 특징</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>항목</th><th>설명</th></tr></thead>
+      <tbody>
+        <tr><td>오른쪽 클릭</td><td>트랙패드에서 두 손가락으로 탭하거나, Ctrl + 클릭</td></tr>
+        <tr><td>파일 이름 변경</td><td>Delete가 아닌 Return(엔터) 키 사용</td></tr>
+        <tr><td>프로그램 종료</td><td>⌘ + Q (창을 닫아도 앱은 살아있을 수 있음)</td></tr>
+        <tr><td>복사 후 이동</td><td>⌘ + C → 붙여넣기 시 ⌘ + ⌥ + V 하면 '이동'</td></tr>
+        <tr><td>Dock</td><td>Windows 작업표시줄과 유사하지만, 실행 중인 앱은 아이콘 아래 점으로 표시</td></tr>
+        <tr><td>메뉴바</td><td>화면 최상단 좌측에 앱별 메뉴가 표시됨 (앱마다 다름)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>📱 추천 Mac 입문 앱</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>앱 이름</th><th>용도</th><th>비고</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Maccy</strong></td><td>클립보드 히스토리</td><td>무료</td></tr>
+        <tr><td><strong>Rectangle</strong></td><td>창 관리/분할</td><td>무료</td></tr>
+        <tr><td><strong>Alfred</strong></td><td>Spotlight 강화판</td><td>무료/유료</td></tr>
+        <tr><td><strong>Amphetamine</strong></td><td>화면 절전 방지</td><td>무료</td></tr>
+        <tr><td><strong>Hidden Bar</strong></td><td>메뉴바 아이콘 정리</td><td>무료</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+<footer>마지막 업데이트: 2026-04-23 | Powered by GitHub Pages</footer>
+</body>
+</html>
