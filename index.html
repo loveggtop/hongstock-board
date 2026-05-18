@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>유튜브 종목분석 보고서 게시판</title>
+<title>ì íë¸ ì¢ëª©ë¶ì ë³´ê³ ì ê²ìí</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif; background: #f0f4f8; color: #222; min-height: 100vh; }
 
-/* ── Header ── */
+/* ââ Header ââ */
 header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: #fff; padding: 28px 24px 22px; box-shadow: 0 2px 10px rgba(0,0,0,.35); }
 header h1 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 6px; }
 header .meta { font-size: 0.82rem; opacity: 0.72; }
 
-/* ── Container ── */
+/* ââ Container ââ */
 .container { max-width: 900px; margin: 28px auto; padding: 0 16px 48px; }
 
-/* ── Stats boxes (windowtomac의 key-box 스타일 응용) ── */
+/* ââ Stats boxes (windowtomacì key-box ì¤íì¼ ìì©) ââ */
 .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 28px; }
 .stat-box { background: #fff; border-radius: 12px; padding: 16px 20px; box-shadow: 0 1px 6px rgba(0,0,0,.09); border-top: 3px solid #0f3460; }
 .stat-box.green { border-top-color: #2e7d32; }
@@ -25,7 +25,7 @@ header .meta { font-size: 0.82rem; opacity: 0.72; }
 .stat-box .value { font-size: 1.6rem; font-weight: 700; color: #1a2d4e; line-height: 1; }
 .stat-box .sub { font-size: 0.75rem; color: #aaa; margin-top: 4px; }
 
-/* ── Search toolbar ── */
+/* ââ Search toolbar ââ */
 .toolbar { display: flex; gap: 8px; margin-bottom: 24px; align-items: center; flex-wrap: wrap; }
 .toolbar input { flex: 1; min-width: 180px; padding: 10px 16px; border: 1.5px solid #dde3ec; border-radius: 8px; font-size: 0.9rem; outline: none; transition: border-color .2s, box-shadow .2s; background: #fff; color: #222; }
 .toolbar input::placeholder { color: #aab; }
@@ -34,11 +34,11 @@ header .meta { font-size: 0.82rem; opacity: 0.72; }
 .view-toggle button { padding: 8px 14px; border: 1.5px solid #dde3ec; background: #fff; border-radius: 7px; font-size: 0.82rem; cursor: pointer; color: #666; transition: all .15s; }
 .view-toggle button.active { background: #0f3460; color: #fff; border-color: #0f3460; }
 
-/* ── Section heading (windowtomac h2 스타일) ── */
+/* ââ Section heading (windowtomac h2 ì¤íì¼) ââ */
 .month-heading { font-size: 1.0rem; font-weight: 700; color: #0f3460; margin: 24px 0 12px; padding-bottom: 9px; border-bottom: 2px solid #dde8f5; display: flex; align-items: center; gap: 8px; }
 .month-heading .count { font-size: 0.75rem; font-weight: 600; background: #eef2ff; color: #5c6bc0; border-radius: 20px; padding: 2px 9px; margin-left: 4px; }
 
-/* ── Report list items ── */
+/* ââ Report list items ââ */
 .report-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 4px; }
 .report-item { background: #fff; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,.07); border-left: 3px solid transparent; padding: 13px 16px; display: flex; align-items: flex-start; gap: 12px; transition: border-left-color .15s, box-shadow .15s, background .15s; }
 .report-item:hover { border-left-color: #0f3460; box-shadow: 0 2px 8px rgba(15,52,96,.12); background: #f8faff; }
@@ -52,13 +52,13 @@ header .meta { font-size: 0.82rem; opacity: 0.72; }
 .source { display: inline-block; padding: 2px 8px; background: #eef2ff; color: #5c6bc0; border-radius: 4px; font-size: 0.71rem; font-weight: 600; letter-spacing: 0.2px; }
 .source.guide { background: #e8f5e9; color: #2e7d32; }
 
-/* ── Empty / no results ── */
+/* ââ Empty / no results ââ */
 .empty-msg { text-align: center; padding: 52px; color: #aaa; font-size: 0.9rem; background: #fff; border-radius: 12px; }
 
-/* ── Tip box (windowtomac .tip 스타일) ── */
+/* ââ Tip box (windowtomac .tip ì¤íì¼) ââ */
 .tip { background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 11px 16px; margin-bottom: 24px; font-size: 0.85rem; color: #555; line-height: 1.6; }
 
-/* ── Footer ── */
+/* ââ Footer ââ */
 footer { text-align: center; padding: 28px 24px; font-size: 0.75rem; color: #b0b8c4; border-top: 1px solid #e8ecf2; margin-top: 8px; }
 
 @media (max-width: 600px) {
@@ -70,8 +70,8 @@ footer { text-align: center; padding: 28px 24px; font-size: 0.75rem; color: #b0b
 </head>
 <body>
 <header>
-<h1>📊 유튜브 종목분석 보고서 게시판</h1>
-<div class="meta">NotebookLM × YouTube 자동 생성 보고서 아카이브 &nbsp;·&nbsp; 최종 업데이트: 2026-05-15</div>
+<h1>ð ì íë¸ ì¢ëª©ë¶ì ë³´ê³ ì ê²ìí</h1>
+<div class="meta">NotebookLM Ã YouTube ìë ìì± ë³´ê³ ì ìì¹´ì´ë¸ &nbsp;Â·&nbsp; ìµì¢ ìë°ì´í¸: 2026-05-15</div>
 </header>
 <div class="container">
 
@@ -80,50 +80,51 @@ footer { text-align: center; padding: 28px 24px; font-size: 0.75rem; color: #b0b
 
 <!-- Search -->
 <div class="toolbar">
-<input type="text" id="searchInput" placeholder="🔍 보고서 제목 검색..." oninput="onSearch()">
+<input type="text" id="searchInput" placeholder="ð ë³´ê³ ì ì ëª© ê²ì..." oninput="onSearch()">
 </div>
 
-<!-- Tip (검색 결과 없을 때만 표시) -->
-<div id="emptyMsg" class="empty-msg" style="display:none;">🔍 검색 결과가 없습니다.</div>
+<!-- Tip (ê²ì ê²°ê³¼ ìì ëë§ íì) -->
+<div id="emptyMsg" class="empty-msg" style="display:none;">ð ê²ì ê²°ê³¼ê° ììµëë¤.</div>
 
-<!-- 월별 섹션 -->
+<!-- ìë³ ì¹ì -->
 <div id="reportSections"></div>
 
 </div>
-<footer>NotebookLM × YouTube 종목분석 보고서 게시판 &nbsp;|&nbsp; Powered by GitHub Pages</footer>
+<footer>NotebookLM Ã YouTube ì¢ëª©ë¶ì ë³´ê³ ì ê²ìí &nbsp;|&nbsp; Powered by GitHub Pages</footer>
 
 <script>
 const ALL_REPORTS = [
-{title:"코스피 시장의 이상 현상과 주요 투자 환경 변화 분석 보고서",date:"2026-05-15",url:"https://docs.google.com/document/d/1D9CkZoSpioFKUDTldBtya2W7TTs5o3DRHb3N_Cn8Nk4/edit"},
-{title:"클로드 디자인(Claude Design) 실무 활용 가이드 및 핵심 통찰",date:"2026-05-15",url:"https://docs.google.com/document/d/1FSl-q9FcGgDz0E6iOxuDK3FXidryec5z3gZ4Z9O04Lg/edit"},
-{title:"SH 2025년 공공 및 주거환경 임대주택 모집공고 분석 브리핑",date:"2026-05-15",url:"https://docs.google.com/document/d/1uESpsrnwHr3RqUxZshmIHRpq5eXdjBe2TOYryAHG6Ok/edit"},
-{title:"금융소득 통합 조회 및 종합과세 전략 진단 가이드",date:"2026-05-14",url:"https://docs.google.com/document/d/1OSQSbIKiqgE2_xK8aoXq9hwU_xEvSbapOHMluzcViI4/edit?tab=t.0#heading=h.n8u9jwuq0mnz"},
-{title:"[전략 보고서] 국민성장펀드 심층 분석: 구조적 알파(Alpha) 창출과 포트폴리오 리스크 관리 전략",date:"2026-05-13",url:"https://docs.google.com/document/d/16Fnut7GgQvzueSywTTNugkUHrvDNRGZdR83Hg8LiiN8/edit"},
-{title:"성탄 칸타타 더 스토리 베이스 연습 가이드",date:"2026-05-13",url:"https://docs.google.com/document/d/1CY7YU4x_BuV95Y3mqJ9zx_eQMjyN_B7w7BsSSrFjymE/edit?tab=t.0"},
-{title:"[브리핑 문건] 효율적인 자산 형성을 위한 저축 및 투자 전략 가이드",date:"2026-05-13",url:"https://docs.google.com/document/d/1WBEk1sqc_eHgRWrrbRoAFiqFobr5tbjoWN3ri4k7gj8"},
-{title:"JEPI 및 JEPQ 월배당 ETF 심층 분석 보고서",date:"2026-05-13",url:"https://docs.google.com/document/d/1V_0XCD1tLf5B8fw25OpNU6MMKRdTOSSPLpSdnv0x7dw/edit"},
-{title:"전략적 노후 자산 증식을 위한 연금저축펀드 최적화 및 운용 전략 제안서",date:"2026-05-12",url:"https://docs.google.com/document/d/10Qg2mDUHbL4Pxx_BKbTSeKGVGcteBe7z3o42eo9SL8c/edit"},
-{title:"클로드(Claude) 핵심 기능 해설서: 당신의 완벽한 AI 파트너와 시작하기",date:"2026-05-12",url:"https://docs.google.com/document/d/1wQD89tCMEhopx_vMtSeo7MioUBPWwzaKh_EG2WMVowQ/edit"},
-{title:"[경기 순환 대응] 선행지수 기반 자산배분 전략 및 리밸런싱 매뉴얼",date:"2026-05-12",url:"https://docs.google.com/document/d/1eBoIv2fPPDnmk3fNiE1PjXd06h45A8jBi1XnaWSSC-8/edit"},
-{title:"초보 투자자를 위한 ISA(개인종합관리계좌) 완전 정복 가이드",date:"2026-05-08",url:"https://docs.google.com/document/d/10TkEpBA4lVxXABvDqtH9Xi2llV1GiJ2sOJlT3zVyM7k/edit"},
-{title:"[AI 공부법으로 마스터하는 금융 문해력: ISA & ETF 실전 가이드]",date:"2026-05-08",url:"https://docs.google.com/document/d/1wNoSVeEJ-jXpOYud3i38lkeTmWSR-15JeE5aSk2gbls/edit"},
-{title:"[금융 정책 대응 보고서] 슈퍼 ISA 시대의 도래와 자본시장 활성화를 위한 전략적 자산 배분 방안",date:"2026-05-08",url:"https://docs.google.com/document/d/1gDmb9h_UF24GqcmCMb7wb6uoweSJupIGu8_XXW5mYXY/edit"},
-{title:"[고자산가 맞춤형] 슈퍼 ISA 기반 자산 최적화 및 연금 전환 절세 지침서",date:"2026-05-08",url:"https://docs.google.com/document/d/1Nl7Va5V_BvV9H2C5Kc2K_q0E2bCigEHQh_Q-ZjZ_dPo/edit"},
-{title:"2025-2026 개정 세법 반영 ISA 세무 최적화 및 연금 전환 복리 극대화 가이드",date:"2026-05-08",url:"https://docs.google.com/document/d/1JgE5muoQiGKNFjc3rx9NZkoBGW6e9aj2iOIt17ht1eI/edit"},
-{title:"ISA 세무 최적화 및 연금 전환을 통한 복리 극대화 지침서",date:"2026-05-08",url:"https://docs.google.com/document/d/1x3WLp3dpoJBS4ri22ap8IjICbQOb0KIbzRg_3jWABOQ/edit"},
-{title:"[전략 제안서] 은퇴 자금 마련 및 현금 흐름 창출을 위한 4대 ETF 쿼드러플 엔진 포트폴리오 전략",date:"2026-05-07",url:"https://docs.google.com/document/d/1PxaQof5vIOqZO9dyi6vEP1nUtlR4uagWmO5FsP0-LnY/edit"},
-{title:"디지털 월급 기계: ISA와 ETF 투자 전략 보고서",date:"2026-05-07",url:"https://docs.google.com/document/d/1b4yng149X8oebGg3IowAwSgezih7RokSSBWj5ryOQOk/edit"},
-{title:"AI 인프라 시대의 생애주기별 ETF 투자 전략과 실전 가이드",date:"2026-05-07",url:"https://docs.google.com/document/d/1MWofJ-JHWOBTT1nJXFC0kf0ibfUY08r1kXHMW7oQ1OU/edit"},
-{title:"[보고서] 나이제한 소득제한 없는 연금 통장의 핵심 혜택 및 운용 전략",date:"2026-04-30",url:"https://docs.google.com/document/d/1A1hMcqF8t3mASVERsMLfXaZkvxmlyU6upEiAUXxzO44/edit"},
-{title:"5월 증시 전망 및 5천만 원 자산운용 투자 전략 보고서",date:"2026-04-30",url:"https://docs.google.com/document/d/18WPqta-Rn5B_nReXOoo9tVFHjRUV7UH3DTtjqczkWUQ/edit"},
-{title:"홍춘욱의 자산 운용 전략: 시장 위기 징후 분석과 자산 증식 로드맵",date:"2026-04-30",url:"https://docs.google.com/document/d/1gE-KTku1k_uXljvgtrsux1N0NmuumrKSnpKY670W2Hk/edit"},
-{title:"5월 증시 대응과 50대 노후 자산 관리 전략",date:"2026-04-30",url:"https://docs.google.com/document/d/1P49E3Xhrtzlau1HDzwOu4hzykrRYSDCrd92VwNwSZKw/edit"},
-{title:"🍎 Windows → Mac 단축키 가이드",date:"2026-04-23",url:"windowtomac.html",tag:"guide"}
+{title:"2026년 연금저축·IRP ETF 포트폴리오 전략 및 제도 개편 분석 브리핑",date:"2026-05-18",url:"https://docs.google.com/document/d/1UAJgcXhyWa98GESOaJgOc720fXuXS-4fV76f47Bqd50/edit"},
+{title:"ì½ì¤í¼ ìì¥ì ì´ì íìê³¼ ì£¼ì í¬ì íê²½ ë³í ë¶ì ë³´ê³ ì",date:"2026-05-15",url:"https://docs.google.com/document/d/1D9CkZoSpioFKUDTldBtya2W7TTs5o3DRHb3N_Cn8Nk4/edit"},
+{title:"í´ë¡ë ëìì¸(Claude Design) ì¤ë¬´ íì© ê°ì´ë ë° íµì¬ íµì°°",date:"2026-05-15",url:"https://docs.google.com/document/d/1FSl-q9FcGgDz0E6iOxuDK3FXidryec5z3gZ4Z9O04Lg/edit"},
+{title:"SH 2025ë ê³µê³µ ë° ì£¼ê±°íê²½ ìëì£¼í ëª¨ì§ê³µê³  ë¶ì ë¸ë¦¬í",date:"2026-05-15",url:"https://docs.google.com/document/d/1uESpsrnwHr3RqUxZshmIHRpq5eXdjBe2TOYryAHG6Ok/edit"},
+{title:"ê¸ìµìë íµí© ì¡°í ë° ì¢í©ê³¼ì¸ ì ëµ ì§ë¨ ê°ì´ë",date:"2026-05-14",url:"https://docs.google.com/document/d/1OSQSbIKiqgE2_xK8aoXq9hwU_xEvSbapOHMluzcViI4/edit?tab=t.0#heading=h.n8u9jwuq0mnz"},
+{title:"[ì ëµ ë³´ê³ ì] êµ­ë¯¼ì±ì¥íë ì¬ì¸µ ë¶ì: êµ¬ì¡°ì  ìí(Alpha) ì°½ì¶ê³¼ í¬í¸í´ë¦¬ì¤ ë¦¬ì¤í¬ ê´ë¦¬ ì ëµ",date:"2026-05-13",url:"https://docs.google.com/document/d/16Fnut7GgQvzueSywTTNugkUHrvDNRGZdR83Hg8LiiN8/edit"},
+{title:"ì±í ì¹¸íí ë ì¤í ë¦¬ ë² ì´ì¤ ì°ìµ ê°ì´ë",date:"2026-05-13",url:"https://docs.google.com/document/d/1CY7YU4x_BuV95Y3mqJ9zx_eQMjyN_B7w7BsSSrFjymE/edit?tab=t.0"},
+{title:"[ë¸ë¦¬í ë¬¸ê±´] í¨ì¨ì ì¸ ìì° íì±ì ìí ì ì¶ ë° í¬ì ì ëµ ê°ì´ë",date:"2026-05-13",url:"https://docs.google.com/document/d/1WBEk1sqc_eHgRWrrbRoAFiqFobr5tbjoWN3ri4k7gj8"},
+{title:"JEPI ë° JEPQ ìë°°ë¹ ETF ì¬ì¸µ ë¶ì ë³´ê³ ì",date:"2026-05-13",url:"https://docs.google.com/document/d/1V_0XCD1tLf5B8fw25OpNU6MMKRdTOSSPLpSdnv0x7dw/edit"},
+{title:"ì ëµì  ë¸í ìì° ì¦ìì ìí ì°ê¸ì ì¶íë ìµì í ë° ì´ì© ì ëµ ì ìì",date:"2026-05-12",url:"https://docs.google.com/document/d/10Qg2mDUHbL4Pxx_BKbTSeKGVGcteBe7z3o42eo9SL8c/edit"},
+{title:"í´ë¡ë(Claude) íµì¬ ê¸°ë¥ í´ì¤ì: ë¹ì ì ìë²½í AI íí¸ëì ììíê¸°",date:"2026-05-12",url:"https://docs.google.com/document/d/1wQD89tCMEhopx_vMtSeo7MioUBPWwzaKh_EG2WMVowQ/edit"},
+{title:"[ê²½ê¸° ìí ëì] ì íì§ì ê¸°ë° ìì°ë°°ë¶ ì ëµ ë° ë¦¬ë°¸ë°ì± ë§¤ë´ì¼",date:"2026-05-12",url:"https://docs.google.com/document/d/1eBoIv2fPPDnmk3fNiE1PjXd06h45A8jBi1XnaWSSC-8/edit"},
+{title:"ì´ë³´ í¬ììë¥¼ ìí ISA(ê°ì¸ì¢í©ê´ë¦¬ê³ì¢) ìì  ì ë³µ ê°ì´ë",date:"2026-05-08",url:"https://docs.google.com/document/d/10TkEpBA4lVxXABvDqtH9Xi2llV1GiJ2sOJlT3zVyM7k/edit"},
+{title:"[AI ê³µë¶ë²ì¼ë¡ ë§ì¤í°íë ê¸ìµ ë¬¸í´ë ¥: ISA & ETF ì¤ì  ê°ì´ë]",date:"2026-05-08",url:"https://docs.google.com/document/d/1wNoSVeEJ-jXpOYud3i38lkeTmWSR-15JeE5aSk2gbls/edit"},
+{title:"[ê¸ìµ ì ì± ëì ë³´ê³ ì] ìí¼ ISA ìëì ëëì ìë³¸ìì¥ íì±íë¥¼ ìí ì ëµì  ìì° ë°°ë¶ ë°©ì",date:"2026-05-08",url:"https://docs.google.com/document/d/1gDmb9h_UF24GqcmCMb7wb6uoweSJupIGu8_XXW5mYXY/edit"},
+{title:"[ê³ ìì°ê° ë§ì¶¤í] ìí¼ ISA ê¸°ë° ìì° ìµì í ë° ì°ê¸ ì í ì ì¸ ì§ì¹¨ì",date:"2026-05-08",url:"https://docs.google.com/document/d/1Nl7Va5V_BvV9H2C5Kc2K_q0E2bCigEHQh_Q-ZjZ_dPo/edit"},
+{title:"2025-2026 ê°ì  ì¸ë² ë°ì ISA ì¸ë¬´ ìµì í ë° ì°ê¸ ì í ë³µë¦¬ ê·¹ëí ê°ì´ë",date:"2026-05-08",url:"https://docs.google.com/document/d/1JgE5muoQiGKNFjc3rx9NZkoBGW6e9aj2iOIt17ht1eI/edit"},
+{title:"ISA ì¸ë¬´ ìµì í ë° ì°ê¸ ì íì íµí ë³µë¦¬ ê·¹ëí ì§ì¹¨ì",date:"2026-05-08",url:"https://docs.google.com/document/d/1x3WLp3dpoJBS4ri22ap8IjICbQOb0KIbzRg_3jWABOQ/edit"},
+{title:"[ì ëµ ì ìì] ìí´ ìê¸ ë§ë ¨ ë° íê¸ íë¦ ì°½ì¶ì ìí 4ë ETF ì¿¼ëë¬í ìì§ í¬í¸í´ë¦¬ì¤ ì ëµ",date:"2026-05-07",url:"https://docs.google.com/document/d/1PxaQof5vIOqZO9dyi6vEP1nUtlR4uagWmO5FsP0-LnY/edit"},
+{title:"ëì§í¸ ìê¸ ê¸°ê³: ISAì ETF í¬ì ì ëµ ë³´ê³ ì",date:"2026-05-07",url:"https://docs.google.com/document/d/1b4yng149X8oebGg3IowAwSgezih7RokSSBWj5ryOQOk/edit"},
+{title:"AI ì¸íë¼ ìëì ìì ì£¼ê¸°ë³ ETF í¬ì ì ëµê³¼ ì¤ì  ê°ì´ë",date:"2026-05-07",url:"https://docs.google.com/document/d/1MWofJ-JHWOBTT1nJXFC0kf0ibfUY08r1kXHMW7oQ1OU/edit"},
+{title:"[ë³´ê³ ì] ëì´ì í ìëì í ìë ì°ê¸ íµì¥ì íµì¬ íí ë° ì´ì© ì ëµ",date:"2026-04-30",url:"https://docs.google.com/document/d/1A1hMcqF8t3mASVERsMLfXaZkvxmlyU6upEiAUXxzO44/edit"},
+{title:"5ì ì¦ì ì ë§ ë° 5ì²ë§ ì ìì°ì´ì© í¬ì ì ëµ ë³´ê³ ì",date:"2026-04-30",url:"https://docs.google.com/document/d/18WPqta-Rn5B_nReXOoo9tVFHjRUV7UH3DTtjqczkWUQ/edit"},
+{title:"íì¶ì±ì ìì° ì´ì© ì ëµ: ìì¥ ìê¸° ì§í ë¶ìê³¼ ìì° ì¦ì ë¡ëë§µ",date:"2026-04-30",url:"https://docs.google.com/document/d/1gE-KTku1k_uXljvgtrsux1N0NmuumrKSnpKY670W2Hk/edit"},
+{title:"5ì ì¦ì ëìê³¼ 50ë ë¸í ìì° ê´ë¦¬ ì ëµ",date:"2026-04-30",url:"https://docs.google.com/document/d/1P49E3Xhrtzlau1HDzwOu4hzykrRYSDCrd92VwNwSZKw/edit"},
+{title:"ð Windows â Mac ë¨ì¶í¤ ê°ì´ë",date:"2026-04-23",url:"windowtomac.html",tag:"guide"}
 ];
 
 function getMonthLabel(dateStr) {
   const [y, m] = dateStr.split('-');
-  return y + '년 ' + parseInt(m) + '월';
+  return y + 'ë ' + parseInt(m) + 'ì';
 }
 
 function render(list) {
@@ -133,9 +134,9 @@ function render(list) {
 
   // Stats
   document.getElementById('statsRow').innerHTML =
-    '<div class="stat-box"><div class="label">총 보고서</div><div class="value">' + total + '</div><div class="sub">전체 누적</div></div>' +
-    '<div class="stat-box green"><div class="label">이번 달</div><div class="value">' + thisMonth + '</div><div class="sub">2026년 5월</div></div>' +
-    '<div class="stat-box amber"><div class="label">최근 업데이트</div><div class="value" style="font-size:1.1rem;padding-top:4px;">' + lastDate + '</div><div class="sub">마지막 등록일</div></div>';
+    '<div class="stat-box"><div class="label">ì´ ë³´ê³ ì</div><div class="value">' + total + '</div><div class="sub">ì ì²´ ëì </div></div>' +
+    '<div class="stat-box green"><div class="label">ì´ë² ë¬</div><div class="value">' + thisMonth + '</div><div class="sub">2026ë 5ì</div></div>' +
+    '<div class="stat-box amber"><div class="label">ìµê·¼ ìë°ì´í¸</div><div class="value" style="font-size:1.1rem;padding-top:4px;">' + lastDate + '</div><div class="sub">ë§ì§ë§ ë±ë¡ì¼</div></div>';
 
   const empty = document.getElementById('emptyMsg');
   const sections = document.getElementById('reportSections');
@@ -147,7 +148,7 @@ function render(list) {
   }
   empty.style.display = 'none';
 
-  // 월별 그룹핑
+  // ìë³ ê·¸ë£¹í
   const groups = {};
   list.forEach((r, i) => {
     const key = r.date.substring(0, 7);
@@ -161,11 +162,11 @@ function render(list) {
   keys.forEach(key => {
     const items = groups[key];
     const label = getMonthLabel(key + '-01');
-    html += '<div class="month-heading">📅 ' + label + '<span class="count">' + items.length + '건</span></div>';
+    html += '<div class="month-heading">ð ' + label + '<span class="count">' + items.length + 'ê±´</span></div>';
     html += '<div class="report-list">';
     items.forEach(r => {
       const tag = r.tag === 'guide'
-        ? '<span class="source guide">가이드</span>'
+        ? '<span class="source guide">ê°ì´ë</span>'
         : '<span class="source">NotebookLM</span>';
       html += '<div class="report-item">'
         + '<div class="num">' + counter++ + '</div>'
