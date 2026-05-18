@@ -7,71 +7,91 @@
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif; background: #f0f4f8; color: #222; min-height: 100vh; }
+
+/* ── Header ── */
 header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: #fff; padding: 28px 24px 22px; box-shadow: 0 2px 10px rgba(0,0,0,.35); }
 header h1 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 6px; }
-header .meta { font-size: 0.82rem; opacity: 0.72; line-height: 1.6; }
+header .meta { font-size: 0.82rem; opacity: 0.72; }
+
+/* ── Container ── */
 .container { max-width: 900px; margin: 28px auto; padding: 0 16px 48px; }
-.section-label { font-size: 0.98rem; font-weight: 700; color: #0f3460; margin-bottom: 14px; padding-bottom: 9px; border-bottom: 2px solid #dde8f5; display: flex; align-items: center; gap: 7px; }
-.toolbar { display: flex; gap: 8px; margin-bottom: 16px; align-items: center; flex-wrap: wrap; }
+
+/* ── Stats boxes (windowtomac의 key-box 스타일 응용) ── */
+.stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 28px; }
+.stat-box { background: #fff; border-radius: 12px; padding: 16px 20px; box-shadow: 0 1px 6px rgba(0,0,0,.09); border-top: 3px solid #0f3460; }
+.stat-box.green { border-top-color: #2e7d32; }
+.stat-box.amber { border-top-color: #f59e0b; }
+.stat-box .label { font-size: 0.75rem; color: #8a95a5; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+.stat-box .value { font-size: 1.6rem; font-weight: 700; color: #1a2d4e; line-height: 1; }
+.stat-box .sub { font-size: 0.75rem; color: #aaa; margin-top: 4px; }
+
+/* ── Search toolbar ── */
+.toolbar { display: flex; gap: 8px; margin-bottom: 24px; align-items: center; flex-wrap: wrap; }
 .toolbar input { flex: 1; min-width: 180px; padding: 10px 16px; border: 1.5px solid #dde3ec; border-radius: 8px; font-size: 0.9rem; outline: none; transition: border-color .2s, box-shadow .2s; background: #fff; color: #222; }
 .toolbar input::placeholder { color: #aab; }
 .toolbar input:focus { border-color: #0f3460; box-shadow: 0 0 0 3px rgba(15,52,96,.09); }
-.page-size-wrap { display: flex; align-items: center; gap: 6px; font-size: 0.82rem; color: #666; white-space: nowrap; }
-.page-size-wrap select { padding: 7px 10px; border: 1.5px solid #dde3ec; border-radius: 8px; font-size: 0.82rem; outline: none; cursor: pointer; background: #fff; color: #444; transition: border-color .2s; }
-.page-size-wrap select:focus { border-color: #0f3460; }
-.card { background: #fff; border-radius: 12px; box-shadow: 0 1px 6px rgba(0,0,0,.09); overflow: hidden; margin-bottom: 8px; }
-table { width: 100%; border-collapse: collapse; }
-thead tr { background: #edf1f7; }
-thead th { padding: 10px 14px; text-align: left; font-size: 0.76rem; font-weight: 700; color: #6b7a94; text-transform: uppercase; letter-spacing: 0.6px; }
-tbody tr { border-top: 1px solid #f0f2f6; border-left: 3px solid transparent; transition: background .15s, border-left-color .15s; }
-tbody tr:hover { background: #f5f8ff; border-left-color: #0f3460; }
-td { padding: 12px 14px; vertical-align: middle; }
-td.num { color: #c0c8d4; font-size: 0.78rem; width: 38px; text-align: center; font-weight: 600; }
-td.date { font-size: 0.8rem; color: #8a95a5; white-space: nowrap; width: 96px; }
-td.title a { color: #1a2d4e; text-decoration: none; font-size: 0.92rem; font-weight: 500; line-height: 1.45; }
-td.title a:hover { color: #e94560; text-decoration: underline; }
-.source { display: inline-block; margin-left: 8px; padding: 2px 8px; background: #eef2ff; color: #5c6bc0; border-radius: 4px; font-size: 0.71rem; font-weight: 600; vertical-align: middle; letter-spacing: 0.2px; }
+.view-toggle { display: flex; gap: 4px; }
+.view-toggle button { padding: 8px 14px; border: 1.5px solid #dde3ec; background: #fff; border-radius: 7px; font-size: 0.82rem; cursor: pointer; color: #666; transition: all .15s; }
+.view-toggle button.active { background: #0f3460; color: #fff; border-color: #0f3460; }
+
+/* ── Section heading (windowtomac h2 스타일) ── */
+.month-heading { font-size: 1.0rem; font-weight: 700; color: #0f3460; margin: 24px 0 12px; padding-bottom: 9px; border-bottom: 2px solid #dde8f5; display: flex; align-items: center; gap: 8px; }
+.month-heading .count { font-size: 0.75rem; font-weight: 600; background: #eef2ff; color: #5c6bc0; border-radius: 20px; padding: 2px 9px; margin-left: 4px; }
+
+/* ── Report list items ── */
+.report-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 4px; }
+.report-item { background: #fff; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,.07); border-left: 3px solid transparent; padding: 13px 16px; display: flex; align-items: flex-start; gap: 12px; transition: border-left-color .15s, box-shadow .15s, background .15s; }
+.report-item:hover { border-left-color: #0f3460; box-shadow: 0 2px 8px rgba(15,52,96,.12); background: #f8faff; }
+.report-item .num { font-size: 0.75rem; color: #c0c8d4; font-weight: 700; min-width: 22px; text-align: center; padding-top: 2px; }
+.report-item .body { flex: 1; }
+.report-item .title { font-size: 0.92rem; font-weight: 500; line-height: 1.45; }
+.report-item .title a { color: #1a2d4e; text-decoration: none; }
+.report-item .title a:hover { color: #e94560; text-decoration: underline; }
+.report-item .row2 { margin-top: 5px; display: flex; align-items: center; gap: 8px; }
+.date-badge { font-size: 0.73rem; color: #8a95a5; background: #f0f4f8; border-radius: 4px; padding: 2px 7px; font-weight: 500; }
+.source { display: inline-block; padding: 2px 8px; background: #eef2ff; color: #5c6bc0; border-radius: 4px; font-size: 0.71rem; font-weight: 600; letter-spacing: 0.2px; }
 .source.guide { background: #e8f5e9; color: #2e7d32; }
-.empty { text-align: center; padding: 52px; color: #aaa; font-size: 0.9rem; }
-.pagination { display: flex; justify-content: center; align-items: center; gap: 4px; margin-top: 20px; flex-wrap: wrap; }
-.pagination .page-info { font-size: 0.8rem; color: #888; margin: 0 8px; white-space: nowrap; }
-.pagination button { padding: 7px 13px; border: 1.5px solid #dde3ec; background: #fff; border-radius: 7px; font-size: 0.84rem; cursor: pointer; transition: all .15s; color: #555; }
-.pagination button:hover:not(:disabled) { background: #0f3460; color: #fff; border-color: #0f3460; }
-.pagination button.active { background: #0f3460; color: #fff; border-color: #0f3460; font-weight: 700; }
-.pagination button:disabled { opacity: 0.35; cursor: not-allowed; }
+
+/* ── Empty / no results ── */
+.empty-msg { text-align: center; padding: 52px; color: #aaa; font-size: 0.9rem; background: #fff; border-radius: 12px; }
+
+/* ── Tip box (windowtomac .tip 스타일) ── */
+.tip { background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 11px 16px; margin-bottom: 24px; font-size: 0.85rem; color: #555; line-height: 1.6; }
+
+/* ── Footer ── */
 footer { text-align: center; padding: 28px 24px; font-size: 0.75rem; color: #b0b8c4; border-top: 1px solid #e8ecf2; margin-top: 8px; }
-@media (max-width: 600px) { td.num { display: none; } td.date { width: 76px; font-size: 0.75rem; } }
+
+@media (max-width: 600px) {
+  .stats-row { grid-template-columns: 1fr 1fr; }
+  .stats-row .stat-box:last-child { grid-column: span 2; }
+  .report-item .num { display: none; }
+}
 </style>
 </head>
 <body>
 <header>
 <h1>📊 유튜브 종목분석 보고서 게시판</h1>
-<div class="meta">총 <span id="totalCount">25</span>개 보고서 &nbsp;·&nbsp; 최종 업데이트: 2026-05-15</div>
+<div class="meta">NotebookLM × YouTube 자동 생성 보고서 아카이브 &nbsp;·&nbsp; 최종 업데이트: 2026-05-15</div>
 </header>
 <div class="container">
+
+<!-- Stats -->
+<div class="stats-row" id="statsRow"></div>
+
+<!-- Search -->
 <div class="toolbar">
 <input type="text" id="searchInput" placeholder="🔍 보고서 제목 검색..." oninput="onSearch()">
-<div class="page-size-wrap">
-<span>페이지당</span>
-<select id="pageSize" onchange="onPageSizeChange()">
-<option value="5">5개</option>
-<option value="10" selected>10개</option>
-<option value="20">20개</option>
-<option value="9999">전체</option>
-</select>
 </div>
-</div>
-<div class="section-label">📋 보고서 목록</div>
-<div class="card">
-<table>
-<thead><tr><th>#</th><th>날짜</th><th>보고서</th></tr></thead>
-<tbody id="tableBody"></tbody>
-</table>
-<div id="emptyMsg" class="empty" style="display:none;">검색 결과가 없습니다.</div>
-</div>
-<div class="pagination" id="pagination"></div>
+
+<!-- Tip (검색 결과 없을 때만 표시) -->
+<div id="emptyMsg" class="empty-msg" style="display:none;">🔍 검색 결과가 없습니다.</div>
+
+<!-- 월별 섹션 -->
+<div id="reportSections"></div>
+
 </div>
 <footer>NotebookLM × YouTube 종목분석 보고서 게시판 &nbsp;|&nbsp; Powered by GitHub Pages</footer>
+
 <script>
 const ALL_REPORTS = [
 {title:"코스피 시장의 이상 현상과 주요 투자 환경 변화 분석 보고서",date:"2026-05-15",url:"https://docs.google.com/document/d/1D9CkZoSpioFKUDTldBtya2W7TTs5o3DRHb3N_Cn8Nk4/edit"},
@@ -100,35 +120,72 @@ const ALL_REPORTS = [
 {title:"5월 증시 대응과 50대 노후 자산 관리 전략",date:"2026-04-30",url:"https://docs.google.com/document/d/1P49E3Xhrtzlau1HDzwOu4hzykrRYSDCrd92VwNwSZKw/edit"},
 {title:"🍎 Windows → Mac 단축키 가이드",date:"2026-04-23",url:"windowtomac.html",tag:"guide"}
 ];
-let filtered=[...ALL_REPORTS],currentPage=1,pageSize=10;
-function onSearch(){const q=document.getElementById('searchInput').value.toLowerCase();filtered=ALL_REPORTS.filter(r=>r.title.toLowerCase().includes(q)||r.date.includes(q));currentPage=1;render();}
-function onPageSizeChange(){pageSize=parseInt(document.getElementById('pageSize').value);currentPage=1;render();}
-function render(){
-const tbody=document.getElementById('tableBody'),emptyMsg=document.getElementById('emptyMsg');
-document.getElementById('totalCount').textContent=filtered.length;
-if(filtered.length===0){tbody.innerHTML='';emptyMsg.style.display='';document.getElementById('pagination').innerHTML='';return;}
-emptyMsg.style.display='none';
-const totalPages=pageSize>=9999?1:Math.ceil(filtered.length/pageSize);
-if(currentPage>totalPages)currentPage=totalPages;
-const start=pageSize>=9999?0:(currentPage-1)*pageSize;
-const end=pageSize>=9999?filtered.length:Math.min(start+pageSize,filtered.length);
-tbody.innerHTML=filtered.slice(start,end).map((r,i)=>{
-const tag=r.tag==='guide'?'<span class="source guide">가이드</span>':'<span class="source">NotebookLM</span>';
-return '<tr><td class="num">'+(start+i+1)+'</td><td class="date">'+r.date+'</td><td class="title"><a href="'+r.url+'" target="_blank" rel="noopener">'+r.title+'</a>'+tag+'</td></tr>';
-}).join('');
-const pg=document.getElementById('pagination');
-if(totalPages<=1){pg.innerHTML='';return;}
-let btns='<button onclick="goPage('+(currentPage-1)+')" '+(currentPage===1?'disabled':'')+'>&#8249; 이전</button>';
-let pages=new Set([1,totalPages]);
-for(let p=Math.max(1,currentPage-2);p<=Math.min(totalPages,currentPage+2);p++)pages.add(p);
-pages=[...pages].sort((a,b)=>a-b);let prev=0;
-for(const p of pages){if(prev&&p-prev>1)btns+='<button disabled>…</button>';btns+='<button class="'+(p===currentPage?'active':'')+'" onclick="goPage('+p+')">'+p+'</button>';prev=p;}
-btns+='<button onclick="goPage('+(currentPage+1)+')" '+(currentPage===totalPages?'disabled':'')+'>다음 &#8250;</button>';
-btns+='<span class="page-info">'+currentPage+' / '+totalPages+' 페이지</span>';
-pg.innerHTML=btns;
+
+function getMonthLabel(dateStr) {
+  const [y, m] = dateStr.split('-');
+  return y + '년 ' + parseInt(m) + '월';
 }
-function goPage(p){const t=pageSize>=9999?1:Math.ceil(filtered.length/pageSize);if(p<1||p>t)return;currentPage=p;render();window.scrollTo({top:0,behavior:'smooth'});}
-render();
+
+function render(list) {
+  const total = ALL_REPORTS.length;
+  const thisMonth = ALL_REPORTS.filter(r => r.date.startsWith('2026-05')).length;
+  const lastDate = ALL_REPORTS[0].date;
+
+  // Stats
+  document.getElementById('statsRow').innerHTML =
+    '<div class="stat-box"><div class="label">총 보고서</div><div class="value">' + total + '</div><div class="sub">전체 누적</div></div>' +
+    '<div class="stat-box green"><div class="label">이번 달</div><div class="value">' + thisMonth + '</div><div class="sub">2026년 5월</div></div>' +
+    '<div class="stat-box amber"><div class="label">최근 업데이트</div><div class="value" style="font-size:1.1rem;padding-top:4px;">' + lastDate + '</div><div class="sub">마지막 등록일</div></div>';
+
+  const empty = document.getElementById('emptyMsg');
+  const sections = document.getElementById('reportSections');
+
+  if (!list.length) {
+    empty.style.display = '';
+    sections.innerHTML = '';
+    return;
+  }
+  empty.style.display = 'none';
+
+  // 월별 그룹핑
+  const groups = {};
+  list.forEach((r, i) => {
+    const key = r.date.substring(0, 7);
+    if (!groups[key]) groups[key] = [];
+    groups[key].push({ ...r, globalIdx: ALL_REPORTS.indexOf(r) });
+  });
+
+  const keys = Object.keys(groups).sort((a, b) => b.localeCompare(a));
+  let html = '';
+  let counter = 1;
+  keys.forEach(key => {
+    const items = groups[key];
+    const label = getMonthLabel(key + '-01');
+    html += '<div class="month-heading">📅 ' + label + '<span class="count">' + items.length + '건</span></div>';
+    html += '<div class="report-list">';
+    items.forEach(r => {
+      const tag = r.tag === 'guide'
+        ? '<span class="source guide">가이드</span>'
+        : '<span class="source">NotebookLM</span>';
+      html += '<div class="report-item">'
+        + '<div class="num">' + counter++ + '</div>'
+        + '<div class="body">'
+        + '<div class="title"><a href="' + r.url + '" target="_blank" rel="noopener">' + r.title + '</a></div>'
+        + '<div class="row2"><span class="date-badge">' + r.date + '</span>' + tag + '</div>'
+        + '</div></div>';
+    });
+    html += '</div>';
+  });
+  sections.innerHTML = html;
+}
+
+function onSearch() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  const filtered = q ? ALL_REPORTS.filter(r => r.title.toLowerCase().includes(q) || r.date.includes(q)) : ALL_REPORTS;
+  render(filtered);
+}
+
+render(ALL_REPORTS);
 </script>
 </body>
 </html>
