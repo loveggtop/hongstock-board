@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TDF 완벽 가이드 — 운용 원리·빈티지 선택·투자 전략</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif; background: #f0f4f8; color: #24303f; line-height: 1.72; }
+header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: #fff; padding: 34px 24px 28px; box-shadow: 0 2px 12px rgba(0,0,0,.35); }
+header .wrap { max-width: 860px; margin: 0 auto; }
+.back { display: inline-block; font-size: 0.82rem; color: #9fb3d1; text-decoration: none; margin-bottom: 16px; }
+.back:hover { color: #fff; }
+header h1 { font-size: 1.62rem; font-weight: 800; letter-spacing: -0.6px; margin-bottom: 10px; line-height: 1.35; }
+header .sub { font-size: 0.9rem; opacity: 0.82; line-height: 1.6; }
+header .date { font-size: 0.78rem; opacity: 0.6; margin-top: 10px; }
+.container { max-width: 860px; margin: 30px auto; padding: 0 18px 60px; }
+.tldr { background: #fff; border-left: 5px solid #0f3460; border-radius: 10px; padding: 20px 24px; box-shadow: 0 1px 6px rgba(0,0,0,.07); margin-bottom: 34px; }
+.tldr h2 { font-size: 0.78rem; letter-spacing: 1px; color: #0f3460; text-transform: uppercase; margin-bottom: 10px; }
+.tldr p { font-size: 0.95rem; color: #3a4759; }
+h2.sec { font-size: 1.22rem; font-weight: 800; color: #16213e; margin: 40px 0 14px; padding-bottom: 9px; border-bottom: 2px solid #dde8f5; }
+h3 { font-size: 1.02rem; font-weight: 700; color: #0f3460; margin: 24px 0 8px; }
+p { font-size: 0.96rem; margin-bottom: 12px; color: #2f3b4c; }
+ul, ol { margin: 6px 0 14px 4px; padding-left: 22px; }
+li { font-size: 0.96rem; margin-bottom: 7px; color: #2f3b4c; }
+strong { color: #16213e; font-weight: 700; }
+.box { background: #fff; border-radius: 12px; padding: 18px 22px; box-shadow: 0 1px 6px rgba(0,0,0,.07); margin: 16px 0; }
+table { width: 100%; border-collapse: collapse; margin: 14px 0; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 6px rgba(0,0,0,.07); font-size: 0.9rem; }
+thead tr { background: #16213e; color: #fff; }
+th, td { padding: 11px 13px; text-align: left; border-bottom: 1px solid #eef1f6; vertical-align: top; }
+th { font-weight: 700; font-size: 0.84rem; }
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:nth-child(even) { background: #f7faff; }
+.tag { display: inline-block; padding: 2px 9px; border-radius: 5px; font-size: 0.74rem; font-weight: 700; }
+.tag.green { background: #e8f5e9; color: #2e7d32; }
+.callout { background: #fff8e1; border-left: 4px solid #f1b500; border-radius: 8px; padding: 14px 18px; margin: 16px 0; font-size: 0.93rem; color: #5b4a13; }
+.callout.warn { background: #fdecec; border-left-color: #e74c3c; color: #7a2620; }
+.steps { counter-reset: step; list-style: none; padding-left: 0; }
+.steps li { position: relative; padding-left: 42px; margin-bottom: 14px; }
+.steps li::before { counter-increment: step; content: counter(step); position: absolute; left: 0; top: 0; width: 28px; height: 28px; background: #0f3460; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 700; }
+footer { text-align: center; padding: 30px 24px; font-size: 0.76rem; color: #9aa4b2; border-top: 1px solid #e3e8ef; }
+.disclaimer { font-size: 0.8rem; color: #8a95a5; background: #eef1f6; border-radius: 8px; padding: 14px 18px; margin-top: 30px; line-height: 1.6; }
+@media (max-width: 600px) { header h1 { font-size: 1.32rem; } table { font-size: 0.82rem; } th, td { padding: 8px 9px; } }
+</style>
+</head>
+<body>
+<header>
+<div class="wrap">
+<a class="back" href="index.html">&#8249; 게시판으로 돌아가기</a>
+<h1>TDF(타깃데이트펀드) 완벽 가이드</h1>
+<div class="sub">운용 원리 · 빈티지 선택 · 좋은 상품 고르는 법 · 계좌·세제 활용 · 2026 규제까지 한 번에 정리</div>
+<div class="date">작성일 2026-06-26 · 노후·연금 투자 리포트</div>
+</div>
+</header>
+<div class="container">
+
+<div class="tldr">
+<h2>3줄 요약</h2>
+<p><strong>TDF는 은퇴 목표 시점 하나만 고르면 주식·채권 비중을 알아서 조절해 주는 "자동 운용 연금 펀드"</strong>입니다. 핵심은 (1) 내 은퇴연도에 맞는 <strong>빈티지(목표연도)</strong>를 고르고, (2) 글라이드패스 형태·총보수·운용규모로 좋은 상품을 가려내며, (3) <strong>연금저축·IRP·DC 퇴직연금 계좌</strong>에 담아 세액공제(연 최대 900만 원)와 디폴트옵션까지 활용하는 것입니다. 신경 쓸 시간이 없는 직장인의 노후 준비 '기본값'으로 가장 무난합니다.</p>
+</div>
+
+<h2 class="sec">1. TDF란 무엇인가</h2>
+<p><strong>TDF(Target Date Fund, 타깃데이트펀드)</strong>는 투자자의 <strong>은퇴 예상 시점(Target Date)</strong>을 기준으로, 그 시점이 다가올수록 위험자산(주식) 비중을 자동으로 줄이고 안전자산(채권·현금성)을 늘려 주는 <strong>생애주기형 자산배분 펀드</strong>입니다.</p>
+<p>가장 큰 특징은 <strong>"알아서 굴러간다"</strong>는 점입니다. 투자자는 개별 종목을 고르거나 시점마다 비중을 바꿀 필요 없이, 자신의 은퇴 시기에 맞는 상품 하나만 선택해 꾸준히 납입하면 됩니다. 운용사가 정한 <strong>글라이드패스(Glide Path)</strong>에 따라 비중이 자동으로 조정되고 주기적으로 리밸런싱됩니다.</p>
+<p>대부분의 TDF는 여러 펀드·ETF에 분산 투자하는 <strong>재간접(Fund of Funds)</strong> 구조이며, 국내외 주식·채권에 글로벌하게 분산합니다. 한국에서는 <strong>퇴직연금 디폴트옵션(사전지정운용제도)</strong> 도입 이후 시장이 빠르게 커져, 2026년 기준 설정액이 <strong>약 12조 원(퇴직연금 비중 포함 시 25조 원대)</strong> 규모로 성장했습니다.</p>
+
+<h2 class="sec">2. 어떻게 운용되나 — 핵심 원리</h2>
+<h3>① 글라이드패스 (Glide Path)</h3>
+<p>은퇴 시점에 맞춰 위험자산과 안전자산 비중을 조절하는 <strong>자산배분 경로</strong>입니다. 비행기가 착륙을 위해 서서히 고도를 낮추는 활강 곡선과 닮아 이런 이름이 붙었습니다. 젊을 때는 주식 비중을 70~90%까지 높여 수익을 추구하고, 은퇴가 가까워질수록 주식을 30~40% 수준으로 낮춰 자산을 지킵니다.</p>
+<div class="callout">같은 "2045 빈티지"라도 운용사마다 글라이드패스가 다릅니다. A사는 은퇴 시점에 주식 40%, B사는 30%로 떨어뜨리는 식이라 <strong>위험방어력과 기대수익이 달라집니다.</strong> 빈티지가 같다고 같은 상품이 아닙니다.</div>
+<h3>② 자동 자산배분 + 리밸런싱</h3>
+<p>글로벌 주식·채권에 분산 투자하고, 시장 변동으로 비중이 틀어지면 <strong>주기적으로 원래 목표 비중으로 되돌리는 리밸런싱</strong>을 운용사가 대신 수행합니다. 투자자가 직접 사고팔 필요가 없습니다.</p>
+<h3>③ "To형" vs "Through형"</h3>
+<table><thead><tr><th>구분</th><th>To형 (~까지)</th><th>Through형 (~이후로)</th></tr></thead>
+<tbody>
+<tr><td>목표 시점 의미</td><td>은퇴 시점에 위험자산 비중 <strong>하락 완료</strong></td><td>은퇴 <strong>이후에도</strong> 비중을 계속 낮춰감</td></tr>
+<tr><td>은퇴 무렵 주식비중</td><td>낮음 (보수적)</td><td>상대적으로 높음 (성장 지속)</td></tr>
+<tr><td>적합한 사람</td><td>원금 보존·안정 중시</td><td>은퇴 후 기대수명·인출기간 긴 사람</td></tr>
+</tbody></table>
+<p>한국 TDF는 기대수명이 길어진 점을 반영해 <strong>Through형</strong>이 다수입니다. 가입 전 상품 설명서에서 은퇴 시점·은퇴 후 주식비중이 어떻게 설계됐는지 확인하는 것이 좋습니다.</p>
+
+<h2 class="sec">3. 빈티지(목표연도) 고르는 법</h2>
+<p>TDF 이름 뒤 숫자(2030, 2040, 2050…)가 <strong>빈티지 = 은퇴 목표 연도</strong>입니다. 선택 공식은 간단합니다.</p>
+<div class="box" style="text-align:center; font-size:1.05rem;"><strong>출생연도 + 은퇴 예상 나이(보통 60~65세) ≈ 목표 빈티지</strong></div>
+<table><thead><tr><th>출생연도</th><th>60세 은퇴 기준</th><th>대략적 추천 빈티지</th></tr></thead>
+<tbody>
+<tr><td>1970년생</td><td>2030년</td><td>TDF 2030</td></tr>
+<tr><td>1980년생</td><td>2040년</td><td>TDF 2040</td></tr>
+<tr><td>1990년생</td><td>2050년</td><td>TDF 2050</td></tr>
+<tr><td>2000년생</td><td>2060년</td><td>TDF 2060</td></tr>
+</tbody></table>
+<ul>
+<li><strong>보수적으로 가고 싶다면</strong> → 목표 연도를 <strong>앞당겨</strong> 선택(예: 2040 대신 2035). 주식비중이 더 빨리 낮아집니다.</li>
+<li><strong>공격적으로 가고 싶다면</strong> → 목표 연도를 <strong>뒤로</strong> 선택(예: 2040 대신 2045). 더 오래 주식 비중을 유지합니다.</li>
+</ul>
+
+<h2 class="sec">4. 좋은 TDF 고르는 5가지 기준</h2>
+<ol>
+<li><strong>글라이드패스 형태</strong> — 같은 빈티지라도 은퇴 시점 주식비중이 다릅니다. 내 위험성향에 맞는 곡선인지 확인.</li>
+<li><strong>총보수(비용)</strong> — 장기·복리 상품이라 비용이 수익률을 크게 좌우합니다. 액티브 TDF는 보통 0.7~1.2%대, 패시브/ETF형은 0.2~0.4%대. 비용이 낮을수록 유리.</li>
+<li><strong>액티브 vs 패시브</strong> — 패시브(지수추종)는 저비용·예측가능, 액티브는 초과수익을 노리지만 비용↑. 장기 적립이면 저비용 패시브가 무난.</li>
+<li><strong>운용규모·트랙레코드</strong> — 설정액이 크고 운용 기간이 긴 상품이 안정적. 소규모 펀드는 청산·합병 위험.</li>
+<li><strong>환헤지 여부 / 해외비중</strong> — 환헤지형(H)·언헤지형 중 선택. 환율 변동을 줄이려면 헤지형, 분산 효과를 노리면 언헤지형.</li>
+</ol>
+<div class="callout">"은퇴 시점이 같아도 수익률은 천차만별"입니다. 빈티지가 같은 상품끼리 <strong>설정 이후 수익률·5년 수익률·총보수를 나란히 비교</strong>한 뒤 고르세요.</div>
+
+<h2 class="sec">5. 어디에 담아 투자하나 — 계좌와 세제</h2>
+<p>TDF는 보통 일반 계좌가 아니라 <strong>세제혜택 연금 계좌</strong>에 담을 때 진가가 발휘됩니다.</p>
+<table><thead><tr><th>계좌</th><th>세액공제 한도</th><th>특징</th></tr></thead>
+<tbody>
+<tr><td><strong>연금저축펀드</strong></td><td>연 600만 원</td><td>위험자산 100% 가능, 수수료 저렴, 자유로운 운용</td></tr>
+<tr><td><strong>IRP</strong></td><td>연 900만 원 (연금저축 합산)</td><td>위험자산 최대 70%, 안전자산 30% 의무 — 단 <span class="tag green">적격 TDF</span>는 예외</td></tr>
+<tr><td><strong>DC형 퇴직연금</strong></td><td>—</td><td>회사가 적립, 디폴트옵션으로 TDF 지정 가능</td></tr>
+</tbody></table>
+<ul>
+<li>연금저축 + IRP <strong>합산 연 900만 원</strong>까지 세액공제. 총급여 5,500만 원 이하면 <strong>공제율 16.5%</strong> → 최대 <strong>148.5만 원 환급</strong>(그 초과 소득은 13.2%).</li>
+<li>가장 유리한 조합: <strong>연금저축 600만 원 + IRP 300만 원</strong>으로 900만 원 한도를 채우는 것.</li>
+<li>IRP는 안전자산 30% 규정이 있지만, <strong>적격 TDF는 위험자산 한도 예외</strong>라 100%까지 담을 수 있습니다.</li>
+</ul>
+<h3>디폴트옵션(사전지정운용제도)</h3>
+<p>DC·IRP 가입자가 별도 운용지시를 안 하면 <strong>미리 지정한 상품으로 자동 운용</strong>되는 제도로, TDF가 핵심 상품군입니다. 위험등급(초저위험~고위험)을 고를 수 있으며, 방치되던 퇴직연금 수익률을 끌어올리기 위해 도입됐습니다.</p>
+
+<h2 class="sec">6. 2026년 꼭 알아야 할 규제 변화</h2>
+<div class="callout warn"><strong>2026년 4월 1일부터 "적격 TDF" 기준이 강화</strong>되었습니다. 적격 TDF만 퇴직연금에서 위험자산 70% 한도를 면제받아 <strong>100% 투자가 가능</strong>합니다.</div>
+<ul>
+<li><strong>적격 요건:</strong> 주식 등 위험자산 최대 비중 <strong>80% 이내</strong>, 목표시점 도달 후에는 <strong>40% 이하</strong>로 하향, 특정 해외국가 투자 <strong>80% 이내</strong>.</li>
+<li>2025년 말 기준 199개 중 195개(98%)가 적격이지만, <strong>미래에셋·한국투자신탁운용의 일부 상품 4개가 비적격</strong>으로 분류돼 퇴직연금에서 100% 담을 수 없게 됐습니다.</li>
+<li><strong>실무 체크:</strong> IRP·DC에서 TDF를 100% 담을 계획이라면, 가입 전 해당 상품이 <strong>'적격 TDF'인지</strong> 반드시 확인하세요.</li>
+</ul>
+
+<h2 class="sec">7. 운용사 시장 현황 (2026)</h2>
+<table><thead><tr><th>운용사</th><th>점유율(2025.5 기준)</th><th>비고</th></tr></thead>
+<tbody>
+<tr><td>미래에셋자산운용</td><td>약 34%</td><td>1위, 다만 점유율 하락 추세(40%→34%)</td></tr>
+<tr><td>삼성자산운용</td><td>약 16%</td><td>수익률 강세, ETF-TDF 양강</td></tr>
+<tr><td>KB자산운용</td><td>약 15%</td><td>2년간 설정액 약 78% 급증, 빠른 추격</td></tr>
+<tr><td>한국투자신탁운용</td><td>약 12%</td><td>—</td></tr>
+</tbody></table>
+<p>전체 시장은 1년 새 9.7조 → 12조 원 수준으로 커졌고, 미래에셋 독주 속 2위권(삼성·KB·한투) 경쟁이 치열합니다.</p>
+
+<h2 class="sec">8. 실행 체크리스트</h2>
+<ol class="steps">
+<li><strong>은퇴 연도 계산</strong> — 출생연도 + 60~65세로 목표 빈티지 결정 (위험성향 따라 ±5년 조정).</li>
+<li><strong>계좌 준비</strong> — 연금저축펀드 + IRP 개설, 합산 900만 원 세액공제 한도 목표.</li>
+<li><strong>상품 비교</strong> — 같은 빈티지 내에서 총보수·수익률·운용규모·적격 여부 비교.</li>
+<li><strong>적격 TDF 확인</strong> — 퇴직연금에 100% 담을 거면 '적격' 표시 확인.</li>
+<li><strong>자동 적립 설정</strong> — 매월 정액 자동이체로 꾸준히 매수(적립식). 시점 분산 효과.</li>
+<li><strong>연 1회 점검</strong> — TDF가 알아서 굴리므로 잦은 매매 불필요. 연말정산 시 한도 채웠는지만 확인.</li>
+</ol>
+
+<div class="callout"><strong>한 줄 결론:</strong> 시장을 매일 들여다볼 시간이 없는 직장인에게 TDF는 "연금 계좌의 기본값"으로 가장 합리적입니다. 단, <strong>저비용·적격·내 은퇴시점에 맞는 글라이드패스</strong>인지만 골라서 담으면 됩니다.</div>
+
+<div class="disclaimer">※ 본 자료는 공개된 자료를 바탕으로 정리한 <strong>일반 정보 제공용</strong>이며 특정 상품의 매수·매도 권유나 투자자문이 아닙니다. 수익률·점유율·보수 등 수치는 시점에 따라 달라질 수 있으니, 실제 투자 전 각 운용사 상품설명서와 최신 공시를 반드시 확인하시기 바랍니다. 투자의 최종 판단과 책임은 투자자 본인에게 있습니다.</div>
+
+</div>
+<footer>TDF 가이드 · 2026-06-26 작성 &nbsp;|&nbsp; 종목분석 보고서 게시판</footer>
+</body>
+</html>
