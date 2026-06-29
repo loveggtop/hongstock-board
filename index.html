@@ -54,7 +54,7 @@ footer { text-align: center; padding: 28px 24px; font-size: 0.75rem; color: #b0b
 </header>
 <div class="container">
 <div class="toolbar">
-<input type="text" id="searchInput" placeholder="🔍 보고석 제목 검색..." oninput="onSearch()">
+<input type="text" id="searchInput" placeholder="🔍 보고서 제목 검색..." oninput="onSearch()">
 <div class="page-size-wrap">
 <span>페이지당</span>
 <select id="pageSize" onchange="onPageSizeChange()">
@@ -65,7 +65,7 @@ footer { text-align: center; padding: 28px 24px; font-size: 0.75rem; color: #b0b
 </select>
 </div>
 </div>
-<div class="section-label">📋 보고석 목록</div>
+<div class="section-label">📋 보고서 목록</div>
 <div class="card">
 <table>
 <thead><tr><th>#</th><th>날짜</th><th>보고서</th><th>관리</th></tr></thead>
@@ -139,7 +139,7 @@ return '<tr><td class="num">'+(start+i+1)+'</td><td class="date">'+r.date+'</td>
 }).join('');
 const pg=document.getElementById('pagination');
 if(totalPages<=1){pg.innerHTML='';return;}
-let btns='<button onclick="goPage('+(currentPage-1))')" '+(currentPage===1?'disabled':'')+'>&#8249; 이전</button>';
+let btns='<button onclick="goPage('+(currentPage-1)+')" '+(currentPage===1?'disabled':'')+'>&#8249; 이전</button>';
 let pages=new Set([1,totalPages]);
 for(let p=Math.max(1,currentPage-2);p<=Math.min(totalPages,currentPage+2);p++)pages.add(p);
 pages=[...pages].sort((a,b)=>a-b);let prev=0;
