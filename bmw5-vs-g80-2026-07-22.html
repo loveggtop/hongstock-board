@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 BMW 5시리즈 vs 제네시스 G80 비교 가이드</title>
+<style>
+  :root{
+    --bg:#0f1114; --panel:#171a1f; --panel2:#1e2229; --line:#2a2f38;
+    --txt:#e8eaed; --sub:#9aa3af; --accent:#00adef; --gold:#c9a96a; --green:#3ddc84; --red:#ff6b6b; --purple:#b98cf0;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--txt);font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;line-height:1.6}
+  .wrap{max-width:1080px;margin:0 auto;padding:24px 16px 80px}
+  .hero{background:linear-gradient(135deg,#14171c 0%,#1c2128 60%,#20262e 100%);border:1px solid var(--line);border-radius:20px;padding:40px 32px;text-align:center;margin-bottom:28px}
+  .hero .badge{display:inline-block;background:rgba(0,173,239,.12);color:var(--accent);border:1px solid rgba(0,173,239,.35);border-radius:999px;padding:4px 14px;font-size:13px;margin-bottom:14px}
+  .hero h1{font-size:28px;font-weight:800;letter-spacing:-.5px}
+  .hero p{color:var(--sub);margin-top:10px;font-size:14px}
+  .heroImgs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+  .heroImgs img{width:100%;border-radius:14px;object-fit:cover;height:200px;filter:drop-shadow(0 12px 20px rgba(0,0,0,.4))}
+  .heroImgs .cap{font-size:12.5px;color:var(--sub);margin-top:6px}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:28px}
+  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 14px;text-align:center}
+  .kpi .v{font-size:19px;font-weight:800;color:#fff}
+  .kpi .l{font-size:12px;color:var(--sub);margin-top:4px}
+  h2{font-size:21px;font-weight:800;margin:38px 0 6px;display:flex;align-items:center;gap:10px}
+  h2::before{content:'';width:5px;height:22px;background:var(--accent);border-radius:3px;display:inline-block}
+  .desc{color:var(--sub);font-size:13.5px;margin-bottom:14px}
+  table{width:100%;border-collapse:collapse;background:var(--panel);border-radius:14px;overflow:hidden;font-size:14px}
+  th{background:var(--panel2);padding:12px 12px;text-align:left;color:#cfd6df;font-weight:700;border-bottom:1px solid var(--line);white-space:nowrap}
+  td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .center{text-align:center}
+  .tag{display:inline-block;padding:2px 10px;border-radius:999px;font-size:12px;font-weight:700}
+  .tag.bmw{background:rgba(0,173,239,.12);color:var(--accent);border:1px solid rgba(0,173,239,.3)}
+  .tag.gen{background:rgba(201,169,106,.12);color:var(--gold);border:1px solid rgba(201,169,106,.35)}
+  .tag.diesel{background:rgba(153,153,153,.15);color:#c7c7c7;border:1px solid rgba(153,153,153,.3)}
+  .tag.phev{background:rgba(61,220,132,.12);color:var(--green);border:1px solid rgba(61,220,132,.3)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:760px){.grid2{grid-template-columns:1fr}.heroImgs{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px;overflow:hidden}
+  .card img{width:100%;border-radius:12px;height:190px;object-fit:cover;margin-bottom:14px}
+  .card h3{font-size:17px;font-weight:800;margin-bottom:10px}
+  .card ul{list-style:none}
+  .card li{padding:6px 0;font-size:14px;color:#cfd6df;display:flex;gap:8px}
+  .card li::before{content:'✓';color:var(--green);font-weight:800}
+  .price-big{font-size:22px;font-weight:800;color:#fff}
+  .price-sub{font-size:13px;color:var(--sub);margin-bottom:10px}
+  .fuel-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+  .fuel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;text-align:center}
+  .fuel .v{font-size:24px;font-weight:800;color:var(--accent)}
+  .fuel .v small{font-size:13px;color:var(--sub);font-weight:400}
+  .fuel .l{font-size:13px;color:var(--sub);margin-top:4px}
+  .note{background:rgba(0,173,239,.06);border:1px solid rgba(0,173,239,.25);border-radius:12px;padding:14px 16px;font-size:13.5px;color:#cfd6df;margin-top:12px}
+  .reco{border-left:4px solid var(--gold);background:var(--panel);border-radius:12px;padding:18px 20px;margin-bottom:14px}
+  .reco b{color:var(--gold)}
+  .reco .t{font-size:16px;font-weight:800;margin-bottom:6px}
+  .reco p{font-size:14px;color:#cfd6df}
+  a{color:var(--accent);text-decoration:none}
+  .foot{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);color:#6b7280;font-size:12px;line-height:1.8}
+  .dim{color:var(--sub)}
+  .winner{color:var(--green);font-weight:700}
+  .red{color:var(--red);font-weight:700}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <span class="badge">BMW·제네시스 공식 사이트 및 신차 가격 정보 · 2026-07-22 기준</span>
+    <h1>2026 BMW 5시리즈(G60) vs 제네시스 G80 완전 비교</h1>
+    <p>준대형 비즈니스 세단 맞수, BMW 5시리즈와 제네시스 G80의 트림별 가격·제원·연비를 비교하고 구매자에게 실질적인 추천을 드립니다.</p>
+    <div class="heroImgs">
+      <div>
+        <img src="https://blog.carlab.kr/wp-content/uploads/2026/02/FILE_202309060205376270-1248x702.jpg" alt="BMW 5시리즈 (G60)">
+        <div class="cap">BMW 5시리즈 (G60, 8세대)</div>
+      </div>
+      <div>
+        <img src="https://blog.carlab.kr/wp-content/uploads/2026/01/FILE_202401041004009940-1248x702.jpg" alt="제네시스 G80">
+        <div class="cap">제네시스 디 올 뉴 G80</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi"><div class="v">6,880만~</div><div class="l">BMW 520i 시작가</div></div>
+    <div class="kpi"><div class="v">5,978만~</div><div class="l">G80 2.5T 시작가</div></div>
+    <div class="kpi"><div class="v">12.1 km/ℓ</div><div class="l">BMW 520i 복합연비</div></div>
+    <div class="kpi"><div class="v">10.5 km/ℓ</div><div class="l">G80 2.5T 복합연비</div></div>
+  </div>
+
+  <h2>한눈에 보는 포지셔닝</h2>
+  <p class="desc">두 차 모두 준대형 비즈니스 세단이지만 접근 방식이 다릅니다. G80은 <b>동급 대비 압도적인 출력과 넓은 실내</b>를 무기로 하고, BMW 5시리즈는 <b>세밀한 엔진 라인업(가솔린·디젤·PHEV·순수전기)과 우수한 연비, 후륜구동 기반 주행감</b>을 무기로 합니다.</p>
+  <div class="grid2">
+    <div class="card">
+      <img src="https://blog.carlab.kr/wp-content/uploads/2026/02/FILE_202309060205378701-1024x682.jpg" alt="BMW 5시리즈 후면">
+      <h3><span class="tag bmw">BMW 5시리즈 (G60)</span></h3>
+      <ul>
+        <li>가솔린 520i·530i xDrive, 디젤 523d·523d xDrive, PHEV 530e·550e, 순수전기 i5까지 업계 최다 파워트레인</li>
+        <li>전 모델 8단 자동 + 드라이빙 어시스턴트 프로페셔널 기본 적용</li>
+        <li>BMW 커브드 디스플레이, 인터랙션 바 등 최신 인포테인먼트</li>
+        <li>전륜 더블 위시본 · 후륜 멀티링크 서스펜션으로 정통 후륜구동 핸들링</li>
+        <li>디젤 모델 기준 최대 14.7km/ℓ의 우수한 연비</li>
+      </ul>
+    </div>
+    <div class="card">
+      <img src="https://blog.carlab.kr/wp-content/uploads/2026/01/FILE_202401041004046843-1-1024x682.jpg" alt="제네시스 G80 정면">
+      <h3><span class="tag gen">제네시스 G80</span></h3>
+      <ul>
+        <li>기본 트림부터 304마력(2.5T), 최상위 380마력(3.5T)의 강력한 출력</li>
+        <li>휠베이스 3,010mm로 BMW보다 넓은 2열 레그룸</li>
+        <li>동급 대비 낮은 시작 가격 (BMW 520i 대비 약 900만원 저렴)</li>
+        <li>국내 A/S 네트워크와 부품 수급에서 강점</li>
+        <li>신규 '블랙' 라인업으로 최상위 럭셔리 트림 보강</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>트림별 가격표</h2>
+  <p class="desc">BMW는 엔진 종류가 다양해 표를 나눠 정리했습니다. 제네시스는 구동방식·패키지별 가격입니다.</p>
+  <table>
+    <tr><th>브랜드</th><th>트림</th><th class="num">가격</th><th>출력</th><th>구동방식</th></tr>
+    <tr><td><span class="tag bmw">BMW</span></td><td>520i (베이스)</td><td class="num"><b>68,800,000원</b></td><td>190마력</td><td>후륜구동</td></tr>
+    <tr><td><span class="tag bmw">BMW</span></td><td>520i M 스포츠</td><td class="num">72,400,000원</td><td>190마력</td><td>후륜구동</td></tr>
+    <tr><td><span class="tag bmw">BMW</span></td><td>523d (디젤)</td><td class="num">74,900,000원</td><td>197마력</td><td>후륜구동</td></tr>
+    <tr><td><span class="tag bmw">BMW</span></td><td>523d xDrive (디젤)</td><td class="num">77,800,000원</td><td>197마력</td><td>사륜구동</td></tr>
+    <tr><td><span class="tag bmw">BMW</span></td><td>530i xDrive</td><td class="num">86,500,000원</td><td>258마력</td><td>사륜구동</td></tr>
+    <tr><td><span class="tag bmw">BMW</span></td><td>530e (PHEV)</td><td class="num">91,500,000원</td><td>299마력</td><td>후륜구동</td></tr>
+    <tr><td><span class="tag bmw">BMW</span></td><td>530e xDrive (PHEV)</td><td class="num">98,000,000원</td><td>299마력</td><td>사륜구동</td></tr>
+    <tr><td><span class="tag bmw">BMW</span></td><td>550e xDrive (PHEV)</td><td class="num">115,300,000원</td><td>489마력</td><td>사륜구동</td></tr>
+    <tr><td><span class="tag gen">제네시스</span></td><td>G80 2.5 터보</td><td class="num"><b>59,780,000원</b></td><td>304마력</td><td>후륜구동</td></tr>
+    <tr><td><span class="tag gen">제네시스</span></td><td>G80 2.5 터보 스포츠 패키지</td><td class="num">63,780,000원</td><td>304마력</td><td>후륜구동</td></tr>
+    <tr><td><span class="tag gen">제네시스</span></td><td>G80 3.5 터보</td><td class="num">66,380,000원</td><td>380마력</td><td>사륜구동</td></tr>
+    <tr><td><span class="tag gen">제네시스</span></td><td>G80 3.5 터보 스포츠 패키지</td><td class="num">71,980,000원</td><td>380마력</td><td>사륜구동</td></tr>
+    <tr><td><span class="tag gen">제네시스</span></td><td>G80 2.5 터보 블랙</td><td class="num">82,430,000원</td><td>304마력</td><td>후륜구동</td></tr>
+    <tr><td><span class="tag gen">제네시스</span></td><td>G80 3.5 터보 블랙</td><td class="num">86,730,000원</td><td>380마력</td><td>사륜구동</td></tr>
+  </table>
+  <div class="note">G80 AWD(사륜구동)는 2.5 터보 기준 +280만원이 추가됩니다. 3.5 터보는 국내에 사륜구동으로만 판매됩니다.</div>
+
+  <h2>주력 트림 정면 비교: BMW 530i xDrive vs G80 3.5 터보</h2>
+  <p class="desc">출력 체급이 가장 근접한 두 트림을 직접 비교했습니다.</p>
+  <table>
+    <tr><th>항목</th><th class="num">BMW 530i xDrive</th><th class="num">G80 3.5 터보</th></tr>
+    <tr><td>가격</td><td class="num">86,500,000원</td><td class="num winner">66,380,000원</td></tr>
+    <tr><td>최고출력</td><td class="num">258 마력</td><td class="num winner">380 마력</td></tr>
+    <tr><td>최대토크</td><td class="num">40.8 kg·m</td><td class="num winner">54.0 kg·m</td></tr>
+    <tr><td>배기량</td><td class="num winner">1,998cc (직렬4기통 터보 + MHEV)</td><td class="num">3,470cc (V6 트윈터보)</td></tr>
+    <tr><td>0-100km/h</td><td class="num winner">6.1 초</td><td class="num">공식 미공개 (동급 최상 수준)</td></tr>
+    <tr><td>복합연비</td><td class="num winner">11.1 km/ℓ (도심 9.9 · 고속 13.0)</td><td class="num">8.2 km/ℓ (20인치 AWD 기준)</td></tr>
+    <tr><td>구동방식</td><td class="num">사륜구동 (xDrive)</td><td class="num">사륜구동</td></tr>
+    <tr><td>변속기</td><td class="num">8단 자동</td><td class="num">8단 자동</td></tr>
+  </table>
+  <div class="note">가격은 G80이 2,000만원 이상 저렴하면서 출력은 오히려 122마력 더 높습니다. 반대로 연비는 BMW가 약 35% 더 우수합니다. 배기량 차이(1,998cc vs 3,470cc)와 차체 중량 차이가 주요 원인입니다.</div>
+
+  <h2>입문 트림 비교: BMW 520i vs G80 2.5 터보</h2>
+  <table>
+    <tr><th>항목</th><th class="num">BMW 520i</th><th class="num">G80 2.5 터보</th></tr>
+    <tr><td>가격</td><td class="num">68,800,000원</td><td class="num winner">59,780,000원</td></tr>
+    <tr><td>최고출력</td><td class="num">190 마력</td><td class="num winner">304 마력</td></tr>
+    <tr><td>최대토크</td><td class="num">31.6 kg·m (310 Nm)</td><td class="num winner">43.0 kg·m</td></tr>
+    <tr><td>0-100km/h</td><td class="num">8.1 초</td><td class="num winner">공식 미공개 (체급상 더 빠름)</td></tr>
+    <tr><td>복합연비</td><td class="num winner">12.1 km/ℓ (도심 11.1 · 고속 13.7)</td><td class="num">10.5 km/ℓ</td></tr>
+    <tr><td>CO2 배출량</td><td class="num winner">137 g/km · 3등급</td><td class="num">159 g/km · 4등급</td></tr>
+    <tr><td>구동방식</td><td class="num">후륜구동</td><td class="num">후륜구동 (AWD +280만원)</td></tr>
+  </table>
+  <div class="note">입문 트림에서도 G80이 9백만원 더 저렴하면서 출력은 60% 더 높습니다. BMW는 연비와 배출등급에서 우위를 지킵니다.</div>
+
+  <h2>차체 제원 비교</h2>
+  <table>
+    <tr><th>항목</th><th class="num">BMW 5시리즈 (G60)</th><th class="num">제네시스 G80</th></tr>
+    <tr><td>전장</td><td class="num winner">5,060 mm</td><td class="num">5,005 mm</td></tr>
+    <tr><td>전폭</td><td class="num">1,900 mm</td><td class="num winner">1,925 mm</td></tr>
+    <tr><td>전고</td><td class="num winner">1,515 mm</td><td class="num">1,465 mm</td></tr>
+    <tr><td>휠베이스(축거)</td><td class="num">2,995 mm</td><td class="num winner">3,010 mm</td></tr>
+    <tr><td>트렁크 용량</td><td class="num winner">520 ℓ</td><td class="num">공식 수치 미확인</td></tr>
+    <tr><td>연료탱크</td><td class="num">공식 수치 미확인</td><td class="num">65~73 ℓ (트림별 상이)</td></tr>
+  </table>
+  <div class="note">전장은 BMW가 55mm 더 길지만, 2열 거주성을 좌우하는 휠베이스는 G80이 15mm 더 깁니다. 전폭도 G80이 25mm 더 넓어 실내 숄더룸에서 유리합니다.</div>
+
+  <h2>연비 상세 비교 — 유지비 관점</h2>
+  <p class="desc">연비를 가장 중요하게 보신다면 이 표가 핵심입니다. 동일 조건(연 15,000km 주행, 휘발유 1,700원/ℓ)으로 환산했습니다.</p>
+  <div class="fuel-cards">
+    <div class="fuel"><div class="v">12.1 <small>km/ℓ</small></div><div class="l">BMW 520i 복합연비</div></div>
+    <div class="fuel"><div class="v">11.1 <small>km/ℓ</small></div><div class="l">BMW 530i xDrive 복합연비</div></div>
+    <div class="fuel"><div class="v">14.7 <small>km/ℓ</small></div><div class="l">BMW 523d 복합연비 (최고)</div></div>
+    <div class="fuel"><div class="v">10.5 <small>km/ℓ</small></div><div class="l">G80 2.5T 복합연비</div></div>
+    <div class="fuel"><div class="v">8.2 <small>km/ℓ</small></div><div class="l">G80 3.5T AWD 복합연비</div></div>
+  </div>
+  <table>
+    <tr><th>모델</th><th class="num">복합연비</th><th class="num">연간 주유량</th><th class="num">연간 유류비 추정*</th></tr>
+    <tr><td>BMW 523d (디젤, RWD)</td><td class="num winner">14.7 km/ℓ</td><td class="num">약 1,020 ℓ</td><td class="num winner">약 173만원</td></tr>
+    <tr><td>BMW 523d xDrive (디젤)</td><td class="num">13.8 km/ℓ</td><td class="num">약 1,087 ℓ</td><td class="num">약 185만원</td></tr>
+    <tr><td>BMW 520i (가솔린)</td><td class="num">12.1 km/ℓ</td><td class="num">약 1,240 ℓ</td><td class="num">약 211만원</td></tr>
+    <tr><td>BMW 530i xDrive (가솔린)</td><td class="num">11.1 km/ℓ</td><td class="num">약 1,351 ℓ</td><td class="num">약 230만원</td></tr>
+    <tr><td>G80 2.5 터보 (가솔린)</td><td class="num">10.5 km/ℓ</td><td class="num">약 1,429 ℓ</td><td class="num">약 243만원</td></tr>
+    <tr><td>G80 3.5 터보 AWD (가솔린)</td><td class="num red">8.2 km/ℓ</td><td class="num">약 1,829 ℓ</td><td class="num">약 311만원</td></tr>
+  </table>
+  <div class="note">* 휘발유(경유) 1,700원/ℓ 기준 추정치이며 실제 유가·주행 패턴에 따라 달라질 수 있습니다. 연비만 놓고 보면 <b>BMW 523d 디젤이 압도적 1위</b>이고, 가솔린 모델 중에서는 <b>BMW 520i(12.1km/ℓ)</b>가 가장 우수합니다. G80은 두 트림 모두 동급 BMW 가솔린 모델보다 연비가 낮은 편이며, 특히 3.5 터보는 출력이 높은 만큼 연비 부담도 가장 큽니다.</div>
+
+  <h2>구매자 추천</h2>
+  <div class="reco">
+    <div class="t">① 연비·유지비 최우선 → <b>BMW 523d (디젤, 7,490만원)</b></div>
+    <p>두 브랜드 라인업 전체를 통틀어 연비가 가장 우수합니다(14.7km/ℓ). 장거리 출퇴근이나 주행거리가 많은 법인·개인사업자라면 유류비 절감 효과가 큽니다. 다만 국내 디젤 세단에 대한 심리적 저항과 향후 중고차 시세를 고려할 필요가 있습니다.</p>
+  </div>
+  <div class="reco">
+    <div class="t">② 가성비·출력 최우선 → <b>제네시스 G80 2.5 터보 (5,978만원)</b></div>
+    <p>동급 BMW 520i보다 900만원 저렴하면서 출력은 60% 더 높습니다. 국내 A/S 접근성과 넓은 실내(휠베이스 3,010mm)도 강점입니다. 연비가 다소 아쉽지만(10.5km/ℓ), 총 구매·유지 비용을 함께 고려하면 매력적인 선택입니다.</p>
+  </div>
+  <div class="reco">
+    <div class="t">③ 밸런스형 선택 → <b>BMW 520i (6,880만원)</b></div>
+    <p>준수한 출력(190마력)에 가솔린 모델 중 가장 좋은 연비(12.1km/ℓ), 여기에 BMW 특유의 후륜구동 핸들링과 드라이빙 어시스턴트 프로페셔널이 기본 적용됩니다. 수입차 브랜드 가치와 인포테인먼트 완성도를 중시한다면 이 트림이 무난합니다.</p>
+  </div>
+  <div class="reco">
+    <div class="t">④ 고성능·상급 지향 → <b>BMW 530i xDrive vs G80 3.5 터보, 둘 다 장단점 뚜렷</b></div>
+    <p>순수 스펙과 가격은 G80 3.5 터보(380마력, 6,638만원)가 압도적으로 유리합니다. 반면 BMW 530i xDrive(258마력, 8,650만원)는 연비가 35% 더 좋고 브랜드 프리미엄, 정통 후륜구동 기반 핸들링에서 우위를 가집니다. 스펙과 가성비를 원하면 G80, 주행 질감과 브랜드 가치를 원하면 BMW를 권합니다.</p>
+  </div>
+  <div class="reco">
+    <div class="t">⑤ 참고: 벤츠 C-Class와의 체급 차이</div>
+    <p>앞서 조사한 벤츠 C-Class는 준중형(3시리즈·G70급) 세단으로, 이번에 비교한 BMW 5시리즈·G80(준대형)보다 한 체급 아래입니다. 예산이 5,800만~6,900만원대라면 C-Class·3시리즈·G70도 함께 검토해볼 가치가 있습니다. (관련 리포트: <a href="https://loveggtop.github.io/hongstock-board/benz-c-class-2026-07-22.html" target="_blank">2026 벤츠 C-Class 비교 리포트</a>)</p>
+  </div>
+
+  <div class="foot">
+    데이터 출처: BMW 코리아 공식 사이트(bmw.co.kr) 5시리즈 제원·가격 정보, BMW 내 차량 만들기 컨피규레이터(configure.bmw.co.kr), 제네시스 공식 사이트(genesis.com) 및 카랩 블로그(blog.carlab.kr)의 2026년형 G80·5시리즈 가격표 분석 기사 · 조사일 2026-07-22<br>
+    가격·재고·프로모션은 제조사 정책에 따라 수시로 변동될 수 있으며, 0-100km/h 가속 등 일부 수치는 공식 미공개로 표기했습니다. 연비는 표준모드 기준으로 실주행연비와 차이가 있을 수 있습니다.<br>
+    본 문서는 참고용 정보 제공이 목적이며 구매 결정 전 공식 딜러 상담과 시승을 권장합니다.
+  </div>
+
+</div>
+</body>
+</html>
