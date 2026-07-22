@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 벤츠 C-Class 구매 비교 가이드</title>
+<style>
+  :root{
+    --bg:#0f1114; --panel:#171a1f; --panel2:#1e2229; --line:#2a2f38;
+    --txt:#e8eaed; --sub:#9aa3af; --accent:#00adef; --gold:#c9a96a; --green:#3ddc84; --red:#ff6b6b;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--txt);font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;line-height:1.6}
+  .wrap{max-width:1080px;margin:0 auto;padding:24px 16px 80px}
+  .hero{background:linear-gradient(135deg,#14171c 0%,#1c2128 60%,#20262e 100%);border:1px solid var(--line);border-radius:20px;padding:40px 32px;text-align:center;margin-bottom:28px}
+  .hero .badge{display:inline-block;background:rgba(0,173,239,.12);color:var(--accent);border:1px solid rgba(0,173,239,.35);border-radius:999px;padding:4px 14px;font-size:13px;margin-bottom:14px}
+  .hero h1{font-size:30px;font-weight:800;letter-spacing:-.5px}
+  .hero p{color:var(--sub);margin-top:10px;font-size:14px}
+  .hero img{width:min(520px,90%);margin:18px auto 0;display:block;filter:drop-shadow(0 18px 30px rgba(0,0,0,.5))}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:28px}
+  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 14px;text-align:center}
+  .kpi .v{font-size:21px;font-weight:800;color:#fff}
+  .kpi .l{font-size:12.5px;color:var(--sub);margin-top:4px}
+  h2{font-size:21px;font-weight:800;margin:38px 0 6px;display:flex;align-items:center;gap:10px}
+  h2::before{content:'';width:5px;height:22px;background:var(--accent);border-radius:3px;display:inline-block}
+  .desc{color:var(--sub);font-size:13.5px;margin-bottom:14px}
+  table{width:100%;border-collapse:collapse;background:var(--panel);border-radius:14px;overflow:hidden;font-size:14px}
+  th{background:var(--panel2);padding:12px 12px;text-align:left;color:#cfd6df;font-weight:700;border-bottom:1px solid var(--line);white-space:nowrap}
+  td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .center{text-align:center}
+  .tag{display:inline-block;padding:2px 10px;border-radius:999px;font-size:12px;font-weight:700}
+  .tag.avant{background:rgba(61,220,132,.12);color:var(--green);border:1px solid rgba(61,220,132,.3)}
+  .tag.amg{background:rgba(201,169,106,.12);color:var(--gold);border:1px solid rgba(201,169,106,.35)}
+  .tag.ok{background:rgba(0,173,239,.12);color:var(--accent);border:1px solid rgba(0,173,239,.3)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:760px){.grid2{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px}
+  .card h3{font-size:17px;font-weight:800;margin-bottom:10px}
+  .card ul{list-style:none}
+  .card li{padding:6px 0;font-size:14px;color:#cfd6df;display:flex;gap:8px}
+  .card li::before{content:'✓';color:var(--green);font-weight:800}
+  .price-big{font-size:24px;font-weight:800;color:#fff}
+  .price-sub{font-size:13px;color:var(--sub)}
+  .fuel-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+  .fuel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;text-align:center}
+  .fuel .v{font-size:26px;font-weight:800;color:var(--accent)}
+  .fuel .v small{font-size:13px;color:var(--sub);font-weight:400}
+  .fuel .l{font-size:13px;color:var(--sub);margin-top:4px}
+  .note{background:rgba(0,173,239,.06);border:1px solid rgba(0,173,239,.25);border-radius:12px;padding:14px 16px;font-size:13.5px;color:#cfd6df;margin-top:12px}
+  .reco{border-left:4px solid var(--gold);background:var(--panel);border-radius:12px;padding:18px 20px;margin-bottom:14px}
+  .reco b{color:var(--gold)}
+  .reco .t{font-size:16px;font-weight:800;margin-bottom:6px}
+  .reco p{font-size:14px;color:#cfd6df}
+  a{color:var(--accent);text-decoration:none}
+  .foot{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);color:#6b7280;font-size:12px;line-height:1.8}
+  .dim{color:var(--sub)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <span class="badge">메르세데스-벤츠 스토어 신차 재고 · 2026-07-22 기준</span>
+    <h1>2026 Mercedes-Benz C-Class 구매 비교 가이드</h1>
+    <p>벤츠코리아 온라인 스토어의 C-Class 즉시출고 재고 12대 전수 조사 — 트림·가격·제원·연비 비교와 구매 추천</p>
+    <img src="https://media.oneweb.mercedes-benz.com/images/dynamic/asia/KR/206050/806_056/iris.png" alt="Mercedes-Benz C-Class (W206)">
+  </div>
+
+  <div class="kpis">
+    <div class="kpi"><div class="v">12대</div><div class="l">즉시출고 재고</div></div>
+    <div class="kpi"><div class="v">2개 트림</div><div class="l">Avantgarde · AMG Line</div></div>
+    <div class="kpi"><div class="v">5,806만원~</div><div class="l">최저 6,174만원 최고</div></div>
+    <div class="kpi"><div class="v">12.0 km/ℓ</div><div class="l">복합연비 (전 차량 동일)</div></div>
+  </div>
+
+  <h2>트림 비교 — 무엇이 다른가</h2>
+  <p class="desc">현재 판매 중인 C-Class는 전부 <b>C 200</b> 파워트레인(1,999cc 가솔린 + 48V 마일드 하이브리드, 204ps)으로, 기계적 성능과 연비는 완전히 동일합니다. 차이는 디자인 라인과 가격입니다.</p>
+  <div class="grid2">
+    <div class="card">
+      <h3><span class="tag avant">C 200 AVANTGARDE</span></h3>
+      <div class="price-big">5,806 ~ 5,886만원</div>
+      <div class="price-sub">월 납입금 910,600원~ (5대 재고)</div>
+      <ul>
+        <li>아방가르드 익스테리어/인테리어 (크롬 포인트의 정통 럭셔리 스타일)</li>
+        <li>파노라믹 선루프, LED 고성능 헤드램프</li>
+        <li>드라이빙 어시스턴스 패키지 플러스 (디스트로닉 포함)</li>
+        <li>앞좌석 열선·통풍 시트, 윈터 패키지, 메모리 시트</li>
+        <li>MBUX 내비게이션 프리미엄, 후방카메라 주차 패키지</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="tag amg">C 200 AMG Line</span></h3>
+      <div class="price-big">6,067 ~ 6,174만원</div>
+      <div class="price-sub">월 납입금 952,230원~ (7대 재고)</div>
+      <ul>
+        <li>AMG 라인 익스테리어/인테리어 (스포티한 범퍼·휠·플랫보텀 스티어링)</li>
+        <li>파노라믹 선루프, LED 고성능 헤드램프</li>
+        <li>드라이빙 어시스턴스 패키지 플러스 (디스트로닉 포함)</li>
+        <li>앞좌석 열선·통풍 시트, 윈터 패키지, 메모리 시트</li>
+        <li>MBUX 내비게이션 프리미엄, 후방카메라 주차 패키지</li>
+      </ul>
+    </div>
+  </div>
+  <div class="note">두 트림의 확인된 편의·안전 옵션 구성은 사실상 동일합니다. 약 <b>260~290만원의 가격 차이는 대부분 AMG 스타일링 패키지 값</b>이라고 보면 됩니다.</div>
+
+  <h2>공통 제원 (전 차량 동일)</h2>
+  <table>
+    <tr><th>구분</th><th>항목</th><th class="num">수치</th><th>구분</th><th>항목</th><th class="num">수치</th></tr>
+    <tr><td rowspan="4" class="dim">파워트레인</td><td>엔진</td><td class="num">1,999cc 직렬 4기통 터보 + 48V MHEV</td><td rowspan="4" class="dim">차체</td><td>길이</td><td class="num">4,755 mm</td></tr>
+    <tr><td>최고출력</td><td class="num">204 ps</td><td>너비</td><td class="num">1,820 mm</td></tr>
+    <tr><td>최대토크</td><td class="num">32.0 kg·m</td><td>높이</td><td class="num">1,440 mm</td></tr>
+    <tr><td>변속기</td><td class="num">9단 자동</td><td>공차중량</td><td class="num">1,700 kg</td></tr>
+    <tr><td rowspan="2" class="dim">성능</td><td>0→100km/h</td><td class="num">7.3 초</td><td rowspan="2" class="dim">기타</td><td>바디 타입</td><td class="num">세단 (W206)</td></tr>
+    <tr><td>최고속도</td><td class="num">246 km/h</td><td>연식</td><td class="num">2026년형</td></tr>
+  </table>
+
+  <h2>연비 상세 — 유지비 관점 체크포인트</h2>
+  <p class="desc">전 재고가 동일한 48V 마일드 하이브리드 파워트레인이라 <b>트림 간 연비 차이는 없습니다.</b> 정부 공인 연비 기준입니다.</p>
+  <div class="fuel-cards">
+    <div class="fuel"><div class="v">12.0 <small>km/ℓ</small></div><div class="l">복합연비</div></div>
+    <div class="fuel"><div class="v">10.5 <small>km/ℓ</small></div><div class="l">도심연비</div></div>
+    <div class="fuel"><div class="v">14.5 <small>km/ℓ</small></div><div class="l">고속도로연비</div></div>
+    <div class="fuel"><div class="v">3등급</div><div class="l">에너지소비효율등급</div></div>
+  </div>
+  <table>
+    <tr><th>주행 패턴 (연 15,000km 가정)</th><th class="num">적용 연비</th><th class="num">연간 주유량</th><th class="num">연간 유류비*</th></tr>
+    <tr><td>도심 위주 출퇴근</td><td class="num">10.5 km/ℓ</td><td class="num">약 1,429 ℓ</td><td class="num">약 243만원</td></tr>
+    <tr><td>복합 (도심+고속 혼합)</td><td class="num">12.0 km/ℓ</td><td class="num">약 1,250 ℓ</td><td class="num">약 213만원</td></tr>
+    <tr><td>고속도로 장거리 위주</td><td class="num">14.5 km/ℓ</td><td class="num">약 1,034 ℓ</td><td class="num">약 176만원</td></tr>
+  </table>
+  <div class="note">* 휘발유 1,700원/ℓ 가정한 추정치. 동급 가솔린 세단 대비 48V 마일드 하이브리드가 정차·재출발 연료 소모를 줄여주지만, 도심 연비 10.5km/ℓ는 하이브리드 전용 모델(예: HEV 15~20km/ℓ)보다는 낮습니다. <b>도심 주행 비중이 매우 높고 유지비가 최우선이라면 풀하이브리드 경쟁 모델과의 비교도 권장</b>합니다.</div>
+
+  <h2>전체 재고 12대 리스트 (가격 오름차순)</h2>
+  <p class="desc">동일 트림 내 가격 차이는 외장 컬러(메탈릭 도장)·내장 조합 등 사양 차이입니다. 링크에서 실차 사양을 바로 확인할 수 있습니다.</p>
+  <table>
+    <tr><th>#</th><th>트림</th><th class="num">차량 가격</th><th class="num">월 납입금</th><th>외장 색상</th><th>내장 색상</th><th class="center">출고</th><th class="center">링크</th></tr>
+    <tr><td>1</td><td><span class="tag avant">AVANTGARDE</span></td><td class="num"><b>58,060,000원</b></td><td class="num">910,600원</td><td>그라파이트 그레이 메탈릭</td><td>마키아토 베이지/블랙</td><td class="center"><span class="tag ok">즉시</span></td><td class="center"><a href="https://www.mercedes-benz.co.kr/passengercars/buy/new-car/product.html/W206_0584773317_KR_2385109" target="_blank">보기</a></td></tr>
+    <tr><td>2</td><td><span class="tag avant">AVANTGARDE</span></td><td class="num"><b>58,060,000원</b></td><td class="num">910,600원</td><td>그라파이트 그레이 메탈릭</td><td>시에나 브라운/블랙</td><td class="center"><span class="tag ok">즉시</span></td><td class="center"><a href="https://www.mercedes-benz.co.kr/passengercars/buy/new-car/product.html/W206_0584773341_KR_2385157" target="_blank">보기</a></td></tr>
+    <tr><td>3</td><td><span class="tag avant">AVANTGARDE</span></td><td class="num"><b>58,060,000원</b></td><td class="num">910,600원</td><td class="dim">상세 페이지 확인</td><td class="dim">—</td><td class="center"><span class="tag ok">즉시</span></td><td class="center"><a href="https://www.mercedes-benz.co.kr/passengercars/buy/new-car/product.html/W206_0584767076_KR_2363418" target="_blank">보기</a></td></tr>
+    <tr><td>4</td><td><span class="tag avant">AVANTGARDE</span></td><td class="num">58,590,000원</td><td class="num">931,410원</td><td class="dim">상세 페이지 확인</td><td class="dim">—</td><td class="center"><span class="tag ok">즉시</span></td><td class="center"><a href="https://www.mercedes-benz.co.kr/passengercars/buy/new-car/product.html/W206_0584773315_KR_2385105" target="_blank">보기</a></td></tr>
+    <tr><td>5</td><td><span class="tag avant">AVANTGARDE</span></td><td class="num">58,860,000원</td><td class="num">935,570원</td><td class="dim">상세 페이지 확인</td><td class="dim">—</td><td class="center"><span class="tag ok">즉시</span></td><td class="center"><a href="https://www.mercedes-benz.co.kr/passengercars/buy/new-car/product.html/W206_0584773255_KR_2385170" target="_blank">보기</a></td></tr>
+    <tr><td>6</td><td><span class="tag amg">AMG Line</span></td><td class="num"><b>60,670,000원</b></td><td class="num">952,230원</td><td>옵시디안 블랙 메탈릭</td><td>블랙</td><td class="center"><span class="tag ok">즉시</span></td><td class="center"><a href="https://www.mercedes-benz.co.kr/passengercars/buy/new-car/product.html/W206_0684701860_KR_2436075" target="_blank">보기</a></td></tr>
+    <tr><td>7</td><td><span class="tag amg">AMG Line</span></td><td class="num">60,940,000원</td><td class="num">956,390원</td><td class="dim">상세 페이지 확인</td><td class="dim">—</td><td class="center"><span class="tag ok">즉시</span></td><td class="center"><a href="https://www.mercedes-benz.co.kr/passengercars/buy/new-car/product.html/W206_0584773360_KR_2385284" target="_blank">보기</a></td></tr>
+    <tr><td>8</td><td><span class="tag amg">AMG Line</span></td><td class="num">60,940,000원</td><td class="num">956,390원</td><td>옵시디안 블랙 메탈릭</td><td>네바 그레이/블랙</td><td class="center"><span class="tag ok">즉시</span></td><td class="center"><a href="https://www.mercedes-benz.co.kr/passengercars/buy/new-car/product.html/W206_0584760323_KR_2344844" target="_blank">보기</a></td></tr>
+    <tr><td>9</td><td><span class="tag amg">AMG Line</span></td><td class="num">61,470,000원</td><td class="num">977,200원</td><td class="dim">상세 페이지 확인</td><td class="dim">—</td><td class="center"><span class="tag ok">즉시</span></td><td class="center"><a href="https://www.mercedes-benz.co.kr/passengercars/buy/new-car/product.html/W206_0684701801_KR_2436103" target="_blank">보기</a></td></tr>
+    <tr><td>10</td><td><span class="tag amg">AMG Line</span></td><td class="num">61,470,000원</td><td class="num">977,200원</td><td class="dim">상세 페이지 확인</td><td class="dim">—</td><td class="center"><span class="tag ok">즉시</span></td><td class="center"><a href="https://www.mercedes-benz.co.kr/passengercars/buy/new-car/product.html/W206_0684707019_KR_2466987" target="_blank">보기</a></td></tr>
+    <tr><td>11</td><td><span class="tag amg">AMG Line</span></td><td class="num">61,740,000원</td><td class="num">981,350원</td><td>셀레나이트 그레이 메탈릭</td><td>시에나 브라운/블랙</td><td class="center"><span class="tag ok">즉시</span></td><td class="center"><a href="https://www.mercedes-benz.co.kr/passengercars/buy/new-car/product.html/W206_0684707015_KR_2466983" target="_blank">보기</a></td></tr>
+    <tr><td>12</td><td><span class="tag amg">AMG Line</span></td><td class="num">61,740,000원</td><td class="num">981,350원</td><td class="dim">상세 페이지 확인</td><td class="dim">—</td><td class="center"><span class="tag ok">즉시</span></td><td class="center"><a href="https://www.mercedes-benz.co.kr/passengercars/buy/new-car/product.html/W206_0684701794_KR_2436062" target="_blank">보기</a></td></tr>
+  </table>
+
+  <h2>구매자 추천</h2>
+  <div class="reco">
+    <div class="t">① 가성비 최우선 → <b>C 200 AVANTGARDE 5,806만원 재고 (1~3번)</b></div>
+    <p>동일한 엔진·연비·안전옵션(디스트로닉 포함)에 최고가 대비 <b>368만원 저렴</b>. 특히 1번(마키아토 베이지 내장)은 밝은 인테리어 선호 시 희소한 조합입니다.</p>
+  </div>
+  <div class="reco">
+    <div class="t">② 스타일·리세일 밸류 → <b>C 200 AMG Line 6,067만원 재고 (6번)</b></div>
+    <p>국내 중고차 시장에서 AMG Line 선호도가 높아 감가 방어에 유리합니다. AMG Line 중 최저가인 6번(옵시디안 블랙/블랙)이 합리적 선택. 무난한 블랙 조합은 매각 시에도 수요가 넓습니다.</p>
+  </div>
+  <div class="reco">
+    <div class="t">③ 연비·유지비 관점</div>
+    <p>12대 모두 동일 파워트레인이라 <b>연비로 트림을 고를 이유는 없습니다.</b> 연 15,000km 기준 유류비 약 213만원(복합) 수준. 도심 비중이 80% 이상이라면 풀하이브리드 경쟁 차종과 유지비 비교 후 결정을 권합니다. 고속 주행 비중이 높다면 14.5km/ℓ로 만족도가 높습니다.</p>
+  </div>
+  <div class="reco">
+    <div class="t">④ 협상 팁</div>
+    <p>전 차량 <b>프로모션 진행 중</b> 표시가 있으므로 결제 전 반드시 '구매 상담'으로 프로모션 할인율·금융 조건을 확인하세요. 동일 트림 내 가격 차이(27~107만원)는 컬러·사양 차이이니, 색상 고집이 없다면 각 트림 최저가 차량이 유리합니다. 표시 가격은 개인고객 기준이며 부대비용(취득세 약 7%, 공채 등)이 별도로 추가됩니다.</p>
+  </div>
+
+  <div class="foot">
+    데이터 출처: 메르세데스-벤츠 코리아 온라인 스토어 (mercedes-benz.co.kr) 신차 검색 결과 및 각 차량 상세 페이지 · 조사일 2026-07-22<br>
+    가격·재고·프로모션은 수시로 변동될 수 있으며, 월 납입금은 스토어 표시 기준입니다. 유류비는 단순 추정치로 실제와 다를 수 있습니다.<br>
+    본 문서는 참고용 정보 제공이 목적이며 구매 결정 전 공식 딜러 상담을 권장합니다.
+  </div>
+
+</div>
+</body>
+</html>
