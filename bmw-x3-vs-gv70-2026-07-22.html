@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 BMW X3 vs 제네시스 GV70 비교 가이드</title>
+<style>
+  :root{
+    --bg:#0f1114; --panel:#171a1f; --panel2:#1e2229; --line:#2a2f38;
+    --txt:#e8eaed; --sub:#9aa3af; --accent:#00adef; --gold:#c9a96a; --green:#3ddc84; --red:#ff6b6b; --purple:#b98cf0;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--txt);font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;line-height:1.6}
+  .wrap{max-width:1080px;margin:0 auto;padding:24px 16px 80px}
+  .hero{background:linear-gradient(135deg,#14171c 0%,#1c2128 60%,#20262e 100%);border:1px solid var(--line);border-radius:20px;padding:40px 32px;text-align:center;margin-bottom:28px}
+  .hero .badge{display:inline-block;background:rgba(0,173,239,.12);color:var(--accent);border:1px solid rgba(0,173,239,.35);border-radius:999px;padding:4px 14px;font-size:13px;margin-bottom:14px}
+  .hero h1{font-size:28px;font-weight:800;letter-spacing:-.5px}
+  .hero p{color:var(--sub);margin-top:10px;font-size:14px}
+  .heroImgs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+  .heroImgs img{width:100%;border-radius:14px;object-fit:cover;height:200px;filter:drop-shadow(0 12px 20px rgba(0,0,0,.4))}
+  .heroImgs .cap{font-size:12.5px;color:var(--sub);margin-top:6px}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:28px}
+  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+  .kpi .v{font-size:20px;font-weight:800;color:var(--accent)}
+  .kpi .l{font-size:12.5px;color:var(--sub);margin-top:4px}
+  h2{font-size:19px;font-weight:800;margin:34px 0 14px;display:flex;align-items:center;gap:10px}
+  h2::before{content:'';width:5px;height:22px;background:var(--accent);border-radius:3px;display:inline-block}
+  .desc{color:var(--sub);font-size:13.5px;margin-bottom:14px}
+  table{width:100%;border-collapse:collapse;background:var(--panel);border-radius:14px;overflow:hidden;font-size:14px}
+  th{background:var(--panel2);padding:12px 12px;text-align:left;color:#cfd6df;font-weight:700;border-bottom:1px solid var(--line);white-space:nowrap}
+  td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .center{text-align:center}
+  .tag{display:inline-block;padding:2px 10px;border-radius:999px;font-size:12px;font-weight:700}
+  .tag.bmw{background:rgba(0,173,239,.12);color:var(--accent);border:1px solid rgba(0,173,239,.3)}
+  .tag.gen{background:rgba(201,169,106,.12);color:var(--gold);border:1px solid rgba(201,169,106,.35)}
+  .tag.diesel{background:rgba(153,153,153,.15);color:#c7c7c7;border:1px solid rgba(153,153,153,.3)}
+  .tag.phev{background:rgba(61,220,132,.12);color:var(--green);border:1px solid rgba(61,220,132,.3)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:760px){.grid2{grid-template-columns:1fr}.heroImgs{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px;overflow:hidden}
+  .card img{width:100%;border-radius:12px;height:190px;object-fit:cover;margin-bottom:14px}
+  .card h3{font-size:17px;font-weight:800;margin-bottom:10px}
+  .card ul{list-style:none}
+  .card li{padding:6px 0;font-size:14px;color:#cfd6df;display:flex;gap:8px}
+  .card li::before{content:'✓';color:var(--green);font-weight:800}
+  .price-big{font-size:22px;font-weight:800;color:#fff}
+  .price-sub{font-size:13px;color:var(--sub);margin-bottom:10px}
+  .fuel-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+  .fuel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;text-align:center}
+  .fuel .v{font-size:24px;font-weight:800;color:var(--accent)}
+  .fuel .v small{font-size:13px;color:var(--sub);font-weight:400}
+  .fuel .l{font-size:13px;color:var(--sub);margin-top:4px}
+  .note{background:rgba(0,173,239,.06);border:1px solid rgba(0,173,239,.25);border-radius:12px;padding:14px 16px;font-size:13.5px;color:#cfd6df;margin-top:12px}
+  .reco{border-left:4px solid var(--gold);background:var(--panel);border-radius:12px;padding:18px 20px;margin-bottom:14px}
+  .reco b{color:var(--gold)}
+  .reco .t{font-size:16px;font-weight:800;margin-bottom:6px}
+  .reco p{font-size:14px;color:#cfd6df}
+  a{color:var(--accent);text-decoration:none}
+  .foot{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);color:#6b7280;font-size:12px;line-height:1.8}
+  .dim{color:var(--sub)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <span class="badge">BMW 코리아·제네시스 공식 사이트 및 신차 가격 정보 · 2026-07-22 기준</span>
+    <h1>2026 BMW X3(G45) vs 제네시스 GV70 완전 비교</h1>
+    <p>수입·국산 프리미엄 중형 SUV 맞수, BMW 뉴 X3와 제네시스 GV70의 트림별 가격·제원·연비를 비교하고 구매자에게 실질적인 추천을 드립니다.</p>
+    <div class="heroImgs">
+      <div>
+        <img src="https://cdn.aictimg.com/newcar/model/202410/131838.jpg" alt="BMW New X3">
+        <div class="cap">BMW New X3 (G45, 2세대 부분변경)</div>
+      </div>
+      <div>
+        <img src="https://cdn.aictimg.com/newcar/model/202405/123497.png" alt="제네시스 GV70">
+        <div class="cap">제네시스 GV70</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi"><div class="v">6,940만~</div><div class="l">BMW X3 시작가</div></div>
+    <div class="kpi"><div class="v">5,393만~</div><div class="l">GV70 시작가</div></div>
+    <div class="kpi"><div class="v">398 마력</div><div class="l">BMW M50 최고출력</div></div>
+    <div class="kpi"><div class="v">380 마력</div><div class="l">GV70 3.5T 최고출력</div></div>
+    <div class="kpi"><div class="v">14.0 km/ℓ</div><div class="l">BMW 20d 복합연비</div></div>
+    <div class="kpi"><div class="v">10.2 km/ℓ</div><div class="l">GV70 2.5T 복합연비</div></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <img src="https://cdn.aictimg.com/newcar/model/202410/131838.jpg" alt="BMW X3 정면">
+      <h3><span class="tag bmw">BMW X3</span></h3>
+      <ul>
+        <li>전 트림 xDrive 사륜구동 기본 탑재, 48V 마일드 하이브리드 적용</li>
+        <li>유일하게 디젤(20d) 라인업 보유 — 복합연비 14.0km/ℓ로 두 차 통틀어 최고 효율</li>
+        <li>M50 xDrive는 398마력 · 정통 고성능 SUV 캐릭터</li>
+        <li>BMW 오퍼레이팅 시스템 9 등 최신 인포테인먼트, 수입차 브랜드 프리미엄</li>
+        <li>트렁크 570ℓ로 기본 적재공간 우위</li>
+      </ul>
+    </div>
+    <div class="card">
+      <img src="https://cdn.aictimg.com/newcar/model/202405/123497.png" alt="제네시스 GV70 정면">
+      <h3><span class="tag gen">제네시스 GV70</span></h3>
+      <ul>
+        <li>기본 트림부터 304마력(2.5T)으로 BMW 20 xDrive(190마력) 대비 압도적 출력</li>
+        <li>동급 대비 크게 낮은 시작 가격 (BMW 대비 약 1,600만원 저렴)</li>
+        <li>27인치 OLED 클러스터·내비게이션 통합형 디스플레이, 지문 인증 시스템 등 최신 편의사양</li>
+        <li>국내 A/S 네트워크와 부품 수급에서 강점</li>
+        <li>전동화 모델 Electrified GV70(EV) 라인업 별도 보유</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>BMW X3 트림별 가격표</h2>
+  <p class="desc">2026년형 기준(개소세 인하 종료 후 정상세율 가격). 가솔린 2.0/3.0, 디젤 2.0 세 가지 엔진 라인업으로 운영됩니다.</p>
+  <table>
+    <tr><th>트림</th><th>연료</th><th class="num">복합연비</th><th class="num">가격</th></tr>
+    <tr><td>20 xDrive</td><td><span class="tag bmw">가솔린</span></td><td class="num">10.9 km/ℓ</td><td class="num"><b>69,400,000원</b></td></tr>
+    <tr><td>20 xDrive M Sport</td><td><span class="tag bmw">가솔린</span></td><td class="num">10.9 km/ℓ</td><td class="num">75,600,000원</td></tr>
+    <tr><td>20 xDrive M Sport Pro</td><td><span class="tag bmw">가솔린</span></td><td class="num">10.9 km/ℓ</td><td class="num">80,200,000원</td></tr>
+    <tr><td>20 xDrive M Sport Pro Dune Grey Anniversary</td><td><span class="tag bmw">가솔린</span></td><td class="num">10.9 km/ℓ</td><td class="num">83,100,000원</td></tr>
+    <tr><td>20d xDrive</td><td><span class="tag diesel">디젤</span></td><td class="num winner">14.0 km/ℓ</td><td class="num">73,000,000원</td></tr>
+    <tr><td>20d xDrive M Sport</td><td><span class="tag diesel">디젤</span></td><td class="num winner">14.0 km/ℓ</td><td class="num">79,200,000원</td></tr>
+    <tr><td>30 xDrive M Sport Pro</td><td><span class="tag bmw">가솔린</span></td><td class="num">10.9 km/ℓ</td><td class="num">85,000,000원</td></tr>
+    <tr><td>M50 xDrive Pro</td><td><span class="tag bmw">고성능 가솔린</span></td><td class="num">10.6 km/ℓ</td><td class="num"><b>99,900,000원</b></td></tr>
+  </table>
+  <div class="note">20/30 xDrive는 동일한 2.0L 4기통 엔진을 출력만 다르게 튜닝(190마력/258마력)한 것이고, M50 xDrive는 3.0L 직렬 6기통(398마력)입니다. 20d xDrive가 유일한 디젤 트림으로 연비 우위가 뚜렷합니다.</div>
+
+  <h2>제네시스 GV70 트림별 가격표</h2>
+  <p class="desc">2026년형 기준(실효세율 조정). 2.5 가솔린 터보와 3.5 가솔린 터보 두 가지 파워트레인이며, 2.2 디젤은 2025년 이후 라인업에서 제외되었습니다.</p>
+  <table>
+    <tr><th>트림</th><th>구동방식</th><th class="num">복합연비</th><th class="num">가격</th></tr>
+    <tr><td>2.5T</td><td>2WD</td><td class="num">10.2 km/ℓ</td><td class="num"><b>53,930,000원</b></td></tr>
+    <tr><td>2.5T</td><td>AWD</td><td class="num">9.7 km/ℓ</td><td class="num">56,930,000원</td></tr>
+    <tr><td>2.5T 스포츠 패키지</td><td>2WD</td><td class="num">9.8 km/ℓ</td><td class="num">56,730,000원</td></tr>
+    <tr><td>2.5T 스포츠 패키지</td><td>AWD</td><td class="num">9.4 km/ℓ</td><td class="num">59,730,000원</td></tr>
+    <tr><td>3.5T</td><td>2WD</td><td class="num">8.9 km/ℓ</td><td class="num">59,430,000원</td></tr>
+    <tr><td>3.5T</td><td>AWD</td><td class="num">8.5 km/ℓ</td><td class="num">62,430,000원</td></tr>
+    <tr><td>3.5T 스포츠 패키지</td><td>2WD</td><td class="num">8.5 km/ℓ</td><td class="num">62,780,000원</td></tr>
+    <tr><td>3.5T 스포츠 패키지</td><td>AWD</td><td class="num">8.3 km/ℓ</td><td class="num"><b>65,780,000원</b></td></tr>
+  </table>
+  <div class="note">3.5T는 AWD가 기본 탑재되며 2WD도 선택 가능합니다(2026년형부터 신규). 참고로 전동화 모델인 Electrified GV70(듀얼모터 AWD, 배터리 84.0kWh, 1회충전 최대 423km)은 별도 라인업으로 약 7,190만원부터 시작합니다.</div>
+
+  <h2>엔트리 트림 비교: BMW 20 xDrive vs GV70 2.5T (2WD)</h2>
+  <table>
+    <tr><th>항목</th><th class="num">BMW 20 xDrive</th><th class="num">GV70 2.5T 2WD</th></tr>
+    <tr><td>가격</td><td class="num">69,400,000원</td><td class="num winner">53,930,000원</td></tr>
+    <tr><td>엔진</td><td class="num">1,998cc 직렬 4기통 터보</td><td class="num">2,497cc 직렬 4기통 터보</td></tr>
+    <tr><td>최고출력</td><td class="num">190 마력</td><td class="num winner">304 마력</td></tr>
+    <tr><td>최대토크</td><td class="num">31.6 kg·m</td><td class="num winner">43.0 kg·m</td></tr>
+    <tr><td>복합연비</td><td class="num winner">10.9 km/ℓ</td><td class="num">10.2 km/ℓ</td></tr>
+    <tr><td>구동방식</td><td class="num">사륜구동(xDrive)</td><td class="num">후륜구동(2WD)</td></tr>
+    <tr><td>공차중량</td><td class="num">1,950 kg</td><td class="num winner">1,865 kg</td></tr>
+    <tr><td>변속기</td><td class="num">8단 자동</td><td class="num">8단 자동</td></tr>
+  </table>
+  <div class="note">가격은 GV70가 1,547만원 저렴하면서 출력은 오히려 60% 더 높습니다. 다만 BMW는 전 트림 사륜구동(xDrive) 기본인 반면 GV70 기본 트림은 후륜구동(2WD)이라는 차이가 있습니다. 사륜구동을 원하면 GV70 AWD(56,930,000원)와 비교하는 것이 더 정확합니다.</div>
+
+  <h2>고성능 트림 비교: BMW M50 xDrive vs GV70 3.5T 스포츠 패키지 AWD</h2>
+  <table>
+    <tr><th>항목</th><th class="num">BMW M50 xDrive</th><th class="num">GV70 3.5T 스포츠 AWD</th></tr>
+    <tr><td>가격</td><td class="num">99,900,000원</td><td class="num winner">65,780,000원</td></tr>
+    <tr><td>엔진</td><td class="num">2,998cc 직렬 6기통 터보</td><td class="num">3,470cc V6 터보</td></tr>
+    <tr><td>최고출력</td><td class="num winner">398 마력</td><td class="num">380 마력</td></tr>
+    <tr><td>최대토크</td><td class="num winner">59.1 kg·m</td><td class="num">54.0 kg·m</td></tr>
+    <tr><td>복합연비</td><td class="num winner">10.6 km/ℓ</td><td class="num">8.3 km/ℓ (21인치 AWD)</td></tr>
+    <tr><td>구동방식</td><td class="num">사륜구동(xDrive)</td><td class="num">사륜구동(e-LSD 옵션)</td></tr>
+    <tr><td>공차중량</td><td class="num winner">2,045 kg</td><td class="num">2,055 kg</td></tr>
+  </table>
+  <div class="note">BMW M50이 출력·토크·연비 모두 근소하게 앞서지만 가격은 GV70 대비 3,412만원 더 비쌉니다. 순수 가성비로는 GV70 3.5T가, 브랜드·완성도·정숙성을 포함한 프리미엄을 원한다면 M50이 유리합니다.</div>
+
+  <h2>차체 제원 비교</h2>
+  <table>
+    <tr><th>항목</th><th class="num">BMW X3</th><th class="num">GV70</th></tr>
+    <tr><td>전장</td><td class="num">4,775 mm</td><td class="num">4,715 mm</td></tr>
+    <tr><td>전폭</td><td class="num">1,920 mm</td><td class="num">1,910 mm</td></tr>
+    <tr><td>전고</td><td class="num">1,660 mm</td><td class="num">1,630 mm</td></tr>
+    <tr><td>휠베이스</td><td class="num">2,865 mm</td><td class="num winner">2,875 mm</td></tr>
+    <tr><td>트렁크 용량</td><td class="num winner">570 ℓ</td><td class="num">542 ℓ (2열 폴딩 시 최대 1,678 ℓ)</td></tr>
+    <tr><td>연료탱크</td><td class="num">60~65 ℓ</td><td class="num">66 ℓ</td></tr>
+  </table>
+  <div class="note">전장·전폭·전고는 BMW X3가 조금 더 크고, 휠베이스는 GV70가 10mm 더 깁니다. 기본 트렁크 용량은 X3가 28ℓ 더 넓습니다.</div>
+
+  <h2>연간 예상 유류비 비교</h2>
+  <p class="desc">연간 주행거리 15,000km, 휘발유 1,700원/ℓ · 경유 1,600원/ℓ 기준 추정치입니다.</p>
+  <table>
+    <tr><th>트림</th><th class="num">복합연비</th><th class="num">연간 예상 주유량</th><th class="num">연간 예상 유류비</th></tr>
+    <tr><td>BMW 20d xDrive (디젤)</td><td class="num winner">14.0 km/ℓ</td><td class="num">약 1,071 ℓ</td><td class="num winner">약 171만원</td></tr>
+    <tr><td>BMW 20 xDrive (가솔린)</td><td class="num">10.9 km/ℓ</td><td class="num">약 1,376 ℓ</td><td class="num">약 234만원</td></tr>
+    <tr><td>BMW M50 xDrive (가솔린)</td><td class="num">10.6 km/ℓ</td><td class="num">약 1,415 ℓ</td><td class="num">약 241만원</td></tr>
+    <tr><td>GV70 2.5T 2WD (가솔린)</td><td class="num">10.2 km/ℓ</td><td class="num">약 1,471 ℓ</td><td class="num">약 250만원</td></tr>
+    <tr><td>GV70 2.5T AWD (가솔린)</td><td class="num">9.7 km/ℓ</td><td class="num">약 1,546 ℓ</td><td class="num">약 263만원</td></tr>
+    <tr><td>GV70 3.5T AWD (가솔린)</td><td class="num red">8.5 km/ℓ</td><td class="num">약 1,765 ℓ</td><td class="num red">약 300만원</td></tr>
+  </table>
+  <div class="note">* 실제 유가·주행 패턴에 따라 달라질 수 있는 추정치입니다. 연비만 놓고 보면 <b>BMW 20d 디젤이 압도적 1위</b>이며, GV70은 디젤 라인업이 없어 유류비 측면에서는 BMW 대비 다소 불리합니다. 가솔린 모델 중에서는 <b>BMW 20 xDrive(10.9km/ℓ)</b>가 가장 우수합니다.</div>
+
+  <h2>구매자 추천</h2>
+  <div class="reco">
+    <div class="t">① 연비·유지비 최우선 → <b>BMW 20d xDrive (디젤, 7,300만원)</b></div>
+    <p>두 차종을 통틀어 유일한 디젤 옵션이자 압도적 연비(14.0km/ℓ)를 자랑합니다. GV70은 2.2 디젤이 단종되어 대안이 없는 만큼, 장거리 주행이 많은 운전자라면 사실상 유일한 선택지입니다.</p>
+  </div>
+  <div class="reco">
+    <div class="t">② 가성비·출력 최우선 → <b>제네시스 GV70 2.5T 2WD (5,393만원)</b></div>
+    <p>동급 BMW 20 xDrive보다 1,547만원 저렴하면서 출력은 60% 더 높습니다(304마력 vs 190마력). 사륜구동이 필요하면 AWD(5,693만원)를 선택해도 여전히 BMW보다 저렴합니다.</p>
+  </div>
+  <div class="reco">
+    <div class="t">③ 밸런스형 선택 → <b>GV70 3.5T AWD (6,243만원)</b></div>
+    <p>380마력의 강력한 출력을 BMW M50(9,990만원) 대비 3,747만원 저렴하게 누릴 수 있습니다. 연비는 다소 아쉽지만(8.5km/ℓ), 출력 대비 가격 경쟁력이 가장 뛰어난 조합입니다.</p>
+  </div>
+  <div class="reco">
+    <div class="t">④ 고성능·브랜드 프리미엄 → <b>BMW M50 xDrive (9,990만원)</b></div>
+    <p>398마력 직렬 6기통 엔진과 BMW 특유의 주행 질감, 최신 인포테인먼트를 원한다면 M50이 정답입니다. 가격 부담이 크지만 완성도와 브랜드 가치에서 우위를 가집니다.</p>
+  </div>
+  <div class="reco">
+    <div class="t">⑤ 전동화를 고려한다면 → <b>제네시스 Electrified GV70 (약 7,190만원~)</b></div>
+    <p>BMW X3는 국내에 순수 전기 버전이 없는 반면(전기 SUV는 별도 모델 iX3로 출시), GV70은 배터리 84.0kWh·1회충전 최대 423km의 Electrified GV70을 동일 차체로 선택할 수 있어 전동화 옵션의 폭이 더 넓습니다.</p>
+  </div>
+
+  <div class="foot">
+    데이터 출처: BMW 코리아 공식 사이트(bmw.co.kr) X3 제원·가격 정보, 제네시스 공식 사이트(genesis.com) GV70·Electrified GV70 제원 정보, 카눈(carnoon.co.kr) 2026년형 X3·GV70 가격표 및 상세 제원, 카랩 블로그(blog.carlab.kr) GV70 2026년형 관련 기사 · 조사일 2026-07-22<br>
+    가격·프로모션·개별소비세 적용 여부는 시점 및 딜러 정책에 따라 수시로 변동될 수 있으며, 실제 구매 시 공식 딜러 확인이 필요합니다. 연비는 표준모드(복합연비) 기준으로 실주행연비와 차이가 있을 수 있습니다.<br>
+    본 문서는 참고용 정보 제공이 목적이며 구매 결정 전 공식 딜러 상담과 시승을 권장합니다.
+  </div>
+
+</div>
+</body>
+</html>
