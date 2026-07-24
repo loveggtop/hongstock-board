@@ -84,6 +84,23 @@
   .reco h4{margin:0 0 6px;font-size:15.5px;}
   .reco p{margin:0;color:var(--sub);font-size:13.5px;}
 
+  .review-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+  .review-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 22px;}
+  .review-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px;gap:10px;}
+  .review-head h4{margin:0;font-size:15.5px;}
+  .review-score{font-size:12px;color:var(--gold);font-weight:700;white-space:nowrap;}
+  .review-note{font-size:11.5px;color:var(--sub);margin-bottom:12px;}
+  .pc-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:12px;}
+  .pc-col h5{margin:0 0 6px;font-size:12px;letter-spacing:.04em;text-transform:uppercase;}
+  .pc-col.pro h5{color:var(--good);}
+  .pc-col.con h5{color:var(--bad);}
+  .pc-col ul{margin:0;padding-left:16px;font-size:12.5px;color:var(--sub);}
+  .pc-col ul li{margin-bottom:4px;}
+  .quote{font-size:12.5px;font-style:italic;color:var(--text);background:rgba(255,255,255,.03);border-left:3px solid var(--gold);padding:9px 12px;border-radius:0 8px 8px 0;margin-top:6px;}
+  .quote cite{display:block;font-style:normal;font-size:11px;color:var(--sub);margin-top:4px;}
+  .safety-note{margin-top:10px;font-size:12px;color:var(--bad);background:rgba(224,102,90,.1);border:1px solid rgba(224,102,90,.35);border-radius:8px;padding:8px 10px;}
+  .no-review{font-size:12.5px;color:var(--sub);font-style:italic;padding:8px 0;}
+
   footer{padding:36px 0 10px;color:var(--sub);font-size:12px;}
   footer a{color:var(--sub);}
   .disclaimer{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;font-size:12.5px;color:var(--sub);margin-top:14px;}
@@ -91,6 +108,8 @@
   @media(max-width:900px){
     .tldr-grid,.car-grid{grid-template-columns:1fr;}
     .focus-grid,.calc-grid{grid-template-columns:1fr;}
+    .review-grid{grid-template-columns:1fr;}
+    .pc-grid{grid-template-columns:1fr;}
   }
 </style>
 </head>
@@ -387,8 +406,152 @@
   </div>
 </section>
 
+<section id="reviews">
+  <h2><span class="num">06</span> 실제 오너 후기 및 장단점</h2>
+  <p class="section-sub">겟차·클리앙·보배드림·블라인드 등 오너 커뮤니티와 시승기를 종합했습니다. GV70·GV80 하이브리드는 아직 출시 전이라 오너 후기 대신 사전 반응·기대평을 담았습니다.</p>
+  <div class="review-grid">
+
+    <div class="review-card">
+      <div class="review-head"><h4>제네시스 GV70 (가솔린)</h4></div>
+      <div class="review-note">겟차 오너리뷰 · 헤이딜러 · 7777car 종합</div>
+      <div class="pc-grid">
+        <div class="pc-col pro"><h5>장점</h5><ul>
+          <li>외관·내장 디자인, 소재 고급감이 동급 대비 압도적</li>
+          <li>방음·방진 우수해 승차감 만족도 높음</li>
+          <li>화려한 편의장비, 충분한 동력성능</li>
+        </ul></div>
+        <div class="pc-col con"><h5>단점</h5><ul>
+          <li>연비가 낮은 편</li>
+          <li>잡소리 이슈를 지적하는 오너 다수</li>
+          <li>트렁크·실내 공간 협소</li>
+        </ul></div>
+      </div>
+      <div class="quote">"예쁘긴 한데 트렁크는 항상 가득 찬다" — 레저·가족 이동이 잦으면 공간 제약이 아쉽다는 의견 다수<cite>7777car / 겟차 오너리뷰</cite></div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-head"><h4>제네시스 GV70 하이브리드</h4></div>
+      <div class="review-note">2027.3 출시 예정</div>
+      <div class="no-review">아직 출시 전이라 오너 후기가 존재하지 않습니다. 공식 스펙조차 미공개된 루머 단계입니다.</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-head"><h4>제네시스 GV80 (가솔린)</h4></div>
+      <div class="review-note">겟차 오너리뷰 · 뉴스와 종합</div>
+      <div class="pc-grid">
+        <div class="pc-col pro"><h5>장점</h5><ul>
+          <li>스포츠 모드 가속력 우수, 엔진 소음 억제 잘 됨</li>
+          <li>세단에서 갈아탄 오너들 디자인 만족도 높음</li>
+          <li>국산 대비 옵션 구성·비용 대비 만족도 우수</li>
+        </ul></div>
+        <div class="pc-col con"><h5>단점</h5><ul>
+          <li>승차감이 예상보다 가볍고 통통 튐, 고속 안정감 아쉬움</li>
+          <li>실연비 시내 5~6, 고속 10~12km/L 수준</li>
+          <li>하이테크 기능 A/S 대기시간 긴 경우 있음</li>
+        </ul></div>
+      </div>
+      <div class="quote">"가속페달 밟으니 주행거리 4km 증발" — 연비 변동폭에 대한 오너 불만 보도<cite>뉴스와 2026.06.29</cite></div>
+    </div>
+
+    <div class="review-card" style="border-color:var(--gold);">
+      <div class="review-head"><h4>제네시스 GV80 하이브리드</h4></div>
+      <div class="review-note">2026.9 출시 예정 · 사전 반응</div>
+      <div class="no-review">출시 전이라 오너 후기는 없으나, 언론·커뮤니티 사전 반응은 뜨겁습니다. 전기모터 특유의 즉각적 가속감과 저속 정숙성에 대한 기대가 크고, "독일 프리미엄 브랜드를 넘어서는 정숙성"이라는 전망도 나옵니다. 다만 상위 트림이 1억원 초반대에 이를 수 있다는 점에는 "이 가격이면 수입차를 사겠다"는 반응과 "AS·유지비는 국산이 압도적으로 유리하다"는 반응이 엇갈립니다.</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-head"><h4>기아 쏘렌토 하이브리드</h4></div>
+      <div class="review-note">겟차 · 클리앙 · Auto Trending 종합, 오너평점 9점대</div>
+      <div class="pc-grid">
+        <div class="pc-col pro"><h5>장점</h5><ul>
+          <li>디자인 만족도 9.7점, 도심 주행 답답함 없음</li>
+          <li>뒷자리 공간 넓고 정숙성 우수</li>
+          <li>여름철 실연비 20km/L 이상 사례도 보고됨</li>
+        </ul></div>
+        <div class="pc-col con"><h5>단점</h5><ul>
+          <li>승차감이 다소 하드해 노면 안 좋은 구간에서 울퉁불퉁함 느껴짐</li>
+          <li>중간트림 시트가 딱딱해 장거리 시 허리 피로 호소</li>
+          <li>초기형 모델의 엔진오일 증가 이슈가 유명</li>
+          <li>겨울철 실연비는 16km/L대로 하락(하이브리드 공통 특성)</li>
+        </ul></div>
+      </div>
+      <div class="quote">"연비 지금도 비교대상 없다" — 1년 오너 후기에서 연비 만족도가 특히 높게 나타남<cite>클리앙 MQ4 쏘렌토 하이브리드 1년 후기</cite></div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-head"><h4>현대 싼타페 하이브리드</h4></div>
+      <div class="review-note">토픽트리 오너평가 평균 9.1점 · kdsa.co.kr 종합</div>
+      <div class="pc-grid">
+        <div class="pc-col pro"><h5>장점</h5><ul>
+          <li>시내 실연비 14~16km/L로 공인치 상회, 오너 만족도 높음</li>
+          <li>공간 설계 우수 — 캠핑 짐 적재, 아이 있는 가정에 적합</li>
+        </ul></div>
+        <div class="pc-col con"><h5>단점</h5><ul>
+          <li>2톤 가까운 무게로 추월 가속 시 힘 부침, 반응 한 박자 늦음</li>
+          <li>3열은 성인 장거리용으로 무리, 무릎 공간 협소</li>
+          <li>ccNC 인포테인먼트 먹통·내비 재부팅·후방카메라 인식 오류 사례</li>
+          <li>고속도로 연비는 약 15km/L로 시내만큼 드라마틱하지 않음</li>
+        </ul></div>
+      </div>
+      <div class="quote">"옵션 좀 넣으니 5천만원" — 출고 1년차 오너들 사이 가격 관련 아쉬움도 다수 보고<cite>뉴스와 2026.07.09</cite></div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-head"><h4>현대 팰리세이드 하이브리드</h4></div>
+      <div class="review-note">현대차그룹 스토리 · gpkorea 시승기 종합</div>
+      <div class="pc-grid">
+        <div class="pc-col pro"><h5>장점</h5><ul>
+          <li>합산 334마력으로 대형 SUV답지 않은 가속력</li>
+          <li>1회 주유 1,000km 이상 주행 가능, 가솔린 대비 연비 39%↑</li>
+          <li>큰 체구에도 코너링 시 좌우 기울어짐이 적은 편</li>
+        </ul></div>
+        <div class="pc-col con"><h5>단점</h5><ul>
+          <li>대형 SUV 특유의 무게감은 여전</li>
+          <li>실제 시승 연비는 도심·자동차전용도로 기준 12.4km/L로 공인치보다 낮게 나온 사례</li>
+        </ul></div>
+      </div>
+      <div class="safety-note">⚠ 안전 이슈: 2026년 3월 전동식 2·3열 시트가 탑승자·물체를 제대로 감지하지 못하는 결함으로 미국에서 사망사고가 발생해 한국·미국·캐나다·호주에서 리미티드·캘리그래피 트림 판매가 일시 중단된 이력이 있습니다(위키피디아 기준). 구매 전 리콜·개선조치 완료 여부를 반드시 확인하세요.</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-head"><h4>볼보 XC60 B6</h4></div>
+      <div class="review-note">겟차 · 클리앙 · 보배드림 · 블라인드 종합</div>
+      <div class="pc-grid">
+        <div class="pc-col pro"><h5>장점</h5><ul>
+          <li>시트·가죽 등 내장재 고급감 우수, 스피커 음질도 상급</li>
+          <li>핸들링이 운전자 조작을 그대로 반영</li>
+        </ul></div>
+        <div class="pc-col con"><h5>단점</h5><ul>
+          <li>엔진음이 제법 또렷하게 들려 정숙성은 기대보다 낮음</li>
+          <li>소프트웨어가 투박하고 모바일 앱 사용성 낮음</li>
+          <li>자동주차 신뢰도 낮음(모서리 기둥 미인식 사례)</li>
+          <li>국산차 대비 수리비 높아 보증연장 프로모션 활용 권장</li>
+        </ul></div>
+      </div>
+      <div class="quote">마일드 하이브리드 특성상 연비는 8~14km/L 사이에서 형성 — 완전 하이브리드 대비 개선폭이 제한적<cite>겟차·클리앙 오너 후기 종합</cite></div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-head"><h4>렉서스 NX350h</h4></div>
+      <div class="review-note">겟차 오너리뷰 · 클리앙 6개월 후기 종합</div>
+      <div class="pc-grid">
+        <div class="pc-col pro"><h5>장점</h5><ul>
+          <li>연비 만족도 최상위 — 실제 19~20km/L대 사례 보고</li>
+          <li>시트 편안함, 장거리에도 허리 피로 적음, 정숙성 우수</li>
+        </ul></div>
+        <div class="pc-col con"><h5>단점</h5><ul>
+          <li>고속 주행 성능은 다소 아쉬움(연비운전 시 체감 크지 않음)</li>
+          <li>가격 대비 옵션 구성이 약간 아쉬움</li>
+        </ul></div>
+      </div>
+      <div class="quote">"고속도로하고 일반도로 섞어타면 19~20키로 이상은 그냥 나오는거 같아요"<cite>겟차 오너리뷰</cite></div>
+    </div>
+
+  </div>
+</section>
+
 <section id="reco">
-  <h2><span class="num">06</span> 최종 추천</h2>
+  <h2><span class="num">07</span> 최종 추천</h2>
   <div class="reco-list">
     <div class="reco">
       <div class="rank">1</div>
@@ -426,7 +589,7 @@
 <footer>
   <div class="wrap">
     <div class="disclaimer">
-      본 보고서는 2026년 7월 24일 기준 공개된 언론 보도·제조사 자료·전문 매체 기사를 종합해 작성했습니다. GV70·GV80 하이브리드 관련 수치는 공식 발표 전 추정치를 포함하고 있으며, 실제 출시 시 가격·연비·트림 구성이 달라질 수 있습니다. 가솔린 GV70/GV80의 공인 연비는 트림·구동방식별 편차가 커 이번 보고서에서는 별도 표기하지 않았으며, 실제 구매 전 제조사 공식 자료 확인을 권장합니다. 세제혜택 관련 내용은 2026년 7월 기준 법령이며 향후 개정될 수 있습니다.
+      본 보고서는 2026년 7월 24일 기준 공개된 언론 보도·제조사 자료·전문 매체 기사를 종합해 작성했습니다. GV70·GV80 하이브리드 관련 수치는 공식 발표 전 추정치를 포함하고 있으며, 실제 출시 시 가격·연비·트림 구성이 달라질 수 있습니다. 가솔린 GV70/GV80의 공인 연비는 트림·구동방식별 편차가 커 이번 보고서에서는 별도 표기하지 않았으며, 실제 구매 전 제조사 공식 자료 확인을 권장합니다. 세제혜택 관련 내용은 2026년 7월 기준 법령이며 향후 개정될 수 있습니다. 오너 후기·장단점 섹션은 겟차·클리앙·보배드림·블라인드 등 온라인 커뮤니티와 시승기 기사를 종합한 것으로, 개인 경험에 기반한 주관적 의견이 포함되어 있으니 참고용으로만 활용하시기 바랍니다. 팰리세이드 하이브리드의 시트 결함 관련 리콜 정보는 위키피디아에 기재된 내용을 인용했으며, 구매 전 반드시 제조사 공식 채널에서 최신 리콜·개선조치 현황을 확인하세요.
     </div>
     <p style="margin-top:16px;">Report generated for 주인 · alrangayo@gmail.com</p>
   </div>
