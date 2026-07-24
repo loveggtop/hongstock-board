@@ -39,6 +39,10 @@ td.title a:hover { color: #e94560; text-decoration: underline; }
 .pagination button:hover:not(:disabled) { background: #0f3460; color: #fff; border-color: #0f3460; }
 .pagination button.active { background: #0f3460; color: #fff; border-color: #0f3460; font-weight: 700; }
 .pagination button:disabled { opacity: 0.35; cursor: not-allowed; }
+td.del { width: 64px; text-align: center; }
+.delBtn { padding: 5px 10px; border: 1px solid #f1c0c0; background: #fff5f5; color: #e94560; border-radius: 6px; font-size: 0.74rem; cursor: pointer; transition: all .15s; }
+.delBtn:hover:not(:disabled) { background: #e94560; color: #fff; border-color: #e94560; }
+.delBtn:disabled { opacity: 0.5; cursor: not-allowed; }
 footer { text-align: center; padding: 28px 24px; font-size: 0.75rem; color: #b0b8c4; border-top: 1px solid #e8ecf2; margin-top: 8px; }
 @media (max-width: 600px) { td.num { display: none; } td.date { width: 76px; font-size: 0.75rem; } }
 </style>
@@ -46,7 +50,7 @@ footer { text-align: center; padding: 28px 24px; font-size: 0.75rem; color: #b0b
 <body>
 <header>
 <h1>📊 유튜브 종목분석 보고서 게시판</h1>
-<div class="meta">총 <span id="totalCount">39</span>개 보고서 &nbsp;·&nbsp; 최종 업데이트: 2026-07-24</div>
+<div class="meta">총 <span id="totalCount">49</span>개 보고서 &nbsp;·&nbsp; 최종 업데이트: 2026-07-24</div>
 </header>
 <div class="container">
 <div class="toolbar">
@@ -64,7 +68,7 @@ footer { text-align: center; padding: 28px 24px; font-size: 0.75rem; color: #b0b
 <div class="section-label">📋 보고서 목록</div>
 <div class="card">
 <table>
-<thead><tr><th>#</th><th>날짜</th><th>보고서</th></tr></thead>
+<thead><tr><th>#</th><th>날짜</th><th>보고서</th><th>관리</th></tr></thead>
 <tbody id="tableBody"></tbody>
 </table>
 <div id="emptyMsg" class="empty" style="display:none;">검색 결과가 없습니다.</div>
@@ -73,12 +77,27 @@ footer { text-align: center; padding: 28px 24px; font-size: 0.75rem; color: #b0b
 </div>
 <footer>NotebookLM × YouTube 종목분석 보고서 게시판 &nbsp;|&nbsp; Powered by GitHub Pages</footer>
 <script>
+const GH_OWNER = "loveggtop";
+const GH_REPO = "hongstock-board";
+const GH_PATH = "index.html";
 const ALL_REPORTS = [
 {title:"GV70·GV80 하이브리드 SUV 비교 분석 보고서 (세금포함 8천만원 이하)",date:"2026-07-24",url:"gv70_gv80_hybrid_comparison.html",tag:"guide"},
+{title:"2026 아우디 Q5 vs BMW X3 vs 제네시스 GV70 3파전 비교 — 트림·가격·제원·연비 분석과 구매 추천",date:"2026-07-22",url:"q5-vs-x3-vs-gv70-2026-07-22.html",tag:"guide"},
+{title:"2026 BMW X3(G45) vs 제네시스 GV70 완전 비교 — 트림·가격·제원·연비 분석과 구매 추천",date:"2026-07-22",url:"bmw-x3-vs-gv70-2026-07-22.html",tag:"guide"},
+{title:"🚗 볼보 ES90 전기차 완벽 분석: 제원·연비·가격 총정리",date:"2026-07-22",url:"volvo-es90.html",tag:"guide"},
+{title:"2026 BMW 5시리즈(G60) vs 제네시스 G80 완전 비교 — 트림·가격·제원·연비 분석과 구매 추천",date:"2026-07-22",url:"bmw5-vs-g80-2026-07-22.html",tag:"guide"},
+{title:"[구매 가이드] 2026 벤츠 C-Class 즉시출고 재고 12대 전수 비교 — 트림·가격·제원·연비 분석과 구매 추천",date:"2026-07-22",url:"benz-c-class-2026-07-22.html",tag:"guide"},
+{title:"부의 갈림길: 2036년의 부를 결정짓는 2026년의 전략적 거시 경제 분석",date:"2026-07-21",url:"https://docs.google.com/document/d/1xJBahZWklK2QfGrHhg3SNnnl5o3OgHjLHZJz2jD-lQc/edit?tab=t.0#heading=h.t74pk4e1ps7a"},
+{title:"[구매 가이드] 6천만원대 하이브리드 SUV 국산·수입 완전 분석 — 팰리세이드 HEV·라브4 6세대·NX350h·CR-V·하이랜더 비교",date:"2026-07-10",url:"hybrid-suv-report-2026-07-10.html",tag:"guide"},
+{title:"[투자분석] 보유·관심종목 8종 최근 1개월 리뷰 — 천보·엘앤에프·카카오·카카오뱅크·현대모비스·삼성전자우·포스코홀딩스·한화오션",date:"2026-07-09",url:"chunbo-analysis-2026-07-09.html",tag:"guide"},
+{title:"[삼성증권 리포트 요약] 하반기도 강세장 전망 - 한국 주식시장 전망과 전략 (2026년 하반기)",date:"2026-07-03",url:"samsung-market-strategy-2026h2.html",tag:"guide"},
+{title:"[삼성증권 리포트 요약] 로봇 두뇌 진화, 그 중심의 엔비디아 - 로봇 소프트웨어 (OVERWEIGHT)",date:"2026-07-03",url:"samsung-robot-nvidia.html",tag:"guide"},
+{title:"노후 대비를 위한 전략적 자산 관리 및 절세 계좌 활용 가이드",date:"2026-06-29",url:"https://docs.google.com/document/d/1X_TmHrmlrxzCqxxS36HwAbfQCanRlPaeFJ4rUMuZ_IA/edit"},
+{title:"효율적 연금 자산 운용을 위한 전략적 대안 분석: ETF 투자 부담을 완화하는 'OOO' 상품의 가치",date:"2026-06-29",url:"https://docs.google.com/document/d/1O2TUmep7-aI-Kyl1i1IL84fuILsNwGL-xQDC24azycg/edit"},
+{title:"현대자동차의 미래 전략: 피지컬 AI 전환과 리더십의 진화",date:"2026-06-29",url:"https://docs.google.com/document/d/1ax8d36QF5Zo77kTml94cbjQr_FHvDPBM_DD_8aAFiG8/edit"},
 {title:"키움 한국고배당 & 미국 AI테크 ETF: 배당의 안정성과 AI의 성장성을 결합한 2세대 배당성장 전략",date:"2026-06-24",url:"https://docs.google.com/document/d/1Zb5YiKZAwc0PAJpOnTZuVY9Du4SnsvwlT6ElCKEMwTY/edit"},
 {title:"금리 메커니즘과 경제 펀더멘털 분석: 시장 변동성 대응을 위한 전략적 지침",date:"2026-05-27",url:"https://docs.google.com/document/d/19Je-vnZubIh2e9jzSJpH2yTP8lJ_4zXj_mkyrPwmTYQ/edit"},
 {title:"ISA 만기 자금의 연금 계좌 전환: 혜택 및 전략 분석 보고서",date:"2026-05-21",url:"https://docs.google.com/document/d/1R9J7t1yRsdDTxTeMqgR_NWv6ZC6rolloRsSw8XdQSPg/edit"},
-{title:"국민성장펀드 상세 브리핑: 핵심 구조, 혜택 및 투자 유의사항",date:"2026-05-20",url:"https://docs.google.com/document/d/1v71Gyjndc3GeBftQHFfUi6ydipWYC8oIJOSIzXxDLgY/edit"},
 {title:"슈퍼 ISA 및 배당 분리과세 도입에 따른 투자 전략 분석 보고서",date:"2026-05-20",url:"https://docs.google.com/document/d/1c7y14q9mZ3tSne3jCRBj2MX-ByED6CI5OGvLrTp_1PU/edit"},
 {title:"SCHD ETF 심층 분석: 배당 성장과 자산 배분 전략 보고서",date:"2026-05-19",url:"https://docs.google.com/document/d/198Tkx512nUZy31jsQm5Kn9B8uYVaM7-9dgrADBI4hf0/edit"},
 {title:"IRP 계좌를 활용한 복리 효과 극대화 및 노후 자산 증식 전략 제안서",date:"2026-05-19",url:"https://docs.google.com/document/d/1_kMACAk6xwYEzLzL6LKMCYTc5rfO2yR3TwjdXPJLCho/edit"},
@@ -119,7 +138,7 @@ function onSearch(){const q=document.getElementById('searchInput').value.toLower
 function onPageSizeChange(){pageSize=parseInt(document.getElementById('pageSize').value);currentPage=1;render();}
 function render(){
 const tbody=document.getElementById('tableBody'),emptyMsg=document.getElementById('emptyMsg');
-document.getElementById('totalCount').textContent=filtered.length;
+document.getElementById('totalCount').textContent=ALL_REPORTS.length;
 if(filtered.length===0){tbody.innerHTML='';emptyMsg.style.display='';document.getElementById('pagination').innerHTML='';return;}
 emptyMsg.style.display='none';
 const totalPages=pageSize>=9999?1:Math.ceil(filtered.length/pageSize);
@@ -128,7 +147,8 @@ const start=pageSize>=9999?0:(currentPage-1)*pageSize;
 const end=pageSize>=9999?filtered.length:Math.min(start+pageSize,filtered.length);
 tbody.innerHTML=filtered.slice(start,end).map((r,i)=>{
 const tag=r.tag==='guide'?'<span class="source guide">가이드</span>':'<span class="source">NotebookLM</span>';
-return '<tr><td class="num">'+(start+i+1)+'</td><td class="date">'+r.date+'</td><td class="title"><a href="'+r.url+'" target="_blank" rel="noopener">'+r.title+'</a>'+tag+'</td></tr>';
+const origIdx=ALL_REPORTS.indexOf(r);
+return '<tr><td class="num">'+(start+i+1)+'</td><td class="date">'+r.date+'</td><td class="title"><a href="'+r.url+'" target="_blank" rel="noopener">'+r.title+'</a>'+tag+'</td><td class="del"><button class="delBtn" onclick="deleteReportByIndex('+origIdx+',this)">삭제</button></td></tr>';
 }).join('');
 const pg=document.getElementById('pagination');
 if(totalPages<=1){pg.innerHTML='';return;}
@@ -142,7 +162,50 @@ btns+='<span class="page-info">'+currentPage+' / '+totalPages+' 페이지</span>
 pg.innerHTML=btns;
 }
 function goPage(p){const t=pageSize>=9999?1:Math.ceil(filtered.length/pageSize);if(p<1||p>t)return;currentPage=p;render();window.scrollTo({top:0,behavior:'smooth'});}
+function b64EncodeUnicode(str){const bytes=new TextEncoder().encode(str);let bin='';bytes.forEach(b=>bin+=String.fromCharCode(b));return btoa(bin);}
+function b64DecodeUnicode(b64){const bin=atob(b64.replace(/\n/g,''));const bytes=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i);return new TextDecoder('utf-8').decode(bytes);}
+async function deleteReportByIndex(idx,btn){
+const r=ALL_REPORTS[idx];
+if(!r)return;
+if(!confirm('"'+r.title+'"\n보고서를 삭제하시겠습니까?\n(GitHub 저장소에서 즉시 삭제됩니다)'))return;
+let token=localStorage.getItem('gh_pat');
+if(!token){
+token=prompt('GitHub Personal Access Token을 입력하세요.\n(이 브라우저에 저장되어 다음부터는 다시 묻지 않습니다)');
+if(!token)return;
+localStorage.setItem('gh_pat',token);
+}
+btn.disabled=true;btn.textContent='삭제중...';
+try{
+const apiUrl='https://api.github.com/repos/'+GH_OWNER+'/'+GH_REPO+'/contents/'+GH_PATH;
+const getResp=await fetch(apiUrl,{headers:{Authorization:'token '+token,Accept:'application/vnd.github.v3+json'}});
+const getData=await getResp.json();
+if(!getResp.ok)throw new Error(getData.message||'파일 조회 실패 (status '+getResp.status+')');
+const sha=getData.sha;
+const decoded=b64DecodeUnicode(getData.content);
+const escUrl=r.url.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+const entryRe=new RegExp('\\{[^{}]*url:"'+escUrl+'"[^{}]*\\},?\\n?');
+if(!entryRe.test(decoded)){localStorage.removeItem('gh_pat');throw new Error('원격 파일에서 해당 항목을 찾지 못했습니다 (이미 삭제되었거나 토큰이 잘못되었을 수 있습니다)');}
+let newContent=decoded.replace(entryRe,'');
+const countMatch=decoded.match(/<span id="totalCount">(\d+)<\/span>/);
+const newCount=countMatch?Math.max(0,parseInt(countMatch[1])-1):undefined;
+if(newCount!==undefined)newContent=newContent.replace(/<span id="totalCount">\d+<\/span>/,'<span id="totalCount">'+newCount+'</span>');
+const today=new Date().toISOString().slice(0,10);
+newContent=newContent.replace(/최종 업데이트: \d{4}-\d{2}-\d{2}/,'최종 업데이트: '+today);
+const newBase64=b64EncodeUnicode(newContent);
+const putResp=await fetch(apiUrl,{method:'PUT',headers:{Authorization:'token '+token,'Content-Type':'application/json',Accept:'application/vnd.github.v3+json'},body:JSON.stringify({message:'보고서 삭제: '+r.title,content:newBase64,sha:sha})});
+const putData=await putResp.json();
+if(!putResp.ok){if(putResp.status===401)localStorage.removeItem('gh_pat');throw new Error(putData.message||'업로드 실패 (status '+putResp.status+')');}
+ALL_REPORTS.splice(idx,1);
+onSearch();
+alert('삭제되었습니다. GitHub Pages에는 1~2분 후 반영됩니다.');
+}catch(e){
+alert('삭제 실패: '+e.message);
+btn.disabled=false;btn.textContent='삭제';
+}
+}
 render();
 </script>
 </body>
 </html>
+
+<!-- redeploy -->
