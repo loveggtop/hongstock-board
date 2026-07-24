@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>GV70·GV80 하이브리드 SUV 비교 분석 보고서</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root{
+    --bg:#0f1115; --panel:#171a21; --panel2:#1d212b; --line:#2a2f3a;
+    --gold:#c9a24b; --text:#eef0f3; --sub:#9aa3b2; --good:#4caf7d; --warn:#e0a83a; --bad:#e0665a;
+    --genesis:#c9a24b; --kia:#d0182a; --hyundai:#0e5cad; --volvo:#0a3a6b; --lexus:#8a1220;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:"Pretendard","Noto Sans KR","Malgun Gothic",-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px 80px;}
+  header.hero{background:linear-gradient(135deg,#12141a 0%,#1c2030 55%,#20180f 100%);border-bottom:1px solid var(--line);padding:56px 24px 40px;}
+  header.hero .wrap{padding:0 24px;}
+  .eyebrow{color:var(--gold);letter-spacing:.14em;font-size:12.5px;font-weight:700;text-transform:uppercase;}
+  h1{font-size:34px;margin:14px 0 10px;letter-spacing:-0.02em;}
+  .lead{color:var(--sub);font-size:15.5px;max-width:820px;}
+  .meta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;}
+  .chip{background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:7px 16px;font-size:13px;color:var(--text);}
+  .chip b{color:var(--gold);}
+  section{padding:46px 0;border-bottom:1px solid var(--line);}
+  h2{font-size:22px;margin:0 0 6px;display:flex;align-items:center;gap:10px;}
+  h2 .num{color:var(--gold);font-size:14px;font-weight:800;border:1px solid var(--gold);border-radius:6px;padding:2px 8px;}
+  .section-sub{color:var(--sub);font-size:14px;margin-bottom:26px;}
+
+  .tldr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .tldr-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px;}
+  .tldr-card .tag{font-size:11.5px;font-weight:800;letter-spacing:.06em;padding:3px 9px;border-radius:6px;display:inline-block;margin-bottom:10px;}
+  .tag.now{background:rgba(76,175,125,.15);color:var(--good);}
+  .tag.wait{background:rgba(224,168,58,.15);color:var(--warn);}
+  .tag.alt{background:rgba(154,163,178,.15);color:var(--sub);}
+  .tldr-card h3{margin:0 0 8px;font-size:16.5px;}
+  .tldr-card p{color:var(--sub);font-size:13.5px;margin:0;}
+  .tldr-card .price{color:var(--gold);font-weight:700;font-size:15px;margin-top:10px;}
+
+  .car-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  .car-card{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;}
+  .car-art{height:118px;display:flex;align-items:center;justify-content:center;position:relative;}
+  .car-art svg{width:76%;height:auto;}
+  .status-badge{position:absolute;top:10px;right:10px;font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:999px;letter-spacing:.03em;}
+  .status-badge.sale{background:rgba(76,175,125,.9);color:#08150f;}
+  .status-badge.soon{background:rgba(224,168,58,.92);color:#221a06;}
+  .car-body{padding:16px 18px 20px;border-top:1px solid var(--line);}
+  .car-brand{font-size:11px;color:var(--sub);letter-spacing:.08em;text-transform:uppercase;font-weight:700;}
+  .car-name{font-size:17px;font-weight:700;margin:2px 0 10px;}
+  .car-specs{list-style:none;margin:0;padding:0;font-size:13px;color:var(--sub);display:flex;flex-direction:column;gap:5px;}
+  .car-specs li b{color:var(--text);font-weight:600;}
+  .car-price{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);font-size:15px;font-weight:700;color:var(--gold);}
+  .fit{font-size:11.5px;font-weight:700;margin-top:6px;}
+  .fit.ok{color:var(--good);} .fit.tight{color:var(--warn);} .fit.over{color:var(--bad);}
+
+  table{width:100%;border-collapse:collapse;font-size:13.5px;background:var(--panel);border-radius:12px;overflow:hidden;}
+  thead th{background:var(--panel2);color:var(--gold);font-weight:700;text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);white-space:nowrap;}
+  tbody td{padding:11px 14px;border-bottom:1px solid var(--line);color:var(--text);vertical-align:top;}
+  tbody tr:last-child td{border-bottom:none;}
+  tbody tr:hover{background:rgba(255,255,255,.02);}
+  .muted{color:var(--sub);}
+  .tblwrap{overflow-x:auto;}
+  .pill{display:inline-block;font-size:11px;font-weight:800;padding:2px 8px;border-radius:6px;}
+  .pill.sale{background:rgba(76,175,125,.15);color:var(--good);}
+  .pill.soon{background:rgba(224,168,58,.15);color:var(--warn);}
+
+  .focus-panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px 28px;}
+  .focus-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:18px;}
+  .focus-col h4{margin:0 0 10px;font-size:15px;color:var(--gold);}
+  .focus-col ul{margin:0;padding-left:18px;color:var(--sub);font-size:13.5px;}
+  .focus-col ul li{margin-bottom:6px;}
+  .callout{background:rgba(201,162,75,.08);border:1px solid rgba(201,162,75,.35);border-radius:12px;padding:16px 18px;margin-top:20px;font-size:13.5px;color:var(--text);}
+  .callout b{color:var(--gold);}
+
+  .calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  .calc-box{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px;}
+  .calc-box h4{margin:0 0 12px;font-size:14.5px;color:var(--text);}
+  .calc-row{display:flex;justify-content:space-between;font-size:13.5px;color:var(--sub);padding:6px 0;border-bottom:1px dashed var(--line);}
+  .calc-row b{color:var(--text);}
+  .calc-row:last-child{border-bottom:none;padding-top:10px;font-size:14.5px;}
+
+  .reco-list{display:flex;flex-direction:column;gap:14px;}
+  .reco{display:flex;gap:16px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px;align-items:flex-start;}
+  .reco .rank{font-size:20px;font-weight:800;color:var(--gold);min-width:34px;}
+  .reco h4{margin:0 0 6px;font-size:15.5px;}
+  .reco p{margin:0;color:var(--sub);font-size:13.5px;}
+
+  footer{padding:36px 0 10px;color:var(--sub);font-size:12px;}
+  footer a{color:var(--sub);}
+  .disclaimer{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;font-size:12.5px;color:var(--sub);margin-top:14px;}
+
+  @media(max-width:900px){
+    .tldr-grid,.car-grid{grid-template-columns:1fr;}
+    .focus-grid,.calc-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Vehicle Purchase Analysis · 2026.07.24</div>
+    <h1>GV70·GV80 하이브리드 SUV 비교 분석 보고서</h1>
+    <p class="lead">세금 포함 8,000만원 이하 예산, 하이브리드 파워트레인, 왕복 35km의 짧은 일일 주행거리라는 조건을 기준으로 제네시스 GV70·GV80과 국산·수입 경쟁 하이브리드 SUV를 비교했습니다. 현재 판매 중인 모델은 물론 출시 예정 모델(GV80 하이브리드 2026년 9월, GV70 하이브리드 2027년 3월)까지 포함해 총 9개 모델을 분석합니다.</p>
+    <div class="meta-row">
+      <div class="chip">예산 <b>8,000만원 이하</b> (세금 포함)</div>
+      <div class="chip">조건 <b>하이브리드 파워트레인</b></div>
+      <div class="chip">일일 주행 <b>왕복 35km</b> (연 약 1.0~1.3만km 추정)</div>
+      <div class="chip">선호 모델 <b>제네시스 GV70 / GV80</b></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<section id="tldr">
+  <h2><span class="num">01</span> 핵심 요약</h2>
+  <p class="section-sub">지금 당장 계약할지, 신차 출시를 기다릴지에 따라 추천이 달라집니다.</p>
+  <div class="tldr-grid">
+    <div class="tldr-card">
+      <span class="tag now">지금 구매한다면</span>
+      <h3>제네시스 GV80 2.5T (가솔린)</h3>
+      <p>GV70·GV80 모두 아직 하이브리드가 없어, 브랜드를 포기할 수 없다면 현재는 가솔린 모델이 유일한 선택입니다. 2.5 터보가 예산 안에서 가장 현실적입니다.</p>
+      <div class="price">6,790만원부터</div>
+    </div>
+    <div class="tldr-card">
+      <span class="tag wait">기다릴 수 있다면 (추천)</span>
+      <h3>제네시스 GV80 하이브리드</h3>
+      <p>불과 약 2개월 뒤인 2026년 9월 출시 예정. 원하던 브랜드·차급에 하이브리드 조건까지 충족하는 가장 이상적인 조합입니다. 단, 상위 트림은 예산을 넘을 수 있습니다.</p>
+      <div class="price">예상 7,800만~8,500만원대(기본형)</div>
+    </div>
+    <div class="tldr-card">
+      <span class="tag alt">가성비 대안</span>
+      <h3>기아 쏘렌토 / 현대 싼타페 하이브리드</h3>
+      <p>연비·가격 모두 가장 우수합니다. 프리미엄 브랜드 감성은 덜하지만 예산의 절반 수준으로 하이브리드 SUV의 실용성은 가장 뛰어납니다.</p>
+      <div class="price">3,800만~4,900만원대</div>
+    </div>
+  </div>
+  <div class="callout">
+    <b>타이밍 체크:</b> 하이브리드차 개별소비세 감면(최대 70만원)은 현행법상 2026년 12월 31일 출고분까지 적용됩니다. GV80 하이브리드가 9월 출시되더라도 연내 출고가 되어야 감면 혜택을 받을 수 있어, 출시 초기 계약·출고 일정을 서두르는 편이 유리합니다. 하이브리드 취득세 감면은 2024년 세법 개정으로 이미 종료된 상태입니다.
+  </div>
+</section>
+
+<section id="cards">
+  <h2><span class="num">02</span> 비교 대상 9개 모델</h2>
+  <p class="section-sub">현재 판매 중인 모델 7종 + 출시 예정 모델 2종(제네시스 하이브리드 라인업)</p>
+  <div class="car-grid">
+
+    <div class="car-card">
+      <div class="car-art" style="background:linear-gradient(160deg,#1a1a1a,#2a2418);">
+        <span class="status-badge sale">판매중</span>
+        <svg viewBox="0 0 200 90" fill="none"><path d="M15 62 Q20 40 45 36 L70 24 Q100 16 130 24 L160 36 Q180 40 185 62 L185 68 L15 68 Z" fill="#c9a24b" opacity="0.9"/><circle cx="50" cy="68" r="11" fill="#111"/><circle cx="150" cy="68" r="11" fill="#111"/><rect x="70" y="26" width="55" height="18" rx="4" fill="#0f1115" opacity=".5"/></svg>
+      </div>
+      <div class="car-body">
+        <div class="car-brand">Genesis</div>
+        <div class="car-name">GV70 (2026년형, 가솔린)</div>
+        <ul class="car-specs">
+          <li>파워트레인 <b>2.5T / 3.5T 가솔린</b></li>
+          <li>가격 <b>5,318만~6,618만원</b></li>
+          <li>비고 하이브리드 미출시(2027.3 예정)</li>
+        </ul>
+        <div class="car-price">약 5,300만원~</div>
+        <div class="fit ok">✔ 예산 적합 (단, 비하이브리드)</div>
+      </div>
+    </div>
+
+    <div class="car-card">
+      <div class="car-art" style="background:linear-gradient(160deg,#1a1a1a,#2a2418);">
+        <span class="status-badge soon">출시예정 2027.3</span>
+        <svg viewBox="0 0 200 90" fill="none"><path d="M15 62 Q20 40 45 36 L70 24 Q100 16 130 24 L160 36 Q180 40 185 62 L185 68 L15 68 Z" fill="#c9a24b" opacity="0.35"/><circle cx="50" cy="68" r="11" fill="#111"/><circle cx="150" cy="68" r="11" fill="#111"/></svg>
+      </div>
+      <div class="car-body">
+        <div class="car-brand">Genesis</div>
+        <div class="car-name">GV70 하이브리드 (예정)</div>
+        <ul class="car-specs">
+          <li>파워트레인 <b>2.5T + 모터</b> (병렬형 추정)</li>
+          <li>가격 <b>미정</b> (가솔린 대비 소폭 상승 예상)</li>
+          <li>비고 아직 공식 미공개, 루머 단계</li>
+        </ul>
+        <div class="car-price">가격 미정</div>
+        <div class="fit tight">△ 8개월 이상 대기 필요</div>
+      </div>
+    </div>
+
+    <div class="car-card">
+      <div class="car-art" style="background:linear-gradient(160deg,#1a1a1a,#2a2418);">
+        <span class="status-badge sale">판매중</span>
+        <svg viewBox="0 0 200 90" fill="none"><path d="M10 64 Q16 38 42 34 L65 20 Q100 12 135 20 L160 34 Q186 38 192 64 L192 70 L10 70 Z" fill="#c9a24b" opacity="0.9"/><circle cx="48" cy="70" r="12" fill="#111"/><circle cx="154" cy="70" r="12" fill="#111"/><rect x="66" y="22" width="60" height="18" rx="4" fill="#0f1115" opacity=".5"/></svg>
+      </div>
+      <div class="car-body">
+        <div class="car-brand">Genesis</div>
+        <div class="car-name">GV80 (2026년형, 가솔린)</div>
+        <ul class="car-specs">
+          <li>파워트레인 <b>2.5T / 3.5T 가솔린</b></li>
+          <li>가격 <b>6,790만~7,332만원</b> (쿠페·블랙 최대 1억902만원)</li>
+          <li>비고 하이브리드 미출시(2026.9 예정)</li>
+        </ul>
+        <div class="car-price">6,790만원~</div>
+        <div class="fit ok">✔ 기본형 예산 적합</div>
+      </div>
+    </div>
+
+    <div class="car-card" style="border-color:var(--gold);">
+      <div class="car-art" style="background:linear-gradient(160deg,#241d0e,#332810);">
+        <span class="status-badge soon">출시예정 2026.9</span>
+        <svg viewBox="0 0 200 90" fill="none"><path d="M10 64 Q16 38 42 34 L65 20 Q100 12 135 20 L160 34 Q186 38 192 64 L192 70 L10 70 Z" fill="#c9a24b"/><circle cx="48" cy="70" r="12" fill="#111"/><circle cx="154" cy="70" r="12" fill="#111"/><rect x="66" y="22" width="60" height="18" rx="4" fill="#0f1115" opacity=".5"/><text x="100" y="55" font-size="11" fill="#0f1115" text-anchor="middle" font-weight="700">HEV</text></svg>
+      </div>
+      <div class="car-body">
+        <div class="car-brand">Genesis · 추천</div>
+        <div class="car-name">GV80 하이브리드 (예정)</div>
+        <ul class="car-specs">
+          <li>파워트레인 <b>2.5T + 모터 병렬형</b></li>
+          <li>복합연비 <b>약 13.5km/L</b> (예상, 실주행 15~16)</li>
+          <li>가격 <b>7,800만~8,500만원+</b> (예상, 상위트림 1억원 상회 가능)</li>
+        </ul>
+        <div class="car-price">약 7,800만원~ (예상)</div>
+        <div class="fit tight">△ 기본형 근접, 상위트림 초과 가능</div>
+      </div>
+    </div>
+
+    <div class="car-card">
+      <div class="car-art" style="background:linear-gradient(160deg,#1a1414,#2b1516);">
+        <span class="status-badge sale">판매중</span>
+        <svg viewBox="0 0 200 90" fill="none"><path d="M12 64 Q18 40 44 35 L68 22 Q100 14 132 22 L156 35 Q182 40 188 64 L188 70 L12 70 Z" fill="#d0182a" opacity="0.9"/><circle cx="50" cy="70" r="12" fill="#111"/><circle cx="150" cy="70" r="12" fill="#111"/></svg>
+      </div>
+      <div class="car-body">
+        <div class="car-brand">Kia</div>
+        <div class="car-name">쏘렌토 하이브리드 (2026년형)</div>
+        <ul class="car-specs">
+          <li>파워트레인 <b>1.6T 하이브리드</b></li>
+          <li>복합연비 <b>13.8~15.7km/L</b></li>
+          <li>가격 <b>3,896만~4,888만원</b> (2WD/4WD, 4개 트림)</li>
+        </ul>
+        <div class="car-price">3,896만원~</div>
+        <div class="fit ok">✔ 예산 대비 여유 큼</div>
+      </div>
+    </div>
+
+    <div class="car-card">
+      <div class="car-art" style="background:linear-gradient(160deg,#0e1a22,#132534);">
+        <span class="status-badge sale">판매중</span>
+        <svg viewBox="0 0 200 90" fill="none"><path d="M12 64 Q18 40 44 35 L68 22 Q100 14 132 22 L156 35 Q182 40 188 64 L188 70 L12 70 Z" fill="#0e5cad" opacity="0.9"/><circle cx="50" cy="70" r="12" fill="#111"/><circle cx="150" cy="70" r="12" fill="#111"/></svg>
+      </div>
+      <div class="car-body">
+        <div class="car-brand">Hyundai</div>
+        <div class="car-name">싼타페 하이브리드 (2026년형)</div>
+        <ul class="car-specs">
+          <li>파워트레인 <b>1.6T 하이브리드</b></li>
+          <li>복합연비 <b>13.6~14.0km/L</b> (2WD/AWD)</li>
+          <li>가격 <b>3,827만~5,229만원</b></li>
+        </ul>
+        <div class="car-price">3,827만원~</div>
+        <div class="fit ok">✔ 예산 대비 여유 큼</div>
+      </div>
+    </div>
+
+    <div class="car-card">
+      <div class="car-art" style="background:linear-gradient(160deg,#0e1a22,#132534);">
+        <span class="status-badge sale">판매중</span>
+        <svg viewBox="0 0 200 90" fill="none"><path d="M8 64 Q14 38 40 33 L64 20 Q100 11 136 20 L160 33 Q188 38 194 64 L194 70 L8 70 Z" fill="#0e5cad" opacity="0.9"/><circle cx="46" cy="70" r="12" fill="#111"/><circle cx="156" cy="70" r="12" fill="#111"/><rect x="65" y="22" width="62" height="16" rx="4" fill="#0f1115" opacity=".5"/></svg>
+      </div>
+      <div class="car-body">
+        <div class="car-brand">Hyundai</div>
+        <div class="car-name">팰리세이드 하이브리드 (2세대)</div>
+        <ul class="car-specs">
+          <li>파워트레인 <b>2.5T + 2모터, 합산 334마력</b></li>
+          <li>복합연비 <b>11.4~14.1km/L</b> (휠·구동방식별 상이)</li>
+          <li>가격 <b>4,383만~6,424만원</b> (캘리그래피)</li>
+        </ul>
+        <div class="car-price">4,383만원~</div>
+        <div class="fit ok">✔ 3열 대형 SUV, 예산 적합</div>
+      </div>
+    </div>
+
+    <div class="car-card">
+      <div class="car-art" style="background:linear-gradient(160deg,#0a1420,#0e2138);">
+        <span class="status-badge sale">판매중</span>
+        <svg viewBox="0 0 200 90" fill="none"><path d="M14 62 Q20 40 46 36 L70 24 Q100 16 130 24 L154 36 Q180 40 186 62 L186 68 L14 68 Z" fill="#7fa8d0" opacity="0.9"/><circle cx="52" cy="68" r="11" fill="#111"/><circle cx="148" cy="68" r="11" fill="#111"/></svg>
+      </div>
+      <div class="car-body">
+        <div class="car-brand">Volvo</div>
+        <div class="car-name">XC60 B6 마일드하이브리드</div>
+        <ul class="car-specs">
+          <li>파워트레인 <b>2.0L 터보 + 48V MHEV, 300마력</b></li>
+          <li>복합연비 <b>9.9km/L</b> (마일드 하이브리드 한계)</li>
+          <li>가격 <b>6,570만~7,330만원</b></li>
+        </ul>
+        <div class="car-price">6,570만원~</div>
+        <div class="fit tight">△ 연비는 하이브리드 중 최저</div>
+      </div>
+    </div>
+
+    <div class="car-card">
+      <div class="car-art" style="background:linear-gradient(160deg,#1a0e10,#2b1418);">
+        <span class="status-badge sale">판매중</span>
+        <svg viewBox="0 0 200 90" fill="none"><path d="M14 62 Q20 40 46 36 L70 24 Q100 16 130 24 L154 36 Q180 40 186 62 L186 68 L14 68 Z" fill="#8a1220" opacity="0.9"/><circle cx="52" cy="68" r="11" fill="#111"/><circle cx="148" cy="68" r="11" fill="#111"/></svg>
+      </div>
+      <div class="car-body">
+        <div class="car-brand">Lexus</div>
+        <div class="car-name">NX350h</div>
+        <ul class="car-specs">
+          <li>파워트레인 <b>2.5L 풀하이브리드, 242마력</b></li>
+          <li>복합연비 <b>14.0~14.3km/L</b></li>
+          <li>가격 <b>6,695만~7,670만원</b> (프리미엄/럭셔리)</li>
+        </ul>
+        <div class="car-price">6,695만원~</div>
+        <div class="fit ok">✔ 연비 우수, 차급은 준중형(GV70보다 소형)</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="table">
+  <h2><span class="num">03</span> 상세 제원·가격 비교표</h2>
+  <p class="section-sub">가격은 세제 반영 국내 출고가 기준(트림별 차이 있음), 연비는 복합 기준 공인 수치입니다.</p>
+  <div class="tblwrap">
+  <table>
+    <thead>
+      <tr><th>모델</th><th>상태</th><th>파워트레인</th><th>시스템 출력</th><th>복합연비</th><th>가격대(세금포함)</th><th>승차인원</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GV70 (가솔린)</td><td><span class="pill sale">판매중</span></td><td>2.5T / 3.5T</td><td class="muted">약 300 / 375마력</td><td class="muted">확인필요(비하이브리드)</td><td>5,318만~6,618만원</td><td>5인</td></tr>
+      <tr><td>GV70 하이브리드</td><td><span class="pill soon">2027.3 예정</span></td><td>2.5T+모터(추정)</td><td class="muted">미공개</td><td class="muted">미공개</td><td class="muted">미정</td><td>5인</td></tr>
+      <tr><td>GV80 (가솔린)</td><td><span class="pill sale">판매중</span></td><td>2.5T / 3.5T</td><td class="muted">약 300 / 375마력</td><td class="muted">확인필요(비하이브리드)</td><td>6,790만~1억902만원</td><td>6~7인</td></tr>
+      <tr><td><b>GV80 하이브리드</b></td><td><span class="pill soon">2026.9 예정</span></td><td>2.5T+모터 병렬형</td><td class="muted">미공개</td><td><b>13.5km/L</b>(예상)</td><td><b>7,800만~8,500만원+</b>(예상)</td><td>6~7인</td></tr>
+      <tr><td>쏘렌토 하이브리드</td><td><span class="pill sale">판매중</span></td><td>1.6T 하이브리드</td><td class="muted">227마력급</td><td>13.8~15.7km/L</td><td>3,896만~4,888만원</td><td>7인</td></tr>
+      <tr><td>싼타페 하이브리드</td><td><span class="pill sale">판매중</span></td><td>1.6T 하이브리드</td><td class="muted">-</td><td>13.6~14.0km/L</td><td>3,827만~5,229만원</td><td>5~7인</td></tr>
+      <tr><td>팰리세이드 하이브리드</td><td><span class="pill sale">판매중</span></td><td>2.5T+2모터</td><td>334마력</td><td>11.4~14.1km/L</td><td>4,383만~6,424만원</td><td>7~9인</td></tr>
+      <tr><td>볼보 XC60 B6</td><td><span class="pill sale">판매중</span></td><td>2.0T+48V MHEV</td><td>300마력</td><td>9.9km/L</td><td>6,570만~7,330만원</td><td>5인</td></tr>
+      <tr><td>렉서스 NX350h</td><td><span class="pill sale">판매중</span></td><td>2.5L 풀하이브리드</td><td>242마력</td><td>14.0~14.3km/L</td><td>6,695만~7,670만원</td><td>5인</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="focus">
+  <h2><span class="num">04</span> 제네시스 GV70 vs GV80 포커스 비교</h2>
+  <p class="section-sub">두 모델 모두 현재는 가솔린뿐이며, 하이브리드 출시 시점이 크게 다릅니다.</p>
+  <div class="focus-panel">
+    <div class="focus-grid">
+      <div class="focus-col">
+        <h4>GV70 (준대형 아래 · 중형 SUV)</h4>
+        <ul>
+          <li>가격 5,318만~6,618만원으로 GV80보다 약 1,000만원 저렴</li>
+          <li>5인승 전용, 스포티한 주행감 중심</li>
+          <li>하이브리드는 2027년 3월 예정 — 아직 8개월 이상 남음, 공식 스펙 미공개(루머 단계)</li>
+          <li>지금 산다면 가솔린 2.5T가 사실상 유일한 선택지</li>
+        </ul>
+      </div>
+      <div class="focus-col">
+        <h4>GV80 (준대형 SUV)</h4>
+        <ul>
+          <li>가격 6,790만원부터, 6~7인승 선택 가능해 실용성 높음</li>
+          <li>하이브리드가 <b>2026년 9월</b>로 훨씬 임박 — 현재 시점(2026.7) 기준 약 2개월 대기</li>
+          <li>예상 복합연비 13.5km/L, 실주행 15~16km/L로 3.5L급 가솔린 대비 큰 폭 개선</li>
+          <li>예상 시작가 7,800만원대 — 옵션에 따라 8,500만원, 최상위 트림은 1억원 상회 가능</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout">
+      <b>결론:</b> 하이브리드를 원한다면 GV70보다 <b>GV80이 훨씬 현실적인 대안</b>입니다. 출시가 임박했고(2개월), 6~7인승 실용성까지 더해져 왕복 35km 통근 + 주말 다목적 사용에 적합합니다. 다만 아직 공식 가격이 확정되지 않았으므로, 예산 8,000만원 기준선에 걸릴 수 있는 만큼 출시 직후 실제 가격표를 다시 확인해야 합니다.
+    </div>
+  </div>
+</section>
+
+<section id="usage">
+  <h2><span class="num">05</span> 왕복 35km 주행 조건에서 하이브리드의 실효성</h2>
+  <p class="section-sub">짧은 출퇴근 거리에서는 하이브리드의 경제적 이점이 생각보다 제한적일 수 있습니다.</p>
+  <div class="calc-grid">
+    <div class="calc-box">
+      <h4>연간 주행거리 추정</h4>
+      <div class="calc-row"><span>일일 왕복 주행거리</span><b>35km</b></div>
+      <div class="calc-row"><span>연간 근무일 약 250일 기준</span><b>약 8,750km</b></div>
+      <div class="calc-row"><span>주말·여가 주행 포함 시</span><b>약 10,000~13,000km</b></div>
+      <div class="calc-row"><span>참고: 국내 승용차 평균 연간 주행거리</span><b>약 13,000~14,000km</b></div>
+    </div>
+    <div class="calc-box">
+      <h4>하이브리드 선택이 여전히 유리한 이유</h4>
+      <div class="calc-row"><span>주행 패턴</span><b>시내 위주 · 잦은 정차</b></div>
+      <div class="calc-row"><span>하이브리드 효율</span><b>저속 구간에서 이점 극대화</b></div>
+      <div class="calc-row"><span>유류비 절감분 회수 기간</span><b>길어짐(연 주행거리 짧아서)</b></div>
+      <div class="calc-row"><span>실질 이득</span><b>정숙성·저소음·세제혜택 비중↑</b></div>
+    </div>
+  </div>
+  <div class="callout">
+    연 주행거리가 1만km 안팎으로 짧은 편이라, 순수 유류비 절감만으로 하이브리드와 가솔린의 가격 차이(보통 300만~800만원)를 회수하는 데는 수년이 걸릴 수 있습니다. 다만 왕복 35km는 전형적인 '시내 스톱앤고' 주행 패턴에 해당하며, 이 구간에서는 하이브리드의 저속 전기 모터 구동이 가솔린 대비 체감 효율 차이를 가장 크게 만듭니다. 순수 경제성보다는 정숙성, 저배기가스, 개별소비세 감면(2026년 말까지) 등 부가 혜택을 함께 고려하는 것이 합리적입니다.
+  </div>
+</section>
+
+<section id="reco">
+  <h2><span class="num">06</span> 최종 추천</h2>
+  <div class="reco-list">
+    <div class="reco">
+      <div class="rank">1</div>
+      <div>
+        <h4>2~3개월 대기 가능 → GV80 하이브리드 (2026년 9월 출시) 계약 대기</h4>
+        <p>선호 브랜드·차급을 그대로 유지하면서 하이브리드 조건까지 만족하는 가장 이상적인 선택입니다. 출시 직후 정확한 가격·트림을 재확인한 뒤, 개별소비세 감면(연말 종료 예정)을 받을 수 있도록 연내 출고 일정을 확보하는 것을 권장합니다.</p>
+      </div>
+    </div>
+    <div class="reco">
+      <div class="rank">2</div>
+      <div>
+        <h4>지금 바로 결정해야 한다면 → 쏘렌토/싼타페 하이브리드 또는 GV80 가솔린</h4>
+        <p>경제성과 연비를 최우선한다면 쏘렌토·싼타페 하이브리드가 예산 대비 압도적입니다. 프리미엄 브랜드를 포기할 수 없다면 GV80 2.5T 가솔린이 현재 유일한 현실적 대안이나, 하이브리드는 아닙니다.</p>
+      </div>
+    </div>
+    <div class="reco">
+      <div class="rank">3</div>
+      <div>
+        <h4>GV70을 꼭 원한다면 → 최소 2027년 상반기까지 대기</h4>
+        <p>GV70 하이브리드는 2027년 3월 출시 예정으로 아직 스펙조차 공개되지 않았습니다. 대기 기간이 GV80보다 훨씬 길기 때문에, 지금 시점에서는 GV80 하이브리드 쪽이 현실적입니다.</p>
+      </div>
+    </div>
+    <div class="reco">
+      <div class="rank">4</div>
+      <div>
+        <h4>수입 하이브리드 대안 → 렉서스 NX350h (연비 최우선 시)</h4>
+        <p>연비 14km/L대로 비교군 중 상위권이나, 차급이 GV70보다 한 단계 작은 준중형입니다. 볼보 XC60은 마일드 하이브리드로 실연비 개선폭이 제한적이라 우선순위는 낮습니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="disclaimer">
+      본 보고서는 2026년 7월 24일 기준 공개된 언론 보도·제조사 자료·전문 매체 기사를 종합해 작성했습니다. GV70·GV80 하이브리드 관련 수치는 공식 발표 전 추정치를 포함하고 있으며, 실제 출시 시 가격·연비·트림 구성이 달라질 수 있습니다. 가솔린 GV70/GV80의 공인 연비는 트림·구동방식별 편차가 커 이번 보고서에서는 별도 표기하지 않았으며, 실제 구매 전 제조사 공식 자료 확인을 권장합니다. 세제혜택 관련 내용은 2026년 7월 기준 법령이며 향후 개정될 수 있습니다.
+    </div>
+    <p style="margin-top:16px;">Report generated for 주인 · alrangayo@gmail.com</p>
+  </div>
+</footer>
+
+</body>
+</html>
