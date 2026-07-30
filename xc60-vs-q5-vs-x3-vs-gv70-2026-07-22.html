@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 볼보 XC60 vs 아우디 Q5 vs BMW X3 vs 제네시스 GV70 4파전 비교 가이드</title>
+<style>
+  :root{
+    --bg:#0f1114; --panel:#171a1f; --panel2:#1e2229; --line:#2a2f38;
+    --txt:#e8eaed; --sub:#9aa3af; --accent:#00adef; --gold:#c9a96a; --green:#3ddc84; --red:#ff6b6b; --purple:#b98cf0; --blue2:#5b8def;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--txt);font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;line-height:1.6}
+  .wrap{max-width:1120px;margin:0 auto;padding:24px 16px 80px}
+  .hero{background:linear-gradient(135deg,#14171c 0%,#1c2128 60%,#20262e 100%);border:1px solid var(--line);border-radius:20px;padding:40px 32px;text-align:center;margin-bottom:28px}
+  .hero .badge{display:inline-block;background:rgba(0,173,239,.12);color:var(--accent);border:1px solid rgba(0,173,239,.35);border-radius:999px;padding:4px 14px;font-size:13px;margin-bottom:14px}
+  .hero h1{font-size:24px;font-weight:800;letter-spacing:-.5px}
+  .hero p{color:var(--sub);margin-top:10px;font-size:14px}
+  .heroImgs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+  .heroImgs img{width:100%;border-radius:14px;object-fit:cover;height:150px;filter:drop-shadow(0 12px 20px rgba(0,0,0,.4))}
+  .heroImgs .cap{font-size:12px;color:var(--sub);margin-top:6px}
+  @media(min-width:760px){.heroImgs{grid-template-columns:1fr 1fr 1fr 1fr}}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:28px}
+  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+  .kpi .v{font-size:17px;font-weight:800;color:var(--accent)}
+  .kpi .l{font-size:11.5px;color:var(--sub);margin-top:4px}
+  h2{font-size:18px;font-weight:800;margin:34px 0 14px;display:flex;align-items:center;gap:10px}
+  h2::before{content:'';width:5px;height:22px;background:var(--accent);border-radius:3px;display:inline-block}
+  .desc{color:var(--sub);font-size:13.5px;margin-bottom:14px}
+  table{width:100%;border-collapse:collapse;background:var(--panel);border-radius:14px;overflow:hidden;font-size:13px}
+  th{background:var(--panel2);padding:10px 8px;text-align:left;color:#cfd6df;font-weight:700;border-bottom:1px solid var(--line);white-space:nowrap}
+  td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .winner{color:var(--green);font-weight:800}
+  .red{color:var(--red)}
+  .tag{display:inline-block;padding:2px 9px;border-radius:999px;font-size:11.5px;font-weight:700}
+  .tag.volvo{background:rgba(91,141,239,.14);color:var(--blue2);border:1px solid rgba(91,141,239,.35)}
+  .tag.audi{background:rgba(185,140,240,.14);color:var(--purple);border:1px solid rgba(185,140,240,.35)}
+  .tag.bmw{background:rgba(0,173,239,.12);color:var(--accent);border:1px solid rgba(0,173,239,.3)}
+  .tag.gen{background:rgba(201,169,106,.12);color:var(--gold);border:1px solid rgba(201,169,106,.35)}
+  .tag.diesel{background:rgba(153,153,153,.15);color:#c7c7c7;border:1px solid rgba(153,153,153,.3)}
+  .tag.phev{background:rgba(61,220,132,.12);color:var(--green);border:1px solid rgba(61,220,132,.3)}
+  .grid4{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(min-width:900px){.grid4{grid-template-columns:1fr 1fr 1fr 1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;overflow:hidden}
+  .card img{width:100%;border-radius:12px;height:130px;object-fit:cover;margin-bottom:10px}
+  .card h3{font-size:15px;font-weight:800;margin-bottom:8px}
+  .card ul{list-style:none}
+  .card li{padding:4px 0;font-size:12.5px;color:#cfd6df;display:flex;gap:6px}
+  .card li::before{content:'✓';color:var(--green);font-weight:800}
+  .note{background:rgba(0,173,239,.06);border:1px solid rgba(0,173,239,.25);border-radius:12px;padding:14px 16px;font-size:13.5px;color:#cfd6df;margin-top:12px}
+  .reco{border-left:4px solid var(--gold);background:var(--panel);border-radius:12px;padding:18px 20px;margin-bottom:14px}
+  .reco b{color:var(--gold)}
+  .reco .t{font-size:16px;font-weight:800;margin-bottom:6px}
+  .reco p{font-size:14px;color:#cfd6df}
+  a{color:var(--accent);text-decoration:none}
+  .foot{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);color:#6b7280;font-size:12px;line-height:1.8}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <span class="badge">볼보·아우디·BMW·제네시스 공식 사이트 및 신차 가격 정보 · 2026-07-22 기준</span>
+    <h1>2026 볼보 XC60 vs 아우디 Q5 vs BMW X3 vs 제네시스 GV70 4파전</h1>
+    <p>프리미엄 중형 SUV 4파전, 볼보 XC60(2026년형, 8월 4일 출시 예정)·아우디 Q5·BMW X3(G45)·제네시스 GV70의 트림별 가격·제원·연비를 비교하고 구매자에게 실질적인 추천을 드립니다.</p>
+    <div class="heroImgs">
+      <div>
+        <img src="https://itreview.kr/wp-content/uploads/2025/08/image-17.png" alt="볼보 XC60">
+        <div class="cap">볼보 XC60 (2026년형)</div>
+      </div>
+      <div>
+        <img src="https://blog.carlab.kr/wp-content/uploads/2026/07/2-1-edited.jpg" alt="아우디 Q5">
+        <div class="cap">아우디 Q5</div>
+      </div>
+      <div>
+        <img src="https://blog.carlab.kr/wp-content/uploads/2026/03/20251111093922_cQe8j5vx-1024x682.jpg" alt="BMW New X3">
+        <div class="cap">BMW New X3 (G45)</div>
+      </div>
+      <div>
+        <img src="https://blog.carlab.kr/wp-content/uploads/2025/10/6-11-1248x702.jpg" alt="제네시스 GV70">
+        <div class="cap">제네시스 GV70</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi"><div class="v">6,570만~</div><div class="l">XC60 시작가</div></div>
+    <div class="kpi"><div class="v">6,990만~</div><div class="l">Q5 시작가</div></div>
+    <div class="kpi"><div class="v">6,940만~</div><div class="l">X3 시작가</div></div>
+    <div class="kpi"><div class="v">5,393만~</div><div class="l">GV70 시작가</div></div>
+    <div class="kpi"><div class="v">250 마력</div><div class="l">XC60 B5 최고출력</div></div>
+    <div class="kpi"><div class="v">398 마력</div><div class="l">X3 M50 최고출력</div></div>
+    <div class="kpi"><div class="v">10.7 km/ℓ</div><div class="l">XC60 B5 복합연비</div></div>
+    <div class="kpi"><div class="v">14.0 km/ℓ</div><div class="l">X3 20d 복합연비</div></div>
+  </div>
+
+  <div class="grid4">
+    <div class="card">
+      <img src="https://itreview.kr/wp-content/uploads/2025/08/image-17.png" alt="볼보 XC60 정면">
+      <h3><span class="tag volvo">볼보 XC60</span></h3>
+      <ul>
+        <li>Ultra 트림부터 에어서스펜션·액티브 섀시 기본 적용</li>
+        <li>전방충돌방지·파일럿 어시스트 등 볼보 특유의 안전사양 전 트림 기본</li>
+        <li>OTA 업데이트 15년 무상, 디지털 서비스 패키지 5년 무료</li>
+        <li>상위 트림에 T8 플러그인 하이브리드(PHEV) 옵션 보유</li>
+        <li>단, 네 차종 중 최고출력(250마력)이 가장 낮음</li>
+      </ul>
+    </div>
+    <div class="card">
+      <img src="https://blog.carlab.kr/wp-content/uploads/2026/07/2-1-edited.jpg" alt="아우디 Q5 정면">
+      <h3><span class="tag audi">아우디 Q5</span></h3>
+      <ul>
+        <li>이번 연식변경으로 차선 중앙 유지·차선 변경 보조 최초 탑재</li>
+        <li>S-line은 에어 서스펜션·HUD·360도 카메라 기본화</li>
+        <li>전 트림 콰트로(AWD) 기본, 디젤은 아우디 최초 48V MHEV Plus</li>
+        <li>신규 45 TFSI(272마력) 추가로 고성능 라인업 강화</li>
+        <li>트렁크 520ℓ로 네 차종 중 폴딩 전 기준 2위</li>
+      </ul>
+    </div>
+    <div class="card">
+      <img src="https://blog.carlab.kr/wp-content/uploads/2026/03/20251111093922_cQe8j5vx-1024x682.jpg" alt="BMW X3 정면">
+      <h3><span class="tag bmw">BMW X3</span></h3>
+      <ul>
+        <li>전 트림 xDrive 사륜구동 기본, 48V 마일드 하이브리드 적용</li>
+        <li>네 차종 중 가장 우수한 디젤 연비(20d, 14.0km/ℓ)</li>
+        <li>M50 xDrive는 398마력 · 네 차종 중 최고 출력</li>
+        <li>BMW 오퍼레이팅 시스템 9 등 최신 인포테인먼트</li>
+        <li>기본 트렁크 570ℓ로 네 차종 중 최대</li>
+      </ul>
+    </div>
+    <div class="card">
+      <img src="https://blog.carlab.kr/wp-content/uploads/2025/10/6-11-1248x702.jpg" alt="제네시스 GV70 정면">
+      <h3><span class="tag gen">제네시스 GV70</span></h3>
+      <ul>
+        <li>기본 트림부터 304마력(2.5T)으로 네 차종 중 가장 낮은 진입 가격</li>
+        <li>동급 대비 압도적 가성비, 27인치 OLED 클러스터 등 최신 사양</li>
+        <li>국내 A/S 네트워크와 부품 수급에서 강점</li>
+        <li>전동화 모델 Electrified GV70(EV) 라인업 별도 보유</li>
+        <li>단, 2.2 디젤은 단종되어 디젤 옵션 없음</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>볼보 XC60 트림별 가격표</h2>
+  <p class="desc">2026년형 기준(8월 4일 공식출시 예정, 7월 31일부터 사전예약 진행 중). T8 플러그인 하이브리드는 상위 라인업으로 별도 출시됩니다.</p>
+  <table>
+    <tr><th>트림</th><th>연료</th><th class="num">복합연비</th><th class="num">가격</th></tr>
+    <tr><td>B5 AWD Plus Bright</td><td><span class="tag volvo">가솔린 MHEV</span></td><td class="num winner">10.7 km/ℓ</td><td class="num"><b>65,700,000원</b></td></tr>
+    <tr><td>B5 AWD Ultra Bright / Dark</td><td><span class="tag volvo">가솔린 MHEV</span></td><td class="num">10.7 km/ℓ</td><td class="num">70,700,000원</td></tr>
+    <tr><td>B5 AWD Ultra (에어서스펜션)</td><td><span class="tag volvo">가솔린 MHEV</span></td><td class="num">10.7 km/ℓ</td><td class="num">73,300,000원</td></tr>
+    <tr><td>T8 플러그인 하이브리드 (추정)</td><td><span class="tag phev">PHEV</span></td><td class="num">-</td><td class="num"><b>약 89,950,000원</b></td></tr>
+  </table>
+  <div class="note">현재 국내 확정 판매 트림은 250마력 B5(가솔린 48V 마일드 하이브리드)이며, Ultra 트림부터 에어서스펜션·액티브 섀시가 기본 적용됩니다. T8 PHEV 가격은 매체 추정치로 정식 출시 후 변동될 수 있습니다.</div>
+
+  <h2>아우디 Q5 트림별 가격표</h2>
+  <p class="desc">2026년형 기준(7월 9일 연식변경 출시). Q5(SUV) 기준이며 Q5 스포트백은 동일 트림 대비 약 300만원 더 비쌉니다.</p>
+  <table>
+    <tr><th>트림</th><th>연료</th><th class="num">복합연비</th><th class="num">가격</th></tr>
+    <tr><td>40 TFSI 콰트로 Advanced</td><td><span class="tag audi">가솔린</span></td><td class="num">9.6 km/ℓ</td><td class="num"><b>69,900,000원</b></td></tr>
+    <tr><td>40 TFSI 콰트로 S-line</td><td><span class="tag audi">가솔린</span></td><td class="num">9.6 km/ℓ</td><td class="num">77,900,000원</td></tr>
+    <tr><td>40 TDI 콰트로 S-line</td><td><span class="tag diesel">디젤</span></td><td class="num winner">12.7 km/ℓ</td><td class="num">80,900,000원</td></tr>
+    <tr><td>45 TFSI 콰트로 S-line</td><td><span class="tag audi">고성능 가솔린</span></td><td class="num">9.4 km/ℓ</td><td class="num"><b>85,900,000원</b></td></tr>
+  </table>
+
+  <h2>BMW X3 트림별 가격표</h2>
+  <p class="desc">2026년형 기준(개소세 인하 종료 후 정상세율 가격).</p>
+  <table>
+    <tr><th>트림</th><th>연료</th><th class="num">복합연비</th><th class="num">가격</th></tr>
+    <tr><td>20 xDrive</td><td><span class="tag bmw">가솔린</span></td><td class="num">10.9 km/ℓ</td><td class="num"><b>69,400,000원</b></td></tr>
+    <tr><td>20d xDrive</td><td><span class="tag diesel">디젤</span></td><td class="num winner">14.0 km/ℓ</td><td class="num">73,000,000원</td></tr>
+    <tr><td>30 xDrive M Sport Pro</td><td><span class="tag bmw">가솔린</span></td><td class="num">10.9 km/ℓ</td><td class="num">85,000,000원</td></tr>
+    <tr><td>M50 xDrive Pro</td><td><span class="tag bmw">고성능 가솔린</span></td><td class="num">10.6 km/ℓ</td><td class="num"><b>99,900,000원</b></td></tr>
+  </table>
+
+  <h2>제네시스 GV70 트림별 가격표</h2>
+  <p class="desc">2026년형 기준(실효세율 조정). 2.2 디젤은 라인업에서 제외되었습니다.</p>
+  <table>
+    <tr><th>트림</th><th>구동방식</th><th class="num">복합연비</th><th class="num">가격</th></tr>
+    <tr><td>2.5T</td><td>2WD</td><td class="num">10.2 km/ℓ</td><td class="num"><b>53,930,000원</b></td></tr>
+    <tr><td>2.5T</td><td>AWD</td><td class="num">9.7 km/ℓ</td><td class="num">56,930,000원</td></tr>
+    <tr><td>3.5T</td><td>AWD</td><td class="num">8.5 km/ℓ</td><td class="num">62,430,000원</td></tr>
+    <tr><td>3.5T 스포츠 패키지</td><td>AWD</td><td class="num">8.3 km/ℓ</td><td class="num"><b>65,780,000원</b></td></tr>
+  </table>
+  <div class="note">전동화 모델 Electrified GV70(듀얼모터 AWD, 배터리 84.0kWh, 1회충전 최대 423km)은 별도 라인업으로 약 7,190만원부터 시작합니다.</div>
+
+  <h2>엔트리 트림 4파전: 6,500만~7,000만원대 비교</h2>
+  <table>
+    <tr><th>항목</th><th class="num">XC60 B5 Plus</th><th class="num">Q5 40 TFSI Adv.</th><th class="num">X3 20 xDrive</th><th class="num">GV70 2.5T 2WD</th></tr>
+    <tr><td>가격</td><td class="num">65,700,000원</td><td class="num">69,900,000원</td><td class="num">69,400,000원</td><td class="num winner">53,930,000원</td></tr>
+    <tr><td>최고출력</td><td class="num">250 마력</td><td class="num">204 마력</td><td class="num">190 마력</td><td class="num winner">304 마력</td></tr>
+    <tr><td>최대토크</td><td class="num">36.7 kg·m</td><td class="num">34.7 kg·m</td><td class="num">31.6 kg·m</td><td class="num winner">43.0 kg·m</td></tr>
+    <tr><td>복합연비</td><td class="num winner">10.7 km/ℓ</td><td class="num">9.6 km/ℓ</td><td class="num">10.9 km/ℓ</td><td class="num">10.2 km/ℓ</td></tr>
+    <tr><td>구동방식</td><td class="num">사륜구동(AWD)</td><td class="num">사륜구동(콰트로)</td><td class="num">사륜구동(xDrive)</td><td class="num">후륜구동(2WD)</td></tr>
+    <tr><td>공차중량</td><td class="num">1,930 kg</td><td class="num">1,925 kg</td><td class="num">1,950 kg</td><td class="num winner">1,865 kg</td></tr>
+  </table>
+  <div class="note">GV70가 가격·출력 모두 가장 유리하지만 후륜구동 기본이라는 점은 감안해야 합니다. XC60은 네 차종 중 시작가가 두 번째로 낮으면서도 250마력으로 Q5·X3보다 높은 출력을 냅니다. 순수 연비는 BMW 20 xDrive가 근소하게 앞섭니다.</div>
+
+  <h2>상위 트림 4파전: XC60 Ultra vs Q5 45 TFSI vs X3 M50 vs GV70 3.5T 스포츠 AWD</h2>
+  <table>
+    <tr><th>항목</th><th class="num">XC60 B5 Ultra(에어서스)</th><th class="num">Q5 45 TFSI S-line</th><th class="num">X3 M50 xDrive</th><th class="num">GV70 3.5T 스포츠 AWD</th></tr>
+    <tr><td>가격</td><td class="num">73,300,000원</td><td class="num">85,900,000원</td><td class="num">99,900,000원</td><td class="num winner">65,780,000원</td></tr>
+    <tr><td>최고출력</td><td class="num red">250 마력</td><td class="num">272 마력</td><td class="num winner">398 마력</td><td class="num">380 마력</td></tr>
+    <tr><td>최대토크</td><td class="num">36.7 kg·m</td><td class="num">40.8 kg·m</td><td class="num winner">59.1 kg·m</td><td class="num">54.0 kg·m</td></tr>
+    <tr><td>복합연비</td><td class="num winner">10.7 km/ℓ</td><td class="num">9.4 km/ℓ</td><td class="num">10.6 km/ℓ</td><td class="num">8.3 km/ℓ</td></tr>
+    <tr><td>핵심 특징</td><td class="num">에어서스펜션·액티브 섀시</td><td class="num">S-line 풀옵션급 사양</td><td class="num">직렬 6기통 고성능</td><td class="num">V6 3.5T 고출력</td></tr>
+  </table>
+  <div class="note">XC60 최상위 트림은 아직 B5(250마력)로, 순수 출력 경쟁에서는 네 차종 중 가장 낮습니다. 대신 가격이 가장 저렴하면서 연비가 가장 좋고, 에어서스펜션 기반의 승차감·안전사양에 강점이 있습니다. 볼보가 하반기 이후 T8 PHEV(약 8,995만원 추정)를 추가하면 출력 격차는 줄어들 전망입니다.</div>
+
+  <h2>차체 제원 비교</h2>
+  <table>
+    <tr><th>항목</th><th class="num">볼보 XC60</th><th class="num">아우디 Q5</th><th class="num">BMW X3</th><th class="num">GV70</th></tr>
+    <tr><td>전장</td><td class="num">4,710 mm</td><td class="num">4,715 mm</td><td class="num winner">4,775 mm</td><td class="num">4,715 mm</td></tr>
+    <tr><td>전폭</td><td class="num winner">1,900 mm</td><td class="num winner">1,900 mm</td><td class="num winner">1,920 mm</td><td class="num">1,910 mm</td></tr>
+    <tr><td>전고</td><td class="num">1,650 mm</td><td class="num">1,650 mm</td><td class="num">1,660 mm</td><td class="num">1,630 mm</td></tr>
+    <tr><td>휠베이스</td><td class="num">2,865 mm</td><td class="num">2,820 mm</td><td class="num">2,865 mm</td><td class="num winner">2,875 mm</td></tr>
+    <tr><td>트렁크 용량</td><td class="num">483 ℓ (폴딩 시 1,543 ℓ)</td><td class="num">520 ℓ (폴딩 시 1,473 ℓ)</td><td class="num winner">570 ℓ</td><td class="num">542 ℓ (폴딩 시 1,678 ℓ)</td></tr>
+  </table>
+  <div class="note">기본 상태 트렁크 용량은 BMW X3가 가장 넓고, 볼보 XC60은 네 차종 중 가장 좁습니다(483ℓ). 2열 폴딩 시 최대 적재공간은 GV70이 가장 넓습니다.</div>
+
+  <h2>연간 예상 유류비 비교</h2>
+  <p class="desc">연간 주행거리 15,000km, 휘발유 1,700원/ℓ · 경유 1,600원/ℓ 기준 추정치입니다.</p>
+  <table>
+    <tr><th>트림</th><th class="num">복합연비</th><th class="num">연간 예상 유류비</th></tr>
+    <tr><td>X3 20d xDrive (디젤)</td><td class="num winner">14.0 km/ℓ</td><td class="num winner">약 171만원</td></tr>
+    <tr><td>Q5 40 TDI 콰트로 (디젤)</td><td class="num">12.7 km/ℓ</td><td class="num">약 189만원</td></tr>
+    <tr><td>XC60 B5 (가솔린 MHEV)</td><td class="num">10.7 km/ℓ</td><td class="num">약 238만원</td></tr>
+    <tr><td>X3 20 xDrive (가솔린)</td><td class="num">10.9 km/ℓ</td><td class="num">약 234만원</td></tr>
+    <tr><td>GV70 2.5T 2WD (가솔린)</td><td class="num">10.2 km/ℓ</td><td class="num">약 250만원</td></tr>
+    <tr><td>Q5 40 TFSI 콰트로 (가솔린)</td><td class="num">9.6 km/ℓ</td><td class="num">약 266만원</td></tr>
+    <tr><td>GV70 3.5T AWD (가솔린)</td><td class="num red">8.5 km/ℓ</td><td class="num red">약 300만원</td></tr>
+  </table>
+  <div class="note">* 실제 유가·주행 패턴에 따라 달라질 수 있는 추정치입니다. 디젤 트림 중에서는 X3 20d가, 가솔린 중에서는 X3 20 xDrive가 가장 경제적입니다. XC60은 마일드 하이브리드 특성상 준수한 연비를 보이지만 디젤 트림에는 못 미칩니다.</div>
+
+  <h2>구매자 추천</h2>
+  <div class="reco">
+    <div class="t">① 연비·유지비 최우선 → <b>BMW 20d xDrive (디젤, 7,300만원)</b></div>
+    <p>네 차종을 통틀어 가장 우수한 연비(14.0km/ℓ)를 갖췄습니다. 장거리 주행이 많은 운전자에게 가장 합리적입니다.</p>
+  </div>
+  <div class="reco">
+    <div class="t">② 가성비·출력 최우선 → <b>제네시스 GV70 2.5T 2WD (5,393만원)</b></div>
+    <p>네 차종 중 가장 낮은 시작가이면서 출력은 오히려 가장 높습니다(304마력).</p>
+  </div>
+  <div class="reco">
+    <div class="t">③ 안전·패밀리카 최우선 → <b>볼보 XC60 B5 Plus Bright (6,570만원)</b></div>
+    <p>볼보 특유의 전방위 안전사양이 전 트림 기본이며, 네 차종 중 시작가가 두 번째로 낮습니다. Ultra 트림 이상은 에어서스펜션까지 더해져 장거리 패밀리카로 적합합니다.</p>
+  </div>
+  <div class="reco">
+    <div class="t">④ 최신 ADAS·콰트로를 원한다면 → <b>아우디 Q5 40 TFSI 콰트로 Advanced (6,990만원)</b></div>
+    <p>이번 연식변경으로 차선 중앙 유지·차선 변경 보조가 새로 탑재되어 고속도로 주행 편의성이 크게 개선됐습니다.</p>
+  </div>
+  <div class="reco">
+    <div class="t">⑤ 밸런스형 고성능 → <b>GV70 3.5T AWD (6,243만원)</b></div>
+    <p>380마력의 강력한 출력을 BMW M50 대비 3,747만원 저렴하게 누릴 수 있어 출력 대비 가격 경쟁력이 가장 뛰어납니다.</p>
+  </div>
+  <div class="reco">
+    <div class="t">⑥ 최상위 고성능 → <b>BMW M50 xDrive (9,990만원)</b></div>
+    <p>398마력으로 네 차종 중 최고 출력입니다. 가격 부담이 가장 크지만 완성도와 주행 질감에서 우위를 가집니다.</p>
+  </div>
+  <div class="reco">
+    <div class="t">⑦ 전동화·플러그인을 고려한다면 → <b>제네시스 Electrified GV70(약 7,190만원~) 또는 볼보 XC60 T8 PHEV(약 8,995만원 예상)</b></div>
+    <p>완전한 전기차를 원하면 Electrified GV70이, 충전 인프라가 부족한 환경에서 유연하게 전기+내연기관을 오가고 싶다면 XC60 T8 PHEV가 대안이 될 수 있습니다. Q5·X3는 국내에 해당 차체 기반의 전동화 모델이 없습니다.</p>
+  </div>
+
+  <div class="foot">
+    데이터 출처: 볼보자동차코리아 및 겟차(getcha.kr) XC60 2026년형 사전예약 정보, IT Review XC60 가격·제원 정리, 아우디 코리아(audi.co.kr) Q5 제원·가격 정보, BMW 코리아(bmw.co.kr) X3 제원·가격 정보, 제네시스(genesis.com) GV70 제원 정보, 카눈(carnoon.co.kr) 2026년형 XC60·Q5·X3·GV70 가격표 및 상세 제원 · 조사일 2026-07-22<br>
+    볼보 XC60 2026년형은 2026년 8월 4일 공식 출시 예정으로, 사전예약 단계의 가격·사양은 출시 후 변경될 수 있습니다. T8 PHEV 가격은 매체 추정치입니다. 그 외 가격·프로모션·개별소비세 적용 여부도 시점 및 딜러 정책에 따라 수시로 변동될 수 있으며, 실제 구매 시 공식 딜러 확인이 필요합니다. 연비는 표준모드(복합연비) 기준으로 실주행연비와 차이가 있을 수 있습니다.<br>
+    본 문서는 참고용 정보 제공이 목적이며 구매 결정 전 공식 딜러 상담과 시승을 권장합니다. (관련 리포트: <a href="https://loveggtop.github.io/hongstock-board/q5-vs-x3-vs-gv70-2026-07-22.html" target="_blank">Q5 vs X3 vs GV70 3파전</a>, <a href="https://loveggtop.github.io/hongstock-board/bmw-x3-vs-gv70-2026-07-22.html" target="_blank">BMW X3 vs GV70 단독 비교</a>)
+  </div>
+
+</div>
+</body>
+</html>
