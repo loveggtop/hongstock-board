@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>프리미엄 중형 SUV 6종 비교 — 한국 시장</title>
+<style>
+:root{--bg:#f3f5f2;--ink:#15201c;--muted:#607069;--line:#d8ded9;--card:#fff;--green:#0d5d47;--mint:#dff2e9;--navy:#173850;--amber:#b76b18}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Pretendard,"Noto Sans KR",system-ui,-apple-system,sans-serif;line-height:1.65}a{color:var(--green)}.wrap{width:min(1180px,calc(100% - 32px));margin:auto}.hero{padding:72px 0 48px;background:linear-gradient(135deg,#102f28,#164c41 55%,#275f72);color:#fff}.eyebrow{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;opacity:.75}.hero h1{font-size:clamp(2.1rem,5vw,4.4rem);line-height:1.08;margin:.4rem 0 1rem;letter-spacing:-.04em}.hero p{max-width:760px;color:#d9e7e1;font-size:1.05rem}.meta{display:flex;gap:16px;flex-wrap:wrap;margin-top:22px;font-size:.84rem;color:#c4d9d0}.nav{position:sticky;top:0;z-index:5;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);overflow:auto}.nav .wrap{display:flex;gap:22px;padding:12px 0;white-space:nowrap}.nav a{text-decoration:none;color:var(--ink);font-size:.88rem}.section{padding:52px 0}.section h2{font-size:clamp(1.5rem,3vw,2.2rem);letter-spacing:-.03em;margin:0 0 8px}.lead{color:var(--muted);margin:0 0 24px}.verdict{display:grid;grid-template-columns:1.4fr 1fr;gap:18px}.panel,.car{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px}.panel.big{background:var(--green);color:#fff}.panel.big p{color:#dcebe6}.pills{display:flex;flex-wrap:wrap;gap:8px}.pill{border-radius:999px;background:var(--mint);color:var(--green);padding:5px 10px;font-size:.78rem;font-weight:700}.panel.big .pill{background:#ffffff1e;color:#fff}.tablebox{overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:18px}table{border-collapse:collapse;width:100%;min-width:1000px;font-size:.88rem}th,td{padding:14px 13px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}thead th{background:#edf2ee;position:sticky;top:45px;color:#32443d}tbody th{color:var(--green);white-space:nowrap}.best{font-weight:800;color:var(--green)}.note{font-size:.78rem;color:var(--muted)}.cars{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.car h3{margin:5px 0 0;font-size:1.35rem}.car .price{font-size:1.35rem;font-weight:800;color:var(--green);margin:10px 0}.facts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:16px 0}.fact{background:#f3f6f4;padding:10px;border-radius:10px}.fact small{display:block;color:var(--muted)}.proscons{display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:.86rem}.proscons ul{margin:4px 0;padding-left:18px}.usegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.use{background:#fff;border-left:4px solid var(--green);padding:18px;border-radius:8px 14px 14px 8px}.use h3{margin:0 0 6px}.service{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.service .panel h3{margin-top:0}.sources{font-size:.86rem}.sources li{margin-bottom:10px}.caution{background:#fff4e5;border:1px solid #efd4ad;border-radius:14px;padding:16px;color:#68400f}.footer{padding:32px 0 60px;color:var(--muted);font-size:.78rem}@media(max-width:850px){.verdict,.service{grid-template-columns:1fr}.cars,.usegrid{grid-template-columns:1fr 1fr}}@media(max-width:560px){.wrap{width:min(100% - 22px,1180px)}.hero{padding:48px 0 34px}.section{padding:38px 0}.cars,.usegrid{grid-template-columns:1fr}.panel,.car{padding:18px}.facts{grid-template-columns:1fr}.nav .wrap{gap:16px}}
+/* Responsive specification comparison: desktop table, compact cards below 900px */
+.tablebox{overflow:visible;background:transparent;border:0}
+table{table-layout:fixed;min-width:0;border:1px solid var(--line);border-radius:18px;overflow:hidden}
+th,td{padding:13px 10px;overflow-wrap:anywhere;word-break:keep-all}
+thead th{position:static;font-size:.78rem}
+tbody th{white-space:normal}
+@media(max-width:900px){
+  .tablebox{overflow:visible}
+  table{display:block;background:transparent;border:0;border-radius:0}
+  thead{display:none}
+  tbody{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+  tbody tr{display:block;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  tbody th{display:block;padding:16px;background:#edf4ef;border-bottom:1px solid var(--line);font-size:1.02rem}
+  tbody td{display:grid;grid-template-columns:106px minmax(0,1fr);gap:10px;padding:10px 14px;border-bottom:1px solid #e8ece9}
+  tbody td::before{color:var(--muted);font-size:.76rem;font-weight:700}
+  tbody td:nth-of-type(1)::before{content:"가격"}
+  tbody td:nth-of-type(2)::before{content:"파워트레인"}
+  tbody td:nth-of-type(3)::before{content:"출력"}
+  tbody td:nth-of-type(4)::before{content:"복합연비"}
+  tbody td:nth-of-type(5)::before{content:"차체 크기"}
+  tbody td:nth-of-type(6)::before{content:"휠베이스"}
+  tbody td:nth-of-type(7)::before{content:"적재공간"}
+  tbody tr:last-child th,tbody tr:last-child td{border-bottom:1px solid #e8ece9}
+  tbody tr td:last-child{border-bottom:0}
+}
+@media(max-width:640px){
+  tbody{grid-template-columns:1fr}
+  tbody td{grid-template-columns:92px minmax(0,1fr)}
+}
+</style></head><body>
+<header class="hero"><div class="wrap"><div class="eyebrow">Korea market · premium midsize SUV</div><h1>볼보 XC60,<br>무엇과 비교해야 할까?</h1><p>BMW X3, 메르세데스-벤츠 GLC, 아우디 Q5, 제네시스 GV70, 렉서스 NX를 한국 판매 사양 중심으로 비교했습니다. 숫자뿐 아니라 실제 선택 기준까지 한 장에 담았습니다.</p><div class="meta"><span>기준일 2026. 8. 3.</span><span>가격: VAT 포함 권장소비자가</span><span>연비: 정부 공인 복합연비</span></div></div></header>
+<nav class="nav"><div class="wrap"><a href="#summary">한눈에 보기</a><a href="#spec">핵심 제원</a><a href="#cars">차종별 분석</a><a href="#service">보증·서비스</a><a href="#recommend">용도별 추천</a><a href="#sources">출처</a></div></nav>
+<main>
+<section id="summary" class="section"><div class="wrap"><h2>결론부터</h2><p class="lead">XC60은 최고 수치보다 안전·안락함·기본 서비스의 완성도로 승부하는 균형형 패밀리 SUV입니다.</p><div class="verdict"><div class="panel big"><div class="eyebrow">Editor’s take</div><h2>가족용 프리미엄 SUV의 가장 편안한 정답</h2><p>B5 AWD 기준 250마력과 기본 사륜구동, 차분한 승차감, 5년/10만km 보증·소모품 서비스가 강점입니다. 다만 연비 최우선이면 NX 350h, 운전 재미면 X3, 가격 대비 장비면 GV70이 더 분명한 답입니다.</p><div class="pills"><span class="pill">안전·안락함 XC60</span><span class="pill">효율 NX</span><span class="pill">주행 X3</span><span class="pill">공간 GLC</span><span class="pill">가치 GV70</span></div></div><div class="panel"><h3>비교의 기준 모델</h3><p>가격과 연비 비교는 각 차의 대표적인 4기통·사륜구동 또는 하이브리드 트림을 중심으로 했습니다.</p><p class="note">트림·휠에 따라 연비와 가격이 바뀌므로 범위가 있는 값은 공식 라인업 범위로 표기했습니다. 등록비·선택 옵션·월별 프로모션은 제외했습니다.</p></div></div></div></section>
+<section id="spec" class="section"><div class="wrap"><h2>핵심 수치 비교</h2><p class="lead">같은 ‘중형 SUV’여도 파워트레인 철학과 차체 패키징이 꽤 다릅니다.</p><div class="tablebox"><table><thead><tr><th>차종</th><th>한국 판매가격</th><th>대표 파워트레인</th><th>출력</th><th>복합연비</th><th>전장×전폭×전고</th><th>휠베이스</th><th>적재공간*</th></tr></thead><tbody>
+<tr><th>Volvo XC60</th><td>6,570만~9,120만원</td><td>B5 2.0 가솔린 48V MHEV AWD / T8 PHEV</td><td>250 PS / 약 455 PS</td><td>B5 약 10.1 km/L<br>T8 휘발유·전기 별도</td><td>4,708×1,902×1,655 mm</td><td>2,865 mm</td><td>약 483 L</td></tr>
+<tr><th>BMW X3</th><td>6,850만~9,870만원</td><td>20 xDrive 2.0 가솔린 MHEV AWD</td><td>190 PS</td><td><span class="best">10.9 km/L</span></td><td>4,755×1,920×1,660 mm</td><td>2,865 mm</td><td><span class="best">570 L</span></td></tr>
+<tr><th>Mercedes-Benz GLC</th><td>약 8천만원대~<br><span class="note">재고·트림별 상이</span></td><td>GLC 300 2.0 가솔린 48V MHEV 4MATIC</td><td>258 PS + EQ Boost</td><td>약 10 km/L</td><td>4,720×1,890×1,645 mm</td><td><span class="best">2,888 mm</span></td><td><span class="best">620 L</span></td></tr>
+<tr><th>Audi Q5</th><td>6,990만원부터</td><td>40 TDI 2.0 디젤 MHEV+ quattro / TFSI</td><td>204 PS (40)</td><td><span class="best">TDI 12.7 km/L</span><br>TFSI 약 9 km/L대</td><td>약 4,717×1,900×1,647 mm</td><td>약 2,828 mm</td><td>약 520 L</td></tr>
+<tr><th>Genesis GV70</th><td><span class="best">5,473만원부터</span></td><td>2.5 가솔린 터보 2WD/AWD</td><td><span class="best">304 PS</span></td><td>2WD 9.7~9.8<br>AWD 9.0~9.4 km/L</td><td>4,715×1,910×1,630 mm</td><td>2,875 mm</td><td>약 542 L</td></tr>
+<tr><th>Lexus NX</th><td>약 6,670만~8,490만원</td><td>NX 350h 2.5 HEV E-Four / 450h+ PHEV</td><td>242 PS / 307 PS</td><td><span class="best">350h 14.0 km/L</span><br>450h+ 14.4 km/L</td><td>4,660×1,865×1,670 mm</td><td>2,690 mm</td><td>약 520 L</td></tr>
+</tbody></table></div><p class="note">* 적재공간은 제조사별 측정 방식(VDA/SAE, 바닥 아래 공간 포함 여부)이 달라 절대 비교보다 참고용입니다. GLC·Q5·NX 일부 가격/제원은 공식 온라인 구성 및 재고에 따라 변동되어 구매 전 견적 확인이 필요합니다.</p></div></section>
+<section id="cars" class="section"><div class="wrap"><h2>차종별 성격</h2><p class="lead">숫자로 설명되지 않는 실제 구매 포인트를 정리했습니다.</p><div class="cars">
+<article class="car"><span class="pill">가족 균형형</span><h3>Volvo XC60</h3><div class="price">6,570만원부터</div><div class="facts"><div class="fact"><small>핵심</small>안전·안락함</div><div class="fact"><small>대표</small>B5 AWD 250PS</div></div><div class="proscons"><div><b>장점</b><ul><li>차분한 승차감</li><li>우수한 기본 안전장비</li><li>긴 기본 서비스</li></ul></div><div><b>아쉬움</b><ul><li>인포테인먼트 적응</li><li>스포티함은 보통</li><li>3열 없음</li></ul></div></div></article>
+<article class="car"><span class="pill">운전자 중심</span><h3>BMW X3</h3><div class="price">6,850만원부터</div><div class="facts"><div class="fact"><small>핵심</small>조종성·효율</div><div class="fact"><small>대표</small>20 xDrive 190PS</div></div><div class="proscons"><div><b>장점</b><ul><li>정교한 핸들링</li><li>넓은 적재공간</li><li>가솔린 효율</li></ul></div><div><b>아쉬움</b><ul><li>옵션별 가격 상승</li><li>단단한 승차감</li><li>보증은 짧은 편</li></ul></div></div></article>
+<article class="car"><span class="pill">고급·공간형</span><h3>Mercedes-Benz GLC</h3><div class="price">약 8천만원대부터</div><div class="facts"><div class="fact"><small>핵심</small>실내 고급감</div><div class="fact"><small>대표</small>GLC 300 4MATIC</div></div><div class="proscons"><div><b>장점</b><ul><li>화려한 실내</li><li>큰 트렁크</li><li>부드러운 주행</li></ul></div><div><b>아쉬움</b><ul><li>높은 실구매가</li><li>터치 중심 조작</li><li>옵션 구성 복잡</li></ul></div></div></article>
+<article class="car"><span class="pill">장거리 효율형</span><h3>Audi Q5</h3><div class="price">6,990만원부터</div><div class="facts"><div class="fact"><small>핵심</small>quattro·정숙성</div><div class="fact"><small>대표</small>40 TDI 204PS</div></div><div class="proscons"><div><b>장점</b><ul><li>디젤 장거리 연비</li><li>안정적인 AWD</li><li>최신 디지털 실내</li></ul></div><div><b>아쉬움</b><ul><li>도심 단거리 디젤</li><li>트림별 가격차</li><li>신형 초기 검증</li></ul></div></div></article>
+<article class="car"><span class="pill">가치·성능형</span><h3>Genesis GV70</h3><div class="price">5,473만원부터</div><div class="facts"><div class="fact"><small>핵심</small>장비·서비스망</div><div class="fact"><small>대표</small>2.5T 304PS</div></div><div class="proscons"><div><b>장점</b><ul><li>강한 기본 출력</li><li>선택 옵션 다양</li><li>정비 접근성</li></ul></div><div><b>아쉬움</b><ul><li>옵션 추가 시 상승</li><li>연비 열세</li><li>수입 프리미엄 선호</li></ul></div></div></article>
+<article class="car"><span class="pill">도심 효율형</span><h3>Lexus NX</h3><div class="price">약 6,670만원부터</div><div class="facts"><div class="fact"><small>핵심</small>HEV 효율·신뢰성</div><div class="fact"><small>대표</small>350h 242PS</div></div><div class="proscons"><div><b>장점</b><ul><li>압도적 도심 연비</li><li>검증된 하이브리드</li><li>높은 잔존가치</li></ul></div><div><b>아쉬움</b><ul><li>작은 휠베이스</li><li>고속 가속 감성</li><li>트림 선택 제한</li></ul></div></div></article>
+</div></div></section>
+<section id="service" class="section"><div class="wrap"><h2>보증·서비스</h2><p class="lead">‘무상 점검’과 ‘차량 보증’은 같은 뜻이 아닙니다. 아래는 국내 신차의 대표 기본 조건입니다.</p><div class="service">
+<div class="panel"><h3>XC60</h3><p><b>일반 보증 5년/10만km</b>, 동일 기간 주요 소모품 교환 서비스. 고전압 배터리 8년/16만km, OTA 15년 및 디지털 서비스 5년(공식 출시자료).</p></div>
+<div class="panel"><h3>X3</h3><p>차량 보증은 통상 <b>2년/주행거리 무제한</b>. BMW Service Inclusive는 엔진오일 등 정기 관리 항목을 별도 조건으로 제공하며 모델·등록시점에 따라 기간이 다릅니다.</p></div>
+<div class="panel"><h3>GLC · Q5</h3><p>메르세데스-벤츠는 통상 <b>3년/10만km</b>, 아우디는 국내 신차 <b>5년/15만km</b> 보증 프로그램이 대표 조건입니다. 소모품·연장보증 포함 여부는 계약서 확인이 필요합니다.</p></div>
+<div class="panel"><h3>GV70 · NX</h3><p>제네시스는 차체·일반부품 <b>5년/10만km</b>와 서비스 프로그램이 강점. 렉서스는 일반 보증 <b>4년/10만km</b>, 하이브리드 관련 보증은 부품별 기간이 달라 보증서를 확인해야 합니다.</p></div>
+</div></div></section>
+<section id="recommend" class="section"><div class="wrap"><h2>용도별 추천</h2><p class="lead">‘최고의 차’보다 ‘내 사용 패턴에 맞는 차’가 중요합니다.</p><div class="usegrid">
+<div class="use"><h3>아이와 함께 타는 가족</h3><b>XC60 B5 Plus</b><p>안전·승차감·기본 서비스의 균형이 가장 편합니다.</p></div><div class="use"><h3>운전 재미와 출퇴근</h3><b>BMW X3 20 xDrive</b><p>조종성과 10.9km/L 효율을 함께 챙깁니다.</p></div><div class="use"><h3>도심 주행이 대부분</h3><b>Lexus NX 350h</b><p>막히는 길에서 하이브리드 효율이 두드러집니다.</p></div><div class="use"><h3>고속도로 장거리</h3><b>Audi Q5 40 TDI</b><p>12.7km/L 공인연비와 quattro 안정성이 강점입니다.</p></div><div class="use"><h3>실내 고급감·공간</h3><b>Mercedes-Benz GLC</b><p>긴 휠베이스와 큰 적재공간, 화려한 실내가 매력입니다.</p></div><div class="use"><h3>예산 대비 출력·옵션</h3><b>Genesis GV70 2.5T</b><p>낮은 시작가, 304PS, 국내 서비스 접근성이 돋보입니다.</p></div>
+</div><div class="caution" style="margin-top:22px"><b>구매 전 마지막 체크:</b> 시승 시 2열 승차감, 카시트 장착, 실제 주차장 폭, 원하는 휠의 공인연비를 확인하세요. PHEV는 집·직장에서 꾸준히 충전할 수 있을 때 경제성이 살아납니다.</div></div></section>
+<section id="sources" class="section sources"><div class="wrap"><h2>출처와 데이터 주의사항</h2><p class="lead">공식 한국 브랜드 페이지·가격표·출시자료를 우선 사용했습니다. 기준일 이후 가격과 사양은 예고 없이 바뀔 수 있습니다.</p><ol>
+<li><a href="https://www.volvocars.com/kr/cars/xc60/">Volvo Cars Korea — XC60 모델/가격</a>, <a href="https://www.volvocars.com/kr/news/culture/20250804-New-XC60-Officially-Launched/">신형 XC60 출시자료·보증</a></li>
+<li><a href="https://www.bmw.co.kr/content/dam/bmw/marketKR/bmw_co_kr/Pricelist/PRICELIST_JUNE2026.pdf.asset.1781249167044.pdf">BMW Korea — 2026년 6월 가격표</a>, <a href="https://www.bmw.co.kr/content/bmw/marketKR/bmw_co_kr/ko/all-models/x-series/x3/bmw-x3.html">X3 공식 제원·연비</a></li>
+<li><a href="https://www.mercedes-benz.co.kr/passengercars/models/suv/glc/overview.html">Mercedes-Benz Korea — GLC 공식 모델 페이지</a></li>
+<li><a href="https://www.audi.co.kr/ko/aboutaudi/news_article/2026/202607/20260709/20260709">Audi Korea — 2026 Q5 출시·가격·파워트레인</a>, <a href="https://www.audi.co.kr/ko/aboutaudi/news_article/250701-1/20250701-1">Q5 40 TDI 공인연비</a></li>
+<li><a href="https://www.genesis.com/kr/ko/models/gv70">Genesis — GV70 가격·제원·공인연비</a></li>
+<li><a href="https://www.lexus.co.kr/source/brochure/LEXUS_NEW%20NX_F.pdf">Lexus Korea — NX 공식 카탈로그·제원·공인연비</a>, <a href="https://www.lexus.co.kr/service/service-program/warranty-program/">보증 프로그램</a></li>
+</ol><p class="note">XC60 적재용량과 일부 경쟁차 적재용량은 제조사 글로벌 제원 표기의 측정 기준 차이 때문에 참고값으로 제시했습니다. GLC와 NX의 실시간 판매가격은 공식 온라인 재고·트림 노출에 따라 달라질 수 있어 ‘약’으로 표기했습니다. 계약 전 각 브랜드 공식 견적서로 재확인하십시오.</p></div></section>
+</main><footer class="footer"><div class="wrap">본 자료는 구매 의사결정을 돕기 위한 독립 비교표이며 제조사·딜러의 견적 또는 보증서를 대체하지 않습니다. © 2026 SUV Comparison Brief</div></footer>
+</body></html>
