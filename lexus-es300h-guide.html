@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>렉서스 ES300h 완벽 구매 가이드 (2026년형)</title>
+<style>
+  :root{
+    --navy:#0d1b2a;
+    --navy2:#14263a;
+    --gold:#c9a24b;
+    --gold-light:#e6cd8a;
+    --text:#22303f;
+    --sub:#5c6b7a;
+    --line:#e6e8ec;
+    --bg:#f5f6f8;
+    --card:#ffffff;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",-apple-system,BlinkMacSystemFont,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+  }
+  .wrap{max-width:960px;margin:0 auto;padding:0 20px 60px;}
+
+  /* Hero */
+  .hero{
+    background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 55%,#1c2f45 100%);
+    color:#fff;
+    padding:70px 24px 56px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;top:-80px;right:-80px;
+    width:300px;height:300px;border-radius:50%;
+    background:radial-gradient(circle,rgba(201,162,75,0.25),transparent 70%);
+  }
+  .hero::after{
+    content:"";
+    position:absolute;bottom:-100px;left:-60px;
+    width:260px;height:260px;border-radius:50%;
+    background:radial-gradient(circle,rgba(201,162,75,0.15),transparent 70%);
+  }
+  .hero-tag{
+    display:inline-block;
+    letter-spacing:3px;
+    font-size:12px;
+    color:var(--gold-light);
+    border:1px solid rgba(230,205,138,0.5);
+    border-radius:20px;
+    padding:6px 16px;
+    margin-bottom:22px;
+    text-transform:uppercase;
+  }
+  .hero h1{
+    font-size:38px;
+    margin:0 0 14px;
+    font-weight:800;
+    letter-spacing:-0.5px;
+    position:relative;
+  }
+  .hero p.sub{
+    font-size:16px;
+    color:#c9d2dc;
+    max-width:560px;
+    margin:0 auto;
+    position:relative;
+  }
+  .hero-meta{
+    margin-top:28px;
+    display:flex;
+    justify-content:center;
+    gap:28px;
+    flex-wrap:wrap;
+    position:relative;
+  }
+  .hero-meta div{font-size:13px;color:#a9b6c4;}
+  .hero-meta strong{display:block;color:#fff;font-size:17px;margin-top:2px;}
+
+  /* Section */
+  section{margin-top:44px;}
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    margin-bottom:18px;
+  }
+  .section-num{
+    color:var(--gold);
+    font-weight:800;
+    font-size:14px;
+    letter-spacing:1px;
+  }
+  h2{
+    font-size:21px;
+    margin:0;
+    font-weight:800;
+    color:var(--navy);
+  }
+  .section-desc{color:var(--sub);font-size:14px;margin:-8px 0 18px;}
+
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:22px 24px;
+    box-shadow:0 1px 3px rgba(20,30,45,0.04);
+  }
+
+  /* Trim price cards */
+  .trims{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .trim-card{
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:22px;
+    background:var(--card);
+    position:relative;
+  }
+  .trim-card.featured{border:1.5px solid var(--gold);}
+  .trim-badge{
+    position:absolute;top:-11px;right:18px;
+    background:var(--gold);color:#fff;font-size:11px;
+    padding:4px 10px;border-radius:20px;font-weight:700;
+  }
+  .trim-name{font-size:13px;color:var(--sub);font-weight:700;letter-spacing:0.5px;}
+  .trim-price{font-size:26px;font-weight:800;color:var(--navy);margin:6px 0 14px;}
+  .trim-price span{font-size:13px;color:var(--sub);font-weight:500;}
+  .trim-feat{list-style:none;margin:0;padding:0;font-size:13.5px;color:var(--text);}
+  .trim-feat li{padding:5px 0;border-top:1px dashed var(--line);}
+  .trim-feat li:first-child{border-top:none;}
+  .price-note{
+    font-size:12.5px;color:var(--sub);margin-top:14px;
+    background:#f7f4ea;border:1px solid #ecdfb8;
+    padding:10px 14px;border-radius:10px;
+  }
+
+  /* Spec table */
+  table{width:100%;border-collapse:collapse;font-size:14px;}
+  th,td{padding:11px 12px;text-align:left;border-bottom:1px solid var(--line);}
+  th{color:var(--sub);font-weight:600;width:34%;background:#fafbfc;}
+  td{font-weight:600;color:var(--navy);}
+  .spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media(max-width:680px){.spec-grid{grid-template-columns:1fr;}.trims{grid-template-columns:1fr;}}
+  .spec-card-title{font-size:13px;font-weight:800;color:var(--gold);letter-spacing:0.5px;margin-bottom:10px;text-transform:uppercase;}
+
+  /* Fuel economy bar */
+  .fuel-row{display:flex;align-items:center;gap:14px;margin-bottom:12px;}
+  .fuel-label{width:88px;font-size:13px;color:var(--sub);flex-shrink:0;}
+  .fuel-bar-bg{flex:1;background:#eef0f3;border-radius:8px;height:14px;overflow:hidden;}
+  .fuel-bar{height:100%;border-radius:8px;background:linear-gradient(90deg,var(--gold),var(--gold-light));}
+  .fuel-val{width:70px;text-align:right;font-weight:800;color:var(--navy);font-size:14px;flex-shrink:0;}
+
+  /* Safety list */
+  .safety-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .safety-item{
+    background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:16px 18px;
+  }
+  .safety-item .ico{
+    width:34px;height:34px;border-radius:9px;
+    background:var(--navy);color:var(--gold-light);
+    display:flex;align-items:center;justify-content:center;
+    font-size:15px;font-weight:800;margin-bottom:10px;
+  }
+  .safety-item h3{margin:0 0 4px;font-size:14.5px;color:var(--navy);}
+  .safety-item p{margin:0;font-size:12.8px;color:var(--sub);}
+
+  /* Compare table */
+  .compare-table{width:100%;border-collapse:collapse;font-size:13.5px;}
+  .compare-table th{background:var(--navy);color:#fff;padding:12px 10px;font-weight:700;}
+  .compare-table td{padding:12px 10px;border-bottom:1px solid var(--line);}
+  .compare-table tr:nth-child(even) td{background:#fafbfc;}
+  .compare-table td:first-child{color:var(--sub);font-weight:600;}
+  .compare-table .col-es{font-weight:800;color:var(--navy);background:#faf6ea !important;}
+
+  /* Pros cons */
+  .pc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .pc-card{border-radius:14px;padding:20px 22px;}
+  .pc-card.pos{background:#f0f8f2;border:1px solid #cfe8d6;}
+  .pc-card.neg{background:#fbf1f1;border:1px solid #efd3d3;}
+  .pc-card h3{margin:0 0 10px;font-size:15px;}
+  .pc-card.pos h3{color:#1e7a3d;}
+  .pc-card.neg h3{color:#b23c3c;}
+  .pc-card ul{margin:0;padding-left:18px;font-size:13.5px;}
+  .pc-card li{margin-bottom:6px;}
+
+  /* Warranty */
+  .warranty-list{list-style:none;margin:0;padding:0;}
+  .warranty-list li{
+    display:flex;justify-content:space-between;
+    padding:10px 0;border-bottom:1px dashed var(--line);
+    font-size:13.5px;
+  }
+  .warranty-list li:last-child{border-bottom:none;}
+  .warranty-list span.term{font-weight:800;color:var(--gold);}
+
+  /* Colors */
+  .swatches{display:flex;flex-wrap:wrap;gap:10px;}
+  .swatch{
+    display:flex;align-items:center;gap:8px;
+    background:#fafbfc;border:1px solid var(--line);border-radius:20px;
+    padding:6px 12px 6px 6px;font-size:12px;color:var(--sub);
+  }
+  .dot{width:20px;height:20px;border-radius:50%;border:1px solid rgba(0,0,0,0.1);flex-shrink:0;}
+
+  /* Summary box */
+  .summary-box{
+    background:linear-gradient(135deg,var(--navy),#1c2f45);
+    color:#fff;border-radius:16px;padding:28px 26px;
+  }
+  .summary-box h2{color:#fff;}
+  .summary-box .section-num{color:var(--gold-light);}
+  .summary-box p{color:#cdd6df;font-size:14.5px;margin:8px 0 0;}
+  .summary-box .pill{
+    display:inline-block;background:rgba(201,162,75,0.18);
+    border:1px solid rgba(230,205,138,0.4);color:var(--gold-light);
+    font-size:12px;padding:4px 12px;border-radius:20px;margin:2px 6px 2px 0;
+  }
+
+  footer{
+    margin-top:56px;padding-top:20px;border-top:1px solid var(--line);
+    font-size:12px;color:var(--sub);text-align:center;
+  }
+  footer a{color:var(--sub);}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <span class="hero-tag">2026 Buyer's Guide</span>
+  <h1>렉서스 New ES 300h<br>구매자를 위한 완벽 분석</h1>
+  <p class="sub">가격·제원·연비·안전사양부터 경쟁차종 비교까지, ES300h 구매 전 알아야 할 모든 정보를 한눈에 정리했습니다.</p>
+  <div class="hero-meta">
+    <div>차종<strong>중형 세단 (하이브리드)</strong></div>
+    <div>복합연비<strong>17.2 km/ℓ</strong></div>
+    <div>가격대<strong>6,725만~7,188만원</strong></div>
+    <div>시스템 출력<strong>218 PS</strong></div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- 1. 가격/트림 -->
+  <section>
+    <div class="section-head"><span class="section-num">01</span><h2>가격 · 트림 구성</h2></div>
+    <p class="section-desc">2026년형은 럭셔리+, 익스클루시브 2개 트림으로 운영되며, 과거 판매되던 럭셔리·F SPORT는 현재 단종됐습니다.</p>
+    <div class="trims">
+      <div class="trim-card">
+        <div class="trim-name">300h LUXURY+</div>
+        <div class="trim-price">67,250,000<span> 원</span></div>
+        <ul class="trim-feat">
+          <li>18인치 알로이 휠</li>
+          <li>파워트렁크, 파노라마 루프</li>
+          <li>마크 레빈슨 프리미엄 사운드(옵션)</li>
+          <li>렉서스 세이프티 시스템+ 2.5+ 기본</li>
+        </ul>
+      </div>
+      <div class="trim-card featured">
+        <span class="trim-badge">TOP 트림</span>
+        <div class="trim-name">300h EXECUTIVE</div>
+        <div class="trim-price">71,880,000<span> 원</span></div>
+        <ul class="trim-feat">
+          <li>트리플 LED 헤드램프</li>
+          <li>세미 아닐린 가죽시트 + 통풍/열선</li>
+          <li>2열 선쉐이드 · 리어 프라이버시</li>
+          <li>럭셔리+ 사양 전체 포함</li>
+        </ul>
+      </div>
+    </div>
+    <p class="price-note">※ 위 가격은 2026년형 개별소비세 30% 인하 적용 기준입니다(6월 30일 이전). 7월 1일부로 세율 기준이 변동되어 실제 최종 가격이 달라질 수 있으니, 계약 전 렉서스 공식 딜러에서 최신 가격을 반드시 재확인하세요.</p>
+  </section>
+
+  <!-- 2. 외관 제원 -->
+  <section>
+    <div class="section-head"><span class="section-num">02</span><h2>차체 제원</h2></div>
+    <div class="spec-grid">
+      <div class="card">
+        <div class="spec-card-title">Dimensions</div>
+        <table>
+          <tr><th>전장 (길이)</th><td>4,975 mm</td></tr>
+          <tr><th>전폭 (너비)</th><td>1,865 mm</td></tr>
+          <tr><th>전고 (높이)</th><td>1,445 mm</td></tr>
+          <tr><th>축간거리</th><td>2,870 mm</td></tr>
+          <tr><th>공차중량</th><td>1,680 kg</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <div class="spec-card-title">Cargo &amp; Wheels</div>
+        <table>
+          <tr><th>트렁크 용량</th><td>473 L</td></tr>
+          <tr><th>골프백 적재</th><td>9인치 × 4개</td></tr>
+          <tr><th>타이어</th><td>18인치 (F SPORT 19인치)</td></tr>
+          <tr><th>연료탱크</th><td>49.3 L</td></tr>
+          <tr><th>변속기</th><td>e-CVT</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. 파워트레인 -->
+  <section>
+    <div class="section-head"><span class="section-num">03</span><h2>파워트레인 (엔진 + 모터)</h2></div>
+    <div class="spec-grid">
+      <div class="card">
+        <div class="spec-card-title">2.5L 가솔린 엔진</div>
+        <table>
+          <tr><th>엔진 형식</th><td>직렬 4기통</td></tr>
+          <tr><th>배기량</th><td>2,487 cc</td></tr>
+          <tr><th>최고출력</th><td>178 PS / 5,700 rpm</td></tr>
+          <tr><th>최대토크</th><td>22.5 kgf·m / 3,600~5,200 rpm</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <div class="spec-card-title">구동 모터 + 시스템 합산</div>
+        <table>
+          <tr><th>모터 최고출력</th><td>120 PS (88kW)</td></tr>
+          <tr><th>모터 최대토크</th><td>20.6 kgf·m</td></tr>
+          <tr><th>시스템 합산출력</th><td>218 PS</td></tr>
+          <tr><th>구동방식</th><td>풀 하이브리드(FF)</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. 연비 -->
+  <section>
+    <div class="section-head"><span class="section-num">04</span><h2>공인 연비 &amp; 환경성능</h2></div>
+    <div class="card">
+      <div class="fuel-row">
+        <div class="fuel-label">복합연비</div>
+        <div class="fuel-bar-bg"><div class="fuel-bar" style="width:86%"></div></div>
+        <div class="fuel-val">17.2 km/ℓ</div>
+      </div>
+      <div class="fuel-row">
+        <div class="fuel-label">도심연비</div>
+        <div class="fuel-bar-bg"><div class="fuel-bar" style="width:87%"></div></div>
+        <div class="fuel-val">17.3 km/ℓ</div>
+      </div>
+      <div class="fuel-row">
+        <div class="fuel-label">고속도로연비</div>
+        <div class="fuel-bar-bg"><div class="fuel-bar" style="width:85%"></div></div>
+        <div class="fuel-val">17.1 km/ℓ</div>
+      </div>
+      <p class="section-desc" style="margin-top:14px;">CO₂ 배출량 91g/km · 오너 실주행 기록 기준 실연비는 공인연비와 비슷하거나 약간 웃도는 경우가 많다는 평가가 많습니다. (F SPORT 트림은 19인치 휠 적용으로 복합연비 16.8km/ℓ로 소폭 낮음)</p>
+    </div>
+  </section>
+
+  <!-- 5. 안전사양 -->
+  <section>
+    <div class="section-head"><span class="section-num">05</span><h2>안전 사양</h2></div>
+    <p class="section-desc">전 트림에 렉서스 세이프티 시스템+ 2.5+(LSS+ 2.5+)가 기본 탑재됩니다.</p>
+    <div class="safety-grid">
+      <div class="safety-item">
+        <div class="ico">PCS</div>
+        <h3>프리크래시 세이프티</h3>
+        <p>차량·보행자·자전거 이용자를 감지해 충돌을 경고하고, 필요 시 자동 제동</p>
+      </div>
+      <div class="safety-item">
+        <div class="ico">LTA</div>
+        <h3>레인 트레이싱 어시스트</h3>
+        <p>차선 중앙을 유지하며 조향을 보조하는 반자율 주행 보조</p>
+      </div>
+      <div class="safety-item">
+        <div class="ico">DRCC</div>
+        <h3>다이내믹 레이더 크루즈</h3>
+        <p>앞차와의 거리를 자동으로 유지하는 어댑티브 크루즈 컨트롤</p>
+      </div>
+      <div class="safety-item">
+        <div class="ico">RCTA</div>
+        <h3>후측방 경보 시스템</h3>
+        <p>후진 시 좌우 접근 차량을 감지해 충돌 위험을 경고</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. 보증 -->
+  <section>
+    <div class="section-head"><span class="section-num">06</span><h2>보증 정책</h2></div>
+    <div class="card">
+      <ul class="warranty-list">
+        <li>차체 · 일반부품 · 엔진 및 동력전달계통 <span class="term">4년 / 100,000km</span></li>
+        <li>하이브리드 시스템 관련 부품 <span class="term">5년 / 80,000km</span></li>
+        <li>하이브리드 제어 모듈 <span class="term">7년 / 120,000km</span></li>
+        <li>하이브리드 메인 배터리 특별보증 <span class="term">10년 / 200,000km</span></li>
+        <li>배출가스 관련 부품 <span class="term">5년 / 80,000km</span></li>
+        <li>정화용 촉매 · 전자제어장치 <span class="term">7년 / 120,000km</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 7. 색상 -->
+  <section>
+    <div class="section-head"><span class="section-num">07</span><h2>색상 옵션</h2></div>
+    <div class="card">
+      <div class="spec-card-title">외장 색상 (12종)</div>
+      <div class="swatches" style="margin-bottom:20px;">
+        <span class="swatch"><span class="dot" style="background:#e9e4d8"></span>Ice Ecru Mica</span>
+        <span class="swatch"><span class="dot" style="background:#d9dbe0"></span>Sonic Quartz</span>
+        <span class="swatch"><span class="dot" style="background:#8a9098"></span>Sonic Chrome</span>
+        <span class="swatch"><span class="dot" style="background:#3c4550"></span>Sonic Iridium</span>
+        <span class="swatch"><span class="dot" style="background:#5c6570"></span>Sonic Titanium</span>
+        <span class="swatch"><span class="dot" style="background:#f4f4f2"></span>White Nova Glass</span>
+        <span class="swatch"><span class="dot" style="background:#4a5c4f"></span>Sunlight Green Mica M.</span>
+        <span class="swatch"><span class="dot" style="background:#5a6d5e"></span>Sunlight Green Mica</span>
+        <span class="swatch"><span class="dot" style="background:#2c4256"></span>Heat Blue Contrast</span>
+        <span class="swatch"><span class="dot" style="background:#1e2c3d"></span>Deep Blue Mica</span>
+        <span class="swatch"><span class="dot" style="background:#14171b"></span>Graphite Black Glass</span>
+        <span class="swatch"><span class="dot" style="background:#7a1f26"></span>Red Mica Crystal</span>
+      </div>
+      <div class="spec-card-title">내장 색상 (5종)</div>
+      <div class="swatches">
+        <span class="swatch"><span class="dot" style="background:#b8895a"></span>Hazel</span>
+        <span class="swatch"><span class="dot" style="background:#f2ede4"></span>Solis White</span>
+        <span class="swatch"><span class="dot" style="background:#7a5361"></span>Mauve</span>
+        <span class="swatch"><span class="dot" style="background:#1c1c1e"></span>Black</span>
+        <span class="swatch"><span class="dot" style="background:#7a1f26"></span>Crimson Red</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. 경쟁차종 비교 -->
+  <section>
+    <div class="section-head"><span class="section-num">08</span><h2>경쟁 차종 비교</h2></div>
+    <p class="section-desc">동급 하이브리드 프리미엄 세단인 현대 그랜저 하이브리드와 비교한 참고 자료입니다.</p>
+    <div class="card" style="padding:0;overflow:hidden;">
+      <table class="compare-table">
+        <tr><th>비교 항목</th><th>렉서스 ES300h</th><th>그랜저 하이브리드</th></tr>
+        <tr><td>시작 가격</td><td class="col-es">약 6,725만원</td><td>약 4,583만원</td></tr>
+        <tr><td>복합연비</td><td class="col-es">17.2 km/ℓ</td><td>16.2~17.0 km/ℓ</td></tr>
+        <tr><td>정숙성</td><td class="col-es">프리미엄 브랜드 특유의 높은 정숙성</td><td>방음·진동흡수 강화로 격차 축소</td></tr>
+        <tr><td>브랜드 포지셔닝</td><td class="col-es">수입 프리미엄</td><td>국산 플래그십</td></tr>
+        <tr><td>메인 배터리 보증</td><td class="col-es">10년 / 20만km</td><td>제조사 정책 별도 확인 필요</td></tr>
+      </table>
+    </div>
+    <p class="section-desc" style="margin-top:12px;">※ 가격·연비는 트림·시점에 따라 변동될 수 있어 참고용입니다. 캠리 하이브리드와 비교 시에는 실내 만족도·승차감에서 ES가 앞선다는 오너 평가가 많습니다.</p>
+  </section>
+
+  <!-- 9. 장단점 요약 -->
+  <section>
+    <div class="section-head"><span class="section-num">09</span><h2>구매 포인트 요약</h2></div>
+    <div class="pc-grid">
+      <div class="pc-card pos">
+        <h3>✔ 이런 분께 추천</h3>
+        <ul>
+          <li>동급 최고 수준의 정숙성과 승차감을 원하는 분</li>
+          <li>장거리 주행이 잦아 연료비 절감이 중요한 분</li>
+          <li>10년/20만km 배터리 보증 등 장기 신뢰성을 중시하는 분</li>
+          <li>수입 프리미엄 세단의 브랜드 가치를 원하는 분</li>
+        </ul>
+      </div>
+      <div class="pc-card neg">
+        <h3>✘ 고려할 점</h3>
+        <ul>
+          <li>동급 국산 하이브리드 대비 1,500만~1,800만원가량 높은 가격</li>
+          <li>스포티한 주행감보다는 편안함에 초점(F SPORT 제외)</li>
+          <li>7월 1일 세제 기준 변경 등 가격 변동 이슈 확인 필요</li>
+          <li>옵션 구성이 트림별로 제한적(럭셔리·F SPORT 단종)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. 요약 -->
+  <section>
+    <div class="summary-box">
+      <div class="section-head"><span class="section-num">SUMMARY</span><h2>한 줄 정리</h2></div>
+      <p>ES300h는 <strong style="color:#fff;">218마력 하이브리드 시스템</strong>과 <strong style="color:#fff;">복합연비 17.2km/ℓ</strong>를 갖춘 렉서스의 스테디셀러 세단으로, 가격은 국산 경쟁 모델보다 높지만 정숙성·내구성·장기 보증에서 프리미엄 가치를 제공합니다. 예산이 허락한다면 여전히 준대형 하이브리드 세단 중 완성도가 가장 높은 선택지 중 하나입니다.</p>
+      <div style="margin-top:16px;">
+        <span class="pill">복합연비 17.2km/ℓ</span>
+        <span class="pill">시스템출력 218PS</span>
+        <span class="pill">트렁크 473L</span>
+        <span class="pill">배터리보증 10년/20만km</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    본 자료는 2026년 8월 기준 공개된 판매정보·언론보도를 취합해 정리한 참고 자료이며, 실제 가격·사양·프로모션은 렉서스 공식 딜러 확인이 필요합니다.<br>
+    자료 출처: carnoon.co.kr, brunch.co.kr, autoview.co.kr, theautodatahub.com 외
+  </footer>
+
+</div>
+</body>
+</html>
