@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>렉서스 NX450h+ 완벽 구매 가이드 (2026년형)</title>
+<style>
+  :root{
+    --navy:#0d1b2a;
+    --navy2:#14263a;
+    --gold:#c9a24b;
+    --gold-light:#e6cd8a;
+    --green:#2f7a4f;
+    --green-light:#dff2e6;
+    --text:#22303f;
+    --sub:#5c6b7a;
+    --line:#e6e8ec;
+    --bg:#f5f6f8;
+    --card:#ffffff;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",-apple-system,BlinkMacSystemFont,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+  }
+  .wrap{max-width:960px;margin:0 auto;padding:0 20px 60px;}
+
+  /* Hero */
+  .hero{
+    background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 55%,#1c2f45 100%);
+    color:#fff;
+    padding:70px 24px 56px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;top:-80px;right:-80px;
+    width:300px;height:300px;border-radius:50%;
+    background:radial-gradient(circle,rgba(201,162,75,0.25),transparent 70%);
+  }
+  .hero::after{
+    content:"";
+    position:absolute;bottom:-100px;left:-60px;
+    width:260px;height:260px;border-radius:50%;
+    background:radial-gradient(circle,rgba(47,122,79,0.18),transparent 70%);
+  }
+  .hero-tag{
+    display:inline-block;
+    letter-spacing:3px;
+    font-size:12px;
+    color:var(--gold-light);
+    border:1px solid rgba(230,205,138,0.5);
+    border-radius:20px;
+    padding:6px 16px;
+    margin-bottom:22px;
+    text-transform:uppercase;
+  }
+  .hero h1{
+    font-size:38px;
+    margin:0 0 14px;
+    font-weight:800;
+    letter-spacing:-0.5px;
+    position:relative;
+  }
+  .hero p.sub{
+    font-size:16px;
+    color:#c9d2dc;
+    max-width:560px;
+    margin:0 auto;
+    position:relative;
+  }
+  .hero-meta{
+    margin-top:28px;
+    display:flex;
+    justify-content:center;
+    gap:28px;
+    flex-wrap:wrap;
+    position:relative;
+  }
+  .hero-meta div{font-size:13px;color:#a9b6c4;}
+  .hero-meta strong{display:block;color:#fff;font-size:17px;margin-top:2px;}
+
+  /* Section */
+  section{margin-top:44px;}
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    margin-bottom:18px;
+  }
+  .section-num{
+    color:var(--gold);
+    font-weight:800;
+    font-size:14px;
+    letter-spacing:1px;
+  }
+  h2{
+    font-size:21px;
+    margin:0;
+    font-weight:800;
+    color:var(--navy);
+  }
+  .section-desc{color:var(--sub);font-size:14px;margin:-8px 0 18px;}
+
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:22px 24px;
+    box-shadow:0 1px 3px rgba(20,30,45,0.04);
+  }
+
+  /* Trim price cards */
+  .trims{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .trim-card{
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:22px;
+    background:var(--card);
+    position:relative;
+  }
+  .trim-card.featured{border:1.5px solid var(--gold);}
+  .trim-badge{
+    position:absolute;top:-11px;right:18px;
+    background:var(--gold);color:#fff;font-size:11px;
+    padding:4px 10px;border-radius:20px;font-weight:700;
+  }
+  .trim-name{font-size:13px;color:var(--sub);font-weight:700;letter-spacing:0.5px;}
+  .trim-price{font-size:26px;font-weight:800;color:var(--navy);margin:6px 0 14px;}
+  .trim-price span{font-size:13px;color:var(--sub);font-weight:500;}
+  .trim-feat{list-style:none;margin:0;padding:0;font-size:13.5px;color:var(--text);}
+  .trim-feat li{padding:5px 0;border-top:1px dashed var(--line);}
+  .trim-feat li:first-child{border-top:none;}
+  .price-note{
+    font-size:12.5px;color:var(--sub);margin-top:14px;
+    background:#f7f4ea;border:1px solid #ecdfb8;
+    padding:10px 14px;border-radius:10px;
+  }
+
+  /* Spec table */
+  table{width:100%;border-collapse:collapse;font-size:14px;}
+  th,td{padding:11px 12px;text-align:left;border-bottom:1px solid var(--line);}
+  th{color:var(--sub);font-weight:600;width:34%;background:#fafbfc;}
+  td{font-weight:600;color:var(--navy);}
+  .spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media(max-width:680px){.spec-grid{grid-template-columns:1fr;}.trims{grid-template-columns:1fr;}}
+  .spec-card-title{font-size:13px;font-weight:800;color:var(--gold);letter-spacing:0.5px;margin-bottom:10px;text-transform:uppercase;}
+
+  /* Fuel economy bar */
+  .fuel-row{display:flex;align-items:center;gap:14px;margin-bottom:12px;}
+  .fuel-label{width:100px;font-size:13px;color:var(--sub);flex-shrink:0;}
+  .fuel-bar-bg{flex:1;background:#eef0f3;border-radius:8px;height:14px;overflow:hidden;}
+  .fuel-bar{height:100%;border-radius:8px;background:linear-gradient(90deg,var(--gold),var(--gold-light));}
+  .fuel-bar.ev{background:linear-gradient(90deg,var(--green),#6fbf8e);}
+  .fuel-val{width:78px;text-align:right;font-weight:800;color:var(--navy);font-size:14px;flex-shrink:0;}
+
+  /* EV badge box */
+  .ev-box{
+    background:var(--green-light);
+    border:1px solid #bfe3cd;
+    border-radius:14px;
+    padding:20px 22px;
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+  }
+  .ev-stat{flex:1;min-width:120px;}
+  .ev-stat .num{font-size:24px;font-weight:800;color:var(--green);}
+  .ev-stat .lbl{font-size:12.5px;color:#3f6b50;margin-top:2px;}
+
+  /* Safety list */
+  .safety-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .safety-item{
+    background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:16px 18px;
+  }
+  .safety-item .ico{
+    width:34px;height:34px;border-radius:9px;
+    background:var(--navy);color:var(--gold-light);
+    display:flex;align-items:center;justify-content:center;
+    font-size:12px;font-weight:800;margin-bottom:10px;
+  }
+  .safety-item h3{margin:0 0 4px;font-size:14.5px;color:var(--navy);}
+  .safety-item p{margin:0;font-size:12.8px;color:var(--sub);}
+
+  /* Compare table */
+  .compare-table{width:100%;border-collapse:collapse;font-size:13.5px;}
+  .compare-table th{background:var(--navy);color:#fff;padding:12px 10px;font-weight:700;}
+  .compare-table td{padding:12px 10px;border-bottom:1px solid var(--line);}
+  .compare-table tr:nth-child(even) td{background:#fafbfc;}
+  .compare-table td:first-child{color:var(--sub);font-weight:600;}
+  .compare-table .col-phev{font-weight:800;color:var(--navy);background:#faf6ea !important;}
+
+  /* Pros cons */
+  .pc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .pc-card{border-radius:14px;padding:20px 22px;}
+  .pc-card.pos{background:#f0f8f2;border:1px solid #cfe8d6;}
+  .pc-card.neg{background:#fbf1f1;border:1px solid #efd3d3;}
+  .pc-card h3{margin:0 0 10px;font-size:15px;}
+  .pc-card.pos h3{color:#1e7a3d;}
+  .pc-card.neg h3{color:#b23c3c;}
+  .pc-card ul{margin:0;padding-left:18px;font-size:13.5px;}
+  .pc-card li{margin-bottom:6px;}
+
+  /* Colors */
+  .swatches{display:flex;flex-wrap:wrap;gap:10px;}
+  .swatch{
+    display:flex;align-items:center;gap:8px;
+    background:#fafbfc;border:1px solid var(--line);border-radius:20px;
+    padding:6px 12px 6px 6px;font-size:12px;color:var(--sub);
+  }
+  .dot{width:20px;height:20px;border-radius:50%;border:1px solid rgba(0,0,0,0.1);flex-shrink:0;}
+
+  /* Summary box */
+  .summary-box{
+    background:linear-gradient(135deg,var(--navy),#1c2f45);
+    color:#fff;border-radius:16px;padding:28px 26px;
+  }
+  .summary-box h2{color:#fff;}
+  .summary-box .section-num{color:var(--gold-light);}
+  .summary-box p{color:#cdd6df;font-size:14.5px;margin:8px 0 0;}
+  .summary-box .pill{
+    display:inline-block;background:rgba(201,162,75,0.18);
+    border:1px solid rgba(230,205,138,0.4);color:var(--gold-light);
+    font-size:12px;padding:4px 12px;border-radius:20px;margin:2px 6px 2px 0;
+  }
+
+  footer{
+    margin-top:56px;padding-top:20px;border-top:1px solid var(--line);
+    font-size:12px;color:var(--sub);text-align:center;
+  }
+  footer a{color:var(--sub);}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <span class="hero-tag">2026 Buyer's Guide · PHEV</span>
+  <h1>렉서스 New NX 450h+<br>구매자를 위한 완벽 분석</h1>
+  <p class="sub">가격·제원·연비·전기주행거리·안전사양까지, 플러그인 하이브리드 NX450h+ 구매 전 알아야 할 모든 정보를 정리했습니다.</p>
+  <div class="hero-meta">
+    <div>차종<strong>소형 SUV (PHEV)</strong></div>
+    <div>복합연비<strong>14.4 km/ℓ</strong></div>
+    <div>가격대<strong>7,573만~8,343만원</strong></div>
+    <div>시스템 출력<strong>307 PS</strong></div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- 1. 가격/트림 -->
+  <section>
+    <div class="section-head"><span class="section-num">01</span><h2>가격 · 트림 구성</h2></div>
+    <p class="section-desc">NX450h+는 PHEV 라인업으로 프리미엄, F SPORT 2개 트림이 운영됩니다. 같은 세대의 가솔린 하이브리드 NX350h(프리미엄/럭셔리)도 함께 판매 중입니다.</p>
+    <div class="trims">
+      <div class="trim-card">
+        <div class="trim-name">450h+ PREMIUM</div>
+        <div class="trim-price">75,730,000<span> 원</span></div>
+        <ul class="trim-feat">
+          <li>18인치 알로이 휠</li>
+          <li>렉서스 세이프티 시스템+ 기본</li>
+          <li>6.6kW OBC 완속 충전 시스템</li>
+          <li>파워트렁크, 스마트 액세스</li>
+        </ul>
+      </div>
+      <div class="trim-card featured">
+        <span class="trim-badge">스포티 트림</span>
+        <div class="trim-name">450h+ F SPORT</div>
+        <div class="trim-price">83,430,000<span> 원</span></div>
+        <ul class="trim-feat">
+          <li>20인치 전용 알로이 휠</li>
+          <li>F SPORT 전용 서스펜션 · 스티어링</li>
+          <li>스포츠 시트 · 전용 인테리어</li>
+          <li>프리미엄 트림 사양 전체 포함</li>
+        </ul>
+      </div>
+    </div>
+    <p class="price-note">※ 위 가격은 2026년형 개별소비세 인하 종료(7월 1일 이후) 기준입니다. 6월 30일 이전 30% 인하 기준 가격은 각 트림당 약 100만~110만원 낮았습니다. 계약 전 렉서스 공식 딜러에서 최신 가격을 반드시 재확인하세요.</p>
+  </section>
+
+  <!-- 2. 외관 제원 -->
+  <section>
+    <div class="section-head"><span class="section-num">02</span><h2>차체 제원</h2></div>
+    <div class="spec-grid">
+      <div class="card">
+        <div class="spec-card-title">Dimensions</div>
+        <table>
+          <tr><th>전장 (길이)</th><td>4,660 mm</td></tr>
+          <tr><th>전폭 (너비)</th><td>1,865 mm</td></tr>
+          <tr><th>전고 (높이)</th><td>1,670 mm</td></tr>
+          <tr><th>축간거리</th><td>2,690 mm</td></tr>
+          <tr><th>공차중량</th><td>2,030 kg</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <div class="spec-card-title">Cargo &amp; Wheels</div>
+        <table>
+          <tr><th>트렁크 용량</th><td>520 L</td></tr>
+          <tr><th>타이어 (Premium)</th><td>235/60R18</td></tr>
+          <tr><th>타이어 (F SPORT)</th><td>235/50R20</td></tr>
+          <tr><th>연료탱크</th><td>55 L</td></tr>
+          <tr><th>변속기</th><td>e-CVT</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. 파워트레인 -->
+  <section>
+    <div class="section-head"><span class="section-num">03</span><h2>파워트레인 (엔진 + 모터 + 배터리)</h2></div>
+    <div class="spec-grid">
+      <div class="card">
+        <div class="spec-card-title">2.5L 가솔린 엔진</div>
+        <table>
+          <tr><th>엔진 형식</th><td>직렬 4기통</td></tr>
+          <tr><th>배기량</th><td>2,487 cc</td></tr>
+          <tr><th>최고출력</th><td>182 PS / 6,000 rpm</td></tr>
+          <tr><th>최대토크</th><td>23.1 kgf·m / 3,600~3,700 rpm</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <div class="spec-card-title">구동 모터 + 배터리</div>
+        <table>
+          <tr><th>배터리 종류/용량</th><td>리튬이온 18.1 kWh</td></tr>
+          <tr><th>시스템 합산출력</th><td>307 PS</td></tr>
+          <tr><th>구동방식</th><td>AWD (E-Four)</td></tr>
+          <tr><th>충전방식</th><td>6.6kW OBC · AC 완속</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. 연비 & EV 주행거리 -->
+  <section>
+    <div class="section-head"><span class="section-num">04</span><h2>공인 연비 &amp; 전기 주행거리</h2></div>
+    <div class="card" style="margin-bottom:16px;">
+      <div class="spec-card-title">연료(휘발유) 연비</div>
+      <div class="fuel-row">
+        <div class="fuel-label">복합연비</div>
+        <div class="fuel-bar-bg"><div class="fuel-bar" style="width:72%"></div></div>
+        <div class="fuel-val">14.4 km/ℓ</div>
+      </div>
+      <div class="fuel-row">
+        <div class="fuel-label">도심연비</div>
+        <div class="fuel-bar-bg"><div class="fuel-bar" style="width:75%"></div></div>
+        <div class="fuel-val">15.0 km/ℓ</div>
+      </div>
+      <div class="fuel-row">
+        <div class="fuel-label">고속도로연비</div>
+        <div class="fuel-bar-bg"><div class="fuel-bar" style="width:68%"></div></div>
+        <div class="fuel-val">13.7 km/ℓ</div>
+      </div>
+      <p class="section-desc" style="margin-top:14px;margin-bottom:0;">CO₂ 배출량 26g/km — 전기 주행 비중이 큰 PHEV 특성상 동급 가솔린 대비 매우 낮은 수치입니다.</p>
+    </div>
+    <div class="ev-box">
+      <div class="ev-stat"><div class="num">56 km</div><div class="lbl">1회충전 주행거리 (복합)</div></div>
+      <div class="ev-stat"><div class="num">60 km</div><div class="lbl">1회충전 주행거리 (도심)</div></div>
+      <div class="ev-stat"><div class="num">51 km</div><div class="lbl">1회충전 주행거리 (고속도로)</div></div>
+      <div class="ev-stat"><div class="num">3.8 km/kWh</div><div class="lbl">복합 전비</div></div>
+    </div>
+  </section>
+
+  <!-- 5. 충전 정보 -->
+  <section>
+    <div class="section-head"><span class="section-num">05</span><h2>충전 정보</h2></div>
+    <div class="card">
+      <table>
+        <tr><th>완속 충전 (32A 완속충전기)</th><td>약 2시간 37분 (0→100%)</td></tr>
+        <tr><th>탑재 충전기(OBC)</th><td>6.6 kW</td></tr>
+        <tr><th>충전구 방식</th><td>AC 단상</td></tr>
+        <tr><th>급속 충전</th><td>미지원 (완속 전용 PHEV)</td></tr>
+      </table>
+      <p class="section-desc" style="margin-top:12px;margin-bottom:0;">일반 가정용 220V 콘센트로도 충전 가능하나 완속충전기 대비 시간이 더 소요됩니다. 출퇴근 등 근거리 주행은 배터리만으로 충분히 커버할 수 있는 수준의 EV 주행거리입니다.</p>
+    </div>
+  </section>
+
+  <!-- 6. 안전사양 -->
+  <section>
+    <div class="section-head"><span class="section-num">06</span><h2>안전 사양</h2></div>
+    <p class="section-desc">전 트림에 렉서스 세이프티 시스템+(LSS+)가 기본 탑재됩니다.</p>
+    <div class="safety-grid">
+      <div class="safety-item">
+        <div class="ico">PCS</div>
+        <h3>프리크래시 세이프티 / 긴급제동보조</h3>
+        <p>전방 차량·보행자·자전거 이용자를 감지해 충돌을 경고하고 자동 제동</p>
+      </div>
+      <div class="safety-item">
+        <div class="ico">LTA</div>
+        <h3>레인 트레이싱 어시스트</h3>
+        <p>차선 중앙을 유지하며 조향을 보조하는 능동형 주행 어시스트</p>
+      </div>
+      <div class="safety-item">
+        <div class="ico">DRCC</div>
+        <h3>다이내믹 레이더 크루즈 컨트롤</h3>
+        <p>앞차와의 거리를 자동으로 유지하는 어댑티브 크루즈 컨트롤</p>
+      </div>
+      <div class="safety-item">
+        <div class="ico">BSM</div>
+        <h3>사각지대 감지 · 후측방 제동보조</h3>
+        <p>후진·차선변경 시 사각지대 차량을 감지해 경고 및 제동 개입, 안전 하차 어시스트 포함</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. 색상 -->
+  <section>
+    <div class="section-head"><span class="section-num">07</span><h2>색상 옵션</h2></div>
+    <div class="card">
+      <div class="spec-card-title">외장 색상 (15종)</div>
+      <div class="swatches" style="margin-bottom:20px;">
+        <span class="swatch"><span class="dot" style="background:#14171b"></span>Graphite Black</span>
+        <span class="swatch"><span class="dot" style="background:#d9dbe0"></span>Sonic Quartz</span>
+        <span class="swatch"><span class="dot" style="background:#8a9098"></span>Sonic Chrome</span>
+        <span class="swatch"><span class="dot" style="background:#5c6570"></span>Sonic Titanium</span>
+        <span class="swatch"><span class="dot" style="background:#f4f4f2"></span>White Nova Glass</span>
+        <span class="swatch"><span class="dot" style="background:#7a6a4d"></span>Terrance Khaki Mica</span>
+        <span class="swatch"><span class="dot" style="background:#2c4256"></span>Celestial Blue Glass</span>
+        <span class="swatch"><span class="dot" style="background:#2c4256"></span>Heat Blue Contrast</span>
+        <span class="swatch"><span class="dot" style="background:#1c1c1e"></span>Graphite Black Glass</span>
+        <span class="swatch"><span class="dot" style="background:#0d0d0f"></span>Black</span>
+        <span class="swatch"><span class="dot" style="background:#7a1f26"></span>Madder Red</span>
+        <span class="swatch"><span class="dot" style="background:#a8683a"></span>Sonic Copper</span>
+        <span class="swatch"><span class="dot" style="background:#8c2a24"></span>Radiant Red Contrast</span>
+        <span class="swatch"><span class="dot" style="background:#8c3a24"></span>Blazing Carnelian</span>
+        <span class="swatch"><span class="dot" style="background:#8c3a24"></span>Blazing Carnelian Contrast</span>
+      </div>
+      <div class="spec-card-title">내장 색상 (7종)</div>
+      <div class="swatches">
+        <span class="swatch"><span class="dot" style="background:#7a1f26"></span>Flare Red</span>
+        <span class="swatch"><span class="dot" style="background:#7a5361"></span>Dark Rose</span>
+        <span class="swatch"><span class="dot" style="background:#e9dfc9"></span>Rich Cream</span>
+        <span class="swatch"><span class="dot" style="background:#b8895a"></span>Hazel</span>
+        <span class="swatch"><span class="dot" style="background:#f2ede4"></span>Solis White</span>
+        <span class="swatch"><span class="dot" style="background:#f5f5f5"></span>White</span>
+        <span class="swatch"><span class="dot" style="background:#1c1c1e"></span>Black</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. NX350h vs NX450h+ 비교 -->
+  <section>
+    <div class="section-head"><span class="section-num">08</span><h2>NX350h(HEV) vs NX450h+(PHEV) 비교</h2></div>
+    <p class="section-desc">같은 세대 NX 라인업 안에서 하이브리드와 플러그인 하이브리드 중 무엇을 고를지 고민된다면 참고하세요.</p>
+    <div class="card" style="padding:0;overflow:hidden;">
+      <table class="compare-table">
+        <tr><th>비교 항목</th><th>NX 350h (HEV)</th><th>NX 450h+ (PHEV)</th></tr>
+        <tr><td>시작 가격</td><td>66,950,000원</td><td class="col-phev">75,730,000원</td></tr>
+        <tr><td>구동방식</td><td>FF / AWD</td><td class="col-phev">AWD (E-Four) 고정</td></tr>
+        <tr><td>최고출력(엔진)</td><td>189 PS</td><td class="col-phev">182 PS + 모터 (시스템 307 PS)</td></tr>
+        <tr><td>복합연비</td><td>14.3 km/ℓ</td><td class="col-phev">14.4 km/ℓ (+EV 56km)</td></tr>
+        <tr><td>충전 필요 여부</td><td>불필요</td><td class="col-phev">완속충전 권장(2시간 37분)</td></tr>
+        <tr><td>공차중량</td><td>1,850 kg</td><td class="col-phev">2,030 kg</td></tr>
+      </table>
+    </div>
+    <p class="section-desc" style="margin-top:12px;">※ 매일 충전이 가능한 환경(자택·회사 완속충전기)이라면 NX450h+의 EV 주행거리로 출퇴근 대부분을 전기로만 커버할 수 있어 실질 연료비 절감 효과가 큽니다. 충전이 어렵다면 가격이 낮고 관리가 간단한 NX350h가 합리적입니다.</p>
+  </section>
+
+  <!-- 9. 장단점 요약 -->
+  <section>
+    <div class="section-head"><span class="section-num">09</span><h2>구매 포인트 요약</h2></div>
+    <div class="pc-grid">
+      <div class="pc-card pos">
+        <h3>✔ 이런 분께 추천</h3>
+        <ul>
+          <li>자택·회사에 완속충전 환경이 있어 매일 충전이 가능한 분</li>
+          <li>출퇴근 등 단거리는 전기로, 장거리는 하이브리드로 타고 싶은 분</li>
+          <li>307마력의 여유로운 가속력과 AWD 상시 구동을 원하는 분</li>
+          <li>친환경차 세제 혜택(취등록세 감면 등)을 함께 고려하는 분</li>
+        </ul>
+      </div>
+      <div class="pc-card neg">
+        <h3>✘ 고려할 점</h3>
+        <ul>
+          <li>NX350h(HEV) 대비 약 870만원 높은 시작 가격</li>
+          <li>충전 환경이 없으면 배터리 무게(공차중량 2,030kg)만 지고 다니는 셈</li>
+          <li>급속 충전 미지원, 완속 충전만 가능(2시간 37분)</li>
+          <li>트렁크 520L로 동급 SUV 대비 크게 넉넉한 편은 아님</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. 요약 -->
+  <section>
+    <div class="summary-box">
+      <div class="section-head"><span class="section-num">SUMMARY</span><h2>한 줄 정리</h2></div>
+      <p>NX450h+는 <strong style="color:#fff;">307마력 AWD 플러그인 하이브리드</strong> 시스템과 <strong style="color:#fff;">복합연비 14.4km/ℓ + EV 56km</strong>를 갖춘 렉서스 컴팩트 SUV로, 매일 충전이 가능한 환경이라면 연료비 절감과 주행성능을 동시에 잡을 수 있는 선택지입니다. 충전 여건이 없다면 가격이 낮은 NX350h가 더 현실적일 수 있습니다.</p>
+      <div style="margin-top:16px;">
+        <span class="pill">시스템출력 307PS</span>
+        <span class="pill">EV주행거리 56km</span>
+        <span class="pill">배터리 18.1kWh</span>
+        <span class="pill">트렁크 520L</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    본 자료는 2026년 8월 기준 공개된 판매정보·언론보도를 취합해 정리한 참고 자료이며, 실제 가격·사양·프로모션은 렉서스 공식 딜러 확인이 필요합니다.<br>
+    자료 출처: carnoon.co.kr, top-rider.com, gpkorea.com, seoulfn.com 외
+  </footer>
+
+</div>
+</body>
+</html>
