@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>아우디 Q4 e-트론 완벽 가이드 (2026년형) — 가격·제원·경쟁차종</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif;
+  background: #f0f4f8;
+  color: #222;
+  line-height: 1.7;
+}
+a { color: inherit; }
+
+header {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  color: #fff;
+  padding: 56px 24px 46px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.35);
+  position: relative;
+  overflow: hidden;
+}
+header::after {
+  content: "";
+  position: absolute;
+  right: -60px; top: -60px;
+  width: 260px; height: 260px;
+  background: radial-gradient(circle, rgba(233,69,96,.18) 0%, rgba(233,69,96,0) 70%);
+}
+.header-inner { max-width: 900px; margin: 0 auto; position: relative; }
+.badge-row { display: flex; gap: 8px; margin-bottom: 18px; flex-wrap: wrap; }
+.badge {
+  display: inline-block; padding: 5px 12px; border-radius: 20px;
+  font-size: 0.74rem; font-weight: 700; letter-spacing: .3px;
+  background: rgba(255,255,255,.12); color: #cfd8ea; border: 1px solid rgba(255,255,255,.18);
+}
+.badge.accent { background: rgba(233,69,96,.22); color: #ff8ba1; border-color: rgba(233,69,96,.35); }
+header h1 { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.6px; line-height: 1.4; margin-bottom: 14px; }
+header .lede { font-size: 0.98rem; color: #b8c2d9; max-width: 700px; }
+header .meta { margin-top: 22px; font-size: 0.8rem; color: #8290ac; display: flex; gap: 18px; flex-wrap: wrap; }
+
+.container { max-width: 900px; margin: 0 auto; padding: 40px 20px 80px; }
+
+.summary-card {
+  background: #fff; border-radius: 16px; padding: 28px 30px;
+  box-shadow: 0 4px 18px rgba(15,52,96,.08); margin-bottom: 40px;
+  border-left: 5px solid #0f3460;
+}
+.summary-card h2 { font-size: 1.05rem; color: #0f3460; margin-bottom: 16px; display:flex; align-items:center; gap:8px; }
+.summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 16px; }
+.summary-item { background: #f7f9fc; border-radius: 10px; padding: 14px 16px; }
+.summary-item .label { font-size: 0.68rem; font-weight: 700; color: #5c6bc0; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 6px; }
+.summary-item .value { font-size: 1.05rem; font-weight: 800; color: #16213e; }
+.summary-item .sub { font-size: 0.76rem; color: #8a95a5; margin-top: 2px; }
+
+section.block { margin-bottom: 46px; }
+.section-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 30px; height: 30px; border-radius: 8px; background: #0f3460; color: #fff;
+  font-size: 0.85rem; font-weight: 800; margin-right: 10px; flex-shrink: 0;
+}
+h2.section-title {
+  font-size: 1.28rem; color: #16213e; font-weight: 800; display: flex; align-items: center;
+  padding-bottom: 14px; margin-bottom: 22px; border-bottom: 2px solid #dde8f5;
+}
+h3.sub-title {
+  font-size: 1.02rem; color: #0f3460; font-weight: 700; margin: 26px 0 12px;
+  padding-left: 12px; border-left: 4px solid #e94560;
+}
+p.body-text { font-size: 0.93rem; color: #3a3f4b; margin-bottom: 12px; }
+
+ul.point-list { list-style: none; margin: 14px 0; }
+ul.point-list li {
+  position: relative; padding: 12px 18px 12px 34px; margin-bottom: 8px;
+  background: #fff; border-radius: 10px; box-shadow: 0 1px 5px rgba(0,0,0,.06);
+  font-size: 0.9rem; color: #333;
+}
+ul.point-list li::before {
+  content: "●"; position: absolute; left: 14px; top: 13px; color: #0f3460; font-size: 0.6rem;
+}
+ul.point-list li b { color: #16213e; }
+
+.callout {
+  background: #fff8f0; border: 1px solid #f4dfc4; border-radius: 12px;
+  padding: 18px 20px; margin: 18px 0; font-size: 0.87rem; color: #7a5a20;
+}
+.callout.warn { background: #fff1f1; border-color: #f4c4c4; color: #8a2020; }
+.callout b { color: #a05a00; }
+.callout.warn b { color: #b02020; }
+
+table.data-table { width: 100%; border-collapse: collapse; margin: 16px 0 6px; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 6px rgba(0,0,0,.08); }
+table.data-table thead tr { background: #0f3460; }
+table.data-table thead th { padding: 12px 14px; color: #fff; font-size: 0.78rem; font-weight: 700; text-align: left; letter-spacing: .3px; }
+table.data-table tbody td { padding: 11px 14px; font-size: 0.85rem; border-top: 1px solid #eef1f6; }
+table.data-table tbody tr:nth-child(even) { background: #f8fafc; }
+table.data-table tbody tr td:first-child { font-weight: 700; color: #16213e; }
+table.data-table tbody tr.highlight { background: #eef2ff; }
+.table-caption { font-size: 0.76rem; color: #8a95a5; margin-bottom: 4px; }
+
+.spec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 14px; margin-top: 14px; }
+.spec-box { background: #fff; border-radius: 12px; padding: 16px 18px; box-shadow: 0 1px 6px rgba(0,0,0,.07); text-align: center; }
+.spec-box .num { font-size: 1.4rem; font-weight: 800; color: #0f3460; }
+.spec-box .unit { font-size: 0.78rem; color: #8a95a5; margin-left: 2px; }
+.spec-box .name { font-size: 0.78rem; color: #5c6bc0; font-weight: 700; margin-top: 6px; }
+
+.color-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.color-chip { display: flex; align-items: center; gap: 6px; padding: 6px 12px 6px 6px; background: #fff; border-radius: 20px; box-shadow: 0 1px 5px rgba(0,0,0,.08); font-size: 0.78rem; color: #333; }
+.swatch { width: 18px; height: 18px; border-radius: 50%; border: 1px solid rgba(0,0,0,.1); flex-shrink: 0; }
+
+.compare-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 12px; margin-top: 14px; }
+.compare-card { background: #fff; border-radius: 12px; padding: 14px 16px; box-shadow: 0 1px 6px rgba(0,0,0,.07); text-align: center; }
+.compare-card .brand { font-size: 0.72rem; color: #8a95a5; font-weight: 700; }
+.compare-card .model { font-size: 0.93rem; color: #16213e; font-weight: 800; margin-top: 2px; }
+
+.conclusion-box {
+  background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
+  color: #fff; border-radius: 16px; padding: 32px 30px; margin-top: 10px;
+}
+.conclusion-box h3 { font-size: 1.05rem; margin-bottom: 12px; color: #ffb3c1; }
+.conclusion-box p { font-size: 0.93rem; color: #dbe2f0; margin-bottom: 8px; }
+
+footer {
+  text-align: center; padding: 34px 24px 44px; font-size: 0.75rem; color: #b0b8c4;
+  border-top: 1px solid #e8ecf2; margin-top: 8px;
+}
+footer .disclaimer { max-width: 660px; margin: 0 auto 14px; font-size: 0.74rem; color: #9aa4b5; line-height: 1.6; }
+footer .sources { max-width: 660px; margin: 0 auto 14px; font-size: 0.72rem; color: #aab; line-height: 1.8; }
+footer .sources a { color: #7086c8; text-decoration: none; }
+
+@media (max-width: 600px) {
+  header h1 { font-size: 1.4rem; }
+  .container { padding: 28px 16px 60px; }
+  table.data-table { font-size: 0.78rem; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="badge-row">
+      <span class="badge accent">전기 SUV</span>
+      <span class="badge">2026년형</span>
+      <span class="badge">MEB 플랫폼</span>
+      <span class="badge">준중형 SUV</span>
+    </div>
+    <h1>아우디 Q4 e-트론 완벽 가이드<br>가격 · 제원 · 경쟁차종 총정리</h1>
+    <p class="lede">아우디 최초의 컴팩트 세그먼트 순수 전기 SUV, Q4 e-트론의 2026년형(2026년 4월 페이스리프트) 국내 판매 가격, 파워트레인·배터리 제원, 차체 사이즈, 편의사양, 경쟁 모델까지 한 번에 정리한 구매 가이드입니다.</p>
+    <div class="meta">
+      <span>📅 2026-08-07</span>
+      <span>🔋 82kWh · 406km · 286PS</span>
+      <span>🏭 폭스바겐그룹코리아 · 아우디코리아</span>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="summary-card">
+    <h2>🔑 한눈에 보는 Q4 e-트론</h2>
+    <div class="summary-grid">
+      <div class="summary-item">
+        <div class="label">가격대 (2026년형)</div>
+        <div class="value">6,630만~7,600만원</div>
+        <div class="sub">SUV형 / 스포트백형 통합 범위</div>
+      </div>
+      <div class="summary-item">
+        <div class="label">배터리 · 항속거리</div>
+        <div class="value">82kWh · 406km</div>
+        <div class="sub">환경부 인증 복합 기준</div>
+      </div>
+      <div class="summary-item">
+        <div class="label">모터 출력</div>
+        <div class="value">286PS · 55.6kgf·m</div>
+        <div class="sub">단모터 후륜구동(RWD)</div>
+      </div>
+      <div class="summary-item">
+        <div class="label">급속충전</div>
+        <div class="value">최대 135kW</div>
+        <div class="sub">DC 급속충전 기준</div>
+      </div>
+    </div>
+  </div>
+
+  <section class="block">
+    <h2 class="section-title"><span class="section-num">1</span>개요 및 모델 히스토리</h2>
+    <p class="body-text">아우디 Q4 e-트론은 폭스바겐그룹의 전기차 전용 플랫폼인 <b>MEB(Modularer E-Antriebsbaukasten)</b>를 기반으로 개발된 준중형 전기 SUV입니다. Q8, Q8 e-트론과 달리 내연기관 기반 모델이 존재하지 않는 순수 전기차 전용 모델로, 폭스바겐 ID.4·ID.5, 스코다 엔야크와 플랫폼을 공유합니다.</p>
+    <ul class="point-list">
+      <li><b>콘셉트 공개</b> — 2019년 제네바 모터쇼에서 Q4 e-트론 콘셉트카, 이어 Q4 Sportback e-트론 콘셉트가 공개되며 쿠페형 SUV 양산 가능성이 제시되었습니다.</li>
+      <li><b>글로벌 출시</b> — 2021년 4월 월드 프리미어를 통해 양산형 모델이 공개되었고, 같은 해 유럽 시장에서 판매를 시작했습니다.</li>
+      <li><b>국내 출시</b> — 2022년 9월 6일 대한민국에 공식 출시. 초기에는 Q4 40 e-트론 및 Q4 Sportback 40 e-트론이 중심이었으며, 이후 출력이 개선된 45 e-트론이 추가되었습니다.</li>
+      <li><b>2025년형 개편</b> — 기존 40 e-트론을 대체하는 <b>Q4 45 e-트론</b>이 추가되며 최고 출력이 약 210kW(286PS)로 향상되었고, 인증 주행거리는 406km로 조정되었습니다.</li>
+      <li><b>2026년 페이스리프트</b> — 2026년 4월 27일 페이스리프트 모델이 공개되며 현재 국내 판매 라인업은 45 e-트론 단일 트림(SUV·Sportback 2종 차체)으로 운영되고 있습니다.</li>
+      <li><b>생산</b> — 독일 작센주 츠비카우(Zwickau) 소재 폭스바겐그룹 전기차 공장에서 생산되며, 배터리는 LG에너지솔루션이 공급합니다.</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2 class="section-title"><span class="section-num">2</span>2026년형 국내 판매 가격표</h2>
+    <p class="body-text">2026년형 Q4 e-트론은 SUV형(Q4 e-트론)과 쿠페형(Q4 스포트백 e-트론) 두 가지 차체로 판매되며, 각각 기본형과 Premium 트림에 KA6·PWB·J6J6 등의 선택 옵션 패키지를 조합해 세부 가격이 달라집니다.</p>
+
+    <h3 class="sub-title">2.1 Q4 e-트론 (SUV형)</h3>
+    <table class="data-table">
+      <thead><tr><th>모델명</th><th>옵션 구성</th><th>가격(원)</th></tr></thead>
+      <tbody>
+        <tr><td>e-tron 45</td><td>기본형</td><td>66,300,000</td></tr>
+        <tr><td>e-tron 45</td><td>PWB</td><td>66,610,000</td></tr>
+        <tr><td>e-tron 45</td><td>KA6</td><td>66,810,000</td></tr>
+        <tr><td>e-tron 45</td><td>KA6+PWB</td><td>67,110,000</td></tr>
+        <tr class="highlight"><td>e-tron 45 Premium</td><td>기본형</td><td>71,800,000</td></tr>
+        <tr><td>e-tron 45 Premium</td><td>J6J6</td><td>72,000,000</td></tr>
+        <tr><td>e-tron 45 Premium</td><td>PWB</td><td>72,110,000</td></tr>
+        <tr><td>e-tron 45 Premium</td><td>J6J6+PWB</td><td>72,300,000</td></tr>
+        <tr><td>e-tron 45 Premium</td><td>KA6</td><td>72,310,000</td></tr>
+        <tr><td>e-tron 45 Premium</td><td>KA6+J6J6</td><td>72,500,000</td></tr>
+        <tr><td>e-tron 45 Premium</td><td>KA6+PWB</td><td>72,610,000</td></tr>
+        <tr><td>e-tron 45 Premium</td><td>KA6+J6J6+PWB</td><td>72,800,000</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub-title">2.2 Q4 스포트백 e-트론</h3>
+    <table class="data-table">
+      <thead><tr><th>모델명</th><th>옵션 구성</th><th>가격(원)</th></tr></thead>
+      <tbody>
+        <tr><td>e-tron 45</td><td>기본형</td><td>69,800,000</td></tr>
+        <tr><td>e-tron 45</td><td>KA6</td><td>70,310,000</td></tr>
+        <tr class="highlight"><td>e-tron 45 Premium</td><td>기본형</td><td>75,300,000</td></tr>
+        <tr><td>e-tron 45 Premium</td><td>J6J6</td><td>75,500,000</td></tr>
+        <tr><td>e-tron 45 Premium</td><td>KA6</td><td>75,810,000</td></tr>
+        <tr><td>e-tron 45 Premium</td><td>KA6+J6J6</td><td>76,000,000</td></tr>
+      </tbody>
+    </table>
+    <p class="table-caption">※ KA6·PWB·J6J6은 딜러 견적 시스템 상의 개별 옵션 패키지 코드이며, 세부 구성(사운드 시스템·어시스턴스 패키지 등)은 판매 시점에 따라 변경될 수 있습니다. 정확한 옵션 내역과 실구매가(전기차 보조금 반영 전)는 아우디 공식 딜러 견적을 통해 확인이 필요합니다.</p>
+  </section>
+
+  <section class="block">
+    <h2 class="section-title"><span class="section-num">3</span>파워트레인 및 배터리 제원</h2>
+    <p class="body-text">현재 국내 판매되는 2026년형은 <b>45 e-트론</b> 단일 트림(단모터 후륜구동)입니다. 참고로 글로벌·과거 라인업에는 35 / 40 / 45 / 50 콰트로 등 4개 트림이 존재했습니다.</p>
+    <div class="spec-grid">
+      <div class="spec-box"><div class="num">210<span class="unit">kW</span></div><div class="name">최고출력 (286PS)</div></div>
+      <div class="spec-box"><div class="num">545<span class="unit">Nm</span></div><div class="name">최대토크 (55.6kgf·m)</div></div>
+      <div class="spec-box"><div class="num">82<span class="unit">kWh</span></div><div class="name">배터리 용량</div></div>
+      <div class="spec-box"><div class="num">352<span class="unit">V</span></div><div class="name">정격전압 (234Ah)</div></div>
+      <div class="spec-box"><div class="num">406<span class="unit">km</span></div><div class="name">1회충전 주행거리(복합)</div></div>
+      <div class="spec-box"><div class="num">434<span class="unit">km</span></div><div class="name">주행거리(도심)</div></div>
+      <div class="spec-box"><div class="num">371<span class="unit">km</span></div><div class="name">주행거리(고속도로)</div></div>
+      <div class="spec-box"><div class="num">135<span class="unit">kW</span></div><div class="name">최대 DC 급속충전</div></div>
+    </div>
+
+    <h3 class="sub-title">3.1 글로벌 트림 라인업 참고 (35 / 40 / 45 / 50 콰트로)</h3>
+    <table class="data-table">
+      <thead><tr><th>트림</th><th>구동방식</th><th>최고출력</th><th>최대토크</th><th>배터리</th></tr></thead>
+      <tbody>
+        <tr><td>35 e-tron</td><td>단모터 RWD</td><td>125kW (170PS)</td><td>310Nm</td><td>55kWh</td></tr>
+        <tr><td>40 e-tron</td><td>단모터 RWD</td><td>150kW (204PS)</td><td>310Nm</td><td>82kWh</td></tr>
+        <tr class="highlight"><td>45 e-tron (국내 2026년형)</td><td>단모터 RWD</td><td>210kW (286PS)</td><td>545Nm</td><td>82kWh</td></tr>
+        <tr><td>50 e-tron quattro</td><td>양모터 4WD</td><td>220kW (299PS)</td><td>460Nm</td><td>82kWh</td></tr>
+      </tbody>
+    </table>
+    <p class="table-caption">※ 50 e-tron quattro는 0→100km/h 약 6.2초의 가속 성능을 보유한 최상위 사륜구동 모델로 소개된 바 있으나, 2026년형 국내 공식 가격표에는 45 e-트론 단일 트림만 등재되어 있습니다.</p>
+  </section>
+
+  <section class="block">
+    <h2 class="section-title"><span class="section-num">4</span>차체 제원 (SUV vs 스포트백)</h2>
+    <table class="data-table">
+      <thead><tr><th>구분</th><th>전장</th><th>전폭</th><th>전고</th><th>축간거리</th><th>공차중량</th></tr></thead>
+      <tbody>
+        <tr><td>Q4 45 e-tron</td><td>4,590mm</td><td>1,865mm</td><td>1,635mm</td><td>2,765mm</td><td>2,150kg</td></tr>
+        <tr><td>Q4 45 e-tron Premium</td><td>4,590mm</td><td>1,865mm</td><td>1,640mm</td><td>2,765mm</td><td>2,150kg</td></tr>
+        <tr><td>Q4 스포트백 45 e-tron</td><td>4,590mm</td><td>1,865mm</td><td>1,615mm</td><td>2,765mm</td><td>2,150kg</td></tr>
+      </tbody>
+    </table>
+    <p class="table-caption">※ 승차인원 5명, 타이어 사이즈는 트림에 따라 19 / 21인치 적용.</p>
+
+    <h3 class="sub-title">4.1 섀시 · 제동 시스템</h3>
+    <ul class="point-list">
+      <li><b>전륜 현가장치</b> — 맥퍼슨 스트럿 서스펜션</li>
+      <li><b>후륜 현가장치</b> — 5링크 멀티링크 서스펜션</li>
+      <li><b>전륜 제동장치</b> — 벤틸레이티드 디스크 브레이크</li>
+      <li><b>후륜 제동장치</b> — 드럼 브레이크</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2 class="section-title"><span class="section-num">5</span>편의 · 인포테인먼트 사양</h2>
+    <ul class="point-list">
+      <li><b>디지털 클러스터</b> — 10.25인치 아우디 버추얼 콕핏</li>
+      <li><b>인포테인먼트</b> — MMI 내비게이션 플러스 탑재</li>
+      <li><b>플랫폼 기반 강점</b> — MEB 플랫폼 특유의 넓은 실내 공간 활용성과 안정적인 주행성능</li>
+      <li><b>주행 특성</b> — 전기차 특유의 정숙성과 즉각적인 토크 반응, 진일보한 운전자 보조 시스템 탑재</li>
+    </ul>
+
+    <h3 class="sub-title">5.1 색상 구성</h3>
+    <div class="color-row">
+      <span class="color-chip"><span class="swatch" style="background:#1a1a1a"></span>Mythos Black Metallic</span>
+      <span class="color-chip"><span class="swatch" style="background:#9a9a9a"></span>Pebble Gray Solid</span>
+      <span class="color-chip"><span class="swatch" style="background:#7c7c7c"></span>Typhoon Gray Metallic</span>
+      <span class="color-chip"><span class="swatch" style="background:#4a6b8a"></span>Geyser Blue Metallic</span>
+      <span class="color-chip"><span class="swatch" style="background:#243a5e"></span>Navarra Blue Metallic</span>
+      <span class="color-chip"><span class="swatch" style="background:#c7c7c7"></span>Floret Silver Metallic</span>
+      <span class="color-chip"><span class="swatch" style="background:#f2f2f2"></span>Glacier White Metallic</span>
+      <span class="color-chip"><span class="swatch" style="background:#5b4b6b"></span>Aurora Violet Metallic</span>
+    </div>
+    <p class="table-caption" style="margin-top:10px">내장 색상: Santos Brown · Black · Parchment Beige</p>
+  </section>
+
+  <section class="block">
+    <h2 class="section-title"><span class="section-num">6</span>경쟁 차종</h2>
+    <p class="body-text">Q4 e-트론은 준중형 전기 SUV 세그먼트에서 다음 모델들과 직접 경쟁합니다.</p>
+    <div class="compare-grid">
+      <div class="compare-card"><div class="brand">메르세데스-벤츠</div><div class="model">EQA</div></div>
+      <div class="compare-card"><div class="brand">렉서스</div><div class="model">UX 300e</div></div>
+      <div class="compare-card"><div class="brand">제네시스</div><div class="model">GV60</div></div>
+      <div class="compare-card"><div class="brand">볼보</div><div class="model">EX40 / EC40</div></div>
+      <div class="compare-card"><div class="brand">BMW</div><div class="model">iX1 / iX2</div></div>
+      <div class="compare-card"><div class="brand">미니</div><div class="model">컨트리맨 E / SE</div></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="section-title"><span class="section-num">7</span>구매 전 참고할 논란·이슈</h2>
+    <div class="callout warn">
+      <b>후륜 드럼 브레이크 논란</b> — 동급 경쟁 모델은 대부분 디스크 브레이크를 채용하지만 Q4 e-트론은 후륜에 드럼 브레이크를 적용해 원가절감 논란이 있었습니다. 제조사 측은 전기차는 회생제동을 적극적으로 사용해 후륜 제동 부하가 크지 않고, 순간 제동력 자체는 드럼 브레이크가 더 강해 문제가 되지 않는다고 설명합니다. 국내 수입 동급 전기차 중 드럼 브레이크를 적용한 사례는 형제차인 폭스바겐 ID.4와 Q4 e-트론 둘뿐입니다.
+    </div>
+    <div class="callout">
+      <b>전동 테일게이트 끼임방지 논란(해결)</b> — 형제차 ID.4와 함께 전동 트렁크 끼임방지 장치 미작동 논란이 제기된 바 있으나, 이후 추가 테스트를 통해 정상 작동이 확인되었습니다. 특정 차량 한정 이슈였는지, 연식 변경으로 개선된 것인지는 명확히 밝혀지지 않았습니다.
+    </div>
+    <div class="callout">
+      <b>초기형 주행거리 이슈(해결)</b> — 2023년식 초기 모델은 환경부 인증 주행거리가 368km에 그쳐 전기차 보조금 지급 기준을 충족하지 못한 사례가 있었으나, 2024년형부터 배터리 관리 및 효율 개선으로 인증 주행거리가 411km로 상향되며 보조금 지급 대상에 포함되었습니다. 2026년형(45 e-트론) 인증거리는 406km입니다.
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="conclusion-box">
+      <h3>구매 가이드 요약</h3>
+      <p>2026년형 Q4 e-트론은 MEB 플랫폼 기반의 안정적인 주행 감각과 아우디 특유의 실내 마감, 10.25인치 버추얼 콕핏 등 준수한 기본기를 갖춘 준중형 전기 SUV입니다. 국내 판매는 286PS 단일 트림(45 e-트론)으로 단순화되어 있어 선택은 차체(SUV/스포트백)와 트림(기본/Premium), 옵션 패키지(KA6·PWB·J6J6) 조합에 집중하면 됩니다.</p>
+      <p>동급 대비 항속거리(406km)는 무난한 수준이나 후륜 드럼 브레이크 등 원가절감 요소가 있으므로, 실구매 전 딜러 견적으로 정확한 옵션 구성과 전기차 보조금 반영 여부를 반드시 확인하는 것이 좋습니다.</p>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="disclaimer">본 보고서는 카위키, 카눈, 나무위키 등 공개된 자동차 정보 사이트를 바탕으로 정리한 정보 제공용 자료입니다. 차량 가격, 옵션 구성, 보조금 등은 시점 및 지역에 따라 변경될 수 있으므로 실제 구매 전 반드시 공식 딜러사를 통해 최신 정보를 확인하시기 바랍니다.</div>
+  <div class="sources">
+    참고 자료: <a href="https://www.carwiki.co.kr/model/11117_2026/Q4_e-%ED%8A%B8%EB%A1%A0" target="_blank">카위키 - Q4 e-트론 2026년형</a> ·
+    <a href="https://www.carnoon.co.kr/newcar/vehicle/11117" target="_blank">카눈 - Q4 e-tron 가격표/제원</a> ·
+    <a href="https://namu.wiki/w/%EC%95%84%EC%9A%B0%EB%94%94%20Q4%20e-%ED%8A%B8%EB%A1%A0" target="_blank">나무위키 - 아우디 Q4 e-트론</a>
+  </div>
+  NotebookLM × YouTube 종목분석 보고서 게시판 &nbsp;|&nbsp; Powered by GitHub Pages
+</footer>
+
+</body>
+</html>
