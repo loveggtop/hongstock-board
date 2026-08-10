@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S&P 500 투자 실패의 9가지 주요 원인 및 성공 전략 분석</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif;
+background: #f0f4f8;
+color: #222;
+line-height: 1.7;
+}
+a { color: inherit; }
+
+header {
+background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+color: #fff;
+padding: 56px 24px 46px;
+box-shadow: 0 2px 10px rgba(0,0,0,.35);
+position: relative;
+overflow: hidden;
+}
+header::after {
+content: "";
+position: absolute;
+right: -60px; top: -60px;
+width: 260px; height: 260px;
+background: radial-gradient(circle, rgba(233,69,96,.18) 0%, rgba(233,69,96,0) 70%);
+}
+.header-inner { max-width: 860px; margin: 0 auto; position: relative; }
+.badge-row { display: flex; gap: 8px; margin-bottom: 18px; flex-wrap: wrap; }
+.badge {
+display: inline-block; padding: 5px 12px; border-radius: 20px;
+font-size: 0.74rem; font-weight: 700; letter-spacing: .3px;
+background: rgba(255,255,255,.12); color: #cfd8ea; border: 1px solid rgba(255,255,255,.18);
+}
+.badge.accent { background: rgba(233,69,96,.22); color: #ff8ba1; border-color: rgba(233,69,96,.35); }
+header h1 { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.6px; line-height: 1.4; margin-bottom: 14px; }
+header .lede { font-size: 0.98rem; color: #b8c2d9; max-width: 680px; }
+header .meta { margin-top: 22px; font-size: 0.8rem; color: #8290ac; display: flex; gap: 18px; flex-wrap: wrap; }
+
+.container { max-width: 860px; margin: 0 auto; padding: 40px 20px 80px; }
+
+.summary-card {
+background: #fff; border-radius: 16px; padding: 28px 30px;
+box-shadow: 0 4px 18px rgba(15,52,96,.08); margin-bottom: 40px;
+border-left: 5px solid #0f3460;
+}
+.summary-card h2 { font-size: 1.05rem; color: #0f3460; margin-bottom: 16px; display:flex; align-items:center; gap:8px; }
+.summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 18px; }
+.summary-item { background: #f7f9fc; border-radius: 10px; padding: 16px 18px; }
+.summary-item .label { font-size: 0.72rem; font-weight: 700; color: #5c6bc0; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 6px; }
+.summary-item .text { font-size: 0.87rem; color: #333; }
+
+section.block { margin-bottom: 46px; }
+.section-num {
+display: inline-flex; align-items: center; justify-content: center;
+width: 30px; height: 30px; border-radius: 8px; background: #0f3460; color: #fff;
+font-size: 0.85rem; font-weight: 800; margin-right: 10px; flex-shrink: 0;
+}
+h2.section-title {
+font-size: 1.28rem; color: #16213e; font-weight: 800; display: flex; align-items: center;
+padding-bottom: 14px; margin-bottom: 22px; border-bottom: 2px solid #dde8f5;
+}
+h3.sub-title {
+font-size: 1.02rem; color: #0f3460; font-weight: 700; margin: 26px 0 12px;
+padding-left: 12px; border-left: 4px solid #e94560;
+}
+p.body-text { font-size: 0.93rem; color: #3a3f4b; margin-bottom: 12px; }
+
+ul.point-list { list-style: none; margin: 14px 0; }
+ul.point-list li {
+position: relative; padding: 12px 18px 12px 34px; margin-bottom: 8px;
+background: #fff; border-radius: 10px; box-shadow: 0 1px 5px rgba(0,0,0,.06);
+font-size: 0.9rem; color: #333;
+}
+ul.point-list li::before {
+content: "●"; position: absolute; left: 14px; top: 13px; color: #0f3460; font-size: 0.6rem;
+}
+ul.point-list li b { color: #16213e; }
+
+ol.point-list-num { margin: 14px 0 14px 0; list-style: none; counter-reset: item; }
+ol.point-list-num li {
+position: relative; padding: 12px 18px 12px 46px; margin-bottom: 8px;
+background: #fff; border-radius: 10px; box-shadow: 0 1px 5px rgba(0,0,0,.06);
+font-size: 0.9rem; color: #333; counter-increment: item;
+}
+ol.point-list-num li::before {
+content: counter(item); position: absolute; left: 12px; top: 10px;
+width: 22px; height: 22px; border-radius: 6px; background: #0f3460; color: #fff;
+font-size: 0.74rem; font-weight: 800; display: flex; align-items: center; justify-content: center;
+}
+ol.point-list-num li b { color: #16213e; }
+ol.point-list-num li .sub { display: block; margin-top: 4px; color: #5a6272; font-size: 0.85rem; }
+
+.callout {
+background: #fff8f0; border: 1px solid #f4dfc4; border-radius: 12px;
+padding: 18px 20px; margin: 18px 0; font-size: 0.87rem; color: #7a5a20;
+}
+.callout b { color: #a05a00; }
+.callout.warn { background: #fff0f2; border-color: #f4c4cc; color: #7a2030; }
+.callout.warn b { color: #b0233f; }
+
+table.data-table { width: 100%; border-collapse: collapse; margin: 16px 0 6px; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 6px rgba(0,0,0,.08); }
+table.data-table thead tr { background: #0f3460; }
+table.data-table thead th { padding: 12px 14px; color: #fff; font-size: 0.78rem; font-weight: 700; text-align: left; letter-spacing: .3px; }
+table.data-table tbody td { padding: 12px 14px; font-size: 0.86rem; border-top: 1px solid #eef1f6; }
+table.data-table tbody tr:nth-child(even) { background: #f8fafc; }
+table.data-table tbody tr td:first-child { font-weight: 700; color: #16213e; }
+.table-caption { font-size: 0.76rem; color: #8a95a5; margin-bottom: 4px; }
+
+.conclusion-box {
+background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
+color: #fff; border-radius: 16px; padding: 32px 30px; margin-top: 10px;
+}
+.conclusion-box h3 { font-size: 1.05rem; margin-bottom: 12px; color: #ffb3c1; }
+.conclusion-box p { font-size: 0.93rem; color: #dbe2f0; }
+
+footer {
+text-align: center; padding: 34px 24px 44px; font-size: 0.75rem; color: #b0b8c4;
+border-top: 1px solid #e8ecf2; margin-top: 8px;
+}
+footer .disclaimer { max-width: 640px; margin: 0 auto 14px; font-size: 0.74rem; color: #9aa4b5; line-height: 1.6; }
+
+@media (max-width: 600px) {
+header h1 { font-size: 1.4rem; }
+.container { padding: 28px 16px 60px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+<div class="header-inner">
+<div class="badge-row">
+<span class="badge accent">S&amp;P 500 · 지수 투자</span>
+<span class="badge">9가지 실패 원인</span>
+<span class="badge">가이드</span>
+</div>
+<h1>S&amp;P 500 투자, 이렇게 하면 망합니다<br>— 9가지 실패 원인과 성공 전략</h1>
+<p class="lede">S&amp;P 500 지수 투자는 이론적으로 높은 성공 확률을 가짐에도 많은 투자자가 실패합니다. 그 성패는 종목의 우수성이 아니라 장기 보유 여부, 비용 효율성(수수료·세제 혜택), 투자자의 심리 관리에 달려 있다는 것을 '존 아저씨' 사례와 9가지 실패 공통점을 통해 분석한 자료입니다.</p>
+<div class="meta">
+<span>📅 2026-08-10</span>
+<span>📊 S&amp;P 500 · ISA · 저비용 ETF</span>
+</div>
+</div>
+</header>
+
+<div class="container">
+
+<div class="summary-card">
+<h2>🔑 핵심 요약 (Executive Summary)</h2>
+<div class="summary-grid">
+<div class="summary-item">
+<div class="label">핵심 결론</div>
+<div class="text">S&amp;P 500 투자의 성패는 종목의 우수성이 아니라 장기 보유 여부, 비용 효율성(수수료 및 세제 혜택), 투자자의 심리 관리에 달려 있다.</div>
+</div>
+<div class="summary-item">
+<div class="label">존 아저씨 사례</div>
+<div class="text">역사상 최악의 타이밍에만 매수한 가상 인물도 단 한 번도 팔지 않고 보유한 결과 백만장자가 되었다. 장기 보유의 강력한 효과를 입증한다.</div>
+</div>
+<div class="summary-item">
+<div class="label">9가지 실패 공통점</div>
+<div class="text">가장 결정적인 실패 원인은 '중도 매도'다. 이 외에도 단기적 관점, 마켓 타이밍, 환헤지 상품, 비효율적 계좌 선택 등이 수익률을 갉아먹는다.</div>
+</div>
+<div class="summary-item">
+<div class="label">절세·비용 전략</div>
+<div class="text">ISA 계좌 활용, 저비용 국내 ETF 또는 SPYM 선택, 분할 매수 원칙을 준수하면 투자 수익률을 극대화할 수 있다.</div>
+</div>
+</div>
+</div>
+
+<section class="block">
+<h2 class="section-title"><span class="section-num">1</span>장기 보유의 힘: '존 아저씨(Uncle Bob)' 사례 분석</h2>
+<p class="body-text">역사상 최악의 타이밍에만 골라 투자한 가상의 인물 '존 아저씨'의 사례는 S&amp;P 500 지수 투자의 핵심 원리를 보여준다.</p>
+
+<table class="data-table">
+<thead>
+<tr><th>매수 시점</th><th>당시 상황</th><th>이후 결과</th></tr>
+</thead>
+<tbody>
+<tr><td>1987년 5월</td><td>몰빵 투자 직후 '블랙 먼데이' 폭락 발생</td><td>하루 -20%</td></tr>
+<tr><td>2000년 3월</td><td>닷컴 버블 붕괴 직전 전액 투자</td><td>이후 2년간 반토막</td></tr>
+<tr><td>2007년 10월</td><td>글로벌 금융위기 고점에서 투자</td><td>이후 1년 반 동안 반토막</td></tr>
+</tbody>
+</table>
+<p class="table-caption">※ 역사상 손꼽히는 최악의 매수 타이밍만 골라 투자한 가상의 시나리오입니다.</p>
+
+<div class="callout"><b>결과</b> — 1987년부터 원금 약 27만 달러를 투입하여 최악의 고점에서만 매수했음에도 불구하고, 단 한 번도 팔지 않고 보유한 결과 약 100만 달러(백만장자)의 자산을 형성했다.</div>
+<div class="callout warn"><b>시사점</b> — 아무리 바보 같은 타이밍에 투자하더라도 매도하지 않으면 성공할 수 있으나, 정립식(분할 매수)으로 투자했을 경우 그 성과는 두 배(약 200만 달러)에 달했을 것이다. 즉, <b>"파는 것"이 실패의 가장 큰 원인</b>이다.</div>
+</section>
+
+<section class="block">
+<h2 class="section-title"><span class="section-num">2</span>S&amp;P 500 투자 실패의 9가지 공통점</h2>
+<ol class="point-list-num">
+<li><b>① 중도 매도 (Selling)</b><span class="sub">가장 결정적인 실패 원인이다. 주가가 하락하거나 공포가 닥쳤을 때 견디지 못하고 매도하는 순간 모든 투자 전략은 무효화된다.</span></li>
+<li><b>② 단기적 관점 (Short-term Perspective)</b><span class="sub">S&amp;P 500은 보유 기간이 길수록 손실 가능성이 기하급수적으로 낮아진다. 10년 투자 시 손실 확률이 매우 낮으며, 30년 투자 시 손실 가능성은 거의 0에 수렴한다. 30년 장기 투자 시 최악의 구간에서도 연 환산 약 7.8~8%의 수익률을 기대할 수 있다.</span></li>
+<li><b>③ 마켓 타이밍 시도 (Market Timing)</b><span class="sub">"지금 너무 오른 것 아닌가", "내일 빠지면 어쩌지"라는 고민으로 목돈을 한꺼번에 넣으려다 기회를 놓친다. 전문가조차 맞추기 힘든 타이밍을 재기보다는 분할 매수를 통해 리스크를 분산해야 한다.</span></li>
+<li><b>④ 환헤지(H) 상품 선택 (Currency Hedging)</b><span class="sub">상품명 뒤에 'H'가 붙는 환헤지형은 장기 투자에 부적합하다. 환헤지에는 지속적인 비용(수수료)이 발생해 장기 수익률을 갉아먹으며, 환율을 정확히 예측하는 것은 불가능에 가까우므로 장기 투자 시에는 환노출형이 유리하다.</span></li>
+<li><b>⑤ 비효율적인 계좌 및 상품 선택</b><span class="sub">세제 혜택과 수수료를 고려하지 않는 투자는 수익을 낮춘다. ISA 계좌는 배당 소득세 혜택(200만 원까지 비과세, 초과분 9.9% 분리과세)과 손익 통산 기능을 제공하므로 반드시 활용해야 하며, 유사한 지수를 추종하더라도 ETF별 수수료 차이가 크다는 점을 놓치지 말아야 한다.</span></li>
+<li><b>⑥ 맹신 (Blind Faith)</b><span class="sub">S&amp;P 500이 우수하지만, 이것만이 유일한 정답이라는 맹신은 위험할 수 있다. 금, 비트코인, 개별 주식 등으로 자산을 적절히 분산하는 유연함이 필요하다.</span></li>
+<li><b>⑦ 급한 돈으로 투자 (Urgent Money)</b><span class="sub">전세금이나 단기 결제 대금 등 사용처가 정해진 돈으로 투자하면 심리적으로 쫓기게 된다. 머피의 법칙처럼 돈을 써야 할 시점에 시장이 폭락하면 강제 매도할 수밖에 없으므로, 반드시 여유 자금으로 투자해야 한다.</span></li>
+<li><b>⑧ 상대적 박탈감 (Envy)</b><span class="sub">S&amp;P 500은 꾸준히 오르지만, 특정 시기 급등하는 개별 종목(예: SK하이닉스)이나 자산(예: 비트코인)과 비교하며 배 아파하는 심리가 투자를 망친다. 남의 수익률에 흔들리지 않는 심리 관리가 필수적이다.</span></li>
+<li><b>⑨ 이해 없는 투자 (Lack of Understanding)</b><span class="sub">지수의 원리를 이해하지 않고 남의 말만 듣고 투자하면 주가 하락 시 확신을 갖지 못하고 타인을 원망하며 투자를 포기하게 된다. S&amp;P 500 지수가 시대 흐름에 따라 종목을 자동으로 교체(자동 분산 투자)한다는 본질을 이해해야 한다.</span></li>
+</ol>
+</section>
+
+<section class="block">
+<h2 class="section-title"><span class="section-num">3</span>효율적인 투자 수단 및 비용 분석</h2>
+<p class="body-text">성공적인 투자를 위해 수수료가 저렴하고 세제 혜택이 극대화된 상품을 선택해야 한다.</p>
+<table class="data-table">
+<thead>
+<tr><th>구분</th><th>주요 특징 및 장점</th><th>관련 데이터</th></tr>
+</thead>
+<tbody>
+<tr><td>ISA 계좌</td><td>국내 상장 미국 S&amp;P 500 ETF 투자 시 최적</td><td>연 2천만 원(총 1억 원) 한도, 3년 의무 보유 시 세제 혜택</td></tr>
+<tr><td>국내 ETF</td><td>Tiger, KODEX, Rise 등</td><td>수수료 약 0.0068% 수준으로 매우 저렴함</td></tr>
+<tr><td>SPYM (구 SPLG)</td><td>일반 계좌에서 미국 직투 시 유리</td><td>수수료 0.02% (SPY의 0.0945%보다 훨씬 저렴)</td></tr>
+<tr><td>주당 가격</td><td>소액 투자자에게 유리</td><td>SPY 약 $600 vs SPYM 약 $86 (약 10만 원대로 매수 가능)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="block">
+<h2 class="section-title"><span class="section-num">4</span>결론 및 제언</h2>
+<p class="body-text">S&amp;P 500 투자는 단순히 종목을 사는 행위가 아니라, 미국 우량 기업들의 자동 갱신 시스템에 편승하는 것이다. 투자 실패를 피하기 위해서는 다음의 원칙을 준수해야 한다.</p>
+<ol class="point-list-num">
+<li><b>자기 객관화</b> — 타이밍을 맞출 수 없음을 인정하고 기계적인 분할 매수를 실행할 것.</li>
+<li><b>비용 최적화</b> — ISA 계좌를 적극 활용하고, 수수료가 가장 낮은 ETF(국내 상장 ETF 또는 SPYM 등)를 선택할 것.</li>
+<li><b>심리적 독립</b> — 타 자산의 급등에 흔들리지 말고, 30년 이상의 장기적 시계열을 유지할 것.</li>
+<li><b>자산의 성격 구분</b> — 반드시 장기간 묶어둘 수 있는 여유 자금으로만 투자하여 시장의 변동성을 견뎌낼 체력을 확보할 것.</li>
+</ol>
+
+<div class="conclusion-box">
+<h3>결론</h3>
+<p>S&amp;P 500 투자에서 종목 선택은 이미 검증된 영역이다. 실제 성패를 가르는 것은 하락장에서 팔지 않는 인내심, ISA·저비용 ETF를 활용한 비용 관리, 그리고 30년 이상 내다보는 심리적 여유다. 여유 자금으로 기계적인 분할 매수를 이어가는 것이 가장 확실한 성공 전략이다.</p>
+</div>
+</section>
+
+</div>
+
+<footer>
+<div class="disclaimer">본 보고서는 유튜브 영상 콘텐츠를 바탕으로 정리한 정보 제공용 자료이며, 특정 상품에 대한 투자 권유나 개인 맞춤형 투자 자문이 아닙니다. 투자 결정에 따른 책임은 투자자 본인에게 있으며, 실제 투자 전 반드시 최신 상품 설명서와 전문가 상담을 참고하시기 바랍니다.</div>
+NotebookLM × YouTube 종목분석 보고서 게시판 &nbsp;|&nbsp; Powered by GitHub Pages
+</footer>
+
+</body>
+</html>
