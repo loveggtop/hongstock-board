@@ -127,8 +127,15 @@
   .figure-name{font-weight:800; color:var(--brown); margin-right:4px;}
   .figure-meaning{color:#5c4f38;}
 
-    .route-map{margin-top:4px; border-radius:10px; overflow:hidden; border:1px solid #eee0bf;}
-    .route-svg{display:block; width:100%; height:auto;}
+    .route-map{margin-top:6px; border-radius:10px; overflow:hidden; border:1px solid #eee0bf; cursor:zoom-in; position:relative;}
+    .route-map:hover{border-color:#c9a227;}
+    .route-map::after{content:"🔍 크게 보기"; position:absolute; bottom:6px; right:8px; background:rgba(255,255,255,0.85); font-size:10px; padding:2px 6px; border-radius:6px; color:#7a5c1e; font-weight:700;}
+    .route-svg{display:block; width:100%; height:auto; min-height:200px;}
+    .map-modal-overlay{display:none; position:fixed; inset:0; background:rgba(20,15,5,0.72); z-index:1000; align-items:center; justify-content:center; padding:24px;}
+    .map-modal-overlay.active{display:flex;}
+    .map-modal-box{background:#fffaf0; border-radius:14px; padding:18px; max-width:min(900px,92vw); max-height:90vh; overflow:auto; box-shadow:0 10px 40px rgba(0,0,0,0.4);}
+    .map-modal-box svg{width:100%; height:auto; display:block; min-width:600px;}
+    .map-modal-close{text-align:right; cursor:pointer; font-weight:700; color:#7a5c1e; margin-bottom:8px;}
     </style>
       </head>
       <body>
@@ -468,30 +475,83 @@
  figures:[["사도 요한","박해 중 환상을 받아 일곱 교회에 계시를 전한 인물입니다."],["예수 그리스도","죽임당한 어린 양이자 다시 오실 만왕의 왕으로 나타납니다."],["일곱 교회","소아시아의 실제 교회들로, 각기 다른 신앙 상태에 대한 권면을 받습니다."]]},
 ];
 
-const ROUTE_LOC = {"로마":[40,50],"아덴":[150,90],"고린도":[155,105],"빌립보":[175,70],"드로아":[215,75],"에베소":[230,110],"밧모섬":[215,120],"비시디아안디옥":[255,95],"다소":[270,110],"구브로":[250,140],"안디옥":[290,130],"다메섹":[300,160],"하란":[370,90],"니느웨":[400,120],"바벨론":[410,190],"우르":[430,230],"수산":[460,180],"사마리아":[275,175],"갈릴리":[280,150],"가버나움":[283,148],"나사렛":[275,160],"예루살렘":[280,205],"베들레헴":[278,215],"여리고":[295,205],"헤브론":[278,225],"놉":[282,200],"아둘람":[270,215],"십광야":[280,225],"가드":[255,210],"그릿시냇":[290,180],"사르밧":[270,155],"갈멜산":[270,165],"모압":[300,220],"단":[280,130],"에브라임":[275,180],"길르앗":[300,190],"유다":[275,220],"아이성":[290,200],"애굽":[170,220],"멤피스":[160,240],"홍해":[210,240],"시내산":[230,260],"가데스바네아":[250,230],"욥바":[265,180],"다시스":[20,190],"가나안":[280,195]};
+const ROUTE_LOC = {"로마":[50,34],"아덴":[274,156],"고린도":[258,159],"빌립보":[286,63],"드로아":[324,100],"에베소":[346,159],"밧모섬":[330,178],"비시디아안디옥":[424,147],"다소":[498,191],"구브로":[478,244],"안디옥":[524,213],"다메섹":[526,297],"하란":[580,191],"니느웨":[664,206],"바벨론":[688,328],"우르":[722,378],"수산":[765,338],"사마리아":[504,334],"갈릴리":[512,316],"가버나움":[512,316],"나사렛":[506,322],"예루살렘":[504,351],"베들레헴":[504,353],"여리고":[509,348],"헤브론":[502,358],"놉":[505,347],"아둘람":[500,356],"십광야":[503,363],"가드":[497,353],"그릿시냇":[512,338],"사르밧":[504,304],"갈멜산":[501,321],"모압":[514,363],"단":[513,305],"에브라임":[505,344],"길르앗":[515,334],"유다":[502,359],"아이성":[505,346],"애굽":[432,381],"멤피스":[425,411],"홍해":[451,409],"시내산":[479,452],"가데스바네아":[488,384],"욥바":[495,342],"다시스":[20,220],"가나안":[506,338]};
+const ROUTE_ISRAEL_POLY = "502,305 511,310 514,317 511,344 511,359 508,374 500,388 498,420 485,368 495,342";
+function routeViewBox(pts){
+  const xs = pts.map(p=>p[0]), ys = pts.map(p=>p[1]);
+  let minX=Math.min(...xs), maxX=Math.max(...xs), minY=Math.min(...ys), maxY=Math.max(...ys);
+  let w = maxX-minX, h = maxY-minY;
+  const padX = Math.max(w*0.28, 45), padY = Math.max(h*0.28, 45);
+  minX -= padX; maxX += padX; minY -= padY; maxY += padY;
+  w = maxX-minX; h = maxY-minY;
+  const ratio = 1.5;
+  if (w/h > ratio) { const nh = w/ratio; const cy=(minY+maxY)/2; minY=cy-nh/2; maxY=cy+nh/2; h=nh; }
+  else { const nw = h*ratio; const cx=(minX+maxX)/2; minX=cx-nw/2; maxX=cx+nw/2; w=nw; }
+  return [minX, minY, w, h];
+}
+function routeLabel(x,y,text,size,color,bold){
+  return '<text x="'+x+'" y="'+y+'" font-size="'+size+'" text-anchor="middle" fill="'+color+'" font-weight="'+(bold?800:600)+'" paint-order="stroke" stroke="#fff" stroke-width="3" stroke-linejoin="round">'+text+'</text>';
+}
+function routeBg(){
+  return '<rect x="-300" y="-300" width="1400" height="1200" fill="#dcebf3"/>'
+    + '<path d="M-50,-50 Q150,-80 320,20 Q380,60 330,140 Q260,200 150,180 Q40,160 -30,90 Z" fill="#dcead2" opacity="0.75"/>'
+    + '<path d="M300,-30 Q480,-50 600,60 Q660,120 580,190 Q460,230 380,170 Q320,110 300,-30 Z" fill="#e3ddc0" opacity="0.75"/>'
+    + '<path d="M560,80 Q740,60 800,220 Q820,330 720,400 Q600,420 560,320 Q530,190 560,80 Z" fill="#e8d9b8" opacity="0.75"/>'
+    + '<path d="M650,260 Q820,260 850,380 Q850,460 740,470 Q650,450 640,360 Z" fill="#f0e6c8" opacity="0.75"/>'
+    + '<path d="M350,330 Q470,300 545,370 Q580,430 520,500 Q420,540 360,470 Q320,400 350,330 Z" fill="#e6ddc4" opacity="0.6"/>'
+    + '<path d="M370,340 Q450,325 470,400 Q460,450 400,460 Q350,430 360,380 Z" fill="#f2d9a0" opacity="0.85"/>'
+    + '<path d="M460,380 Q510,400 495,455 Q470,470 445,450 Q440,410 460,380 Z" fill="#efe0b0" opacity="0.85"/>'
+    + '<ellipse cx="478" cy="244" rx="16" ry="8" fill="#d9cfa8" opacity="0.9"/>'
+    + '<ellipse cx="150" cy="130" rx="20" ry="8" fill="#d9cfa8" opacity="0.9"/>'
+    + '<polygon points="' + ROUTE_ISRAEL_POLY + '" fill="#ffe9b3" opacity="0.55" stroke="#c0392b" stroke-width="2" stroke-dasharray="4,3"/>'
+    + routeLabel(508,295,"이스라엘(가나안)",10.5,"#a93226",true)
+    + routeLabel(180,95,"지중해",13,"#5b7f95",false)
+    + routeLabel(230,45,"그리스",12,"#7a8b5a",false)
+    + routeLabel(470,60,"소아시아",12,"#8a7a4a",false)
+    + routeLabel(430,440,"애굽(이집트)",11,"#8a6a3a",false)
+    + routeLabel(650,180,"메소포타미아",12,"#a08248",false)
+    + routeLabel(770,290,"페르시아",12,"#a08248",false)
+    + routeLabel(40,60,"로마(이탈리아)",10.5,"#7a8b5a",false);
+}
 function renderRouteMapSVG(route){
   if (!route || route.length < 2) return "";
   const pts = route.map(k => ROUTE_LOC[k]).filter(Boolean);
   if (pts.length < 2) return "";
+  const vb = routeViewBox(pts);
   const poly = pts.map(p => p[0]+","+p[1]).join(" ");
   const dots = route.map((k,i) => {
     const p = ROUTE_LOC[k]; if(!p) return "";
     const isFirst = i===0, isLast = i===route.length-1;
-    const r = isFirst||isLast ? 5 : 3.5;
+    const r = isFirst||isLast ? 7 : 5;
     const fill = isFirst ? "#2e7d32" : (isLast ? "#c62828" : "#b8860b");
-    const labelY = p[1] - 8;
-    return '<circle cx="'+p[0]+'" cy="'+p[1]+'" r="'+r+'" fill="'+fill+'" stroke="#fff" stroke-width="1"/>'
-      + '<text x="'+p[0]+'" y="'+labelY+'" font-size="9" text-anchor="middle" fill="#4a3b22" font-weight="700">'+k+'</text>';
+    const labelY = p[1] - 11;
+    return '<circle cx="'+p[0]+'" cy="'+p[1]+'" r="'+r+'" fill="'+fill+'" stroke="#fff" stroke-width="1.5"/>'
+      + routeLabel(p[0], labelY, k, 13, "#3a2e18", true);
   }).join("");
-  return '<svg viewBox="0 0 640 300" class="route-svg" xmlns="http://www.w3.org/2000/svg">'
-    + '<rect x="0" y="0" width="640" height="300" fill="#eaf2f6"/>'
-    + '<ellipse cx="180" cy="110" rx="130" ry="70" fill="#cfe3ee"/>'
-    + '<path d="M0,60 Q120,20 260,70 Q320,90 260,150 Q160,190 60,150 Q-10,120 0,60 Z" fill="#d7e8d1" opacity="0.7"/>'
-    + '<path d="M130,150 Q220,140 300,200 Q340,240 260,270 Q180,290 150,240 Q120,190 130,150 Z" fill="#f0e2c0" opacity="0.8"/>'
-    + '<path d="M330,60 Q450,50 500,140 Q520,210 440,250 Q360,260 340,190 Q320,120 330,60 Z" fill="#e8d9b8" opacity="0.8"/>'
-    + '<polyline points="'+poly+'" fill="none" stroke="#a0522d" stroke-width="2" stroke-dasharray="5,4"/>'
+  return '<svg viewBox="'+vb[0]+' '+vb[1]+' '+vb[2]+' '+vb[3]+'" class="route-svg" xmlns="http://www.w3.org/2000/svg">'
+    + routeBg()
+    + '<polyline points="'+poly+'" fill="none" stroke="#a0522d" stroke-width="3" stroke-dasharray="7,5"/>'
     + dots
     + '</svg>';
+}
+function ensureMapModal(){
+  if (document.getElementById('mapModalOverlay')) return;
+  const overlay = document.createElement('div');
+  overlay.id = 'mapModalOverlay';
+  overlay.className = 'map-modal-overlay';
+  overlay.innerHTML = '<div class="map-modal-box"><div class="map-modal-close">닫기 ✕</div><div id="mapModalContent"></div></div>';
+  overlay.addEventListener('click', function(e){ if(e.target===overlay) closeMapModal(); });
+  overlay.querySelector('.map-modal-close').addEventListener('click', closeMapModal);
+  document.body.appendChild(overlay);
+}
+function openMapModal(el){
+  ensureMapModal();
+  document.getElementById('mapModalContent').innerHTML = el.innerHTML;
+  document.getElementById('mapModalOverlay').classList.add('active');
+}
+function closeMapModal(){
+  const o = document.getElementById('mapModalOverlay');
+  if (o) o.classList.remove('active');
 }
 
 
@@ -541,7 +601,7 @@ function renderGrid(){
             <div class="section-label">기록 목적</div>
             <div class="section-text">${b.purpose}</div>
             ${b.figures ? `<div class="section-label">등장 인물</div><div class="figure-list">${b.figures.map(f=>`<div class="figure-item"><span class="figure-name">${f[0]}</span><span class="figure-meaning">${f[1]}</span></div>`).join("")}</div>` : ""}
-            ${b.route ? `<div class="section-label">이동경로</div><div class="route-map">${renderRouteMapSVG(b.route)}</div>` : ""}
+            ${b.route ? `<div class="section-label">이동경로</div><div class="route-map" onclick="openMapModal(this)">${renderRouteMapSVG(b.route)}</div>` : ""}
             ${b.note ? `<div class="note">※ ${b.note}</div>` : ""}
     `;
     grid.appendChild(card);
