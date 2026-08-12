@@ -534,6 +534,55 @@ function renderRouteMapSVG(route){
     + dots
     + '</svg>';
 }
+
+function modernBg(){
+  return '<rect x="-300" y="-300" width="1400" height="1200" fill="#eef3f6"/>'
+    + '<polygon points="300,359 485,367 498,422 500,656 300,656" fill="#f5e0b8" stroke="#c9a24a" stroke-width="1.5"/>'
+    + '<polygon points="320,31 680,125 520,219 340,219" fill="#e3d3e8" stroke="#a487ad" stroke-width="1.5"/>'
+    + '<polygon points="200,31 320,63 280,250 220,188" fill="#d3e6d0" stroke="#7fa876" stroke-width="1.5"/>'
+    + '<polygon points="-60,-94 60,-94 180,94 120,156 40,-31" fill="#d9e0ea" stroke="#8b98ad" stroke-width="1.5"/>'
+    + '<polygon points="580,188 760,188 760,438 580,406" fill="#e8d3c8" stroke="#b8886e" stroke-width="1.5"/>'
+    + '<polygon points="680,125 790,125 790,438 680,438" fill="#dbe0c4" stroke="#9aa571" stroke-width="1.5"/>'
+    + '<polygon points="510,178 646,178 646,334 510,334" fill="#f0dfe0" stroke="#c98b8f" stroke-width="1.5"/>'
+    + '<polygon points="498,300 580,300 580,431 498,431" fill="#dde8ea" stroke="#7fa8ad" stroke-width="1.5"/>'
+    + '<polygon points="502,261 532,261 532,311 502,311" fill="#e6f0d8" stroke="#8fae5f" stroke-width="1.5"/>'
+    + '<polygon points="490,431 760,431 760,844 490,844" fill="#f2e6c9" stroke="#c2a35a" stroke-width="1.5"/>'
+    + '<ellipse cx="478" cy="244" rx="16" ry="8" fill="#f0e0d0" stroke="#c9a878" stroke-width="1.2"/>'
+    + '<polygon points="' + ROUTE_ISRAEL_POLY + '" fill="#bfe0f0" stroke="#2e7bab" stroke-width="2.2"/>'
+    + routeLabel(508,340,"이스라엘",11,"#1f5c82",true)
+    + routeLabel(420,400,"이집트",12,"#8a6a2a",false)
+    + routeLabel(480,150,"튀르키예",12,"#7a5a8a",false)
+    + routeLabel(255,130,"그리스",12,"#4a7a45",false)
+    + routeLabel(60,40,"이탈리아",12,"#5a6a85",false)
+    + routeLabel(668,300,"이라크",12,"#9a6a45",false)
+    + routeLabel(735,280,"이란",12,"#6a7a45",false)
+    + routeLabel(578,256,"시리아",11,"#a05a5f",false)
+    + routeLabel(539,365,"요르단",10.5,"#4a7a85",false)
+    + routeLabel(517,283,"레바논",8.5,"#5a8a3f",false)
+    + routeLabel(625,560,"사우디아라비아",12,"#9a7a3a",false)
+    + routeLabel(478,232,"키프로스",8.5,"#8a7050",false);
+}
+function renderModernMapSVG(route){
+  if (!route || route.length < 2) return "";
+  const pts = route.map(k => ROUTE_LOC[k]).filter(Boolean);
+  if (pts.length < 2) return "";
+  const vb = routeViewBox(pts);
+  const poly = pts.map(p => p[0]+","+p[1]).join(" ");
+  const dots = route.map((k,i) => {
+    const p = ROUTE_LOC[k]; if(!p) return "";
+    const isFirst = i===0, isLast = i===route.length-1;
+    const r = isFirst||isLast ? 7 : 5;
+    const fill = isFirst ? "#2e7d32" : (isLast ? "#c62828" : "#b8860b");
+    const labelY = p[1] - 11;
+    return '<circle cx="'+p[0]+'" cy="'+p[1]+'" r="'+r+'" fill="'+fill+'" stroke="#fff" stroke-width="1.5"/>'
+      + routeLabel(p[0], labelY, k, 13, "#2a2418", true);
+  }).join("");
+  return '<svg viewBox="'+vb[0]+' '+vb[1]+' '+vb[2]+' '+vb[3]+'" class="route-svg" xmlns="http://www.w3.org/2000/svg">'
+    + modernBg()
+    + '<polyline points="'+poly+'" fill="none" stroke="#c0392b" stroke-width="3" stroke-dasharray="7,5"/>'
+    + dots
+    + '</svg>';
+}
 function ensureMapModal(){
   if (document.getElementById('mapModalOverlay')) return;
   const overlay = document.createElement('div');
@@ -602,6 +651,7 @@ function renderGrid(){
             <div class="section-text">${b.purpose}</div>
             ${b.figures ? `<div class="section-label">등장 인물</div><div class="figure-list">${b.figures.map(f=>`<div class="figure-item"><span class="figure-name">${f[0]}</span><span class="figure-meaning">${f[1]}</span></div>`).join("")}</div>` : ""}
             ${b.route ? `<div class="section-label">이동경로</div><div class="route-map" onclick="openMapModal(this)">${renderRouteMapSVG(b.route)}</div>` : ""}
+            ${b.route ? `<div class="section-label">이동경로 (현재 지도 기준)</div><div class="route-map" onclick="openMapModal(this)">${renderModernMapSVG(b.route)}</div>` : ""}
             ${b.note ? `<div class="note">※ ${b.note}</div>` : ""}
     `;
     grid.appendChild(card);
