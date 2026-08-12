@@ -166,7 +166,7 @@
         <div class="no-result" id="noResult" style="display:none;">검색 결과가 없습니다.</div>
       </main>
 
-      <footer>성경 66권 시대적 배경 총정리 · 전통적 견해를 기본으로 작성된 참고 자료입니다.</footer>
+      <footer>성경 66권 시대적 배경 총정리 · 전통적 견해를 기본으로 작성된 참고 자료입니다. <span style="opacity:.65">현대 지도 이미지: Strebe, CC BY-SA 3.0 (Wikimedia Commons)</span></footer>
 
       <script>
       const BOOKS = [
@@ -535,51 +535,41 @@ function renderRouteMapSVG(route){
     + '</svg>';
 }
 
-function modernBg(){
-  return '<rect x="-300" y="-300" width="1400" height="1200" fill="#eef3f6"/>'
-    + '<polygon points="300,359 485,367 498,422 500,656 300,656" fill="#f5e0b8" stroke="#c9a24a" stroke-width="1.5"/>'
-    + '<polygon points="320,31 680,125 520,219 340,219" fill="#e3d3e8" stroke="#a487ad" stroke-width="1.5"/>'
-    + '<polygon points="200,31 320,63 280,250 220,188" fill="#d3e6d0" stroke="#7fa876" stroke-width="1.5"/>'
-    + '<polygon points="-60,-94 60,-94 180,94 120,156 40,-31" fill="#d9e0ea" stroke="#8b98ad" stroke-width="1.5"/>'
-    + '<polygon points="580,188 760,188 760,438 580,406" fill="#e8d3c8" stroke="#b8886e" stroke-width="1.5"/>'
-    + '<polygon points="680,125 790,125 790,438 680,438" fill="#dbe0c4" stroke="#9aa571" stroke-width="1.5"/>'
-    + '<polygon points="510,178 646,178 646,334 510,334" fill="#f0dfe0" stroke="#c98b8f" stroke-width="1.5"/>'
-    + '<polygon points="498,300 580,300 580,431 498,431" fill="#dde8ea" stroke="#7fa8ad" stroke-width="1.5"/>'
-    + '<polygon points="502,261 532,261 532,311 502,311" fill="#e6f0d8" stroke="#8fae5f" stroke-width="1.5"/>'
-    + '<polygon points="490,431 760,431 760,844 490,844" fill="#f2e6c9" stroke="#c2a35a" stroke-width="1.5"/>'
-    + '<ellipse cx="478" cy="244" rx="16" ry="8" fill="#f0e0d0" stroke="#c9a878" stroke-width="1.2"/>'
-    + '<polygon points="' + ROUTE_ISRAEL_POLY + '" fill="#bfe0f0" stroke="#2e7bab" stroke-width="2.2"/>'
-    + routeLabel(508,340,"이스라엘",11,"#1f5c82",true)
-    + routeLabel(420,400,"이집트",12,"#8a6a2a",false)
-    + routeLabel(480,150,"튀르키예",12,"#7a5a8a",false)
-    + routeLabel(255,130,"그리스",12,"#4a7a45",false)
-    + routeLabel(60,40,"이탈리아",12,"#5a6a85",false)
-    + routeLabel(668,300,"이라크",12,"#9a6a45",false)
-    + routeLabel(735,280,"이란",12,"#6a7a45",false)
-    + routeLabel(578,256,"시리아",11,"#a05a5f",false)
-    + routeLabel(539,365,"요르단",10.5,"#4a7a85",false)
-    + routeLabel(517,283,"레바논",8.5,"#5a8a3f",false)
-    + routeLabel(625,560,"사우디아라비아",12,"#9a7a3a",false)
-    + routeLabel(478,232,"키프로스",8.5,"#8a7050",false);
+const ROUTE_LOC_REAL = {"로마":[1101,277],"아덴":[1165,299],"고린도":[1160,300],"빌립보":[1168,282],"드로아":[1179,289],"에베소":[1185,300],"밧모섬":[1181,303],"비시디아안디옥":[1207,298],"다소":[1229,306],"구브로":[1223,315],"안디옥":[1236,310],"다메섹":[1236,325],"하란":[1252,306],"니느웨":[1276,309],"바벨론":[1283,331],"우르":[1293,340],"수산":[1305,333],"사마리아":[1230,332],"갈릴리":[1233,329],"가버나움":[1233,329],"나사렛":[1231,330],"예루살렘":[1230,335],"베들레헴":[1230,336],"여리고":[1232,335],"헤브론":[1230,337],"놉":[1230,335],"아둘람":[1229,336],"십광야":[1230,337],"가드":[1228,336],"그릿시냇":[1233,333],"사르밧":[1230,326],"갈멜산":[1230,330],"모압":[1233,337],"단":[1233,327],"에브라임":[1231,334],"길르앗":[1234,332],"유다":[1230,337],"아이성":[1231,334],"애굽":[1210,341],"멤피스":[1208,346],"홍해":[1215,346],"시내산":[1223,354],"가데스바네아":[1226,341],"욥바":[1228,334],"다시스":[993,308],"가나안":[1231,333]};
+function modernBg2(){
+  const url = "https://upload.wikimedia.org/wikipedia/commons/8/83/Equirectangular_projection_SW.jpg";
+  return '<image href="'+url+'" x="0" y="0" width="2058" height="1036" preserveAspectRatio="none"/>'
+    + '<polygon points="1230,326 1232,328 1233,329 1232,334 1232,337 1231,339 1229,342 1229,348 1225,338 1228,334" fill="#2e7bab" fill-opacity="0.4" stroke="#0d3550" stroke-width="1.3"/>'
+    + routeLabel(1233,320,"이스라엘",10,"#0d3550",true)
+    + routeLabel(1201,363,"이집트",11,"#4a2a08",true)
+    + routeLabel(1245,283,"튀르키예",11,"#2a1a4a",true)
+    + routeLabel(1160,290,"그리스",10,"#123a16",true)
+    + routeLabel(1097,265,"이탈리아",10,"#12204a",true)
+    + routeLabel(1248,316,"시리아",9,"#4a1212",true)
+    + routeLabel(1283,298,"이라크",10,"#4a2a08",true)
+    + routeLabel(1312,322,"이란",10,"#123a16",true)
+    + routeLabel(1240,344,"요르단",8.5,"#12304a",true)
+    + routeLabel(1222,320,"레바논",7.5,"#123a16",true)
+    + routeLabel(1220,309,"키프로스",7.5,"#2a1a08",true);
 }
-function renderModernMapSVG(route){
+function renderRealMapSVG(route){
   if (!route || route.length < 2) return "";
-  const pts = route.map(k => ROUTE_LOC[k]).filter(Boolean);
+  const pts = route.map(k => ROUTE_LOC_REAL[k]).filter(Boolean);
   if (pts.length < 2) return "";
   const vb = routeViewBox(pts);
   const poly = pts.map(p => p[0]+","+p[1]).join(" ");
   const dots = route.map((k,i) => {
-    const p = ROUTE_LOC[k]; if(!p) return "";
+    const p = ROUTE_LOC_REAL[k]; if(!p) return "";
     const isFirst = i===0, isLast = i===route.length-1;
     const r = isFirst||isLast ? 7 : 5;
-    const fill = isFirst ? "#2e7d32" : (isLast ? "#c62828" : "#b8860b");
+    const fill = isFirst ? "#2e7d32" : (isLast ? "#c62828" : "#ffb300");
     const labelY = p[1] - 11;
-    return '<circle cx="'+p[0]+'" cy="'+p[1]+'" r="'+r+'" fill="'+fill+'" stroke="#fff" stroke-width="1.5"/>'
-      + routeLabel(p[0], labelY, k, 13, "#2a2418", true);
+    return '<circle cx="'+p[0]+'" cy="'+p[1]+'" r="'+r+'" fill="'+fill+'" stroke="#fff" stroke-width="1.8"/>'
+      + routeLabel(p[0], labelY, k, 13, "#fff6dc", true);
   }).join("");
   return '<svg viewBox="'+vb[0]+' '+vb[1]+' '+vb[2]+' '+vb[3]+'" class="route-svg" xmlns="http://www.w3.org/2000/svg">'
-    + modernBg()
-    + '<polyline points="'+poly+'" fill="none" stroke="#c0392b" stroke-width="3" stroke-dasharray="7,5"/>'
+    + modernBg2()
+    + '<polyline points="'+poly+'" fill="none" stroke="#ff3b1f" stroke-width="4" stroke-dasharray="9,6" stroke-linecap="round"/>'
     + dots
     + '</svg>';
 }
@@ -651,7 +641,7 @@ function renderGrid(){
             <div class="section-text">${b.purpose}</div>
             ${b.figures ? `<div class="section-label">등장 인물</div><div class="figure-list">${b.figures.map(f=>`<div class="figure-item"><span class="figure-name">${f[0]}</span><span class="figure-meaning">${f[1]}</span></div>`).join("")}</div>` : ""}
             ${b.route ? `<div class="section-label">이동경로</div><div class="route-map" onclick="openMapModal(this)">${renderRouteMapSVG(b.route)}</div>` : ""}
-            ${b.route ? `<div class="section-label">이동경로 (현재 지도 기준)</div><div class="route-map" onclick="openMapModal(this)">${renderModernMapSVG(b.route)}</div>` : ""}
+            ${b.route ? `<div class="section-label">이동경로 (현재 지도 기준)</div><div class="route-map" onclick="openMapModal(this)">${renderRealMapSVG(b.route)}</div>` : ""}
             ${b.note ? `<div class="note">※ ${b.note}</div>` : ""}
     `;
     grid.appendChild(card);
