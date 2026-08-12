@@ -526,7 +526,9 @@ function renderRouteMapSVG(route){
     const fill = isFirst ? "#2e7d32" : (isLast ? "#c62828" : "#b8860b");
     const labelY = p[1] - 11;
     return '<circle cx="'+p[0]+'" cy="'+p[1]+'" r="'+r+'" fill="'+fill+'" stroke="#fff" stroke-width="1.5"/>'
-      + routeLabel(p[0], labelY, k, 13, "#3a2e18", true);
+      + routeLabel(p[0], labelY, k, 13, "#3a2e18", true)
+      + (isFirst ? routeLabel(p[0], p[1]+18, "▶ 출발지", 10, "#1a6b2e", true) : "")
+      + (isLast ? routeLabel(p[0], p[1]+18, "■ 도착지", 10, "#a11d1d", true) : "");
   }).join("");
   return '<svg viewBox="'+vb[0]+' '+vb[1]+' '+vb[2]+' '+vb[3]+'" class="route-svg" xmlns="http://www.w3.org/2000/svg">'
     + routeBg()
@@ -565,7 +567,9 @@ function renderRealMapSVG(route){
     const fill = isFirst ? "#2e7d32" : (isLast ? "#c62828" : "#ffb300");
     const labelY = p[1] - 11;
     return '<circle cx="'+p[0]+'" cy="'+p[1]+'" r="'+r+'" fill="'+fill+'" stroke="#fff" stroke-width="1.8"/>'
-      + routeLabel(p[0], labelY, k, 13, "#fff6dc", true);
+      + routeLabel(p[0], labelY, k, 13, "#fff6dc", true)
+      + (isFirst ? routeLabel(p[0], p[1]+18, "▶ 출발지", 10, "#eaffe0", true) : "")
+      + (isLast ? routeLabel(p[0], p[1]+18, "■ 도착지", 10, "#ffe0e0", true) : "");
   }).join("");
   return '<svg viewBox="'+vb[0]+' '+vb[1]+' '+vb[2]+' '+vb[3]+'" class="route-svg" xmlns="http://www.w3.org/2000/svg">'
     + modernBg2()
