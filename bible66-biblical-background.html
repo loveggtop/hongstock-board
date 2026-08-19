@@ -108,6 +108,16 @@
   .section-text{font-size:0.88rem; color:#4a4030;}
   .note{font-size:0.78rem; color:#9c8a5f; font-style:italic; margin-top:2px;}
 
+  .deepdive-links{display:flex; flex-direction:column; gap:6px; margin-top:2px;}
+  .deepdive-link{
+    display:flex; align-items:center; justify-content:space-between; gap:8px;
+    padding:7px 12px; border:1px solid var(--gold); border-radius:9px;
+    background:#fbf3df; color:var(--brown); font-weight:700; font-size:0.83rem;
+    text-decoration:none; transition:background .15s, transform .15s;
+  }
+  .deepdive-link:hover{background:var(--gold-light); transform:translateX(2px);}
+  .deepdive-link::after{content:"→"; opacity:.7;}
+
   footer{
         text-align:center; padding:32px 20px 10px; font-size:0.78rem; color:#a89568;
   }
@@ -204,7 +214,8 @@
 {n:3,name:"레위기",t:"구약",cat:"오경",author:"모세 (전통적 견해)",date:"주전 15세기경 (시내산 체류기)",
    bg:"시내산에 머무는 약 1년 동안, 갓 해방된 노예 공동체가 '제사장 나라'로 부름받아 거룩한 삶과 예배 방식을 배워야 했던 상황을 배경으로 합니다.",
    purpose:"제사법, 정결법, 절기법을 통해 거룩하신 하나님과 함께 사는 삶의 원리를 가르칩니다.",
- figures:[["아론과 그 아들들","이스라엘의 제사장 직분을 대대로 수행하는 첫 세대입니다."],["모세","하나님의 규례를 백성에게 전달하는 중재자 역할을 계속합니다."]]},
+ figures:[["아론과 그 아들들","이스라엘의 제사장 직분을 대대로 수행하는 첫 세대입니다."],["모세","하나님의 규례를 백성에게 전달하는 중재자 역할을 계속합니다."]],
+ links:[["제사법 다섯 가지 자세히 보기","leviticus-sacrificial-law.html"],["정결법(정한 것과 부정한 것) 자세히 보기","leviticus-purity-law.html"],["절기법(일곱 절기) 자세히 보기","leviticus-festival-law.html"]]},
 {n:4,name:"민수기",t:"구약",cat:"오경",author:"모세 (전통적 견해)",date:"주전 15세기경 (광야 40년)",
    bg:"가데스바네아에서의 불신앙(정탐꾼 사건) 이후 40년간 광야를 떠돌게 된 이스라엘의 상황을 배경으로, 옛 세대의 실패와 새 세대의 준비 과정을 다룹니다.",
    purpose:"두 차례의 인구조사와 광야 여정을 통해 불신앙의 결과와 약속의 땅 입성을 앞둔 준비를 기록합니다.",
@@ -1349,6 +1360,7 @@ function renderGrid(){
             ${b.route ? `<div class="section-label">이동경로</div><div class="route-map" onclick="openMapModal(this)">${renderRouteMapSVG(b.route)}</div>` : ""}
             ${b.route ? `<div class="section-label">이동경로 (현재 지도 기준)</div><div class="route-map" onclick="openMapModal(this)">${renderRealMapSVG(b.route)}</div>` : ""}
             ${b.note ? `<div class="note">※ ${b.note}</div>` : ""}
+            ${b.links ? `<div class="section-label">더 깊이 보기</div><div class="deepdive-links">${b.links.map(l=>`<a class="deepdive-link" href="${escapeAttr(l[1])}" target="_blank" rel="noopener">${escapeHtml(l[0])}</a>`).join("")}</div>` : ""}
     `;
     grid.appendChild(card);
 });
