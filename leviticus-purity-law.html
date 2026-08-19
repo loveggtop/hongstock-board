@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>레위기 정결법 — 정한 것과 부정한 것 자세히 보기</title>
+<style>
+  :root{
+    --olive:#6b7a4f; --moss:#556b3d; --gold:#c9a24b; --gold-light:#e8cf8a;
+    --beige:#f5efe0; --ivory:#fbf8f0; --brown:#5a4633; --ink:#3a3226;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--ivory); color:var(--ink); font-family:"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif; line-height:1.7;}
+  header.hero{background:linear-gradient(135deg, #3a3226 0%, #5a4633 40%, #8a6a3e 75%, var(--gold) 100%); color:#fff; padding:44px 20px 34px;}
+  .wrap{max-width:920px; margin:0 auto; padding:0 18px;}
+  .back-link{display:inline-block; color:#fff; opacity:.9; text-decoration:none; font-size:.9rem; border:1px solid rgba(255,255,255,.5); border-radius:20px; padding:6px 14px; margin-bottom:18px;}
+  .back-link:hover{opacity:1; background:rgba(255,255,255,.12);}
+  header.hero h1{font-size:1.9rem; margin:0 0 10px; font-weight:800;}
+  header.hero p{margin:0; opacity:.92; font-size:.98rem; max-width:680px;}
+  .badge-row{margin-top:16px; display:flex; gap:8px; flex-wrap:wrap;}
+  .badge{background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.4); border-radius:20px; padding:5px 12px; font-size:.8rem; font-weight:700;}
+  main{padding:36px 0 70px;}
+  section{margin-bottom:44px;}
+  h2{font-size:1.35rem; color:var(--brown); border-left:5px solid var(--gold); padding-left:12px; margin:0 0 16px;}
+  h3{font-size:1.08rem; color:var(--brown); margin:0 0 6px;}
+  p.lead{font-size:1.02rem; background:var(--beige); border-radius:14px; padding:18px 20px; border:1px solid #e8dcb8;}
+
+  .zone-wrap{display:flex; gap:26px; align-items:center; flex-wrap:wrap; margin-top:18px;}
+  .zone-svg{flex:0 0 300px; max-width:100%;}
+  .zone-legend{flex:1; min-width:240px; font-size:.88rem;}
+  .zone-legend div{margin-bottom:8px; padding-left:16px; position:relative;}
+  .zone-legend div::before{content:""; position:absolute; left:0; top:6px; width:9px; height:9px; border-radius:50%;}
+  .z1::before{background:#c9a24b;} .z2::before{background:#d8bd7f;} .z3::before{background:#e8cf8a;} .z4::before{background:#f0e2b8;} .z5::before{background:#f5efe0; border:1px solid #ccc;}
+
+  .cat-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:18px;}
+  @media(max-width:700px){.cat-grid{grid-template-columns:1fr;}}
+  .cat-card{background:#fff; border:1px solid #eee0bf; border-radius:16px; padding:18px 20px;}
+  .cat-card .num{display:inline-block; width:26px; height:26px; border-radius:50%; background:var(--olive); color:#fff; font-weight:800; text-align:center; line-height:26px; font-size:.8rem; margin-right:6px;}
+  .cat-card .meta{font-size:.8rem; color:#8a7550; margin:4px 0 8px;}
+  .christ-box{margin-top:10px; background:var(--beige); border-left:3px solid var(--olive); border-radius:8px; padding:10px 14px; font-size:.87rem; color:var(--moss);}
+  .christ-box b{color:var(--moss);}
+
+  table.foodtbl{width:100%; border-collapse:collapse; margin-top:14px; font-size:.86rem; background:#fff; border-radius:12px; overflow:hidden;}
+  table.foodtbl th, table.foodtbl td{padding:9px 11px; border-bottom:1px solid #f0e6cc; text-align:left;}
+  table.foodtbl th{background:var(--brown); color:#fff; font-size:.8rem;}
+  table.foodtbl tr:nth-child(even){background:#fbf6e8;}
+
+  .source-list{font-size:.82rem; color:#8a7550; padding-left:18px;}
+  .source-list a{color:var(--brown);}
+  footer{padding:24px 18px 50px; text-align:center; font-size:.8rem; color:#9c8a5f;}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <a class="back-link" href="bible66-biblical-background.html">← 성경 66권 배경으로 돌아가기</a>
+    <h1>레위기 정결법 — 정한 것과 부정한 것</h1>
+    <p>레위기 11~15장은 음식, 출산, 피부병과 곰팡이, 유출병이라는 네 가지 상황을 통해 "정결(淸潔)"과 "부정(不淨)"을 구분합니다. 부정은 도덕적 죄가 아니라 하나님 앞에 나아갈 수 없는 '상태'이며, 그 배후에는 생명·완전함과 죽음·결핍을 가르는 신학적 논리가 있습니다.</p>
+    <div class="badge-row">
+      <span class="badge">레위기 11~15장</span>
+      <span class="badge">음식법 · 출산법 · 피부병법 · 유출병법</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section>
+  <h2>왜 '정결'과 '부정'을 나누었을까</h2>
+  <p class="lead">이스라엘 진영은 중심에 지성소가 있고, 그 주위로 거룩함의 정도가 점점 낮아지는 동심원 구조로 이해할 수 있습니다. 부정한 상태의 사람은 이 구조 안으로 들어갈 수 없었습니다. 즉 정결법은 "누가, 언제 하나님께 가까이 나아갈 수 있는가"를 정하는 실제적인 예배 규정이었습니다.</p>
+
+  <div class="zone-wrap">
+    <svg class="zone-svg" viewBox="0 0 300 300">
+      <circle cx="150" cy="150" r="140" fill="#f5efe0" stroke="#ccc"/>
+      <circle cx="150" cy="150" r="108" fill="#f0e2b8"/>
+      <circle cx="150" cy="150" r="76" fill="#e8cf8a"/>
+      <circle cx="150" cy="150" r="46" fill="#d8bd7f"/>
+      <circle cx="150" cy="150" r="20" fill="#c9a24b"/>
+      <text x="150" y="153" text-anchor="middle" font-size="10" font-weight="700" fill="#3a3226">지성소</text>
+      <text x="150" y="112" text-anchor="middle" font-size="9" fill="#3a3226">성소</text>
+      <text x="150" y="78" text-anchor="middle" font-size="9" fill="#3a3226">제사장 뜰</text>
+      <text x="150" y="46" text-anchor="middle" font-size="9" fill="#3a3226">이스라엘 진</text>
+      <text x="150" y="18" text-anchor="middle" font-size="9" fill="#3a3226">진 밖</text>
+    </svg>
+    <div class="zone-legend">
+      <div class="z1"><b>지성소</b> — 대제사장만, 그것도 속죄일 하루만 들어갈 수 있는 가장 거룩한 공간</div>
+      <div class="z2"><b>성소</b> — 제사장들이 매일 봉사하는 공간</div>
+      <div class="z3"><b>제사장 뜰(성막 뜰)</b> — 제사를 드리는 이스라엘 백성이 나아올 수 있는 공간</div>
+      <div class="z4"><b>이스라엘 진</b> — 일상 생활 공간. 부정한 사람은 일정 기간 이곳에도 머물 수 없었음(레 13:46)</div>
+      <div class="z5"><b>진 밖</b> — 심각한 부정(전염성 피부병 등)이 있을 때 격리되는 곳</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>네 가지 정결법</h2>
+  <div class="cat-grid">
+
+    <div class="cat-card">
+      <h3><span class="num">1</span>음식법 (레 11장)</h3>
+      <div class="meta">정한 짐승 vs 부정한 짐승</div>
+      <p>육지 동물은 '굽이 갈라지고 되새김질하는 것'만, 물고기는 '지느러미와 비늘이 있는 것'만 먹을 수 있었습니다. 학자들은 이 기준이 단순 위생이 아니라, 창조 질서 안에서 각 영역(땅·물·하늘)에 '정상적으로 속한' 방식으로 움직이는 동물만 정하다고 본 상징적 분류 체계라고 설명합니다.</p>
+      <table class="foodtbl">
+        <tr><th>구분</th><th>정한 것</th><th>부정한 것 예시</th></tr>
+        <tr><td>육지 동물</td><td>소·양·염소·사슴 등</td><td>돼지, 낙타, 토끼</td></tr>
+        <tr><td>물고기</td><td>지느러미+비늘 있는 것</td><td>조개류, 갑각류, 뱀장어류</td></tr>
+        <tr><td>날짐승</td><td>목록 외 대부분</td><td>독수리·매 등 맹금류, 박쥐</td></tr>
+      </table>
+      <div class="christ-box"><b>신약과의 연결 —</b> 사도행전 10장 베드로의 환상("하나님께서 깨끗하게 하신 것을 네가 속되다 하지 말라")은 음식법이 유대인과 이방인을 가르던 경계에서, 그리스도 안에서 모든 민족을 향한 복음으로 확장되었음을 보여줍니다.</div>
+    </div>
+
+    <div class="cat-card">
+      <h3><span class="num">2</span>출산법 (레 12장)</h3>
+      <div class="meta">산모의 정결 기간</div>
+      <p>출산한 산모는 일정 기간(아들일 경우 7일+33일, 딸일 경우 14일+66일) 부정한 상태로 지내다가 정결례를 위해 번제와 속죄제를 드렸습니다. 아들과 딸의 기간 차이는 논쟁적인 주제이지만, 본문의 핵심은 죽음에 가까운 출혈을 동반한 생명의 위기(출산) 이후 회복과 정결의 시간이 필요하다는 원리입니다.</p>
+      <div class="christ-box"><b>참고 —</b> 누가복음 2:22-24, 예수님의 부모도 이 정결법에 따라 정결 예식을 행하고 제물을 드렸습니다.</div>
+    </div>
+
+    <div class="cat-card">
+      <h3><span class="num">3</span>피부병·곰팡이법 (레 13~14장)</h3>
+      <div class="meta">'나병'으로 번역된 짜라아트</div>
+      <p>흔히 '나병'으로 번역되지만 현대 의학의 한센병만이 아니라 피부의 여러 질환, 심지어 옷과 집에 생기는 곰팡이·부패까지 포함하는 넓은 범주(짜라아트)입니다. 제사장이 진단하여 부정하다고 판정되면 진영 밖으로 격리되었고(레 13:46), 나은 뒤에는 정교한 정결 의식(레 14장)을 거쳐 다시 공동체로 복귀했습니다.</p>
+      <div class="christ-box"><b>신약과의 연결 —</b> 예수님이 나병 환자를 만지고 고치신 사건들(막 1:40-45 등)은 부정을 옮기는 대신 오히려 정결하게 하시는 그리스도의 권세를 보여줍니다.</div>
+    </div>
+
+    <div class="cat-card">
+      <h3><span class="num">4</span>유출병법 (레 15장)</h3>
+      <div class="meta">몸의 유출과 관련된 부정</div>
+      <p>생식기에서 비정상적인 유출이 있거나(질병), 정상적인 생리·설정(정액 유출)이 있을 때도 일정 기간 부정하다고 규정합니다. 이는 도덕적 비난이 아니라, 생명의 통로(피·정액)에서 일어나는 '비정상적 흐름' 또는 '생명력의 상실'을 죽음과 연관된 상태로 이해했기 때문입니다.</p>
+      <div class="christ-box"><b>신약과의 연결 —</b> 12년간 혈루증을 앓던 여인이 예수님의 옷자락을 만져 나은 사건(막 5:25-34)은, 유출병으로 오랫동안 공동체에서 소외되었던 이가 그리스도를 통해 회복되는 장면입니다.</div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <h2>참고 자료</h2>
+  <ul class="source-list">
+    <li>대한성서공회, 레위기 11~15장 본문 — <a href="https://www.bskorea.or.kr" target="_blank" rel="noopener">bskorea.or.kr</a></li>
+    <li>주간기독신문, "교회를 위한 헌장, 레위기 제대로 읽기 (16) 거룩한 백성의 정결한 삶" — <a href="https://www.kidok.com/news/articleView.html?idxno=99657" target="_blank" rel="noopener">kidok.com</a></li>
+    <li>주간기독신문, "(17) 정-부정을 가르는 생명과 죽음" — <a href="https://www.kidok.com/news/articleView.html?idxno=99776" target="_blank" rel="noopener">kidok.com</a></li>
+    <li>theosnlogos, "레위기 11장, '정한 짐승과 부정한 짐승' 규정의 신학적 의미" — <a href="https://www.theosnlogos.com/1831" target="_blank" rel="noopener">theosnlogos.com</a></li>
+  </ul>
+</section>
+
+</main>
+<footer>레위기 정결법 상세 페이지 · 성경 66권 시대적 배경 총정리의 부속 자료입니다.</footer>
+</body>
+</html>
