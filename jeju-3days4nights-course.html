@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>제주도 3박4일 여행 코스 | 오름·해변·로컬맛집 완전정리</title>
+<style>
+  :root{
+    --day1:#f97316; --day1-bg:#fff7ed;
+    --day2:#3b82f6; --day2-bg:#eff6ff;
+    --day3:#22c55e; --day3-bg:#f0fdf4;
+    --day4:#a855f7; --day4-bg:#faf5ff;
+    --ink:#1f2430; --sub:#6b7280; --line:#e5e7eb; --card:#ffffff;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;
+    color:var(--ink); background:#fafafa; line-height:1.6;
+  }
+  .hero{
+    background:linear-gradient(135deg,#0ea5e9 0%,#38bdf8 35%,#7dd3fc 70%,#bae6fd 100%);
+    color:#fff; padding:64px 20px 56px; text-align:center; position:relative; overflow:hidden;
+  }
+  .hero::after{
+    content:"🌊 🌴 🏝️ ⛰️"; position:absolute; bottom:-14px; left:0; right:0; font-size:34px; opacity:.35; letter-spacing:24px; text-align:center;
+  }
+  .hero h1{ font-size:clamp(28px,5vw,42px); margin:0 0 12px; font-weight:800; letter-spacing:-0.5px;}
+  .hero p{ font-size:16px; margin:6px 0; opacity:.95; }
+  .hero .badge{
+    display:inline-block; margin-top:18px; background:rgba(255,255,255,.22); backdrop-filter:blur(4px);
+    padding:8px 18px; border-radius:999px; font-size:14px; font-weight:600; border:1px solid rgba(255,255,255,.4);
+  }
+  .wrap{ max-width:880px; margin:0 auto; padding:0 20px; }
+  .intro{ background:#fff; border-radius:16px; padding:28px 26px; margin:-30px auto 40px; max-width:840px;
+    box-shadow:0 10px 30px rgba(0,0,0,.06); border:1px solid var(--line); position:relative; z-index:2;}
+  .intro p{ margin:0 0 10px; color:#374151; font-size:15.5px; }
+  .intro p:last-child{margin-bottom:0;}
+  .stat-row{ display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; }
+  .stat{ background:#f3f4f6; border-radius:10px; padding:10px 14px; font-size:13.5px; color:#374151; font-weight:600; }
+
+  .toc{ display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin:0 0 44px; }
+  .toc a{ text-decoration:none; font-size:14px; font-weight:700; padding:8px 16px; border-radius:999px; border:2px solid transparent; }
+  .toc a.d1{ color:var(--day1); background:var(--day1-bg); border-color:#fed7aa;}
+  .toc a.d2{ color:var(--day2); background:var(--day2-bg); border-color:#bfdbfe;}
+  .toc a.d3{ color:var(--day3); background:var(--day3-bg); border-color:#bbf7d0;}
+  .toc a.d4{ color:var(--day4); background:var(--day4-bg); border-color:#e9d5ff;}
+
+  .day-section{ margin-bottom:52px; scroll-margin-top:20px;}
+  .day-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:6px; padding-left:4px; }
+  .day-num{ font-size:13px; font-weight:800; color:#fff; padding:4px 12px; border-radius:999px; }
+  .d1 .day-num{ background:var(--day1);} .d2 .day-num{ background:var(--day2);}
+  .d3 .day-num{ background:var(--day3);} .d4 .day-num{ background:var(--day4);}
+  .day-title{ font-size:22px; font-weight:800; margin:0; }
+  .day-sub{ color:var(--sub); font-size:14px; margin:2px 0 22px 4px; }
+
+  .timeline{ position:relative; padding-left:26px; border-left:3px solid var(--line); margin-left:6px; }
+  .d1 .timeline{ border-color:#fed7aa;} .d2 .timeline{ border-color:#bfdbfe;}
+  .d3 .timeline{ border-color:#bbf7d0;} .d4 .timeline{ border-color:#e9d5ff;}
+
+  .spot{ position:relative; background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:16px 18px; margin-bottom:14px; box-shadow:0 1px 3px rgba(0,0,0,.03); }
+  .spot::before{ content:""; position:absolute; left:-32px; top:22px; width:12px; height:12px; border-radius:50%;
+    background:#fff; border:3px solid var(--line); }
+  .d1 .spot::before{ border-color:var(--day1);} .d2 .spot::before{ border-color:var(--day2);}
+  .d3 .spot::before{ border-color:var(--day3);} .d4 .spot::before{ border-color:var(--day4);}
+  .spot-head{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px; }
+  .spot-name{ font-size:16.5px; font-weight:800; margin:0; }
+  .tag{ font-size:11.5px; font-weight:700; padding:2px 9px; border-radius:999px; white-space:nowrap; }
+  .tag.food{ background:#fee2e2; color:#b91c1c;} .tag.cafe{ background:#fef3c7; color:#92400e;}
+  .tag.nature{ background:#dcfce7; color:#15803d;} .tag.beach{ background:#dbeafe; color:#1d4ed8;}
+  .tag.stay{ background:#ede9fe; color:#6d28d9;} .tag.shop{ background:#e0f2fe; color:#0369a1;}
+  .tag.pick{ background:#111827; color:#fff;}
+  .spot-desc{ font-size:14.5px; color:#4b5563; margin:0; }
+  .spot-tip{ font-size:13px; color:#9ca3af; margin-top:6px; }
+
+  .pickbox{ background:#111827; color:#fff; border-radius:16px; padding:26px 24px; margin:0 0 48px; }
+  .pickbox h2{ font-size:19px; margin:0 0 14px; }
+  .pickbox ul{ margin:0; padding-left:20px; font-size:14.5px; color:#e5e7eb; }
+  .pickbox li{ margin-bottom:8px; }
+  .pickbox b{ color:#fff; }
+
+  .tips{ background:#fff; border:1px solid var(--line); border-radius:16px; padding:26px 24px; margin-bottom:56px; }
+  .tips h2{ font-size:19px; margin:0 0 14px; }
+  .tips ul{ margin:0; padding-left:20px; font-size:14.5px; color:#374151; }
+  .tips li{ margin-bottom:8px; }
+
+  footer{ text-align:center; color:#9ca3af; font-size:13px; padding:20px 0 60px; }
+  h2{ scroll-margin-top:16px; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>🍊 제주도 3박4일 여행 코스</h1>
+  <p>오름 · 해변 · 로컬 맛집까지, 렌트카 한 대로 완주하는 제주 완전정복 루트</p>
+  <span class="badge">📍 총 27개 스팟 · 4일 코스 · 숙소 1곳 고정</span>
+</div>
+
+<div class="wrap">
+
+  <div class="intro">
+    <p>제주공항 도착부터 출국까지, <b>동쪽→서귀포권→서쪽→서귀포 서부</b> 순으로 하루씩 권역을 돌고 매일 밤 같은 숙소로 돌아오는 <b>거점형 3박4일 코스</b>입니다. 매일 아침 짐을 다시 싸지 않아도 되니 이동이 한결 편하고, 하루 권역을 확실히 정해두면 렌트카 동선 낭비가 크게 줄어듭니다.</p>
+    <p>오름·숲길 같은 자연 명소와 현지인 픽 맛집·카페를 적절히 섞어 구성했고, 각 스팟마다 대표 메뉴나 포인트를 함께 정리했으니 그대로 따라가도 되고 취향에 맞게 한두 곳씩 빼도 좋아요.</p>
+    <div class="stat-row">
+      <div class="stat">🚗 숙소: 에코랜드 인근 호텔 (3박 고정)</div>
+      <div class="stat">🗺️ 1일차: 공항→동부</div>
+      <div class="stat">🗺️ 2일차: 함덕→서귀포 동부</div>
+      <div class="stat">🗺️ 3일차: 서귀포 서부(대정·안덕)</div>
+      <div class="stat">🗺️ 4일차: 애월→공항</div>
+    </div>
+  </div>
+
+  <div class="toc">
+    <a class="d1" href="#day1">Day 1 · 동부</a>
+    <a class="d2" href="#day2">Day 2 · 서귀포 동부</a>
+    <a class="d3" href="#day3">Day 3 · 서귀포 서부</a>
+    <a class="d4" href="#day4">Day 4 · 애월·공항</a>
+  </div>
+
+  <!-- DAY 1 -->
+  <section class="day-section d1" id="day1">
+    <div class="day-head"><span class="day-num">DAY 1</span><h2 class="day-title">공항 도착 → 제주 동부</h2></div>
+    <p class="day-sub">렌트카 인수 후 동쪽으로 이동하며 숲과 바다, 로컬 맛집을 한 번에</p>
+    <div class="timeline">
+
+      <div class="spot">
+        <div class="spot-head"><h3 class="spot-name">제주국제공항 · 렌트카 인수</h3><span class="tag shop">출발</span></div>
+        <p class="spot-desc">3박4일 여행의 시작점. 렌트카를 인수하며 내비게이션에 숙소와 오늘 동선을 미리 등록해두면 편해요.</p>
+      </div>
+
+      <div class="spot">
+        <div class="spot-head"><h3 class="spot-name">노라바</h3><span class="tag food">맛집</span></div>
+        <p class="spot-desc">해물라면 전문점. 시원한 해물 국물이 당길 때 첫 끼로 좋은 선택지예요.</p>
+      </div>
+
+      <div class="spot">
+        <div class="spot-head"><h3 class="spot-name">유지커피웍스</h3><span class="tag cafe">카페</span></div>
+        <p class="spot-desc">이동 중 잠깐 쉬어가기 좋은 로스터리 카페. 커피 한 잔으로 여독을 풀어보세요.</p>
+      </div>
+
+      <div class="spot">
+        <div class="spot-head"><h3 class="spot-name">맥파이 브루어리</h3><span class="tag shop">쇼핑</span></div>
+        <p class="spot-desc">제주 크래프트 맥주 브랜드. 숙소에서 마실 맥주를 미리 구입해두기 좋아요.</p>
+      </div>
+
+      <div class="spot">
+        <div class="spot-head"><h3 class="spot-name">비자림</h3><span class="tag nature pick">추천 · 자연</span></div>
+        <p class="spot-desc">수백 년 된 비자나무 숲길로 유명한 제주 대표 힐링 코스. 붉은 화산송이 흙길을 천천히 걸으며 피톤치드를 만끽할 수 있어요.</p>
+        <p class="spot-tip">TIP · 그늘이 많아 여름에도 걷기 좋지만 편한 신발은 필수예요.</p>
+      </div>
+
+      <div class="spot">
+        <div class="spot-head"><h3 class="spot-name">하나로마트 성산일출봉농협</h3><span class="tag shop">쇼핑</span></div>
+        <p class="spot-desc">회와 주류를 저렴하게 구입할 수 있는 로컬 마트. 숙소에서 즐길 술상 재료를 챙겨보세요.</p>
+      </div>
+
+      <div class="spot">
+        <div class="spot-head"><h3 class="spot-name">손맛촌 제주</h3><span class="tag food pick">추천 · 맛집</span></div>
+        <p class="spot-desc">고사리갈치조림과 통갈치구이 전문점. 제주 향토음식을 제대로 맛보고 싶다면 첫날 저녁으로 강력 추천해요.</p>
+      </div>
+
+      <div class="spot">
+        <div class="spot-head"><h3 class="spot-name">에코랜드 호텔</h3><span class="tag stay">숙소 (3박 고정)</span></div>
+        <p class="spot-desc">앞으로 3박을 머무를 거점 숙소. 매일 이곳을 기준으로 하루 권역을 돌고 돌아옵니다.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DAY 2 -->
+  <section class="day-section d2" id="day2">
+    <div class="day-head"><span class="day-num">DAY 2</span><h2 class="day-title">함덕 → 서귀포 동부</h2></div>
+    <p class="day-sub">해수욕장과 오름, 계곡과 절벽까지 제주의 다채로운 풍경을 하루에</p>
+    <div class="timeline">
+
+      <div class="spot">
+        <div class="spot-head"><h3 class="spot-name">함덕해수욕장 · 반디파스타</h3><span class="tag beach">해변 · 맛집</span></div>
+        <p class="spot-desc">에메랄드빛 물빛으로 유명한 함덕해수욕장 인근 파스타 맛집에서 여유로운 브런치를 즐겨보세요.</p>
+      </div>
+
+      <div class="spot">
+        <div class="spot-head"><h3 class="spot-name">아부오름</h3><span class="tag nature">오름</span></div>
+        <p class="spot-desc">완만한 능선과 넓은 분화구가 특징인 오름. 왕복 30분 내외로 가볍게 오를 수 있어 오름 초보에게도 좋아요.</p>
+      </div>
+
+      <div class="spot">
+        <div class="spot-head"><h3 class="spot-name">삼다수목장</h3><span class="tag nature">포토스팟</span></div>
+        <p class="spot-desc">푸른 초지와 삼나무길이 어우러진 목장. 사진 찍기 좋은 이색 풍경 명소예요.</p>
+      </div>
+
+      <div class="spot">
+        <div class="spot-head"><h3 class="spot-name">투모로우 (To More Low)</h3><span class="tag cafe">카페</span></div>
+        <p class="spot-desc">서귀포 방향으로 내려가는 길에 들르기 좋은 감성 카페. 잠깐 숨을 고르며 다음 코스를 준비해요.</p>
+      </div>
+
+      <div class="spot">
+        <div class="spot-head"><h3 class="spot-name">쇠소깍</h3><span class="tag nature pick">추천 · 자연</span></div>
+        <p class="spot-desc">민물과 바닷물이 만나는 짙은 에메랄드빛 계곡. 투명카약이나 테우 체험으로도 유명한 제주 대표 명소예요.</p>
+      </div>
+
+      <div class="spot">
+        <div class="spot-head"><h3 class="spot-name">외돌개</h3><span class="tag nature pick">추천 · 절경</span></div>
+        <p class="spot-desc">바다 한가운데 우뚝 솟은 20m 높이의 기암. 해안 산책로를 따라 걸으며 남해 절경을 감상할 수 있어요.</p>
+      </div>
+
+      <div class="spot">
+        <div class="spot-head"><h3 class="spot-name">섬돼지</h3><span class="tag food">맛집</span></div>
+        <p class="spot-desc">둘째 날 저녁은 든든한 흑돼지 맛집으로 마무리. 하루 종일 걸은 만큼 든든하게 채워보세요.</p>
+      </div>
+
+      <div class="spot">
+        <div class="spot-head"><h3 class="spot-name">에코랜드 호텔 복귀</h3><span class="tag stay">숙소</span></div>
+        <p class="spot-desc">둘째 날 밤도 같은 숙소에서 편안하게.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DAY 3 -->
+  <section class="day-section d3" id="day3">
+    <div class="day-head"><span class="day-num">DAY 3</span><h2 class="day-title">대정 → 안덕 (서귀포 서부)</h2></div>
+    <p class="day-sub">비양도 뷰 해변부터 산방산, 녹차밭까지 서쪽 제주의 하이라이트</p>
+    <div class="timeline">
+
+      <div class="spot">
+        <div class="spot-head"><h3 class="spot-name">금능해수욕장</h3><span class="tag beach pick">추천 · 해변</span></div>
+        <p class="spot-desc">비양도가 정면으로 보이는 얕고 맑은 백사장. 협재해수욕장 바로 옆이라 함께 둘러보기도 좋아요.</p>
+      </div>
+
+      <div class="spot">
+        <div class="spot-head"><h3 class="spot-name">금자매식당</h3><span class="tag food">맛집</span></div>
+        <p class="spot-desc">해변 근처 로컬 백반·해산물 맛집. 물놀이 후 든든한 한 끼로 좋아요.</p>
+      </div>
+
+      <div class="spot">
+        <div class="spot-head"><h3 class="spot-name">미쁜제과</h3><span class="tag cafe">베이커리</span></div>
+        <p class="spot-desc">디저트 타임으로 들르기 좋은 베이커리 카페. 이동 중 당 충전 코스로 추천해요.</p>
+      </div>
+
+      <div class="spot">
+        <div class="spot-head"><h3 class="spot-name">산방산</h3><span class="tag nature pick">추천 · 자연</span></div>
+        <p class="spot-desc">해발 395m, 종 모양의 웅장한 화산체. 용머리해안과 세트로 둘러보면 제주 서남부의 상징적인 풍경을 제대로 즐길 수 있어요.</p>
+      </div>
+
+      <div class="spot">
+        <div class="spot-head"><h3 class="spot-name">안덕계곡</h3><span class="tag nature">자연</span></div>
+        <p class="spot-desc">기암절벽과 상록수림이 어우러진 원시림 계곡. 산방산 인근에서 잠깐 걷기 좋은 힐링 코스예요.</p>
+      </div>
+
+      <div class="spot">
+        <div class="spot-head"><h3 class="spot-name">오설록 티 뮤지엄</h3><span class="tag cafe pick">추천 · 카페</span></div>
+        <p class="spot-desc">푸른 녹차밭과 함께하는 제주 대표 티 뮤지엄. 녹차 아이스크림과 티 카페 인기 명소로, 사진 찍기도 좋아요.</p>
+      </div>
+
+      <div class="spot">
+        <div class="spot-head"><h3 class="spot-name">제주 참나무 장작구이</h3><span class="tag food">포장</span></div>
+        <p class="spot-desc">숙소로 돌아가는 길에 통닭을 포장해 오늘 밤 술안주로 즐겨보세요.</p>
+      </div>
+
+      <div class="spot">
+        <div class="spot-head"><h3 class="spot-name">에코랜드 호텔 복귀</h3><span class="tag stay">숙소</span></div>
+        <p class="spot-desc">마지막 밤, 포장해온 통닭과 맥주로 여행을 정리해요.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DAY 4 -->
+  <section class="day-section d4" id="day4">
+    <div class="day-head"><span class="day-num">DAY 4</span><h2 class="day-title">애월 → 공항 (출국)</h2></div>
+    <p class="day-sub">숙소 체크아웃 후 애월 해안을 즐기고 여유롭게 공항으로</p>
+    <div class="timeline">
+
+      <div class="spot">
+        <div class="spot-head"><h3 class="spot-name">에코랜드 호텔 체크아웃</h3><span class="tag stay">출발</span></div>
+        <p class="spot-desc">짐을 정리하고 애월 방향으로 마지막 날 일정을 시작해요.</p>
+      </div>
+
+      <div class="spot">
+        <div class="spot-head"><h3 class="spot-name">버거리 수제버거 (애월 본점)</h3><span class="tag food">맛집</span></div>
+        <p class="spot-desc">묵직한 수제버거로 마지막 날 브런치를 든든하게. 애월 해안을 걷기 전 에너지 충전용으로 좋아요.</p>
+      </div>
+
+      <div class="spot">
+        <div class="spot-head"><h3 class="spot-name">한담해안산책로</h3><span class="tag nature pick">추천 · 산책</span></div>
+        <p class="spot-desc">에메랄드빛 바다를 끼고 걷는 애월 대표 산책로. 카페거리와 이어져 있어 산책 후 커피 한 잔 하기도 좋아요.</p>
+      </div>
+
+      <div class="spot">
+        <div class="spot-head"><h3 class="spot-name">제주곶자왈도립공원</h3><span class="tag nature">자연</span></div>
+        <p class="spot-desc">화산암 지대 위에 형성된 독특한 원시 숲. 서늘하고 습한 곶자왈 특유의 신비로운 산책길을 걸을 수 있어요.</p>
+      </div>
+
+      <div class="spot">
+        <div class="spot-head"><h3 class="spot-name">한라산아래첫마을</h3><span class="tag food">맛집</span></div>
+        <p class="spot-desc">한라산 자락 아래 위치한 로컬 마을 식당. 출국 전 마지막 제주 향토식으로 아쉬움을 달래보세요.</p>
+      </div>
+
+      <div class="spot">
+        <div class="spot-head"><h3 class="spot-name">아베베베이커리</h3><span class="tag cafe">베이커리 · 선주문 추천</span></div>
+        <p class="spot-desc">인기가 많아 대기가 긴 편이라 배달앱 등으로 미리 선주문해두면 시간을 아낄 수 있어요. 공항 가기 전 마지막 디저트로 딱이에요.</p>
+      </div>
+
+      <div class="spot">
+        <div class="spot-head"><h3 class="spot-name">제주국제공항</h3><span class="tag shop">출국</span></div>
+        <p class="spot-desc">렌트카 반납 후 출국 수속. 3박4일 제주 여행 완주!</p>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="pickbox">
+    <h2>✈️ 시간이 부족하다면, 이 8곳만은 꼭!</h2>
+    <ul>
+      <li><b>비자림</b> — 힐링 숲길 대표 명소 (Day1)</li>
+      <li><b>손맛촌 제주</b> — 고사리갈치조림 & 통갈치구이 (Day1)</li>
+      <li><b>쇠소깍 / 외돌개</b> — 서귀포 동부 대표 절경 (Day2)</li>
+      <li><b>금능해수욕장</b> — 비양도 뷰 맑은 백사장 (Day3)</li>
+      <li><b>산방산</b> — 제주 서남부 상징 명소 (Day3)</li>
+      <li><b>오설록 티 뮤지엄</b> — 녹차밭 & 카페 (Day3)</li>
+      <li><b>한담해안산책로</b> — 애월 해안 산책 & 카페거리 (Day4)</li>
+    </ul>
+  </div>
+
+  <div class="tips">
+    <h2>🧳 여행 팁</h2>
+    <ul>
+      <li><b>거점 숙박 방식</b> — 에코랜드 인근 호텔에서 3박을 고정하고 매일 다른 권역을 도는 동선이라 짐을 옮길 필요가 없어요.</li>
+      <li><b>렌트카 필수</b> — 대부분의 스팟이 대중교통으로 접근이 어려운 위치라 렌트카가 사실상 필수예요.</li>
+      <li><b>마트 활용</b> — 하나로마트에서 회·주류를 저렴하게 구입해 숙소에서 즐기는 술상도 제주 여행의 묘미예요.</li>
+      <li><b>인기 맛집 선주문</b> — 아베베베이커리처럼 대기가 긴 곳은 배달앱 선주문으로 시간을 절약하세요.</li>
+      <li><b>날씨 체크</b> — 오름·해안 산책로 일정이 많은 만큼 우천 시 일부 코스는 유연하게 순서를 바꾸는 걸 추천해요.</li>
+      <li><b>편한 신발</b> — 비자림, 곶자왈, 한담해안산책로 등 도보 코스가 많으니 운동화는 필수예요.</li>
+    </ul>
+  </div>
+
+</div>
+
+<footer>제주도 3박4일 여행 코스 정리 · 구글 마이맵 기반 로컬 코스</footer>
+
+</body>
+</html>
