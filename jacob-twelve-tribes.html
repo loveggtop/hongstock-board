@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>이스라엘 열두 지파 — 야곱의 아들들에서 시작된 언약 백성</title>
+<style>
+  :root{
+    --olive:#6b7a4f; --moss:#556b3d; --gold:#c9a24b; --gold-light:#e8cf8a;
+    --beige:#f5efe0; --ivory:#fbf8f0; --brown:#5a4633; --ink:#3a3226;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--ivory); color:var(--ink);
+    font-family:"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;
+    line-height:1.7;
+  }
+  header.hero{
+    background:linear-gradient(135deg, #3a3226 0%, #5a4633 40%, #8a6a3e 75%, var(--gold) 100%);
+    color:#fff; padding:44px 20px 34px;
+  }
+  .wrap{max-width:960px; margin:0 auto; padding:0 18px;}
+  .back-link{
+    display:inline-block; color:#fff; opacity:.9; text-decoration:none; font-size:.9rem;
+    border:1px solid rgba(255,255,255,.5); border-radius:20px; padding:6px 14px; margin-bottom:18px;
+  }
+  .back-link:hover{opacity:1; background:rgba(255,255,255,.12);}
+  header.hero h1{font-size:1.85rem; margin:0 0 10px; font-weight:800;}
+  header.hero p{margin:0; opacity:.92; font-size:.98rem; max-width:700px;}
+  .badge-row{margin-top:16px; display:flex; gap:8px; flex-wrap:wrap;}
+  .badge{background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.4); border-radius:20px; padding:5px 12px; font-size:.8rem; font-weight:700;}
+  main{padding:36px 0 70px;}
+  section{margin-bottom:44px;}
+  h2{font-size:1.35rem; color:var(--brown); border-left:5px solid var(--gold); padding-left:12px; margin:0 0 16px;}
+  h3{font-size:1.05rem; color:var(--brown); margin:0 0 6px;}
+  p.lead{font-size:1.02rem; color:var(--ink); background:var(--beige); border-radius:14px; padding:18px 20px; border:1px solid #e8dcb8;}
+  .note-box{
+    margin-top:14px; background:#fff; border:1px dashed #d8bd7f; border-radius:12px;
+    padding:14px 16px; font-size:.88rem; color:#6b5a3e;
+  }
+  .note-box b{color:var(--brown);}
+
+  /* birth-order timeline */
+  .timeline-wrap{background:#fff; border:1px solid #eee0bf; border-radius:16px; padding:18px 8px 6px; margin-top:18px; overflow-x:auto;}
+  .timeline-svg{width:100%; min-width:760px; display:block;}
+  .mother-legend{display:flex; gap:14px; flex-wrap:wrap; justify-content:center; padding:10px 10px 4px; font-size:.8rem; color:#6b5a3e;}
+  .mother-legend span{display:inline-flex; align-items:center; gap:6px;}
+  .mother-legend i{width:11px; height:11px; border-radius:50%; display:inline-block;}
+
+  /* camp diagram */
+  .camp-wrap{display:flex; gap:22px; flex-wrap:wrap; align-items:center; margin-top:18px;}
+  .camp-svg-box{flex:0 0 340px; max-width:100%;}
+  .camp-svg{width:100%; height:auto; display:block;}
+  .camp-legend{flex:1; min-width:260px; display:flex; flex-direction:column; gap:8px; font-size:.86rem;}
+  .camp-legend .row{background:#fff; border:1px solid #eee0bf; border-radius:10px; padding:8px 12px;}
+  .camp-legend .row b{color:var(--brown);}
+
+  /* allotment table */
+  table.cmp{width:100%; border-collapse:collapse; margin-top:18px; font-size:.86rem; background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 2px 10px rgba(90,70,50,.06);}
+  table.cmp th, table.cmp td{padding:9px 11px; border-bottom:1px solid #f0e6cc; text-align:left; vertical-align:top;}
+  table.cmp th{background:var(--brown); color:#fff; font-weight:700; font-size:.8rem;}
+  table.cmp tr:last-child td{border-bottom:none;}
+  table.cmp tr:nth-child(even){background:#fbf6e8;}
+
+  /* 12 tribe mini grid */
+  .grid12{display:grid; grid-template-columns:repeat(6,1fr); gap:8px; margin:18px 0 6px;}
+  @media(max-width:820px){.grid12{grid-template-columns:repeat(3,1fr);}}
+  @media(max-width:480px){.grid12{grid-template-columns:repeat(2,1fr);}}
+  .mini-card{
+    background:#fff; border:1px solid #eee0bf; border-radius:12px; padding:10px 6px;
+    text-align:center; cursor:pointer; transition:transform .15s, box-shadow .15s;
+  }
+  .mini-card:hover{transform:translateY(-3px); box-shadow:0 8px 18px rgba(90,70,50,.12); border-color:var(--gold);}
+  .mini-card .no{display:block; font-size:.7rem; color:#b9a06a; font-weight:700;}
+  .mini-card .nm{font-weight:800; color:var(--brown); font-size:.88rem; margin-top:2px;}
+  .mini-card .mo{font-size:.68rem; color:#9c8a5f; margin-top:1px;}
+
+  .detail-card{background:#fff; border:1px solid #eee0bf; border-radius:16px; padding:20px 22px; margin-bottom:16px; scroll-margin-top:16px;}
+  .detail-card .num{display:inline-block; width:28px; height:28px; border-radius:50%; background:var(--gold); color:#3a3226; font-weight:800; text-align:center; line-height:28px; font-size:.85rem; margin-right:8px;}
+  .detail-card .meta{display:flex; gap:14px; flex-wrap:wrap; font-size:.8rem; color:#8a7550; margin:6px 0 10px;}
+  .detail-card .meta b{color:var(--brown);}
+  .quote{
+    background:var(--beige); border-left:3px solid var(--gold); border-radius:8px;
+    padding:10px 14px; font-size:.88rem; color:var(--ink); margin:10px 0; font-style:italic;
+  }
+  .christ-box{
+    margin-top:10px; background:#f2f4ec; border-left:3px solid var(--olive); border-radius:8px;
+    padding:10px 14px; font-size:.88rem; color:var(--moss);
+  }
+  .christ-box b{color:var(--moss);}
+
+  .source-list{font-size:.82rem; color:#8a7550; padding-left:18px;}
+  .source-list li{margin-bottom:4px;}
+  .source-list a{color:var(--brown);}
+
+  footer{padding:24px 18px 50px; text-align:center; font-size:.8rem; color:#9c8a5f;}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <a class="back-link" href="bible66-biblical-background.html">← 성경 66권 배경으로 돌아가기</a>
+    <h1>이스라엘 열두 지파 — 야곱의 아들들에서 시작된 언약 백성</h1>
+    <p>얍복강에서 '이스라엘'이라는 새 이름을 받은 야곱은 네 아내에게서 열두 아들을 얻었고, 그 아들들이 훗날 이스라엘 민족을 이루는 열두 지파의 조상이 됩니다. 창세기 49장의 축복, 광야의 진 배치, 가나안 땅의 분배까지 — 열두 지파가 어떻게 형성되고 자리 잡았는지 살펴봅니다.</p>
+    <div class="badge-row">
+      <span class="badge">창세기 29~35장, 49장</span>
+      <span class="badge">민수기 1~2장</span>
+      <span class="badge">여호수아 13~19장</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section>
+  <h2>열두 아들, 네 어머니</h2>
+  <p class="lead">야곱은 레아·라헬 두 아내와 그들의 몸종 빌하·실바에게서 모두 열두 아들과 딸 디나를 얻었습니다. 태어난 순서와 어머니가 누구인가는 훗날 지파 사이의 위상과도 이어지는데, 특히 사랑받지 못한 레아가 가장 많은 아들(6명)을 낳았고, 오래 기다린 끝에 얻은 라헬의 아들 요셉과 베냐민이 야곱의 특별한 사랑을 받았다는 사실이 이후 이야기 전체에 긴장을 만듭니다.</p>
+
+  <div class="timeline-wrap">
+    <svg class="timeline-svg" viewBox="0 0 900 200">
+      <line x1="40" y1="110" x2="860" y2="110" stroke="#e8cf8a" stroke-width="6" stroke-linecap="round"/>
+
+      <!-- 1 르우벤 -->
+      <circle cx="80" cy="110" r="9" fill="#c9a24b"/>
+      <text x="80" y="80" text-anchor="middle" font-size="12" font-weight="700" fill="#5a4633">① 르우벤</text>
+      <text x="80" y="140" text-anchor="middle" font-size="10" fill="#8a7550">레아</text>
+
+      <!-- 2 시므온 -->
+      <circle cx="150" cy="110" r="9" fill="#c9a24b"/>
+      <text x="150" y="80" text-anchor="middle" font-size="12" font-weight="700" fill="#5a4633">② 시므온</text>
+      <text x="150" y="140" text-anchor="middle" font-size="10" fill="#8a7550">레아</text>
+
+      <!-- 3 레위 -->
+      <circle cx="220" cy="110" r="9" fill="#c9a24b"/>
+      <text x="220" y="80" text-anchor="middle" font-size="12" font-weight="700" fill="#5a4633">③ 레위</text>
+      <text x="220" y="140" text-anchor="middle" font-size="10" fill="#8a7550">레아</text>
+
+      <!-- 4 유다 -->
+      <circle cx="290" cy="110" r="10" fill="#c9a24b" stroke="#5a4633" stroke-width="1.5"/>
+      <text x="290" y="80" text-anchor="middle" font-size="12" font-weight="800" fill="#5a4633">④ 유다</text>
+      <text x="290" y="140" text-anchor="middle" font-size="10" fill="#8a7550">레아</text>
+
+      <!-- 5 단 -->
+      <circle cx="360" cy="110" r="9" fill="#6b7a4f"/>
+      <text x="360" y="80" text-anchor="middle" font-size="12" font-weight="700" fill="#5a4633">⑤ 단</text>
+      <text x="360" y="140" text-anchor="middle" font-size="10" fill="#8a7550">빌하</text>
+
+      <!-- 6 납달리 -->
+      <circle cx="430" cy="110" r="9" fill="#6b7a4f"/>
+      <text x="430" y="80" text-anchor="middle" font-size="12" font-weight="700" fill="#5a4633">⑥ 납달리</text>
+      <text x="430" y="140" text-anchor="middle" font-size="10" fill="#8a7550">빌하</text>
+
+      <!-- 7 갓 -->
+      <circle cx="500" cy="110" r="9" fill="#8a6a3e"/>
+      <text x="500" y="80" text-anchor="middle" font-size="12" font-weight="700" fill="#5a4633">⑦ 갓</text>
+      <text x="500" y="140" text-anchor="middle" font-size="10" fill="#8a7550">실바</text>
+
+      <!-- 8 아셀 -->
+      <circle cx="570" cy="110" r="9" fill="#8a6a3e"/>
+      <text x="570" y="80" text-anchor="middle" font-size="12" font-weight="700" fill="#5a4633">⑧ 아셀</text>
+      <text x="570" y="140" text-anchor="middle" font-size="10" fill="#8a7550">실바</text>
+
+      <!-- 9 잇사갈 -->
+      <circle cx="640" cy="110" r="9" fill="#c9a24b"/>
+      <text x="640" y="80" text-anchor="middle" font-size="12" font-weight="700" fill="#5a4633">⑨ 잇사갈</text>
+      <text x="640" y="140" text-anchor="middle" font-size="10" fill="#8a7550">레아</text>
+
+      <!-- 10 스불론 -->
+      <circle cx="710" cy="110" r="9" fill="#c9a24b"/>
+      <text x="710" y="80" text-anchor="middle" font-size="12" font-weight="700" fill="#5a4633">⑩ 스불론</text>
+      <text x="710" y="140" text-anchor="middle" font-size="10" fill="#8a7550">레아</text>
+
+      <!-- 11 요셉 -->
+      <circle cx="780" cy="110" r="10" fill="#5a4633" stroke="#c9a24b" stroke-width="1.5"/>
+      <text x="780" y="80" text-anchor="middle" font-size="12" font-weight="800" fill="#5a4633">⑪ 요셉</text>
+      <text x="780" y="140" text-anchor="middle" font-size="10" fill="#8a7550">라헬</text>
+
+      <!-- 12 베냐민 -->
+      <circle cx="850" cy="110" r="9" fill="#5a4633"/>
+      <text x="850" y="80" text-anchor="middle" font-size="12" font-weight="700" fill="#5a4633">⑫ 베냐민</text>
+      <text x="850" y="140" text-anchor="middle" font-size="10" fill="#8a7550">라헬 (가나안 출생)</text>
+
+      <text x="450" y="180" text-anchor="middle" font-size="10.5" fill="#a68a55">숫자는 출생 순서 · ●색은 어머니 그룹을 나타냄 (딸 디나는 레아의 일곱째로 별도 기록)</text>
+    </svg>
+    <div class="mother-legend">
+      <span><i style="background:#c9a24b"></i>레아 (6남)</span>
+      <span><i style="background:#5a4633"></i>라헬 (2남)</span>
+      <span><i style="background:#6b7a4f"></i>빌하 — 라헬의 몸종 (2남)</span>
+      <span><i style="background:#8a6a3e"></i>실바 — 레아의 몸종 (2남)</span>
+    </div>
+  </div>
+
+  <div class="note-box"><b>왜 '열두' 지파일까 —</b> 야곱의 아들은 원래 열둘이지만, 훗날 레위 지파는 제사장 직분을 맡아 별도의 땅을 받지 못했고, 대신 요셉의 두 아들 에브라임과 므낫세가 야곱에게 양자로 입양되어(창 48:5) 각각 독립된 지파가 됩니다. 그래서 <b>창세기 49장의 '축복 목록'</b>은 레위를 포함해 요셉을 하나로 묶어 12명이 되고, <b>땅을 분배하는 목록</b>(민수기·여호수아)은 레위를 빼고 요셉을 에브라임·므낫세로 나누어 역시 12지파를 이룹니다. 두 목록 모두 '12'라는 숫자를 지키지만 구성 지파는 조금씩 다른 셈입니다.</div>
+</section>
+
+<section>
+  <h2>광야의 진 배치와 가나안 땅의 분배</h2>
+  <p class="lead">시내산을 떠난 이스라엘은 성막을 중심으로 네 방향에 세 지파씩 진을 쳤습니다(민수기 2장). 레위 지파는 성막을 직접 둘러싸고 봉사했습니다. 훗날 가나안 정복 후에는 이 진영 구조 대신, 각 지파가 실제로 거주할 땅을 제비 뽑아 분배받았습니다(여호수아 13~19장).</p>
+
+  <div class="camp-wrap">
+    <div class="camp-svg-box">
+      <svg class="camp-svg" viewBox="0 0 340 340">
+        <rect x="90" y="10" width="160" height="95" rx="10" fill="#f0e2b8" stroke="#d8bd7f"/>
+        <text x="170" y="35" text-anchor="middle" font-size="12" font-weight="800" fill="#3a3226">북 · 단 진영</text>
+        <text x="170" y="55" text-anchor="middle" font-size="10.5" fill="#5a4633">단</text>
+        <text x="170" y="70" text-anchor="middle" font-size="10.5" fill="#5a4633">아셀</text>
+        <text x="170" y="85" text-anchor="middle" font-size="10.5" fill="#5a4633">납달리</text>
+
+        <rect x="90" y="235" width="160" height="95" rx="10" fill="#f0e2b8" stroke="#d8bd7f"/>
+        <text x="170" y="260" text-anchor="middle" font-size="12" font-weight="800" fill="#3a3226">남 · 르우벤 진영</text>
+        <text x="170" y="280" text-anchor="middle" font-size="10.5" fill="#5a4633">르우벤</text>
+        <text x="170" y="295" text-anchor="middle" font-size="10.5" fill="#5a4633">시므온</text>
+        <text x="170" y="310" text-anchor="middle" font-size="10.5" fill="#5a4633">갓</text>
+
+        <rect x="255" y="105" width="80" height="130" rx="10" fill="#e8cf8a" stroke="#d8bd7f"/>
+        <text x="295" y="128" text-anchor="middle" font-size="11.5" font-weight="800" fill="#3a3226">동</text>
+        <text x="295" y="145" text-anchor="middle" font-size="10.5" fill="#5a4633">유다</text>
+        <text x="295" y="160" text-anchor="middle" font-size="10.5" fill="#5a4633">잇사갈</text>
+        <text x="295" y="175" text-anchor="middle" font-size="10.5" fill="#5a4633">스불론</text>
+        <text x="295" y="195" text-anchor="middle" font-size="9" fill="#8a7550">(행진 선두)</text>
+
+        <rect x="5" y="105" width="80" height="130" rx="10" fill="#e8cf8a" stroke="#d8bd7f"/>
+        <text x="45" y="128" text-anchor="middle" font-size="11.5" font-weight="800" fill="#3a3226">서</text>
+        <text x="45" y="145" text-anchor="middle" font-size="10.5" fill="#5a4633">에브라임</text>
+        <text x="45" y="160" text-anchor="middle" font-size="10.5" fill="#5a4633">므낫세</text>
+        <text x="45" y="175" text-anchor="middle" font-size="10.5" fill="#5a4633">베냐민</text>
+
+        <circle cx="170" cy="170" r="48" fill="#c9a24b"/>
+        <text x="170" y="163" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">성막</text>
+        <text x="170" y="180" text-anchor="middle" font-size="10" fill="#fff">레위 지파</text>
+      </svg>
+    </div>
+    <div class="camp-legend">
+      <div class="row"><b>중앙 — 성막과 레위인</b> 하나님의 임재를 상징하는 성막을 중심에 두고, 레위 세 가문(게르손·고핫·므라리)이 그 주위를 직접 둘러쌌습니다.</div>
+      <div class="row"><b>동쪽 — 유다 진영(선두)</b> 유다·잇사갈·스불론. 행진할 때 가장 먼저 출발하는 대표 진영이었습니다(민 10:14).</div>
+      <div class="row"><b>남쪽 — 르우벤 진영</b> 르우벤·시므온·갓.</div>
+      <div class="row"><b>서쪽 — 에브라임 진영</b> 에브라임·므낫세·베냐민. 요셉의 두 아들이 포함된 진영입니다.</div>
+      <div class="row"><b>북쪽 — 단 진영</b> 단·아셀·납달리. 행진 순서상 후미를 맡았습니다.</div>
+    </div>
+  </div>
+
+  <table class="cmp">
+    <tr><th>지파</th><th>가나안 땅의 위치</th><th>비고</th></tr>
+    <tr><td>르우벤</td><td>요단강 동편 (사해 북동쪽 목초지)</td><td>목축에 유리한 땅을 먼저 요청(민 32장)</td></tr>
+    <tr><td>갓</td><td>요단강 동편 (길르앗 지역)</td><td>르우벤과 함께 요단 동편 정착</td></tr>
+    <tr><td>므낫세 (반)</td><td>요단강 동편(바산)과 서편(에브라임 북쪽) 양쪽</td><td>두 지역에 나뉘어 정착한 유일한 지파</td></tr>
+    <tr><td>유다</td><td>가나안 남부 (헤브론·베들레헴·예루살렘 인근)</td><td>가장 넓은 영토, 다윗 왕가의 근거지</td></tr>
+    <tr><td>시므온</td><td>유다 영토 안쪽 (브엘세바 인근)</td><td>독립 영토 없이 유다 안에 흩어져 배정(수 19:1,9)</td></tr>
+    <tr><td>베냐민</td><td>유다와 에브라임 사이 (예루살렘·여리고)</td><td>작지만 전략적 요충지</td></tr>
+    <tr><td>에브라임</td><td>가나안 중부 (세겜·실로 포함)</td><td>북이스라엘의 중심 지파로 성장</td></tr>
+    <tr><td>단</td><td>본래 지중해 연안 → 훗날 최북단 라이스(단)로 이주</td><td>삿 1:34, 18장 — 원래 배정지에서 밀려남</td></tr>
+    <tr><td>아셀</td><td>갈릴리 서북부 해안 (두로·시돈 인접)</td><td>기름진 땅, 감람유 산지</td></tr>
+    <tr><td>납달리</td><td>갈릴리 북부</td><td>훗날 예수님 공생애의 중심 무대와 겹침</td></tr>
+    <tr><td>잇사갈</td><td>이스르엘 골짜기</td><td>비옥한 평야 지대</td></tr>
+    <tr><td>스불론</td><td>갈릴리 남서부 내륙</td><td>나사렛이 이 지파 영토 안에 위치</td></tr>
+    <tr><td>레위</td><td>독립 영토 없음 — 48개 성읍(도피성 6곳 포함)에 분산</td><td>"여호와가 그들의 기업"(수 13:33)</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>지파별 자세히 보기</h2>
+  <p class="lead">아래 카드를 눌러 각 지파의 이름 뜻, 창세기 49장 야곱의 축복, 이후 역사를 확인해 보세요.</p>
+
+  <div class="grid12">
+    <div class="mini-card" onclick="document.getElementById('t1').scrollIntoView({behavior:'smooth'})"><span class="no">①</span><div class="nm">르우벤</div><div class="mo">레아</div></div>
+    <div class="mini-card" onclick="document.getElementById('t2').scrollIntoView({behavior:'smooth'})"><span class="no">②</span><div class="nm">시므온</div><div class="mo">레아</div></div>
+    <div class="mini-card" onclick="document.getElementById('t3').scrollIntoView({behavior:'smooth'})"><span class="no">③</span><div class="nm">레위</div><div class="mo">레아</div></div>
+    <div class="mini-card" onclick="document.getElementById('t4').scrollIntoView({behavior:'smooth'})"><span class="no">④</span><div class="nm">유다</div><div class="mo">레아</div></div>
+    <div class="mini-card" onclick="document.getElementById('t5').scrollIntoView({behavior:'smooth'})"><span class="no">⑤</span><div class="nm">단</div><div class="mo">빌하</div></div>
+    <div class="mini-card" onclick="document.getElementById('t6').scrollIntoView({behavior:'smooth'})"><span class="no">⑥</span><div class="nm">납달리</div><div class="mo">빌하</div></div>
+    <div class="mini-card" onclick="document.getElementById('t7').scrollIntoView({behavior:'smooth'})"><span class="no">⑦</span><div class="nm">갓</div><div class="mo">실바</div></div>
+    <div class="mini-card" onclick="document.getElementById('t8').scrollIntoView({behavior:'smooth'})"><span class="no">⑧</span><div class="nm">아셀</div><div class="mo">실바</div></div>
+    <div class="mini-card" onclick="document.getElementById('t9').scrollIntoView({behavior:'smooth'})"><span class="no">⑨</span><div class="nm">잇사갈</div><div class="mo">레아</div></div>
+    <div class="mini-card" onclick="document.getElementById('t10').scrollIntoView({behavior:'smooth'})"><span class="no">⑩</span><div class="nm">스불론</div><div class="mo">레아</div></div>
+    <div class="mini-card" onclick="document.getElementById('t11').scrollIntoView({behavior:'smooth'})"><span class="no">⑪</span><div class="nm">요셉</div><div class="mo">라헬</div></div>
+    <div class="mini-card" onclick="document.getElementById('t12').scrollIntoView({behavior:'smooth'})"><span class="no">⑫</span><div class="nm">베냐민</div><div class="mo">라헬</div></div>
+  </div>
+
+  <div class="detail-card" id="t1">
+    <h3><span class="num">1</span>르우벤 — "보라 아들이라"</h3>
+    <div class="meta"><span><b>어머니</b> 레아 (장남)</span><span><b>이름 뜻</b> 하나님이 내 괴로움을 돌보셨다</span></div>
+    <div class="quote">"너는 내 장자요 나의 능력이요… 물의 끓음 같음이니 너는 아버지의 침상에 올랐으므로 이제는 뛰어나지 못하리로다"(창 49:3-4)</div>
+    <p>본래 장자로서 가장 큰 몫을 받아야 했지만, 아버지의 첩 빌하와 동침한 사건(창 35:22)으로 장자권을 잃고 그 권리는 요셉에게 넘어갑니다(대상 5:1-2). 요단강 동편 목초지에 정착했으나 이후 이스라엘 역사에서 두드러진 지도자를 거의 배출하지 못했습니다.</p>
+  </div>
+
+  <div class="detail-card" id="t2">
+    <h3><span class="num">2</span>시므온 — "들으심"</h3>
+    <div class="meta"><span><b>어머니</b> 레아</span><span><b>이름 뜻</b> 여호와께서 내가 사랑받지 못함을 들으셨다</span></div>
+    <div class="quote">"내가 그들을 야곱 중에서 나누며 이스라엘 중에서 흩으리로다"(창 49:7)</div>
+    <p>레위와 함께 누이 디나가 욕을 당한 세겜 사건 때 그 성읍 남자들을 몰살시킨 격렬함으로 아버지의 책망을 받습니다(창 34장). 예언대로 독립된 영토를 받지 못하고 유다 지파 땅 안에 흩어져 배정되었으며(수 19:1,9), 인구조사에서도 급격히 줄어든 지파입니다(민 26장).</p>
+  </div>
+
+  <div class="detail-card" id="t3">
+    <h3><span class="num">3</span>레위 — "연합함"</h3>
+    <div class="meta"><span><b>어머니</b> 레아</span><span><b>이름 뜻</b> 이제는 내 남편이 나와 연합하리로다</span></div>
+    <div class="quote">"내가 그들을 야곱 중에서 나누며 이스라엘 중에서 흩으리로다"(창 49:7)</div>
+    <p>시므온과 함께 흩어지는 심판을 예언받았지만, 훗날 금송아지 우상숭배 사건에서 모세 편에 서서 죄를 심판하는 데 앞장선 일로(출 32:26-29) 그 흩어짐이 오히려 축복으로 바뀝니다. 성막 봉사와 제사장 직분을 전담하는 대신 독립된 영토 없이 48개 성읍(도피성 6곳 포함)에 분산 배정받았습니다(수 21장).</p>
+    <div class="christ-box"><b>참고 —</b> 레위 지파는 땅을 기업으로 받는 대신 "여호와가 그들의 기업"(수 13:33)이라 불리며, 이후 대제사장직은 신약에서 그리스도의 영원한 제사장직(히 7장)의 배경이 됩니다.</div>
+  </div>
+
+  <div class="detail-card" id="t4">
+    <h3><span class="num">4</span>유다 — "찬송함"</h3>
+    <div class="meta"><span><b>어머니</b> 레아</span><span><b>이름 뜻</b> 이제는 내가 여호와를 찬송하리로다</span></div>
+    <div class="quote">"유다는 사자 새끼로다… 규가 유다를 떠나지 아니하며 통치자의 지팡이가 그 발 사이에서 떠나지 아니하기를 실로가 오시기까지 이르리니"(창 49:9-10)</div>
+    <p>열두 아들 중 가장 길고 위대한 축복을 받은 지파로, 가나안 남부의 가장 넓은 땅(예루살렘·헤브론·베들레헴 포함)을 분배받았습니다. 다윗 왕가가 이 지파에서 나왔고, 남유다 왕국의 중심이 되었습니다.</p>
+    <div class="christ-box"><b>신약과의 연결 —</b> 마태복음의 족보(마 1:1-3)와 히브리서(히 7:14)는 예수님이 유다 지파 출신임을 밝히며, 요한계시록은 그분을 "유다 지파의 사자"(계 5:5)로 부릅니다.</div>
+  </div>
+
+  <div class="detail-card" id="t5">
+    <h3><span class="num">5</span>단 — "억울함을 푸심"</h3>
+    <div class="meta"><span><b>어머니</b> 빌하 (라헬의 몸종)</span><span><b>이름 뜻</b> 하나님이 내 사정을 판단하셨다</span></div>
+    <div class="quote">"단은 이스라엘의 한 지파 같이 그 백성을 심판하리로다 단은 길의 뱀이요 첩경의 독사여"(창 49:16-17)</div>
+    <p>처음에는 지중해 연안의 좁은 땅을 배정받았지만 아모리족에게 밀려나(삿 1:34) 최북단 라이스로 이주해 그곳을 '단'이라 이름 붙였습니다(삿 18장). 훗날 여로보암이 이곳에 금송아지 우상을 세우면서(왕상 12:29) 우상숭배와 강하게 연결된 지파가 됩니다.</p>
+    <div class="christ-box"><b>참고 —</b> 이런 배경 때문인지 요한계시록 7장의 144,000 명단(계 7:4-8)에는 단 지파가 빠지고 대신 레위와 요셉이 함께 등장합니다.</div>
+  </div>
+
+  <div class="detail-card" id="t6">
+    <h3><span class="num">6</span>납달리 — "씨름함"</h3>
+    <div class="meta"><span><b>어머니</b> 빌하</span><span><b>이름 뜻</b> 내가 언니와 크게 경쟁하여 이겼다</span></div>
+    <div class="quote">"납달리는 놓인 암사슴이라 아름다운 소리를 발하는도다"(창 49:21)</div>
+    <p>갈릴리 북부에 정착했으며, 이사야가 예언한 "흑암에 앉은 백성"이 큰 빛을 볼 땅(사 9:1-2)이 바로 이 지역입니다. 예수님이 나사렛을 떠나 가버나움에서 공생애 사역을 시작하신 것이 이 예언의 성취로 이해됩니다(마 4:13-16).</p>
+  </div>
+
+  <div class="detail-card" id="t7">
+    <h3><span class="num">7</span>갓 — "복되도다"</h3>
+    <div class="meta"><span><b>어머니</b> 실바 (레아의 몸종)</span><span><b>이름 뜻</b> 복되도다 / 군대</span></div>
+    <div class="quote">"갓은 군대의 압박을 받으나 도리어 그 뒤를 추격하리로다"(창 49:19)</div>
+    <p>요단강 동편 길르앗 지역, 목축에 적합한 땅을 얻기 위해 르우벤과 함께 모세에게 먼저 요청했습니다(민 32장). 역대상은 갓 지파 용사들을 "방패와 창을 능히 쓰며 그 얼굴은 사자 같고 산의 사슴 같이 빠른" 전사들로 묘사합니다(대상 12:8).</p>
+  </div>
+
+  <div class="detail-card" id="t8">
+    <h3><span class="num">8</span>아셀 — "복되도다"</h3>
+    <div class="meta"><span><b>어머니</b> 실바</span><span><b>이름 뜻</b> 여자들이 나를 복되다 하리로다</span></div>
+    <div class="quote">"아셀에게서 나는 식물은 기름진 것이니 그가 왕의 수라상을 차리리로다"(창 49:20)</div>
+    <p>갈릴리 서북부, 두로·시돈과 인접한 비옥한 해안 지역을 분배받아 감람유와 곡식이 풍성한 땅에서 살았습니다.</p>
+  </div>
+
+  <div class="detail-card" id="t9">
+    <h3><span class="num">9</span>잇사갈 — "값·삯이 있다"</h3>
+    <div class="meta"><span><b>어머니</b> 레아</span><span><b>이름 뜻</b> 합환채의 값으로 얻은 아들 (창 30:14-18)</span></div>
+    <div class="quote">"잇사갈은… 그 땅을 아름답게 여기고 어깨를 내려 짐을 메고 압제 아래에서 섬기리로다"(창 49:14-15)</div>
+    <p>비옥한 이스르엘 골짜기에 정착했습니다. 역대상은 이 지파를 "시세를 알고 이스라엘이 마땅히 행할 것을 아는" 지혜로운 지파로 평가합니다(대상 12:32).</p>
+  </div>
+
+  <div class="detail-card" id="t10">
+    <h3><span class="num">10</span>스불론 — "거함"</h3>
+    <div class="meta"><span><b>어머니</b> 레아 (막내아들)</span><span><b>이름 뜻</b> 내 남편이 나와 함께 거하리라</span></div>
+    <div class="quote">"스불론은 해변에 거주하리니 그곳은 배 매는 해변이라"(창 49:13)</div>
+    <p>갈릴리 남서부 내륙에 정착했으며, 이 지파의 영토 안에 예수님이 자란 나사렛이 위치합니다.</p>
+  </div>
+
+  <div class="detail-card" id="t11">
+    <h3><span class="num">11</span>요셉 — "더하시기를"</h3>
+    <div class="meta"><span><b>어머니</b> 라헬 (에브라임·므낫세 두 지파로 분할)</span><span><b>이름 뜻</b> 여호와는 다시 다른 아들을 내게 더하시기를</span></div>
+    <div class="quote">"요셉은 무성한 가지 곧 샘 곁의 무성한 가지라… 이 복이 요셉의 머리로 돌아오며 그의 형제와 구별된 자의 정수리로 돌아오리로다"(창 49:22-26)</div>
+    <p>열두 아들 중 가장 길고 풍성한 축복을 받았습니다. 야곱은 죽기 전 요셉의 두 아들 에브라임과 므낫세를 자신의 아들처럼 입양해 축복함으로써(창 48장) 요셉에게 장자권에 해당하는 '두 몫'을 넘겨주었습니다(대상 5:1-2). 그 결과 요셉 지파는 에브라임과 므낫세라는 두 개의 독립된 지파로 나뉘었고, 므낫세는 요단강 동편과 서편 양쪽에 땅을 받은 유일한 지파가 되었습니다. 에브라임은 훗날 북이스라엘 왕국의 중심 지파로 성장합니다.</p>
+  </div>
+
+  <div class="detail-card" id="t12">
+    <h3><span class="num">12</span>베냐민 — "오른손의 아들"</h3>
+    <div class="meta"><span><b>어머니</b> 라헬 (막내, 가나안에서 출생)</span><span><b>이름 뜻</b> 라헬은 "베노니"(내 슬픔의 아들)라 불렀으나 야곱이 개명</span></div>
+    <div class="quote">"베냐민은 물어뜯는 이리라 아침에는 빼앗은 것을 먹고 저녁에는 움킨 것을 나누리로다"(창 49:27)</div>
+    <p>라헬이 그를 낳다가 세상을 떠났고(창 35:16-19), 야곱의 막내로 특별한 사랑을 받았습니다. 유다와 에브라임 사이 예루살렘·여리고를 포함한 전략적 요충지에 정착했으며, 이스라엘의 첫 왕 사울과 사도 바울(롬 11:1, 빌 3:5)이 이 지파 출신입니다. 왕국 분열 후에도 유다와 함께 남유다 왕국을 이루었습니다.</p>
+  </div>
+</section>
+
+<section>
+  <h2>신약으로 이어지는 열두 지파</h2>
+  <p class="lead">열두 지파는 구약의 역사로 끝나지 않고, 신약에서도 하나님 백성 전체를 상징하는 숫자로 계속 등장합니다.</p>
+  <div class="note-box"><b>마태복음 19:28</b> — 예수님은 열두 제자에게 "너희도 열두 보좌에 앉아 이스라엘 열두 지파를 심판하리라"고 말씀하시며, 열두 지파와 열두 제자를 나란히 두십니다.</div>
+  <div class="note-box"><b>요한계시록 7:4-8</b> — 하나님의 인침을 받은 144,000명이 열두 지파에서 각각 12,000명씩 나옵니다. 다만 단과 에브라임이 빠지고 레위와 요셉이 포함되는 등 창세기·민수기의 명단과 순서가 조금 다릅니다.</div>
+  <div class="note-box"><b>요한계시록 21:12</b> — 새 예루살렘의 열두 문에는 이스라엘 열두 지파의 이름이 새겨져 있고, 열두 기초석에는 어린 양의 열두 사도의 이름이 새겨져 있어, 구약의 언약 백성과 신약의 교회가 하나로 이어집니다.</div>
+  <div class="note-box"><b>야고보서 1:1</b> — 야고보는 편지를 "흩어져 있는 열두 지파"에게 보낸다고 밝히며, 흩어진 하나님의 백성 전체를 부르는 말로 이 표현을 이어갑니다.</div>
+</section>
+
+<section>
+  <h2>참고 자료</h2>
+  <ul class="source-list">
+    <li>대한성서공회, 창세기 49장·민수기 2장 본문 — <a href="https://www.bskorea.or.kr" target="_blank" rel="noopener">bskorea.or.kr</a></li>
+    <li>위키백과, "야곱의 축복" — <a href="https://ko.wikipedia.org/wiki/야곱의_축복" target="_blank" rel="noopener">ko.wikipedia.org</a></li>
+    <li>나무위키, "12지파" — <a href="https://namu.wiki/w/12지파" target="_blank" rel="noopener">namu.wiki</a></li>
+    <li>크리스천투데이, "제사장 레위 지파에게는 땅을 나눠주지 않으셨는데…" — <a href="https://www.christiantoday.co.kr/news/246004" target="_blank" rel="noopener">christiantoday.co.kr</a></li>
+  </ul>
+</section>
+
+</main>
+
+<footer>이스라엘 열두 지파 상세 페이지 · 성경 66권 시대적 배경 총정리의 부속 자료입니다.</footer>
+
+</body>
+</html>
