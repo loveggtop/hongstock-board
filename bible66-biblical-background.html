@@ -542,7 +542,8 @@ const FIGURE_DETAILS = {
 
 라반의 집에서 20년을 보내며 레아와 라헬을 아내로 얻고 열두 아들과 딸 디나를 낳습니다. 고향으로 돌아오는 길, 얍복강 나루에서 밤새 하나님(의 사자)과 씨름하며 "당신이 나를 축복하지 아니하면 가게 하지 아니하겠나이다"라고 매달렸고, 그 결과 환도뼈가 위골되면서도 '이스라엘'(하나님과 겨루어 이김)이라는 새 이름을 받습니다(창 32:28).
 
-야곱의 삶은 형 에서와의 화해, 사랑하는 아들 요셉을 잃은 슬픔, 그리고 노년에 애굽에서 요셉과 재회하는 감격으로 이어집니다. 그의 열두 아들은 훗날 이스라엘 열두 지파의 조상이 되며, 야곱은 죽기 전 각 아들을 축복하며 유다 지파에서 왕권이 나올 것을 예언합니다(창 49:10). 그는 인간적 결점이 많은 인물이었지만, 하나님은 그를 붙드시고 다듬어 언약 백성의 조상으로 세우셨습니다.`
+야곱의 삶은 형 에서와의 화해, 사랑하는 아들 요셉을 잃은 슬픔, 그리고 노년에 애굽에서 요셉과 재회하는 감격으로 이어집니다. 그의 열두 아들은 훗날 이스라엘 열두 지파의 조상이 되며, 야곱은 죽기 전 각 아들을 축복하며 유다 지파에서 왕권이 나올 것을 예언합니다(창 49:10). 그는 인간적 결점이 많은 인물이었지만, 하나님은 그를 붙드시고 다듬어 언약 백성의 조상으로 세우셨습니다.`,
+  links:[["이스라엘 열두 지파 이야기 더 보기","jacob-twelve-tribes.html"]]
 },
 
 "요셉": {
@@ -1297,7 +1298,8 @@ function openFigureModal(el){
         '<h2 class="figure-modal-title">'+escapeHtml(name)+'</h2>'
       + '<div class="figure-modal-ref">📖 '+escapeHtml(detail.ref)+'</div>'
       + (meaning ? '<div class="figure-modal-summary">'+escapeHtml(meaning)+'</div>' : '')
-      + '<div class="figure-modal-story">'+paragraphs+'</div>';
+      + '<div class="figure-modal-story">'+paragraphs+'</div>'
+      + (detail.links ? '<div class="section-label">더 깊이 보기</div><div class="deepdive-links">'+detail.links.map(function(l){return '<a class="deepdive-link" href="'+escapeAttr(l[1])+'" target="_blank" rel="noopener">'+escapeHtml(l[0])+'</a>';}).join('')+'</div>' : '');
   } else {
     content.innerHTML =
         '<h2 class="figure-modal-title">'+escapeHtml(name)+'</h2>'
