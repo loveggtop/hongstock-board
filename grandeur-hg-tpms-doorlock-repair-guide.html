@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>그랜저 HG 3.0 TPMS 센서·뒷문 도어락 수리 가이드 (당진 기준)</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif; background: #f0f4f8; color: #222; line-height: 1.7; }
+header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: #fff; padding: 32px 24px 26px; box-shadow: 0 2px 10px rgba(0,0,0,.35); }
+header .inner { max-width: 900px; margin: 0 auto; }
+header .back { display: inline-block; font-size: .78rem; color: #9fb3d0; text-decoration: none; margin-bottom: 12px; }
+header .back:hover { color: #fff; }
+header h1 { font-size: 1.45rem; font-weight: 700; letter-spacing: -.5px; margin-bottom: 8px; line-height: 1.4; }
+header .meta { font-size: .82rem; opacity: .72; }
+.container { max-width: 900px; margin: 26px auto; padding: 0 16px 56px; }
+.card { background: #fff; border-radius: 12px; box-shadow: 0 1px 6px rgba(0,0,0,.09); padding: 24px 26px; margin-bottom: 18px; }
+h2 { font-size: 1.08rem; font-weight: 700; color: #0f3460; margin-bottom: 14px; padding-bottom: 9px; border-bottom: 2px solid #dde8f5; display: flex; align-items: center; gap: 8px; }
+h3 { font-size: .95rem; font-weight: 700; color: #1a2d4e; margin: 18px 0 8px; }
+p { font-size: .9rem; color: #3c4655; margin-bottom: 10px; }
+ul, ol { margin: 8px 0 12px 20px; }
+li { font-size: .89rem; color: #3c4655; margin-bottom: 6px; }
+table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: .86rem; }
+thead tr { background: #edf1f7; }
+thead th { padding: 10px 12px; text-align: left; font-size: .75rem; font-weight: 700; color: #6b7a94; letter-spacing: .4px; }
+tbody tr { border-top: 1px solid #f0f2f6; }
+tbody tr:hover { background: #f5f8ff; }
+td { padding: 11px 12px; vertical-align: top; color: #3c4655; }
+td strong { color: #1a2d4e; }
+.tbl-wrap { overflow-x: auto; }
+.pill { display: inline-block; padding: 2px 9px; border-radius: 4px; font-size: .72rem; font-weight: 700; }
+.pill.best { background: #e8f5e9; color: #2e7d32; }
+.pill.mid { background: #fff8e1; color: #b07d00; }
+.pill.high { background: #fdecef; color: #c62828; }
+.note { background: #f6f9ff; border-left: 4px solid #0f3460; border-radius: 0 8px 8px 0; padding: 13px 16px; margin: 14px 0; font-size: .87rem; color: #33415c; }
+.warn { background: #fffaf0; border-left: 4px solid #e9a445; border-radius: 0 8px 8px 0; padding: 13px 16px; margin: 14px 0; font-size: .87rem; color: #6b4d1c; }
+.shop { border: 1.5px solid #e4eaf3; border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; }
+.shop .name { font-size: .95rem; font-weight: 700; color: #1a2d4e; margin-bottom: 3px; }
+.shop .addr { font-size: .82rem; color: #7d879a; }
+.shop .why { font-size: .84rem; color: #3c4655; margin-top: 7px; }
+.steps { counter-reset: s; list-style: none; margin-left: 0; }
+.steps li { counter-increment: s; position: relative; padding-left: 36px; margin-bottom: 12px; }
+.steps li::before { content: counter(s); position: absolute; left: 0; top: 1px; width: 24px; height: 24px; background: #0f3460; color: #fff; border-radius: 50%; font-size: .78rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+.total { background: linear-gradient(135deg, #0f3460 0%, #16213e 100%); color: #fff; border-radius: 12px; padding: 22px 26px; margin-bottom: 18px; }
+.total .label { font-size: .8rem; opacity: .7; margin-bottom: 6px; }
+.total .val { font-size: 1.6rem; font-weight: 700; letter-spacing: -.5px; }
+.total .sub { font-size: .82rem; opacity: .78; margin-top: 8px; }
+.src { font-size: .8rem; color: #7d879a; }
+.src a { color: #4a6fa5; text-decoration: none; }
+.src a:hover { text-decoration: underline; }
+footer { text-align: center; padding: 26px 24px; font-size: .75rem; color: #b0b8c4; border-top: 1px solid #e8ecf2; }
+@media (max-width: 600px) { .card { padding: 18px 16px; } header h1 { font-size: 1.2rem; } .total .val { font-size: 1.3rem; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="inner">
+    <a class="back" href="index.html">← 게시판으로</a>
+    <h1>🔧 그랜저 HG 3.0 — TPMS 센서 &amp; 뒷문 도어락 수리 가이드</h1>
+    <div class="meta">당진 지역 정비소 비교 · 비용 시세 정리 &nbsp;·&nbsp; 2026-08-26</div>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="card">
+    <h2>📌 한눈에 보는 결론</h2>
+    <p>두 고장은 성격이 완전히 다릅니다. <strong>한 곳에서 다 처리하기보다 나눠서 가는 것이 훨씬 저렴합니다.</strong></p>
+    <ul>
+      <li><strong>TPMS 센서</strong> → 타이어 탈착 장비가 상시 있는 <strong>타이어 전문점</strong>이 가장 유리</li>
+      <li><strong>뒷문 도어락</strong> → 부품·공임 정찰제인 <strong>공임나라</strong> 또는 진단부터 해주는 사설 정비소</li>
+      <li>블루핸즈는 진단 정확도는 높지만 두 작업 모두 가장 비쌉니다</li>
+    </ul>
+  </div>
+
+  <div class="total">
+    <div class="label">예상 총 수리비 (당진 기준)</div>
+    <div class="val">25만 ~ 35만원</div>
+    <div class="sub">TPMS 4짝 12~20만원 + 뒷문 도어락 10~15만원 · 블루핸즈 단독 진행 시 45~50만원</div>
+  </div>
+
+  <div class="card">
+    <h2>1️⃣ TPMS 타이어 공기압 센서</h2>
+    <h3>왜 지금 고장 났나</h3>
+    <p>그랜저 HG는 2011~2016년식 모델입니다. TPMS 센서는 내부에 교체 불가능한 소형 배터리가 들어 있고 <strong>수명이 보통 7~10년</strong>입니다. 즉 부품 불량이 아니라 <strong>수명이 다 된 것</strong>이라, 한 짝이 죽었다면 나머지 세 짝도 비슷한 시기에 따라옵니다.</p>
+
+    <div class="note">
+      <strong>핵심:</strong> TPMS 교체는 타이어를 림에서 탈착해야만 가능합니다. 그래서 탈착기·휠밸런스 장비를 상시 돌리는 <strong>타이어 전문점이 오히려 이 작업의 전문가</strong>이고, 공임도 거의 붙지 않습니다.
+    </div>
+
+    <h3>방문처별 비용 비교 (센서 1개당)</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>방문처</th><th>개당 예상 비용</th><th>4짝 전체</th><th>평가</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>블루핸즈</strong><br><span class="src">모비스 정품 52933-3V600</span></td>
+          <td>6만 ~ 8만원<br><span class="src">부품만 7만원대</span></td>
+          <td>28만 ~ 32만원</td>
+          <td><span class="pill high">가장 비쌈</span></td>
+        </tr>
+        <tr>
+          <td><strong>타이어 전문점</strong><br><span class="src">타이어뱅크 · 타이어프로</span></td>
+          <td>3만 ~ 5만원</td>
+          <td>12만 ~ 20만원</td>
+          <td><span class="pill best">추천</span></td>
+        </tr>
+        <tr>
+          <td><strong>공임나라</strong><br><span class="src">부품+공임 정찰제</span></td>
+          <td>2만 ~ 4만원<br><span class="src">호환품 기준</span></td>
+          <td>10만 ~ 16만원</td>
+          <td><span class="pill best">최저가</span></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="warn">
+      <strong>⚠️ 전화로 반드시 확인할 것</strong><br>
+      &ldquo;교체 후 <strong>센서 ID 등록(초기화)</strong> 스캐너 있나요?&rdquo; — 센서를 새로 달아도 차량 ECU에 ID를 등록하지 않으면 경고등이 그대로 뜹니다. 장비 없는 곳에서 작업하면 다시 다른 곳에 가야 합니다.
+    </div>
+
+    <h3>작업 전 체크리스트</h3>
+    <ul>
+      <li>정말 센서 고장인지 진단기로 4개 센서 신호를 먼저 확인 — 수신기(리시버) 불량이거나 단순 공기압 부족일 수도 있습니다</li>
+      <li>어차피 타이어를 탈착하는 작업이므로 <strong>4짝을 한 번에</strong> 하는 것이 결과적으로 저렴 (한 짝씩 하면 탈착 공임을 4번 냄)</li>
+      <li>타이어 교체 시기가 가까우면 타이어 교체와 동시에 진행 — 탈착 공임이 완전히 사라집니다</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>2️⃣ 뒷문 도어락 (잠금 불량)</h2>
+    <h3>액추에이터부터 갈면 안 되는 이유</h3>
+    <p>도어락 불량의 가장 흔한 원인은 <strong>도어락 액추에이터(모터)</strong>가 맞습니다. 다만 HG 정도 연식이면 <strong>도어 힌지 쪽 고무 주름관 안의 배선 단선</strong>도 상당히 흔합니다. 문을 여닫을 때마다 전선이 반복 굴곡되면서 피로 파단이 오는 것입니다.</p>
+
+    <div class="note">
+      배선 단선이면 <strong>보수 작업만으로 3~5만원</strong>에 끝납니다. 액추에이터 교체는 10~15만원이므로, <strong>&ldquo;바로 액추에이터 갈자&rdquo;는 곳보다 &ldquo;원인부터 보자&rdquo;는 곳</strong>으로 가는 것이 핵심입니다.
+    </div>
+
+    <h3>원인별 예상 비용</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>원인</th><th>증상 특징</th><th>수리비</th></tr></thead>
+      <tbody>
+        <tr><td><strong>차일드락 설정</strong></td><td>뒷문 안쪽에서만 안 열림 · 밖에서는 정상</td><td>0원 (레버 해제)</td></tr>
+        <tr><td><strong>도어 배선 단선</strong></td><td>가� 되다 안 되다 함 · 문을 �r�맜잡으면 동작</td><td>3만 ~ 5만원</td></tr>
+        <tr><td><strong>액추에이터 불량</strong></td><td>해당 문만 완전 무반응 · 모터 소리 없음</td><td>10만 ~ 15만원</td></tr>
+        <tr><td><strong>차량 배터리 전압 저하</strong></td><td>여러 문이 동시에 이상 · 시동 반응도 둔함</td><td>배터리 교체 비용</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="src">※ 국산차 기준 문짝당 부품 5~8만원 + 공임 5~7만원. 수입차는 30만원 이상.</p>
+  </div>
+
+  <div class="card">
+    <h2>📍 당진 지역 추천 정비소</h2>
+
+    <h3>도어락 진단 + 종합 견적</h3>
+    <div class="shop">
+      <div class="name">공임나라 당진대덕점 <span class="pill best">1순위</span></div>
+      <div class="addr">충남 당진시 아미로 770 (대덕동 1094-3)</div>
+      <div class="why">부품값과 공임이 홈페이지에 공개된 <strong>정찰제</strong>라 바가지 여지가 적습니다. 도어락과 TPMS 견적을 한 번에 받아볼 수 있습니다.</div>
+    </div>
+
+    <h3>TPMS 센서 교체</h3>
+    <div class="shop">
+      <div class="name">타이어뱅크 서당진점</div>
+      <div class="addr">충남 당진시 서해로 5772 (읍내동 458)</div>
+      <div class="why">시내 접근성이 좋고 탈착 장비가 상시 가동됩니다.</div>
+    </div>
+    <div class="shop">
+      <div class="name">타이어뱅크 당진IC점</div>
+      <div class="addr">충남 당진시 송악읍 반촌로 223</div>
+      <div class="why">IC 인접, 대기 시간이 비교적 짧�  편입니다.</div>
+    </div>
+    <div class="shop">
+      <div class="name">타이어프로 당진수청점</div>
+      <div class="addr">충남 당진시 동부로 194 (수청동 442-1)</div>
+      <div class="why">한국타이어 계열 직영망으로 TPMS 등록 장비 보유 가능성이 높습니다.</div>
+    </div>
+
+    <h3>정밀 진단이 필요할 때</h3>
+    <div class="shop">
+      <div class="name">블루핸즈 당진중앙점</div>
+      <div class="addr">충남 당진시 송산로 270-5 (원당동 603-4)</div>
+      <div class="why">순정 진단기로 원인을 정확히 잡아줍니다. <strong>진단만 받고 수리는 사설에서</strong> 하는 방법도 있습니다(진단료 별도 발생 가능).</div>
+    </div>
+    <div class="shop">
+      <div class="name">블루핸즈 원당점 / 송악현대서비스 / 동당진현대서비스</div>
+      <div class="addr">당진 원당골길 4 / 송악읍 덕적골길 14 / 신평면 서해로 7496</div>
+      <div class="why">거주지에서 가까운 곳으로 선택하면 됩니다.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🗺️ 추천 진행 순서</h2>
+    <ol class="steps">
+      <li><strong>공임나라 당진대덕점에 전화</strong> — 뒷문 도어락 진단과 TPMS 4짝 견적을 함께 문의합니다. 두 작업이 한 번에 가능하면 여기서 종료.</li>
+      <li><strong>TPMS 견적이 개당 5만원을 넘어가면</strong> — 타이어뱅크 서당진점 또는 타이어프로 당진수청점에서 따로 진행합니다.</li>
+      <li><strong>도어락 원인이 애매하다고 하면</strong> — 블루핸즈 당진중앙점에서 진단만 받고, 그 결과를 들고 사설 정비소에서 수리합니다.</li>
+      <li><strong>작업 완료 후 확인</strong> — TPMS 경고등 소등 여부, 4개 휠 공기압이 계기판에 모두 표시되는지, 뒷문이 리모컨·실내 스위치·도어 레버 3가지 모두로 정상 동작하는지 출고 전에 직접 확인합니다.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>🔍 참고 자료</h2>
+    <p class="src">
+      · <a href="https://blog.naver.com/83sonsj/223671295170" target="_blank" rel="noopener">HG그랜져 TPMS(공기압센서) 교환</a><br>
+      · <a href="https://blog.naver.com/dosung_carcenter/223842739134" target="_blank" rel="noopener">그랜저 HG 계기판 TPMS 경고등 — 도성카센타</a><br>
+      · <a href="https://blog.naver.com/lejaeyoun/224050776012" target="_blank" rel="noopener">현대 그랜져 HG TPMS 경고등 점등 수리 — JC오토</a><br>
+      · <a href="https://blog.naver.com/24jang00/223975577165" target="_blank" rel="noopener">차문 안 잠김? 도어락 액츄에이터 교체 후기 (비용 11만원 정리)</a><br>
+      · <a href="https://blog.naver.com/jjanggun83/223853515608" target="_blank" rel="noopener">자동차 문 안열림 원인·고장·수리 비용 총정리</a>
+    </p>
+    <p class="src" style="margin-top:12px;">※ 비용은 2025~2026년 실제 정비 후기 기준의 참고 시세이며, 차량 상태와 업체에 따라 달라질 수 있습니다. 방문 전 전화로 견적을 확인하세요.</p>
+  </div>
+
+</div>
+
+<footer>홍스탁 보고서 게시판 · 2026-08-26 작성</footer>
+</body>
+</html>
