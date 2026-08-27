@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BMW 뉴 X3 (G45) 오너 사용 가이드</title>
+<meta name="description" content="4세대 신형 BMW X3(G45) 국내 사양 기준 실내 기능 사용법 — 공조·시트·기어, iDrive 9와 스마트폰 연결, 주행보조와 주차">
+<style>
+:root{
+  --bg:#f4f6f9; --card:#ffffff; --ink:#1b2430; --ink2:#4a5768; --ink3:#8794a5;
+  --acc:#1f4e79; --acc2:#2e74b5; --acc-soft:#eaf1f8; --line:#e2e8f0;
+  --warn:#c0392b; --warn-bg:#fdf3f2; --tip:#1e7a5a; --tip-bg:#eff8f4;
+  --info:#2e74b5; --info-bg:#eef4fb; --note:#6b7b8c; --note-bg:#f1f4f7;
+  --radius:14px; --maxw:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','맑은 고딕',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  line-height:1.75;font-size:16px;word-break:keep-all;overflow-wrap:break-word;
+}
+a{color:var(--acc2);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* progress */
+#bar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--acc),var(--acc2));z-index:99}
+
+/* topbar */
+.topbar{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topbar .in{max-width:var(--maxw);margin:0 auto;padding:11px 22px;display:flex;align-items:center;gap:14px}
+.topbar .back{font-size:.86rem;color:var(--ink2);display:inline-flex;align-items:center;gap:6px;font-weight:600}
+.topbar .back:hover{color:var(--acc)}
+.topbar .now{font-size:.86rem;color:var(--ink3);margin-left:auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* hero */
+.hero{background:linear-gradient(135deg,#16334f 0%,#1f4e79 45%,#2e74b5 100%);color:#fff;padding:58px 22px 50px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-90px;top:-90px;width:340px;height:340px;border-radius:50%;background:rgba(255,255,255,.06)}
+.hero::before{content:"";position:absolute;right:60px;bottom:-140px;width:260px;height:260px;border-radius:50%;background:rgba(255,255,255,.05)}
+.hero .in{max-width:var(--maxw);margin:0 auto;position:relative;z-index:1}
+.brand{font-size:2.6rem;font-weight:800;letter-spacing:.14em;line-height:1}
+.hero h1{font-size:clamp(1.5rem,4.2vw,2.35rem);font-weight:700;margin-top:12px;letter-spacing:-.02em}
+.hero .sub{margin-top:16px;font-size:1rem;color:#dbe8f5;font-weight:500;text-shadow:0 1px 2px rgba(0,0,0,.18)}
+.chips{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.24);padding:6px 13px;border-radius:999px;font-size:.83rem;font-weight:600}
+
+/* layout */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:34px 22px 90px;display:grid;grid-template-columns:236px 1fr;gap:36px;align-items:start}
+nav.toc{position:sticky;top:74px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 16px;font-size:.88rem;max-height:calc(100vh - 100px);overflow:auto}
+nav.toc h4{font-size:.72rem;letter-spacing:.11em;color:var(--ink3);text-transform:uppercase;margin-bottom:12px;font-weight:800}
+nav.toc a{display:block;padding:6px 10px;border-radius:8px;color:var(--ink2);border-left:2px solid transparent;font-weight:500}
+nav.toc a:hover{background:var(--acc-soft);color:var(--acc);text-decoration:none}
+nav.toc a.on{background:var(--acc-soft);color:var(--acc);font-weight:700;border-left-color:var(--acc2)}
+main{min-width:0}
+
+/* sections */
+section{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px 32px;margin-bottom:22px;box-shadow:0 1px 2px rgba(20,40,70,.04)}
+section>h2{font-size:1.36rem;font-weight:800;color:var(--acc);letter-spacing:-.02em;padding-bottom:13px;border-bottom:2px solid var(--acc);margin-bottom:20px;display:flex;align-items:baseline;gap:11px}
+section>h2 .n{font-size:.78rem;background:var(--acc);color:#fff;padding:3px 9px;border-radius:6px;font-weight:800;letter-spacing:.04em;flex:none}
+h3{font-size:1.06rem;font-weight:700;color:var(--acc2);margin:28px 0 11px}
+h3:first-of-type{margin-top:4px}
+h4{font-size:.97rem;font-weight:700;color:var(--ink);margin:20px 0 8px}
+p{margin:10px 0;color:var(--ink2)}
+strong{color:var(--ink);font-weight:700}
+ul,ol{margin:11px 0 11px 4px;padding-left:20px}
+li{margin:7px 0;color:var(--ink2)}
+li::marker{color:var(--acc2)}
+ol li{padding-left:3px}
+code{background:var(--acc-soft);color:var(--acc);padding:2px 7px;border-radius:5px;font-size:.87em;font-weight:600;font-family:'SF Mono',Consolas,monospace;white-space:nowrap}
+
+/* path */
+.path{display:inline-flex;flex-wrap:wrap;align-items:center;gap:5px;background:var(--acc-soft);border:1px solid #d3e2f0;border-radius:8px;padding:7px 12px;font-size:.87rem;font-weight:600;color:var(--acc);margin:4px 0}
+.path b{font-weight:800}
+.path i{font-style:normal;opacity:.55;padding:0 1px}
+
+/* tables */
+.tw{overflow-x:auto;margin:16px 0;border:1px solid var(--line);border-radius:10px;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:.9rem;min-width:520px}
+th{background:var(--acc);color:#fff;text-align:left;padding:11px 14px;font-weight:700;font-size:.86rem;white-space:nowrap}
+td{padding:11px 14px;border-top:1px solid var(--line);color:var(--ink2);vertical-align:top}
+tbody tr:nth-child(even){background:#f7f9fc}
+td:first-child{font-weight:700;color:var(--ink);white-space:nowrap}
+table.free td:first-child{white-space:normal}
+
+/* callouts */
+.box{border-left:4px solid var(--info);background:var(--info-bg);border-radius:0 10px 10px 0;padding:15px 18px;margin:18px 0}
+.box .t{font-weight:800;font-size:.93rem;color:var(--info);margin-bottom:6px;display:flex;align-items:center;gap:7px}
+.box p{margin:6px 0;font-size:.92rem;color:var(--ink2)}
+.box ul,.box ol{margin:7px 0 3px;font-size:.92rem}
+.box li{margin:4px 0}
+.box.warn{border-color:var(--warn);background:var(--warn-bg)}
+.box.warn .t{color:var(--warn)}
+.box.tip{border-color:var(--tip);background:var(--tip-bg)}
+.box.tip .t{color:var(--tip)}
+.box.note{border-color:var(--note);background:var(--note-bg)}
+.box.note .t{color:var(--note)}
+
+/* checklist */
+.chk{list-style:none;margin:16px 0;padding:0;counter-reset:c}
+.chk li{counter-increment:c;display:flex;gap:14px;padding:13px 0;border-top:1px solid var(--line);margin:0}
+.chk li:first-child{border-top:none}
+.chk li::before{content:counter(c);flex:none;width:26px;height:26px;border-radius:50%;background:var(--acc);color:#fff;font-size:.78rem;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.chk b{display:block;color:var(--ink);font-size:.97rem;margin-bottom:2px}
+.chk span{font-size:.9rem;color:var(--ink2)}
+
+/* steps */
+ol.steps{list-style:none;counter-reset:s;padding:0;margin:14px 0}
+ol.steps li{counter-increment:s;position:relative;padding:0 0 14px 38px;margin:0;border-left:2px dashed #cfdce8;margin-left:12px}
+ol.steps li:last-child{border-left-color:transparent;padding-bottom:0}
+ol.steps li::before{content:counter(s);position:absolute;left:-13px;top:-2px;width:25px;height:25px;border-radius:50%;background:#fff;border:2px solid var(--acc2);color:var(--acc2);font-size:.76rem;font-weight:800;display:flex;align-items:center;justify-content:center}
+
+/* qa */
+.qa{border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:16px 0}
+.qa details{border-top:1px solid var(--line)}
+.qa details:first-child{border-top:none}
+.qa summary{padding:13px 17px;font-weight:700;cursor:pointer;font-size:.94rem;color:var(--ink);list-style:none;display:flex;align-items:center;gap:10px;background:#fbfcfe}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary::before{content:"Q";flex:none;width:21px;height:21px;border-radius:5px;background:var(--acc2);color:#fff;font-size:.72rem;font-weight:800;display:flex;align-items:center;justify-content:center}
+.qa summary:hover{background:var(--acc-soft)}
+.qa details[open] summary{background:var(--acc-soft);color:var(--acc)}
+.qa .a{padding:4px 17px 15px 48px;font-size:.92rem;color:var(--ink2)}
+
+/* sources */
+.src{font-size:.86rem}
+.src li{margin:8px 0}
+
+footer{max-width:var(--maxw);margin:0 auto;padding:0 22px 60px;text-align:center;color:var(--ink3);font-size:.83rem;line-height:1.9}
+.totop{position:fixed;right:20px;bottom:20px;width:42px;height:42px;border-radius:50%;background:var(--acc);color:#fff;border:none;font-size:1.1rem;cursor:pointer;opacity:0;pointer-events:none;transition:.25s;box-shadow:0 4px 14px rgba(31,78,121,.35);z-index:70}
+.totop.on{opacity:1;pointer-events:auto}
+
+@media(max-width:900px){
+  .wrap{grid-template-columns:1fr;gap:18px;padding:22px 14px 80px}
+  nav.toc{position:static;max-height:none;order:-1}
+  nav.toc a{display:inline-block;margin:2px 3px 2px 0;border-left:none;border:1px solid var(--line)}
+  nav.toc a.on{border-color:var(--acc2)}
+  section{padding:22px 18px}
+  .hero{padding:42px 18px 38px}
+}
+@media print{
+  body{background:#fff;font-size:11pt}
+  .topbar,nav.toc,.totop,#bar{display:none!important}
+  .wrap{display:block;padding:0;max-width:none}
+  section{break-inside:auto;box-shadow:none;border:none;padding:0;margin:0 0 18px}
+  section>h2{break-after:avoid}
+  .hero{background:#1f4e79!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .qa details{open:true}
+  .qa .a{display:block!important}
+  tr,li,.box{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+
+<div class="topbar"><div class="in">
+  <a class="back" href="./index.html">&larr; 홍스탁 게시판</a>
+  <span class="now" id="now"></span>
+</div></div>
+
+<header class="hero"><div class="in">
+  <div class="brand">BMW</div>
+  <h1>뉴 X3 (G45) 오너 사용 가이드</h1>
+  <p class="sub">4세대 완전변경 X3 · BMW 오퍼레이팅 시스템 9 (iDrive 9) · 국내 사양 기준</p>
+  <div class="chips">
+    <span class="chip">기본 조작</span>
+    <span class="chip">iDrive · 스마트폰 연결</span>
+    <span class="chip">주행보조 · 주차</span>
+    <span class="chip">2026-08-27</span>
+  </div>
+</div></header>
+
+<div class="wrap">
+<nav class="toc">
+  <h4>목차</h4>
+  <a href="#s0">시작하기 전에</a>
+  <a href="#s1">1. 공식 매뉴얼 보기</a>
+  <a href="#s2">2. 첫 주 체크리스트</a>
+  <a href="#s3">3. 기본 조작</a>
+  <a href="#s4">4. iDrive · 스마트폰</a>
+  <a href="#s5">5. 주행보조 · 주차</a>
+  <a href="#s6">6. 자주 막히는 상황</a>
+  <a href="#s7">7. 딜러 확인 항목</a>
+  <a href="#s8">참고 자료</a>
+</nav>
+
+<main>
+
+<section id="s0">
+  <h2><span class="n">START</span>이 문서를 읽기 전에</h2>
+  <div class="box">
+    <div class="t">세대를 먼저 확인하세요</div>
+    <p>이 가이드는 <strong>2024년 11월 국내 출시된 4세대 신형 X3(코드네임 G45)</strong> 기준입니다. 2024년 이전 3세대 X3(G01)는 iDrive 7을 쓰기 때문에 메뉴 구조와 버튼 배치가 전혀 다릅니다. 인터넷에서 'BMW X3 사용법'을 검색하면 대부분 구형 자료가 나오므로 그대로 따라 하시면 안 됩니다.</p>
+  </div>
+  <div class="box note">
+    <div class="t">최종 기준은 차 안에 있습니다</div>
+    <p>차량마다 트림·옵션·소프트웨어 버전에 따라 없는 기능이 있을 수 있습니다. 최종 확인은 반드시 차량 안 iDrive의 <strong>취급설명서</strong> 앱에서 하세요. 그 설명서만이 내 차 차대번호(VIN) 기준 실제 사양을 반영합니다.</p>
+  </div>
+</section>
+
+<section id="s1">
+  <h2><span class="n">01</span>공식 매뉴얼을 보는 4가지 방법</h2>
+  <p>아래로 갈수록 접근성은 좋아지지만 정확도는 떨어집니다. ①번이 가장 정확합니다.</p>
+
+  <h3>① 차량 안 iDrive 취급설명서 — 가장 정확</h3>
+  <div class="path"><b>All Apps</b><i>&rsaquo;</i><b>취급설명서 (Owner's Handbook)</b></div>
+  <ul>
+    <li>내 차 VIN 기준으로 <strong>실제 장착된 사양만</strong> 보여줍니다. 옵션 유무 논쟁이 생기면 여기가 정답입니다.</li>
+    <li>검색창에 '시트 열선', '어시스턴트' 같은 키워드를 넣으면 해당 항목으로 바로 이동합니다.</li>
+  </ul>
+
+  <h3>② My BMW 앱 안의 디지털 매뉴얼</h3>
+  <ul><li>차량 등록을 끝내면 앱 안에서 매뉴얼을 볼 수 있습니다. 차 밖에서 찾아볼 때 편합니다.</li></ul>
+
+  <h3>③ BMW 드라이버 가이드 앱</h3>
+  <ul>
+    <li>iOS / 안드로이드 앱스토어에서 무료. 차대번호를 넣으면 내 차 전용 설명서가 내려받아집니다.</li>
+    <li>안내 페이지: <a href="https://www.bmw.co.kr/ko/topics/owners/online-manual/bmw-driver-guide.html" target="_blank" rel="noopener">bmw.co.kr &rsaquo; 오너 &rsaquo; 온라인 매뉴얼</a></li>
+  </ul>
+
+  <h3>④ 온라인 보조 자료 (비공식이지만 검색이 편함)</h3>
+  <ul>
+    <li><strong>BMW USA 공식 FAQ</strong> — <a href="https://faq.bmwusa.com" target="_blank" rel="noopener">faq.bmwusa.com</a> 에서 <code>X3 from 08/2024</code>로 검색하면 G45 전용 기능 설명이 항목별로 나옵니다. 영문이지만 우리 차와 같은 세대입니다.</li>
+    <li><strong>G45 온라인 오너스 매뉴얼</strong> — <a href="https://www.mycarusermanual.com/bmw/x3/suv/2024-2025" target="_blank" rel="noopener">mycarusermanual.com</a> (비공식 정리본, 영문)</li>
+  </ul>
+
+  <div class="box note">
+    <div class="t">차대번호(VIN)는 어디서 확인하나</div>
+    <p>자동차등록증 / 운전석 도어를 열었을 때 B필러 스티커 / 앞유리 하단 좌측 표시. 17자리입니다.</p>
+    <p>My BMW 앱에 차를 등록할 때는 <strong>컨트롤 디스플레이에 뜨는 QR 코드를 앱으로 찍는 방식</strong>이 가장 빠릅니다.</p>
+  </div>
+</section>
+
+<section id="s2">
+  <h2><span class="n">02</span>인수 첫 주에 꼭 해둘 10가지</h2>
+  <p>아래만 끝내두면 이후 운전 중에 화면을 뒤질 일이 크게 줄어듭니다.</p>
+  <ol class="chk">
+    <li><div><b>My BMW 앱 설치 + 차량 등록</b><span>앱 로그인 상태에서 컨트롤 디스플레이의 QR 코드를 스캔. 원격 도어 잠금, 차량 위치 찾기, 목적지 전송이 전부 여기서 열립니다.</span></div></li>
+    <li><div><b>BMW ID로 차량 로그인</b><span>시트 포지션·공조·내비 즐겨찾기·화면 설정이 클라우드에 저장됩니다. 차량당 최대 7개 프로필.</span></div></li>
+    <li><div><b>디지털 키 플러스 등록</b><span>국내 X3 전 모델 기본. 아이폰은 Apple 지갑, 갤럭시는 Samsung Pass에 저장됩니다.</span></div></li>
+    <li><div><b>무선 카플레이 / 안드로이드 오토 페어링</b><span>최초 1회만 설정하면 이후 자동 연결. 절차는 4장 참고.</span></div></li>
+    <li><div><b>시트 메모리 저장</b><span>운전석 도어의 SET 버튼 → 불이 켜진 동안 1 또는 2를 누름. 미러 각도와 HUD 높이까지 같이 저장됩니다.</span></div></li>
+    <li><div><b>헤드업 디스플레이 높이 맞추기</b><span>스티어링 휠 설정 버튼 → 메뉴에서 HEAD-UP 선택 → 널링 휠로 조절.</span></div></li>
+    <li><div><b>파노라마 뷰 자동 켜짐 지점 저장</b><span>집·회사 주차장 입구에서 저장해두면 매번 버튼을 누르지 않아도 카메라가 자동으로 켜집니다. 최대 10곳.</span></div></li>
+    <li><div><b>주행보조 경고 민감도 조정</b><span>차선이탈 진동·하차 경고음이 거슬리면 5-3의 메뉴 경로대로 개별 조정.</span></div></li>
+    <li><div><b>무선 소프트웨어 업데이트 확인</b><span>All Apps → 시스템 설정 → 리모트 소프트웨어 업그레이드 → 업그레이드 검색.</span></div></li>
+    <li><div><b>커넥티드드라이브 스토어 로그인</b><span>BMW ID로 로그인해야 내 차에 적용 가능한 서비스와 무료 체험 기간이 표시됩니다.</span></div></li>
+  </ol>
+</section>
+
+<section id="s3">
+  <h2><span class="n">03</span>기본 조작 — 공조 · 시트 · 운전자세 · 기어</h2>
+
+  <div class="box">
+    <div class="t">먼저 알아야 할 G45의 성격</div>
+    <p>신형 X3는 물리 버튼을 줄였지만 전부 없앤 것은 아닙니다. <strong>iDrive 로터리 컨트롤러(다이얼)는 그대로 남아 있습니다.</strong> 이 점이 X1·X2와 다르고, 신형 BMW 중 다이얼과 iDrive 9를 함께 쓰는 첫 차입니다.</p>
+    <p><strong>남아 있는 물리 조작부</strong> — 비상등 · 볼륨 · 곡 넘김 · 앞유리 성에 제거 · 뒷유리 열선 · My Modes · iDrive 다이얼 · 주차 지원 · 오토홀드 · 전자식 주차 브레이크 · 기어 토글 · 시동 버튼</p>
+    <p><strong>화면으로 옮겨간 것</strong> — 온도 · 풍량 · 풍향 · 시트 열선 · 시트 통풍 · 스티어링 휠 열선 (구형 X3에서 물리 버튼이던 항목들)</p>
+  </div>
+
+  <h3>3-1. 공조</h3>
+  <p>기본 조작은 화면 맨 아래에 항상 떠 있는 <strong>클라이밋 바</strong>에서 합니다. 온도는 하단의 + / − 를 그냥 누르면 됩니다.</p>
+  <div class="tw"><table>
+    <thead><tr><th>기능</th><th>조작 위치</th><th>방법</th></tr></thead>
+    <tbody>
+      <tr><td>온도 (좌우 개별)</td><td>화면 하단 클라이밋 바</td><td>+ / − 탭</td></tr>
+      <tr><td>풍량</td><td>클라이밋 메뉴</td><td>큰 아이콘 = 증가 / 작은 아이콘 = 감소</td></tr>
+      <tr><td>풍향</td><td>클라이밋 메뉴</td><td>발밑 · 상체 · 앞유리 3방향</td></tr>
+      <tr><td>AUTO</td><td>클라이밋 메뉴</td><td>외기온·일사·착좌를 감지해 자동. 설정이 저장되어 다음 시동 때 그대로 적용됩니다</td></tr>
+      <tr><td>앞유리 성에 제거</td><td><strong>물리 버튼</strong> (인스트루먼트 패널)</td><td>누르면 LED 점등. 앞유리 + 앞 사이드 윈도 동시</td></tr>
+      <tr><td>뒷유리 열선</td><td><strong>물리 버튼</strong> (인스트루먼트 패널)</td><td>일정 시간 후 자동 해제</td></tr>
+      <tr><td>시트 열선 / 통풍</td><td>화면 (시트 클라이밋 아이콘)</td><td>원하는 단계가 될 때까지 반복 탭. 물리 버튼 없음</td></tr>
+      <tr><td>스티어링 휠 열선</td><td>화면 (시트 클라이밋 아이콘)</td><td>반복 탭. 물리 버튼 없음</td></tr>
+      <tr><td>MAX 냉방</td><td>클라이밋 메뉴</td><td>최저 온도 + 최대 풍량</td></tr>
+      <tr><td>내기 / 외기 순환</td><td>클라이밋 메뉴</td><td>반복 탭으로 내기 → 외기 → 자동내기순환 순환</td></tr>
+      <tr><td>SYNC</td><td>클라이밋 메뉴</td><td>운전석 설정을 나머지 좌석에 일괄 적용. 다른 좌석을 손대면 자동 해제</td></tr>
+      <tr><td>뒷좌석 공조</td><td>설정 → 뒷좌석 공조</td><td>뒷좌석 전용 화면에서도 조작. 뒷좌석 조작 잠금 가능</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="box warn">
+    <div class="t">카플레이를 쓰는 중에 공조 바가 사라졌다면</div>
+    <p>화면 하단 가장자리에서 <strong>위로 쓸어 올리세요(스와이프 업)</strong>. 카플레이·안드로이드 오토가 전체화면일 때 클라이밋 바가 가려지는 것으로, 고장이 아닙니다. 신형 오너가 가장 많이 막히는 지점입니다.</p>
+  </div>
+
+  <div class="box tip">
+    <div class="t">음성이 더 빠른 경우</div>
+    <p>"안녕 BMW, 너무 추워" / "시트 열선 켜줘" / "스티어링 휠 열선 켜줘" 처럼 말하면 화면을 뒤지지 않아도 됩니다. 조수석에서 말한 것도 구분해서 인식합니다.</p>
+  </div>
+
+  <h3>3-2. 송풍구 — 도어에도 있습니다</h3>
+  <ul>
+    <li><strong>앞좌석</strong> — 풍향은 손으로, 풍량은 슬라이더로 조절</li>
+    <li><strong>도어 트림 송풍구</strong> — 도어 패널의 조작 클러스터에 햅틱 슬라이더가 있어 도어 송풍구 풍량을 조절합니다. 신형에서 추가된 부분이라 처음엔 잘 못 찾습니다.</li>
+    <li><strong>뒷좌석</strong> — 요철 다이얼로 개폐</li>
+  </ul>
+
+  <h3>3-3. 인터랙션 스마트 바</h3>
+  <p>대시보드를 가로지르는 유리 느낌의 조명 패널입니다. 조명만 하는 게 아니라 <strong>터치 조작부이기도 합니다.</strong></p>
+  <ul>
+    <li>가능한 터치 조작 — 통합 송풍구 풍량, 앞유리 성에 제거, 뒷유리 열선, 비상등</li>
+    <li>조명 색상은 앰비언트 라이트 옵션 장착 시 15가지. 선택한 My Mode에 따라 자동으로 바뀝니다.</li>
+    <li>색을 직접 고르려면 <strong>Personal 모드로 먼저 전환</strong>한 뒤 아래 경로로 들어갑니다. 다른 모드에서는 선택이 잠겨 있습니다.</li>
+  </ul>
+  <div class="path"><b>All Apps</b><i>&rsaquo;</i><b>차량</b><i>&rsaquo;</i><b>실내 조명</b><i>&rsaquo;</i><b>앰비언트 라이팅</b><i>&rsaquo;</i><b>색상</b></div>
+  <ul>
+    <li>도어를 열 때 뒤에서 차량·자전거가 접근하면 바가 붉게 점멸하는 연출은 같은 메뉴의 <code>Lighting effects</code>에서 켜고 끕니다.</li>
+  </ul>
+
+  <div class="box note">
+    <div class="t">글로브박스는 인터랙션 바로 열지 않습니다</div>
+    <p>글로브박스에 달린 물리 버튼을 누르세요. 터치로 여는 것은 7시리즈 계열입니다.</p>
+  </div>
+
+  <h3>3-4. 시트와 운전자세</h3>
+  <h4>전동시트 스위치는 도어가 아니라 시트 옆면에 있습니다</h4>
+  <div class="tw"><table class="free">
+    <thead><tr><th>조절</th><th>방법</th></tr></thead>
+    <tbody>
+      <tr><td>앞뒤 / 높이 / 등받이</td><td>시트 측면 스위치를 해당 방향으로 밀거나 젖힘</td></tr>
+      <tr><td>시트 방석 기울기</td><td>틸트 스위치를 위·아래로</td></tr>
+      <tr><td>럼버 서포트</td><td>럼버 버튼을 앞뒤(볼륨) · 위아래(위치)</td></tr>
+      <tr><td>등받이 폭 (M/스포츠 시트)</td><td>앞쪽 버튼 = 좁게 / 뒤쪽 버튼 = 넓게</td></tr>
+      <tr><td>허벅지 서포트</td><td><strong>전동이 아니라 수동입니다.</strong> 시트 앞쪽 레버를 당긴 채로 밀고 당깁니다</td></tr>
+      <tr><td>헤드레스트</td><td>등받이의 릴리스 버튼을 누르고 내림. 올릴 때는 그냥 위로 (수동)</td></tr>
+    </tbody>
+  </table></div>
+
+  <h4>메모리 시트 — 버튼은 운전석 도어 트림</h4>
+  <ol class="steps">
+    <li>운전석 도어의 <strong>SET 버튼</strong>을 누른다 → LED가 켜진다</li>
+    <li>LED가 켜져 있는 동안 <strong>메모리 1 또는 2</strong> 버튼을 누른다</li>
+    <li>불러올 때는 1 또는 2를 그냥 누른다</li>
+  </ol>
+  <p><strong>함께 저장되는 항목</strong> — 시트 포지션, 사이드미러 각도, 럼버 서포트 위치, 헤드업 디스플레이 높이</p>
+
+  <h4>사이드미러</h4>
+  <ul>
+    <li>조절 버튼은 운전석 도어 트림. 좌/우 선택 후 버튼을 움직이는 방향대로 움직입니다.</li>
+    <li><strong>후진 시 자동 하향은 조수석 미러만 내려갑니다.</strong> 운전석 미러가 안 내려간다고 고장이 아닙니다.</li>
+  </ul>
+
+  <h4>스티어링 휠 · 헤드업 디스플레이</h4>
+  <ul>
+    <li>스티어링 휠 조절 — 칼럼의 릴리스 레버를 끝까지 아래로 누르고 양손으로 잡아 조절 후 레버 원위치 (수동식 기준)</li>
+    <li>HUD 켜고 끄기 — <code>All Apps &rsaquo; 차량 &rsaquo; 디스플레이 &rsaquo; 헤드업 디스플레이</code></li>
+    <li>HUD 높이·회전·밝기 — 스티어링 휠의 <strong>설정 버튼</strong> → 메뉴에서 HEAD-UP 선택 → <strong>널링 휠</strong>로 조절</li>
+  </ul>
+
+  <h3>3-5. 기어 토글과 주행 조작</h3>
+  <p>신형은 스틱형 레버가 사라지고 <strong>완전 전자식 토글 스위치</strong>로 바뀌었습니다.</p>
+  <ol class="steps">
+    <li>브레이크 페달을 밟는다</li>
+    <li>시동을 켠다</li>
+    <li>토글을 원하는 방향으로 젖히거나 당긴다 — 필요하면 저항점을 넘겨서 끝까지</li>
+    <li>토글은 자동으로 가운데로 돌아온다</li>
+  </ol>
+  <div class="tw"><table class="free">
+    <thead><tr><th>항목</th><th>내용</th></tr></thead>
+    <tbody>
+      <tr><td>기어 포지션</td><td><strong>P / R / N / D / S</strong> 다섯 개가 전부입니다. B 모드(회생제동 단계)는 없습니다</td></tr>
+      <tr><td>P</td><td>별도의 P 버튼으로 조작. 시동을 끄면 자동으로 P가 걸립니다</td></tr>
+      <tr><td>S</td><td>스포츠 프로그램. S에서 패들을 당기면 수동 모드 M이 계속 유지됩니다</td></tr>
+      <tr><td>패들 시프트</td><td>D에서 당기면 일시적 수동(D1, D2… 표시), 잠시 뒤 자동 복귀 / S에서 당기면 상시 수동</td></tr>
+      <tr><td>오토홀드</td><td>센터 콘솔 버튼. 켜면 정차 시 자동으로 잡아주고, 가속 페달을 밟으면 풀립니다. 오토홀드로 정차 중 시동을 끄면 주차 브레이크가 자동 체결됩니다</td></tr>
+      <tr><td>전자식 주차 브레이크</td><td>센터 콘솔. 체결은 버튼을 <strong>누름(press)</strong>, 수동 해제는 브레이크를 밟은 채 버튼을 <strong>밈(push)</strong>. 주행 중 길게 누르고 있으면 비상 제동</td></tr>
+      <tr><td>회생제동</td><td>48V 마일드 하이브리드가 감속 시 자동 회수합니다. 사용자가 단계를 고르는 UI는 없습니다</td></tr>
+    </tbody>
+  </table></div>
+
+  <h4>오토 스타트/스톱이 안 걸릴 때</h4>
+  <ul>
+    <li>Sport 또는 Sport Plus 모드이거나 기어가 S일 때는 <strong>의도적으로 꺼집니다.</strong> 고장이 아닙니다.</li>
+    <li>수동으로 켜고 끄기 — <code>All Apps &rsaquo; 차량 &rsaquo; 주행 설정 &rsaquo; 드라이브트레인 &amp; 섀시 &rsaquo; 오토 스타트/스톱</code></li>
+  </ul>
+
+  <h3>3-6. My Modes (주행 · 실내 분위기 모드)</h3>
+  <p><strong>센터 콘솔의 My Modes 물리 버튼</strong>으로 전환합니다. 화면을 뒤질 필요가 없습니다. 시동 시 기본으로 켜질 모드도 지정할 수 있습니다.</p>
+  <div class="tw"><table>
+    <thead><tr><th>모드</th><th>제공</th><th>바뀌는 것</th></tr></thead>
+    <tbody>
+      <tr><td>Personal</td><td>기본</td><td>표준·컴포트. <strong>앰비언트 색상을 직접 고를 수 있는 유일한 모드</strong></td></tr>
+      <tr><td>Sport</td><td>기본</td><td>엔진·변속·스티어링 반응 강화, 스포츠 테마. 오토 스타트/스톱 비활성</td></tr>
+      <tr><td>Efficient</td><td>기본</td><td>연비 우선 세팅</td></tr>
+      <tr><td>Expressive · Relax · Digital Art</td><td>디지털 프리미엄 필요</td><td>실내 연출·조명·디스플레이 중심</td></tr>
+      <tr><td>Silent</td><td>디지털 프리미엄</td><td>계기판·인포테인먼트를 최소 정보만 남기고 정리</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="s4">
+  <h2><span class="n">04</span>iDrive 9 · 내비게이션 · 스마트폰 연결</h2>
+
+  <h3>4-1. 화면 구성</h3>
+  <ul>
+    <li><strong>12.3인치 디지털 계기판 + 14.9인치 컨트롤 디스플레이</strong>의 커브드 디스플레이</li>
+    <li><strong>QuickSelect 방식</strong> — 하위 메뉴로 들어가지 않고 홈 화면에서 바로 실행합니다. 화면 왼쪽에 세로형 위젯이 스크롤됩니다.</li>
+    <li>조작 수단이 네 가지입니다 — <strong>터치, iDrive 다이얼, 스티어링 휠 버튼, 음성.</strong> 상황에 맞게 섞어 쓰는 게 가장 빠릅니다.</li>
+    <li>위젯을 좌우로 쓸면 그 위젯 안의 추가 내용이 나오고, 탭하면 상세 메뉴로 들어갑니다.</li>
+    <li>화면 위에서 아래로 쓸어내리면 개인 단축키 모음이 나옵니다.</li>
+  </ul>
+
+  <h3>4-2. 내 화면으로 만들기</h3>
+  <div class="tw"><table class="free">
+    <thead><tr><th>하고 싶은 것</th><th>방법</th></tr></thead>
+    <tbody>
+      <tr><td>자주 쓰는 기능 단축키 등록</td><td>해당 기능을 길게 누른 뒤 '단축키에 추가' 선택 → 위에서 아래로 스와이프하면 나옴</td></tr>
+      <tr><td>위젯 위치 바꾸기</td><td>위젯을 길게 눌러 이동. <strong>주행 중에는 불가, 정차 상태에서만</strong> 됩니다</td></tr>
+      <tr><td>홈 배경 바꾸기</td><td>화면 오른쪽 가장자리에서 안쪽으로 스와이프 → My Modes 화면 또는 내비 지도 중 선택</td></tr>
+      <tr><td>운전자 프로필</td><td>BMW ID 최대 7개. 프로필 동기화를 켜면 시트·공조·내비·화면 설정이 클라우드에 저장됩니다</td></tr>
+      <tr><td>자동 운전자 인식</td><td>키 버튼, 도어 잠금해제, 접근 감지로 프로필이 자동 전환됩니다</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>4-3. 무선 애플 카플레이 연결</h3>
+  <p>국내 X3는 <strong>무선 카플레이·무선 안드로이드 오토가 기본</strong>입니다. 케이블이 필요 없습니다.</p>
+  <ol class="steps">
+    <li>차량: <code>All Apps &rsaquo; Apple CarPlay</code> 선택</li>
+    <li>아이폰: <code>설정 &rsaquo; 일반 &rsaquo; CarPlay</code></li>
+    <li>차량이 기기를 찾으면 목록에서 내 아이폰 선택</li>
+    <li>차량 화면과 아이폰에 뜬 코드가 같은지 확인 → <strong>Pair</strong></li>
+    <li>'허용' 선택 (차량 데이터 공유 동의)</li>
+    <li>Siri 설정을 마치면 핸즈프리 호출까지 됩니다</li>
+  </ol>
+  <div class="box note">
+    <div class="t">전제조건</div>
+    <p>아이폰의 <strong>데이터 · Siri · Wi-Fi · 블루투스</strong>가 모두 켜져 있어야 합니다. 무선 카플레이는 블루투스로 연결을 시작해 Wi-Fi로 넘어가는 구조라 Wi-Fi를 꺼두면 붙지 않습니다.</p>
+  </div>
+
+  <h3>4-4. 무선 안드로이드 오토 연결</h3>
+  <ol class="steps">
+    <li><code>All Apps &rsaquo; Android Auto &rsaquo; Connect phone</code></li>
+    <li>폰 블루투스를 켜고 목록에서 기기 선택</li>
+    <li>차량과 폰에 뜬 코드가 같은지 확인</li>
+    <li>차량 화면에서 <strong>Start Android Auto</strong></li>
+    <li>공유할 차량 데이터를 고르고 폰에서 약관 동의</li>
+  </ol>
+  <p><strong>요구사항</strong> — 안드로이드 11 이상, 데이터 요금제, 최초 연결은 P단 정차 상태에서.</p>
+
+  <h3>4-5. 폰을 두 대 이상 쓸 때 / 연결이 안 될 때</h3>
+  <ul>
+    <li>등록 기기 목록 — <code>All Apps &rsaquo; Mobile Devices &rsaquo; MY DEVICES</code></li>
+    <li>폰 전환 — 목록에서 MODE 아래의 카플레이·안드로이드 오토 아이콘을 탭하면 현재 기기의 연결이 풀리고 다른 폰으로 넘어갑니다.</li>
+    <li>기기 삭제 — 기기 이름을 탭 → 연결 해제 또는 Remove</li>
+  </ul>
+  <div class="box warn">
+    <div class="t">연결이 안 될 때 순서대로 해보세요</div>
+    <ol>
+      <li>폰 OS를 최신으로 업데이트</li>
+      <li>폰의 블루투스와 Wi-Fi를 모두 켜기 (무선 카플레이는 Wi-Fi 필수)</li>
+      <li><strong>다른 폰이 먼저 자동 연결되어 있지 않은지 확인</strong> — 이게 원인인 경우가 가장 많습니다</li>
+      <li>아이폰 설정 → 일반 → CarPlay에서 해당 차량을 삭제한 뒤 다시 페어링</li>
+      <li>차량 쪽 Mobile Devices에서도 기기를 Remove하고 재등록</li>
+      <li>그래도 안 되면 <strong>볼륨 노브를 20~30초 길게 눌러 iDrive 재부팅</strong></li>
+    </ol>
+  </div>
+
+  <h3>4-6. 음성 명령</h3>
+  <ul>
+    <li>호출어는 <strong>"안녕 BMW"</strong> (영문 설정에서는 Hey BMW). 국내 X3는 라이브 콕핏 프로페셔널이 전 모델 기본이라 한국어 음성 제어가 됩니다.</li>
+    <li>실제로 잘 되는 명령 — "시트 열선 켜줘", "너무 추워", "○○한테 전화 걸어줘", "집으로 가는 길 안내해줘", "창문 열어줘"</li>
+    <li>조수석에서 말한 것도 구분해서 인식합니다 (조수석 열선만 켜기 등)</li>
+    <li>인식률을 올리려면 <code>설정 &rsaquo; 어시스턴트</code>에서 <strong>온라인 음성 처리</strong>를 켜세요. 체감 차이가 큽니다.</li>
+  </ul>
+
+  <h3>4-7. 내비게이션 — 국내 X3의 가장 큰 장점</h3>
+  <p>국내 판매 X3의 순정 내비는 <strong>TMAP 기반 한국형 BMW 내비게이션</strong>입니다. 해외 사양과 다릅니다.</p>
+  <ul>
+    <li>온라인 스트리밍 지도라서 <strong>지도 업데이트를 따로 할 필요가 없습니다</strong></li>
+    <li>실시간 교통정보는 티맵 데이터 기반</li>
+    <li>헤드업 디스플레이와 계기판에 턴바이턴 안내가 뜹니다</li>
+    <li>증강현실(AR) 뷰 지원 — 실시간 영상 위에 화살표를 겹쳐 보여줍니다</li>
+    <li>My BMW 앱에서 목적지를 차로 전송할 수 있습니다</li>
+  </ul>
+  <div class="box tip">
+    <div class="t">티맵 앱을 카플레이로 쓸 수도 있지만</div>
+    <p>카플레이로 실행한 티맵·카카오내비·네이버지도는 <strong>헤드업 디스플레이와 계기판에 안내가 뜨지 않습니다.</strong> HUD를 쓰려면 순정 내비를 쓰셔야 합니다. 순정 내비 자체가 티맵 기반이라 길안내 품질 차이도 크지 않습니다.</p>
+  </div>
+
+  <h3>4-8. My BMW 앱으로 되는 것</h3>
+  <div class="tw"><table class="free">
+    <thead><tr><th>기능</th><th>비고</th></tr></thead>
+    <tbody>
+      <tr><td>차량 위치 찾기</td><td>주차장에서 유용</td></tr>
+      <tr><td>원격 도어 잠금 / 잠금 해제</td><td>&mdash;</td></tr>
+      <tr><td>차량 상태 조회</td><td>연료, 주행가능거리, 도어·창문 상태, 점검 알림</td></tr>
+      <tr><td>리모트 엔진 스타트</td><td>원격 시동 + 공조 예열·냉방. 최대 15분. 국내 판매 중이며 별도 상품입니다</td></tr>
+      <tr><td>목적지 차량 전송</td><td>앱에서 검색 → 차로 보내기</td></tr>
+      <tr><td>소프트웨어 업데이트 시작</td><td>앱에서 원격으로 설치 시작 가능</td></tr>
+      <tr><td>리모트 3D 뷰</td><td>차량 카메라 영상을 폰으로 전송. 시간당 1회 제한</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>4-9. 디지털 키 플러스</h3>
+  <p>국내 X3 전 모델 기본입니다. 폰을 도어 핸들에 대지 않고 <strong>주머니에 넣은 채로 접근·이탈만으로</strong> 열리고 잠깁니다.</p>
+  <ol class="steps">
+    <li>My BMW 앱에서 차량 등록을 마친다</li>
+    <li>앱에서 디지털 키 타일 → <strong>SET UP DIGITAL KEY</strong></li>
+    <li>물리 키 2개(또는 키 1개 + 셋업 카드)를 차 안에 둔다 → 페어링 시작</li>
+    <li>아이폰은 Apple 지갑, 갤럭시는 Samsung Pass, 픽셀은 홈 화면에 키가 생성됩니다</li>
+  </ol>
+  <ul>
+    <li><strong>키 공유</strong> — 지갑에서 키 → 공유 → 메시지로 링크 전송. 받는 사람은 BMW ID가 없어도 됩니다. 최대 18명.</li>
+    <li><strong>공유 제한은 보내기 전에 설정해야 합니다.</strong> 사용 시간대, 지역, 최고 속도 제한을 걸 수 있습니다.</li>
+    <li>아이폰은 배터리가 방전돼도 <strong>최대 5시간</strong> 동안 잠금해제·시동이 됩니다 (익스프레스 모드)</li>
+  </ul>
+
+  <h3>4-10. 무선 소프트웨어 업데이트</h3>
+  <div class="path"><b>All Apps</b><i>&rsaquo;</i><b>시스템 설정</b><i>&rsaquo;</i><b>리모트 소프트웨어 업그레이드</b><i>&rsaquo;</i><b>업그레이드 검색</b></div>
+  <ul>
+    <li>다운로드는 차량 내장 SIM 또는 My BMW 앱(폰 데이터)으로 받아 차에 전송</li>
+    <li><strong>설치 조건</strong> — 안전한 곳에 주차, 기어 P, 시동 OFF, 창문·선루프 전부 닫힘, 외기온 영하 10도 이상, 배터리 충분</li>
+    <li>소요 시간 약 20~30분. <strong>설치 중에는 차를 쓸 수 없고 중단할 수 없습니다.</strong> 타이머 예약을 권합니다.</li>
+  </ul>
+</section>
+
+<section id="s5">
+  <h2><span class="n">05</span>주행보조와 주차</h2>
+
+  <div class="box tip">
+    <div class="t">국내 X3는 해외보다 사양이 좋습니다</div>
+    <p>국내는 <strong>전 트림에 드라이빙 어시스턴트 프로페셔널과 파킹 어시스턴트 플러스</strong>(서라운드 뷰 + 후진 어시스턴트)가 기본입니다. 유럽 기본형은 경고 위주 패키지만 들어가고 상당수가 옵션입니다.</p>
+    <p>다만 최대 200m 자동 주차와 스마트폰 원격 주차가 되는 <strong>파킹 어시스턴트 프로페셔널은 국내에서 M50 전용</strong>입니다.</p>
+  </div>
+
+  <h3>5-1. 어댑티브 크루즈 컨트롤 (스톱앤고 포함)</h3>
+  <p>버튼은 스티어링 휠 <strong>왼쪽 스포크</strong>에 모여 있습니다.</p>
+  <ol class="steps">
+    <li>크루즈 버튼을 눌러 대기 상태로 만든다</li>
+    <li>좌측 로커 스위치로 속도를 맞추고 <strong>SET</strong>을 눌러 저장한다</li>
+    <li>거리 버튼으로 차간거리를 <strong>4단계</strong> 중에서 고른다</li>
+    <li>해제는 <strong>CNCL</strong> 또는 브레이크, 저장 속도 복귀는 <strong>RES</strong></li>
+  </ol>
+  <div class="tw"><table class="free">
+    <thead><tr><th>조작 요령</th><th>내용</th></tr></thead>
+    <tbody>
+      <tr><td>속도 미세 조정</td><td>걸림(저항점) 전까지만 살짝 누르면 <strong>1km/h 단위</strong></td></tr>
+      <tr><td>속도 크게 조정</td><td>저항점을 넘겨 누르면 <strong>최대 10km/h 단위</strong></td></tr>
+      <tr><td>현재 속도로 저장</td><td>저항점에서 계속 누르고 있으면 페달 없이 가감속되고, 떼는 순간 그 속도가 저장됩니다</td></tr>
+      <tr><td>정차 후 재출발</td><td>짧은 정차는 앞차 출발 시 자동. 오래 서 있었으면 RES를 누르거나 가속 페달을 살짝 밟습니다</td></tr>
+      <tr><td>정체 구간 요령</td><td><strong>정차 중에 미리 RES를 눌러두면</strong> 앞차가 출발할 때 자동으로 따라 갑니다</td></tr>
+      <tr><td>차간거리 실사용</td><td>국내 고속도로에서 4단계(최대)로 두면 끼어들기가 잦습니다. <strong>2~3단계</strong>가 현실적입니다</td></tr>
+    </tbody>
+  </table></div>
+  <div class="path"><b>All Apps</b><i>&rsaquo;</i><b>차량</b><i>&rsaquo;</i><b>주행 설정</b><i>&rsaquo;</i><b>주행 보조</b><i>&rsaquo;</i><b>주행</b><i>&rsaquo;</i><b>거리 제어</b></div>
+
+  <h3>5-2. 차선유지 / 어시스티드 드라이빙 모드</h3>
+  <ol class="steps">
+    <li>주행 중 스티어링 휠 좌측의 <strong>I/O 버튼</strong>을 누른다</li>
+    <li>필요하면 MODE 버튼으로 계기판 툴바에 '어시스티드 드라이빙 모드'를 띄운다</li>
+    <li>조건이 맞으면 자동으로 개입이 시작된다</li>
+  </ol>
+  <ul>
+    <li><strong>아이콘 색으로 상태를 봅니다.</strong> 회색 = 준비만 된 상태(개입 안 함) / 초록색 = 지금 차선유지 개입 중</li>
+    <li><strong>국내 X3는 핸즈오프(손 떼고 주행)가 되지 않습니다.</strong> BMW의 핸즈프리 기능인 하이웨이 어시스턴트는 5·7시리즈, iX, X5/X6/X7 등에만 적용되고 승인 국가에도 한국은 없습니다. 손을 대고 계셔야 합니다.</li>
+    <li>손을 떼면 <strong>경고 → 강한 인수 요구 → 비상정지 어시스턴트</strong> 순서로 진행됩니다.</li>
+    <li>급커브나 국도·산길에서는 스티어링 어시스트가 스스로 해제되는 경우가 흔합니다. 정상 동작 범위입니다.</li>
+  </ul>
+
+  <h3>5-3. 경고 기능 끄고 켜는 메뉴 경로</h3>
+  <p><strong>공통 진입 경로</strong></p>
+  <div class="path"><b>All Apps</b><i>&rsaquo;</i><b>차량</b><i>&rsaquo;</i><b>주행 설정</b><i>&rsaquo;</i><b>주행 보조</b><i>&rsaquo;</i><b>안전 및 경고 / 주행 / 주차</b></div>
+  <div class="tw"><table class="free">
+    <thead><tr><th>기능</th><th>경로와 조절 항목</th></tr></thead>
+    <tbody>
+      <tr><td>차선 이탈 경고</td><td>안전 및 경고 → Lane Departure Warning. 진동 강도 조절 가능. 하위의 <strong>Steering intervention(조향 개입)만 따로 끌 수 있어</strong>, 경고는 남기고 핸들 개입만 없앨 수 있습니다</td></tr>
+      <tr><td>전방 충돌 경고</td><td>안전 및 경고 → Forward Collision Mitigation. 경고 시점 조절</td></tr>
+      <tr><td>사각지대 / 측면 충돌</td><td>안전 및 경고 → Side Collision Mitigation</td></tr>
+      <tr><td>하차 경고</td><td>안전 및 경고 → Exit warning. <strong>경고음만 따로</strong> 끌 수 있습니다</td></tr>
+      <tr><td>후방 교차 통행 경고</td><td>주차 → Rear warning / Front and rear warning / Brake intervention at rear. 지하주차장에서 예민하면 여기서 조절</td></tr>
+      <tr><td>커브 자동 감속</td><td>주행 → Route speed control → Adjust speed automatically. 감속 강도(Cornering speed)도 조절</td></tr>
+      <tr><td>전체 초기화</td><td>안전 및 경고 → Reset to recommended settings</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>5-4. 제한속도 표지판 인식</h3>
+  <div class="path"><b>주행 보조</b><i>&rsaquo;</i><b>주행</b><i>&rsaquo;</i><b>Speed Limit Assistance</b><i>&rsaquo;</i><b>Speed limits</b></div>
+  <ul>
+    <li><code>Adjust manually</code> — 감지된 제한속도를 SET 버튼으로 직접 적용</li>
+    <li><code>Show anticipation</code> — 현재와 예상 제한속도만 표시</li>
+    <li><code>Show current limit</code> — 현재 제한속도만 표시</li>
+    <li><code>Off</code> — 끔</li>
+    <li><strong>허용치(오프셋)도 설정할 수 있습니다.</strong> 전 구간 공통 오프셋과, 60km/h 이하 구간에만 적용하는 별도 오프셋이 따로 있습니다.</li>
+  </ul>
+  <div class="box warn">
+    <div class="t">이 기능은 시동을 끄면 꺼집니다</div>
+    <p>제한속도 어시스트는 <strong>엔진을 끄면 자동으로 비활성화</strong>됩니다. 매번 다시 켜야 합니다. 이 외에 ACC를 켜거나 주행 모드를 바꿀 때도 해제됩니다.</p>
+  </div>
+
+  <h3>5-5. 자동 주차</h3>
+  <ol class="steps">
+    <li>센터 콘솔의 <strong>파킹 어시스턴트 버튼</strong>을 누른다</li>
+    <li>천천히 주행한다 — 최대 약 <strong>35km/h</strong>까지 주차 공간을 스캔합니다</li>
+    <li>공간을 찾으면 알림음과 함께 화면에 평행 / 직각 / 사선 선택지가 뜬다</li>
+    <li><strong>완전히 정차한 뒤</strong> 원하는 방식을 확정한다</li>
+    <li>차가 스티어링·가속·제동·변속을 모두 알아서 합니다</li>
+    <li>완료되면 자동으로 P단으로 바뀝니다</li>
+  </ol>
+  <ul>
+    <li><strong>안전벨트를 매고 있어야 작동합니다.</strong> 벨트를 풀면 중단됩니다.</li>
+    <li>국내 20 트림 기준으로는 <strong>앞뒤에 차가 있는 일반적인 빈 공간</strong>을 인식합니다. 주차선·연석만 보고 자리를 잡는 기능은 M50의 프로페셔널 사양입니다.</li>
+  </ul>
+
+  <h3>5-6. 서라운드 뷰 (파노라마 뷰)</h3>
+  <ul>
+    <li>켜기 — 화면 또는 콘솔의 파노라마 뷰 버튼. 나가려면 왼쪽 툴바에서 다른 카메라 뷰를 고릅니다.</li>
+    <li>주차 뷰는 장애물을 초록·노랑·빨강 타일로 표시합니다.</li>
+  </ul>
+  <div class="box tip">
+    <div class="t">가장 저평가된 기능 — 자동 켜짐 지점 저장</div>
+    <p>집이나 회사 주차장 입구처럼 늘 카메라를 켜는 자리를 GPS로 저장해두면, 다음부터는 <strong>버튼을 누르지 않아도 자동으로 화면이 뜹니다.</strong> 최대 10곳.</p>
+    <p><strong>저장 방법</strong> — 원하는 위치에 정차 → 파킹 어시스턴트 버튼 → Panorama view → Activation point → Save activation point</p>
+    <p><strong>켜고 끄기</strong> — 주행 보조 → 주차 → GPS-based</p>
+  </div>
+  <div class="box warn">
+    <div class="t">주의</div>
+    <p>파노라마 영상은 일부 영역에 왜곡이 있어 <strong>정확한 거리 판단용이 아닙니다.</strong> BMW가 매뉴얼에 명시한 경고입니다. 좁은 곳에서는 눈으로 한 번 더 확인하세요.</p>
+  </div>
+
+  <h3>5-7. 후진 어시스턴트</h3>
+  <p>들어온 길을 그대로 <strong>최대 50m</strong> 되짚어 나가는 기능입니다. 좁은 골목이나 막다른 주차장 진입로에서 유용합니다.</p>
+  <ol class="steps">
+    <li><strong>정차한 상태에서</strong> R단을 넣거나 파킹 어시스턴트 버튼을 누른다</li>
+    <li>메뉴에서 후진 어시스턴트를 선택한다</li>
+    <li>스티어링 휠에서 손을 뗀다 — 조향은 차가 합니다</li>
+    <li>가속·제동 페달만 조작한다</li>
+    <li>저장 경로 끝에 다다르면 차가 알려주고 조작을 넘겨줍니다</li>
+  </ol>
+  <p><strong>정차 상태여야 메뉴가 뜹니다.</strong> 굴러가는 상태에서는 나오지 않습니다.</p>
+</section>
+
+<section id="s6">
+  <h2><span class="n">06</span>자주 막히는 상황 모음</h2>
+  <div class="qa">
+    <details open><summary>카플레이 쓰는 중에 공조 조절이 안 보인다</summary><div class="a">화면 하단 가장자리에서 위로 스와이프하면 클라이밋 바가 다시 나옵니다.</div></details>
+    <details><summary>시트 통풍 버튼을 못 찾겠다</summary><div class="a">물리 버튼이 없습니다. 화면 하단 온도 영역의 시트 아이콘을 탭하면 패널이 열리고, 원하는 세기까지 반복 탭합니다.</div></details>
+    <details><summary>앰비언트 색상 선택이 회색으로 잠겨 있다</summary><div class="a">Personal 모드로 먼저 바꾸세요. 다른 모드에서는 색이 모드에 종속됩니다.</div></details>
+    <details><summary>주행 모드 바꾸는 곳을 못 찾겠다</summary><div class="a">센터 콘솔에 My Modes 물리 버튼이 있습니다. 화면에서 찾지 마세요.</div></details>
+    <details><summary>후진할 때 운전석 미러가 안 내려간다</summary><div class="a">정상입니다. 조수석 미러만 내려갑니다.</div></details>
+    <details><summary>글로브박스가 안 열린다</summary><div class="a">글로브박스에 달린 물리 버튼을 누릅니다.</div></details>
+    <details><summary>오토 스타트/스톱이 안 걸린다</summary><div class="a">Sport·Sport Plus 모드이거나 기어가 S면 의도적으로 꺼집니다.</div></details>
+    <details><summary>제한속도 자동 반영이 매번 풀린다</summary><div class="a">시동을 끄면 자동 비활성화되는 사양입니다. 매번 다시 켜야 합니다.</div></details>
+    <details><summary>ACC로 정차한 뒤 안 움직인다</summary><div class="a">오래 서 있으면 RES를 누르거나 가속 페달을 살짝 밟아야 재개됩니다. 정차 중 미리 RES를 눌러두는 게 요령입니다.</div></details>
+    <details><summary>브레이크 페달 위치가 어색하다</summary><div class="a">모터가 들어간 8단 변속기 때문에 페달이 약간 바깥쪽으로 치우쳐 있습니다. 개체 불량이 아닙니다.</div></details>
+    <details><summary>구형 X3 유튜브 영상대로 해도 메뉴가 없다</summary><div class="a">구형은 iDrive 7이라 경로가 완전히 다릅니다. 신형(G45, iDrive 9) 기준 자료만 보세요.</div></details>
+  </div>
+</section>
+
+<section id="s7">
+  <h2><span class="n">07</span>딜러나 실차에서 직접 확인할 항목</h2>
+  <p>공개 자료만으로는 국내 사양에서 되는지 단정하기 어려운 것들입니다. 서비스센터나 영업사원에게 물어보시면 확실합니다.</p>
+  <ol>
+    <li><strong>'차선 변경 보조'가 경고 기능인지, 방향지시등만으로 자동 차선변경까지 되는지</strong> — 주행 보조 → 주행 메뉴에 항목이 있는지 확인</li>
+    <li>티맵 기반 순정 내비의 무료 제공 기간과 이후 유료 전환 여부</li>
+    <li><strong>갤럭시 폰으로 디지털 키 플러스(UWB, 주머니에 넣고 접근)가 실제로 동작하는지</strong> — 아이폰은 대체로 됩니다</li>
+    <li>리모트 엔진 스타트가 내 차 하드웨어에 적용 가능한지, 무료 체험 기간과 가격</li>
+    <li>리모트 3D 뷰가 기본 포함인지 별도 구독인지</li>
+    <li>신차 커넥티드드라이브 기본 계약 기간(개월)</li>
+    <li>내 트림에 메모리 시트·3존 공조가 들어갔는지</li>
+    <li>차선이탈 경고·전방 충돌 경고 설정이 시동 후에도 유지되는지 (하루 껐다 다음날 확인해보면 바로 압니다)</li>
+  </ol>
+</section>
+
+<section id="s8">
+  <h2><span class="n">REF</span>참고 자료</h2>
+  <ul class="src">
+    <li><a href="https://www.press.bmwgroup.com/korea" target="_blank" rel="noopener">BMW 코리아 PressClub</a> — 4세대 완전변경 BMW 뉴 X3 공식 출시</li>
+    <li><a href="https://www.bmw.co.kr/ko/all-models/x-series/x3/bmw-x3.html" target="_blank" rel="noopener">BMW 코리아</a> — X3 모델 페이지, 커넥티드드라이브, 디지털 키, 인텔리전트 퍼스널 어시스턴트, 리모트 소프트웨어 업그레이드</li>
+    <li><a href="https://faq.bmwusa.com" target="_blank" rel="noopener">BMW USA 공식 FAQ</a> — 'X3 from 08/2024' 및 Operating System 9 항목</li>
+    <li><a href="https://www.bmwusa.com/content/dam/bmw/marketUS/common/explore/driver-assistance-safety-features/pdf/BMW_ADAS_Reference_Guide.pdf" target="_blank" rel="noopener">BMW USA — ADAS Reference Guide (PDF)</a></li>
+    <li>BMW USA — Apple CarPlay / Android Auto / Digital Key 공식 가이드 PDF</li>
+    <li>BMW Group PressClub Global · Canada — The all-new 2025 BMW X3</li>
+    <li><a href="https://www.mycarusermanual.com/bmw/x3/suv/2024-2025" target="_blank" rel="noopener">BMW 뉴 X3 (G45) 오너스 매뉴얼 온라인판</a></li>
+    <li>BMW 그룹 코리아 — TMAP 기반 한국형 BMW 내비게이션 탑재 보도자료</li>
+  </ul>
+</section>
+
+</main>
+</div>
+
+<footer>
+  작성일 2026년 8월 27일 · 공개된 공식 자료를 정리한 참고용 문서이며, 최종 기준은 차량 내 취급설명서입니다.<br>
+  <a href="./index.html">← 홍스탁 게시판으로 돌아가기</a>
+</footer>
+
+<button class="totop" id="top" aria-label="맨 위로">↑</button>
+
+<script>
+(function(){
+  var bar=document.getElementById('bar'), top=document.getElementById('top');
+  var links=[].slice.call(document.querySelectorAll('nav.toc a'));
+  var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'));});
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    var y=window.scrollY;
+    bar.style.width=(h>0?(y/h*100):0)+'%';
+    top.classList.toggle('on', y>500);
+    var idx=0;
+    for(var i=0;i<secs.length;i++){ if(secs[i] && secs[i].getBoundingClientRect().top<=140) idx=i; }
+    links.forEach(function(a,i){ a.classList.toggle('on', i===idx); });
+    var nowEl=document.getElementById('now');
+    if(nowEl) nowEl.textContent=links[idx]?links[idx].textContent:'';
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+  top.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+  window.addEventListener('beforeprint',function(){
+    document.querySelectorAll('.qa details').forEach(function(d){d.open=true;});
+  });
+})();
+</script>
+</body>
+</html>
