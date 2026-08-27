@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>증시 인사이트 종합 브리핑 (2026.08)</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Malgun Gothic','맑은 고딕','Apple SD Gothic Neo',sans-serif;background:#0f1420;color:#e8ecf3;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:940px;margin:0 auto;padding:0 20px 80px}
+header{background:linear-gradient(135deg,#1a2540 0%,#16233d 50%,#0f1a2e 100%);border-bottom:1px solid #2a3a5c;padding:52px 20px 44px;margin-bottom:36px}
+header .inner{max-width:940px;margin:0 auto}
+.eyebrow{display:inline-block;font-size:12px;letter-spacing:.14em;color:#7dd3fc;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.28);padding:5px 12px;border-radius:99px;margin-bottom:16px;font-weight:600}
+h1{font-size:31px;font-weight:800;letter-spacing:-.02em;line-height:1.3;margin-bottom:12px}
+.sub{color:#93a3bd;font-size:15px}
+.meta{margin-top:18px;font-size:13px;color:#6b7d99;display:flex;gap:18px;flex-wrap:wrap}
+
+.tldr{background:#151c2e;border:1px solid #263351;border-left:4px solid #f0b429;border-radius:10px;padding:24px 26px;margin-bottom:40px}
+.tldr h2{font-size:15px;color:#f0b429;letter-spacing:.06em;margin-bottom:14px;font-weight:700}
+.tldr ul{list-style:none}
+.tldr li{padding-left:20px;position:relative;margin-bottom:9px;font-size:15px;color:#cbd6e6}
+.tldr li:before{content:"▸";position:absolute;left:0;color:#f0b429}
+.tldr li:last-child{margin-bottom:0}
+
+section{background:#141b2b;border:1px solid #222d47;border-radius:12px;padding:30px 30px 26px;margin-bottom:26px}
+.shead{display:flex;align-items:flex-start;gap:14px;margin-bottom:6px}
+.num{flex-shrink:0;width:32px;height:32px;border-radius:8px;background:#1e3a5f;color:#7dd3fc;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;margin-top:2px}
+h2.stitle{font-size:21px;font-weight:700;letter-spacing:-.01em;line-height:1.4}
+.speaker{font-size:13px;color:#8b9bb5;margin:2px 0 22px 46px}
+.speaker a{color:#7dd3fc;text-decoration:none;border-bottom:1px dotted #40607f}
+.speaker a:hover{border-bottom-style:solid}
+
+h3{font-size:15px;color:#a5b4cd;margin:22px 0 10px;padding-bottom:7px;border-bottom:1px solid #232f49;font-weight:700}
+h3:first-of-type{margin-top:4px}
+ul.pts{list-style:none}
+ul.pts>li{position:relative;padding-left:16px;margin-bottom:12px;font-size:15px;color:#d3dceb}
+ul.pts>li:before{content:"";position:absolute;left:0;top:11px;width:5px;height:5px;border-radius:50%;background:#4a6d9c}
+b{color:#fff;font-weight:700}
+em{color:#7dd3fc;font-style:normal;font-weight:600}
+
+.callout{background:#1a2233;border:1px solid #2c3a58;border-radius:9px;padding:15px 18px;margin:16px 0;font-size:14.5px;color:#bfcbdd}
+.callout b{color:#7dd3fc}
+
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
+th{background:#1b2437;color:#9fb0c9;text-align:left;padding:10px 13px;font-weight:600;border-bottom:1px solid #2c3a58;font-size:13px}
+td{padding:10px 13px;border-bottom:1px solid #1e2739;color:#d3dceb}
+tr:last-child td{border-bottom:none}
+td.rank{color:#f0b429;font-weight:700;width:52px}
+td.num2{text-align:right;font-variant-numeric:tabular-nums;color:#7dd3fc;font-weight:600}
+
+.steps{counter-reset:s;list-style:none}
+.steps li{counter-increment:s;position:relative;padding-left:38px;margin-bottom:13px;font-size:15px;color:#d3dceb}
+.steps li:before{content:counter(s);position:absolute;left:0;top:1px;width:24px;height:24px;border-radius:6px;background:#233a56;color:#7dd3fc;font-size:12.5px;font-weight:700;display:flex;align-items:center;justify-content:center}
+
+.warn{background:rgba(239,113,113,.07);border:1px solid rgba(239,113,113,.3);border-left:4px solid #ef7171;border-radius:9px;padding:15px 18px;margin:16px 0;font-size:14.5px;color:#e3c5c5}
+.warn b{color:#ff9b9b}
+
+.tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:20px;padding-top:18px;border-top:1px solid #202b42}
+.tag{font-size:12px;color:#8b9bb5;background:#1b2437;border:1px solid #29354f;padding:4px 10px;border-radius:6px}
+
+footer{margin-top:44px;padding-top:26px;border-top:1px solid #222d47;text-align:center;color:#5f7190;font-size:13px;line-height:1.9}
+footer .disc{background:#141b2b;border:1px solid #222d47;border-radius:9px;padding:16px;margin-bottom:18px;text-align:left;color:#8b9bb5;font-size:13px}
+@media(max-width:620px){
+h1{font-size:24px}section{padding:22px 18px}h2.stitle{font-size:18px}.speaker{margin-left:0}
+.shead{gap:10px}table{font-size:13px}th,td{padding:8px 9px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="inner">
+    <span class="eyebrow">MARKET BRIEFING</span>
+    <h1>증시 인사이트 종합 브리핑</h1>
+    <p class="sub">금리 임계점 · 원전/SMR · 반도체 소부장 · 월배당 ETF · 자녀 증여 · 미장/국장 자산배분</p>
+    <div class="meta">
+      <span>작성일 2026-08-27</span>
+      <span>출처 유튜브 7개 영상 요약</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<div class="tldr">
+  <h2>ONE-PAGE 핵심 요약</h2>
+  <ul>
+    <li><b>금리가 모든 것을 결정</b> — 미 10년물 <b>4.5%</b>가 경계선. 현재 4.7%대는 "열탕" 구간으로 고베타 자산에서 자금 이탈 중.</li>
+    <li><b>9~10월은 관망</b> — 짝수해·중간선거 해의 9월은 역사적 최악 구간. 국채금리 4.5% 하향 돌파 시점부터 공격 전환 권고.</li>
+    <li><b>보험 자산 배치</b> — 자산의 10~30%는 미국 장기채 ETF(환노출)·금·현금. 어떤 불장에서도 현금 30% 유지.</li>
+    <li><b>구조적 기회는 원전·방산</b> — AI 전력수요 폭증 → SMR·해상 데이터센터. 시공 공급망 보유국은 한국이 사실상 유일한 대안.</li>
+    <li><b>반도체는 순환매</b> — 지금은 장비·기판주, 내년 중반 양산 이후 테스트·소재·OSAT로 온기 이동.</li>
+    <li><b>미장은 분할 매수</b> — 급등한 국장 비중 일부를 미국으로 기계적 재배분. 신규 진입은 1~2년에 걸쳐 나눠서.</li>
+  </ul>
+</div>
+
+<!-- 1 -->
+<section>
+  <div class="shead">
+    <div class="num">1</div>
+    <h2 class="stitle">하반기 증시 불안과 금리 임계점</h2>
+  </div>
+  <p class="speaker">교보증권 머니텐 · [증시톡터뷰 1부] 박세익 체슬리투자자문 대표 · <a href="https://www.youtube.com/watch?v=fqFdOluYvPw" target="_blank" rel="noopener">영상 보기</a></p>
+
+  <h3>금리 상승과 임계점</h3>
+  <ul class="pts">
+    <li>금리 상승 자체는 경기 회복 신호지만, 소비·투자를 위축시키는 <b>임계점</b>을 넘으면 증시에 악영향.</li>
+    <li><em>'열탕 45도' 비유</em> — 미국 10년물 국채금리 <b>4.5%</b>가 경계선. 현재 4.7% 수준은 과열된 열탕처럼 시장이 통증을 느끼고 튀어나오는 구간.</li>
+    <li><b>고베타 자금 유출</b> — 반도체 등 시장 민감도 높은 공격적 자산에서 자금이 빠져 코카콜라·고배당 ETF(SCHD) 등 방어주로 이동 중.</li>
+  </ul>
+
+  <h3>매크로 불확실성</h3>
+  <ul class="pts">
+    <li>빅테크 자금 수요 증가, 재정적자에 따른 <b>미 국채 발행 확대</b>, 중동 분쟁발 유가 불안이 금리 하락을 막고 있음.</li>
+    <li>역사적으로 9월은 증시 성과가 가장 나쁜 달이며, 특히 <b>짝수해·중간선거 해</b>의 하반기는 선거 전까지 변동성이 극심.</li>
+    <li><b>한국 증시의 선행성</b> — 한국 시장은 글로벌 경제의 벨웨더로, 미국 증시 조정·위기 신호를 항상 먼저 반영.</li>
+  </ul>
+
+  <div class="callout">
+    <b>대응 전략</b> — 스태그플레이션 같은 답답한 흐름이 9~10월까지 이어질 수 있으나, 금리 인상은 현실적으로 어렵고 전후 재건 수요 등으로 2008년식 급격한 금융위기 가능성은 낮음. <b>국채금리 4.5% 이하 하향 돌파 시점</b>부터 공격적 매수 전환, 10월까지는 신중한 관망.
+  </div>
+  <p style="font-size:13.5px;color:#8b9bb5">※ 반도체 섹터 대응 전략의 명확한 결론은 2부 영상에서 이어집니다.</p>
+  <div class="tags"><span class="tag">금리</span><span class="tag">10년물 4.5%</span><span class="tag">고베타</span><span class="tag">중간선거</span></div>
+</section>
+
+<!-- 2 -->
+<section>
+  <div class="shead">
+    <div class="num">2</div>
+    <h2 class="stitle">현재 증시의 위험 징조와 현금·장기채 방어</h2>
+  </div>
+  <p class="speaker">김작가 TV · 장우진 대표 · <a href="https://www.youtube.com/watch?v=j2JIq20tsZg" target="_blank" rel="noopener">영상 보기</a></p>
+
+  <h3>인플레이션 — 원유보다 '디젤'</h3>
+  <ul class="pts">
+    <li>중동산 중질유 부족과 러시아 정제시설 피격으로 <b>원유 정제 능력</b>이 크게 저하.</li>
+    <li>디젤 크랙 마진 급등 → 화물 운송·수송 비용 상승. <b>9월 난방유 비축 시즌</b>과 맞물려 인플레이션 자극 요인으로 작용.</li>
+  </ul>
+
+  <h3>금리와 장기채 '보험' 전략</h3>
+  <ul class="pts">
+    <li>인플레 재발 우려 속 시장 신뢰를 지키려면 <b>차라리 금리를 올리는 편</b>이 장기채 금리 안정과 시장에 긍정적일 수 있음.</li>
+    <li><b>신용위기 대비 포트폴리오</b> — 자산의 <em>10~30%</em>는 미국 장기채 ETF(환노출형, 예: ACE 미국30년물)·금·현금 등 안전자산 및 달러 자산에 배치해 보험으로 활용.</li>
+  </ul>
+
+  <h3>증시 진단 및 리스크</h3>
+  <ul class="pts">
+    <li><b>약세장 국면</b> — 코스피 상승 파동은 일단락. 전쟁 종식이나 명확한 유동성 정책 전환 전까지는 기술적 반등 후 재차 조정받는 구도.</li>
+    <li><b>빅테크 AI CapEx 부담</b> — 고금리 환경에서 자금 조달 비용 증가. OpenAI 등 AI 기업의 수익성 증명이 불확실해지면 CapEx 축소 및 증시 하락 유발 가능.</li>
+    <li><b>목돈 일시 투자 경계</b> — 자산 배분 위주로 대응하고, 적립식 투자 시 지수 하락 구간에서 매수 비중을 조금씩 늘리는 방식 추천.</li>
+  </ul>
+  <div class="tags"><span class="tag">디젤 크랙마진</span><span class="tag">장기채 ETF</span><span class="tag">약세장</span><span class="tag">AI CapEx</span></div>
+</section>
+
+<!-- 3 -->
+<section>
+  <div class="shead">
+    <div class="num">3</div>
+    <h2 class="stitle">반도체 다음 먹거리 — 원전·SMR·해양플랜트</h2>
+  </div>
+  <p class="speaker">김정호 교수 · <a href="https://www.youtube.com/watch?v=Wn98anui1OQ" target="_blank" rel="noopener">영상 보기</a></p>
+
+  <h3>AI 시대와 원전의 부활</h3>
+  <ul class="pts">
+    <li>과거 풍족했던 시기엔 RE100·태양광·풍력이 주목받았으나, 전쟁발 에너지 공급 부족과 AI발 전력 수요 급증으로 <b>신재생의 한계</b>가 드러남.</li>
+    <li>ChatGPT 등 AI 생태계 확대와 데이터센터 증설로 전력 수요가 <b>30% 이상 증가</b>. 이를 현실적으로 감당할 대안은 원자력이 유일.</li>
+    <li>미국은 원전 발전량을 <b>100GW → 400GW</b>(약 300기 상당)로 늘리는 목표를 제시하는 등 세계 각국이 원전을 재조명.</li>
+  </ul>
+
+  <h3>K-원전의 독보적 경쟁력</h3>
+  <ul class="pts">
+    <li>설계 능력을 갖춘 나라는 많지만, 이를 <b>실제 제품·시공으로 구현할 제조 공급망</b>을 지속 유지해 온 나라는 한국이 독보적.</li>
+    <li><b>지경학적 반사이익</b> — 시공 능력이 뛰어난 중국·러시아는 안보 및 서방 제재로 배제되면서 한국이 유일한 대안으로 부상.</li>
+    <li><b>핵심 수혜</b> — 두산에너빌리티, 현대건설 등이 미국 SMR 설계업체 및 글로벌 시장의 핵심 파트너로 주목.</li>
+  </ul>
+
+  <h3>게임체인저: SMR과 해상 데이터센터</h3>
+  <ul class="pts">
+    <li>육상 송전탑 건설 반대로 인한 전력 전달 한계를 극복하기 위해, <b>수요처(데이터센터) 바로 옆에 설치 가능한 SMR</b>이 급부상.</li>
+    <li>육지 부지 한계 극복을 위해 <b>바다에 SMR + 데이터센터</b>를 배치하는 기술이 논의 중 → 해양플랜트 경험이 풍부한 HD현대중공업·삼성중공업·한화오션에 큰 기회.</li>
+  </ul>
+
+  <div class="callout">
+    <b>국가 차원의 승부처</b> — 반도체는 기존 기조를 유지하면 되고, 생각의 전환과 미국 시장 개척이 필요한 분야는 <b>방산</b>과 <b>원전</b>. 개인 차원에서는 AI를 편하게 쓰는 데 그치지 않고 <b>생산성을 2~3배 올리는 '슈퍼맨'</b>이 되는 인재가 부와 성공을 쥐게 됨.
+  </div>
+  <div class="tags"><span class="tag">원전</span><span class="tag">SMR</span><span class="tag">해양플랜트</span><span class="tag">방산</span><span class="tag">전력수요</span></div>
+</section>
+
+<!-- 4 -->
+<section>
+  <div class="shead">
+    <div class="num">4</div>
+    <h2 class="stitle">반도체 소부장 순환매와 현금 5,000만원 운용</h2>
+  </div>
+  <p class="speaker">박진희 부장 · <a href="https://www.youtube.com/watch?v=Hvsx5HUxfHA" target="_blank" rel="noopener">영상 보기</a></p>
+
+  <h3>AI·반도체 시장과 치킨게임 우려</h3>
+  <ul class="pts">
+    <li>시장 금리는 높은 상태지만 <b>이미 매를 먼저 맞아</b> 성장주가 금리 악재에 내성을 보임. AI CAPEX가 유지되면 성장주 흐름은 지속 가능성 큼.</li>
+    <li>중국(CXMT 등)의 범용 메모리 추격, AI 붐에 따른 반도체/AI 기업 상장 러시는 <b>고점 신호</b>로 감지됨.</li>
+    <li>향후 전력·비용 부담을 견디지 못하는 기업이 쓰러지면서 <b>반도체·AI 치킨게임</b>이 재차 올 수 있음.</li>
+    <li>국내 기업은 중국과의 기술 격차 확대를 위해 배당 확대보다 <b>기술 개발·설비투자</b>에 적극 나서야 함.</li>
+  </ul>
+
+  <h3>소부장 순환매 사이클</h3>
+  <table>
+    <tr><th>시점</th><th>주도 섹터</th></tr>
+    <tr><td>현재</td><td>쇼티지·증설 수혜 <b>장비주 / 기판주</b></td></tr>
+    <tr><td>내년 중반 이후<br>(공장 완공·양산 개시)</td><td><b>테스트 업체, 공정 재료·부품, OSAT</b></td></tr>
+  </table>
+  <ul class="pts">
+    <li><b>대형주 트레이딩 전략</b> — 상반기 급등했던 대형주(삼성전자, 삼성전기 등) 및 소부장은 기관·사모펀드 물량이 쏟아지며 수급이 꼬인 상황. 바이앤홀드보다 <em>박스권 상단 매도 · 하단 매수</em>의 단기 트레이딩 접근.</li>
+  </ul>
+
+  <h3>현금 5,000만원 포트폴리오 운용</h3>
+  <ul class="pts">
+    <li><b>ETF 분할 매수</b> — 단일 종목 변동성이 너무 크므로 코스닥150, 로봇, 바이오/헬스케어, 전력 AI, 신재생에너지 ETF로 분할 매수 권장.</li>
+    <li><b>현금 비중 30% 사수</b> — 어떤 불장에서도 30%는 유지. 폭락장에서 물타기로 빠져나오거나 저점 매수를 노릴 수 있는 유일한 수단.</li>
+  </ul>
+  <div class="callout">
+    <b>고점·저점 판별법</b> — 모두가 호재를 말하는데 주가가 더 이상 안 오를 때가 <b>고점</b>, 모두가 악재를 말하는데 주가가 안 떨어질 때가 <b>저점</b>. 박스권 장세에서는 욕심을 줄이고 과감한 섹터 교체와 리스크 관리가 필수.
+  </div>
+  <div class="tags"><span class="tag">소부장</span><span class="tag">OSAT</span><span class="tag">치킨게임</span><span class="tag">현금 30%</span><span class="tag">ETF 분할매수</span></div>
+</section>
+
+<!-- 5 -->
+<section>
+  <div class="shead">
+    <div class="num">5</div>
+    <h2 class="stitle">자녀 증여 + S&amp;P500 장기투자 세팅</h2>
+  </div>
+  <p class="speaker">자녀 증여 계좌 세팅 가이드 · <a href="https://www.youtube.com/watch?v=dfxDUXSu_Mw" target="_blank" rel="noopener">영상 보기</a></p>
+
+  <h3>핵심 구조</h3>
+  <ul class="pts">
+    <li><b>투자 대상</b> — 미국 대표 지수 ETF (S&amp;P 500, 예: SPY, VOO).</li>
+    <li><b>증여 한도</b> — 미성년 자녀 10년당 2,000만 원 / 성인 10년당 5,000만 원.</li>
+    <li><b>복리 효과</b> — 영세 2,000만 + 10세 2,000만 + 20세 5,000만 = 총 <b>9,000만 원</b>을 비과세 증여 후 S&amp;P500에 장기투자 시, 자녀 30세 시점 약 <em>11억 원</em> 형성 가능.</li>
+  </ul>
+
+  <div class="warn">
+    <b>가장 흔한 실수</b> — 증여세가 0원이라도 <b>국세청 신고는 필수</b>. 신고하지 않으면 추후 주식 가치 상승분 전체에 대해 증여세 및 가산세가 부과될 위험이 있음.
+  </div>
+
+  <h3>세팅 5단계</h3>
+  <ol class="steps">
+    <li><b>계좌 개설</b> — 자녀 명의의 은행 및 증권 계좌 개설</li>
+    <li><b>자금 이체</b> — 자녀 계좌로 이체하되 적요/메모란에 <b>'증여'</b> 명시</li>
+    <li><b>증여세 신고</b> — 홈택스 또는 세무서, 증여일이 속한 달의 말일부터 <b>3개월 이내</b></li>
+    <li><b>자동 매수 설정</b> — 미국 지수 ETF(SPY, VOO 등) 매달 또는 일시불 자동 매수</li>
+    <li><b>장기 유지</b> — 계좌를 자주 들여다보지 않고 10년 단위로 복리 관리</li>
+  </ol>
+
+  <h3>알아두면 좋은 팁</h3>
+  <ul class="pts">
+    <li><b>목돈이 없다면 월 19만 원</b> — 10년간 매달 19만 원씩 지급하는 '유기정기금 증여'로 신고하면 미래가치 할인이 적용돼 <b>2,280만 원</b>까지 비과세 증여 가능.</li>
+    <li><b>친족 한도 활용</b> — 부모 한도와 별개로 이모·고모·삼촌 등 친족은 10년당 <b>1,000만 원</b>까지 비과세 증여 가능.</li>
+    <li><b>10년 주기 기준</b> — 나이 앞자리가 아니라 <b>마지막 증여일로부터 10년</b> 경과 기준.</li>
+  </ul>
+  <div class="tags"><span class="tag">증여세</span><span class="tag">S&amp;P500</span><span class="tag">유기정기금</span><span class="tag">홈택스 신고</span></div>
+</section>
+
+<!-- 6 -->
+<section>
+  <div class="shead">
+    <div class="num">6</div>
+    <h2 class="stitle">2026년 8월 말 월배당 ETF 분배금 현황</h2>
+  </div>
+  <p class="speaker">국내 주요 운용사 월배당 ETF 분배금 정리 · <a href="https://www.youtube.com/watch?v=29QFxM8FXsE" target="_blank" rel="noopener">영상 보기</a></p>
+
+  <h3>핵심 요약</h3>
+  <ul class="pts">
+    <li><b>분배율 상위권 석권</b> — 분배율 1% 이상인 <b>17개 종목 전체가 커버드콜 ETF</b>.</li>
+    <li><b>최고 분배율</b> — 'RISE 코스닥 커버드콜 액티브' <em>2.05%</em>로 1위.</li>
+    <li><b>최대 분배금</b> — 'Kodex CD금리액티브(합성)'가 주당 <b>2,758원</b>. 단, 단가가 높은 금리형 파킹 ETF 특성상 분배율은 약 0.24% 수준.</li>
+    <li><b>전체 평균 분배율</b> — 조사 97개 종목 평균 <b>0.62%</b>.</li>
+  </ul>
+
+  <h3>분배율 TOP 4</h3>
+  <table>
+    <tr><th>순위</th><th>종목</th><th style="text-align:right">분배율</th></tr>
+    <tr><td class="rank">1</td><td>RISE 코스닥 커버드콜 액티브</td><td class="num2">2.05%</td></tr>
+    <tr><td class="rank">2</td><td>TIGER 배당커버드콜액티브</td><td class="num2">2.00%</td></tr>
+    <tr><td class="rank">3</td><td>Kodex 200 커버드콜 액티브</td><td class="num2">1.97%</td></tr>
+    <tr><td class="rank">4</td><td>ACE 고배당플러스 커버드콜</td><td class="num2">1.82%</td></tr>
+  </table>
+
+  <h3>운용사별 특징</h3>
+  <table>
+    <tr><th>운용사</th><th>특징</th><th style="text-align:right">평균 분배율</th></tr>
+    <tr><td><b>Kodex</b><br><span style="color:#8b9bb5;font-size:12.5px">삼성자산운용</span></td><td>라인업 28종으로 가장 다양</td><td class="num2">0.65%</td></tr>
+    <tr><td><b>RISE</b><br><span style="color:#8b9bb5;font-size:12.5px">KB자산운용</span></td><td>16종 중 1% 이상이 5종 — 평균 최고</td><td class="num2">0.80%</td></tr>
+    <tr><td><b>TIGER</b><br><span style="color:#8b9bb5;font-size:12.5px">미래에셋자산운용</span></td><td>배당률 상하 편차가 큼</td><td class="num2">0.57%</td></tr>
+    <tr><td><b>ACE</b><br><span style="color:#8b9bb5;font-size:12.5px">한국투자신탁운용</span></td><td>채권·리츠 비중이 높음</td><td class="num2">0.47%</td></tr>
+  </table>
+
+  <div class="warn">
+    <b>투자 시 유의</b> — 커버드콜은 주식을 보유하면서 콜옵션을 매도해 받은 프리미엄을 배당 재원으로 활용합니다. 높은 분배율을 기대할 수 있으나 <b>기초자산 상승 시 상승 폭이 제약</b>됩니다. 눈앞의 분배율만이 아니라 <b>[분배금 + ETF 주가 변화]를 합산한 총수익</b>을 기준으로 판단해야 합니다.
+  </div>
+  <div class="tags"><span class="tag">월배당</span><span class="tag">커버드콜</span><span class="tag">분배율</span><span class="tag">파킹 ETF</span></div>
+</section>
+
+<!-- 7 -->
+<section>
+  <div class="shead">
+    <div class="num">7</div>
+    <h2 class="stitle">미장 vs 국장 자산배분과 S&amp;P500·나스닥 분할투자</h2>
+  </div>
+  <p class="speaker">리치노마드 김채성 대표 · <a href="https://www.youtube.com/watch?v=NEAFxOftLBY" target="_blank" rel="noopener">영상 보기</a></p>
+
+  <h3>포트폴리오 조율의 원칙</h3>
+  <ul class="pts">
+    <li><b>국장 → 미장 기계적 재배분</b> — 한국 주식이 급등해 비중이 커졌다면, 수익 일부를 실현해 안정적이고 회복력이 높은 미국 시장으로 일부 재배분.</li>
+    <li><b>신규 진입은 절대 한 번에 하지 않는다</b> — 미장은 장기 우상향하지만, 초보자는 <em>1~2년에 걸쳐 분할 매수</em>해 마음의 흔들림과 변동성 리스크를 관리해야 함.</li>
+    <li><b>현금 20~30% 확보</b> — 깊은 조정 시 저점 매수의 실탄이 됨. 특히 은퇴자는 <b>1년 치 생활비</b>를 현금화해 심리적 안정성을 유지하는 것이 중요.</li>
+  </ul>
+
+  <h3>S&amp;P 500 vs 나스닥 100</h3>
+  <table>
+    <tr><th>지수</th><th>특징</th><th>적합한 투자자</th></tr>
+    <tr><td><b>S&amp;P 500</b></td><td>변동성이 적고 마음 편한 장기 투자에 적합</td><td>변동성에 약하거나 장기 안정을 추구하는 경우</td></tr>
+    <tr><td><b>나스닥 100</b></td><td>기대 수익률이 높으나(10년 평균 약 21%) 하락 시 변동 폭이 큼</td><td>자산 형성 초기 단계 또는 시드머니 확대가 목표인 경우</td></tr>
+  </table>
+
+  <div class="callout">
+    <b>조정 시 대응 규칙</b> — 평소 적립식 투자를 이어가다 <b>고점 대비 10% 이상 하락 시 추가 매수</b>하는 식으로, 본인만의 명확한 매수 기준을 미리 정해둘 것.
+  </div>
+
+  <h3>금리·환율 관점</h3>
+  <ul class="pts">
+    <li><b>금리 이슈</b> — 금리가 인상되더라도 기업의 이익 증가율(IT·반도체 등)이 이를 능가한다면 크게 우려할 수준은 아님.</li>
+    <li><b>환율 예측 무용론</b> — 전문가도 환율 예측은 어려움. 환율 때문에 미장 진입을 주저하기보다 <b>미국 기업의 장기 성장성</b>이라는 본질을 보고 분할 매수로 접근할 것.</li>
+  </ul>
+  <div class="tags"><span class="tag">자산배분</span><span class="tag">S&amp;P500</span><span class="tag">나스닥100</span><span class="tag">분할매수</span><span class="tag">환율</span></div>
+</section>
+
+<footer>
+  <div class="disc">
+    ※ 본 문서는 공개된 유튜브 영상 7편의 발언 내용을 요약·정리한 자료입니다. 특정 종목의 매수·매도를 권유하는 투자자문이 아니며, 언급된 전망과 수치는 각 출연자의 개인 견해입니다. 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다.
+  </div>
+  홍스탁 보고서 게시판 · 2026-08-27 작성<br>
+  <a href="https://loveggtop.github.io/hongstock-board" style="color:#7dd3fc;text-decoration:none">← 게시판으로 돌아가기</a>
+</footer>
+
+</div>
+</body>
+</html>
