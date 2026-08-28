@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>9월 증시 진단과 실전 대응 - ISA 월배당 포트폴리오부터 물린 주식 대응까지</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Malgun Gothic','맑은 고딕',sans-serif;background:#f5f4f8;color:#22202b;line-height:1.75;-webkit-text-size-adjust:100%}
+.wrap{max-width:900px;margin:0 auto;padding:0 20px 80px}
+header{background:linear-gradient(135deg,#2b2340 0%,#43356b 55%,#5b4a8a 100%);color:#fff;padding:56px 20px 48px}
+header .inner{max-width:900px;margin:0 auto}
+.kicker{display:inline-block;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);padding:5px 13px;border-radius:20px;font-size:13px;margin-bottom:16px}
+header h1{font-size:31px;line-height:1.35;font-weight:800;letter-spacing:-.02em}
+header p.sub{margin-top:14px;font-size:16px;color:#ddd6ee}
+header .meta{margin-top:22px;font-size:13px;color:#b3a7cf;border-top:1px solid rgba(255,255,255,.18);padding-top:14px}
+.toc{background:#fff;border-radius:14px;padding:24px 26px;margin:-26px 0 40px;box-shadow:0 6px 24px rgba(43,35,64,.10);position:relative}
+.toc h2{font-size:14px;color:#736d85;letter-spacing:.08em;margin-bottom:14px;font-weight:700}
+.toc ol{list-style:none;counter-reset:t}
+.toc li{counter-increment:t;padding:7px 0;border-bottom:1px dashed #e8e5ee;font-size:15px}
+.toc li:last-child{border-bottom:none}
+.toc li:before{content:counter(t);display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;background:#43356b;color:#fff;border-radius:6px;font-size:12px;font-weight:700;margin-right:10px}
+.toc a{color:#22202b;text-decoration:none}
+.toc a:hover{color:#43356b;text-decoration:underline}
+section{background:#fff;border-radius:14px;padding:34px 30px;margin-bottom:26px;box-shadow:0 2px 10px rgba(43,35,64,.06)}
+section h2{font-size:23px;font-weight:800;color:#2b2340;padding-bottom:14px;border-bottom:3px solid #43356b;margin-bottom:8px;letter-spacing:-.01em}
+.src{font-size:13px;color:#7d788c;margin-bottom:22px}
+h3{font-size:17px;font-weight:700;color:#43356b;margin:26px 0 10px;padding-left:12px;border-left:4px solid #a294c9}
+p{margin-bottom:12px;font-size:15.5px}
+ul.pts{list-style:none;margin:10px 0 4px}
+ul.pts li{position:relative;padding:8px 0 8px 20px;font-size:15.5px;border-bottom:1px solid #f2f0f6}
+ul.pts li:last-child{border-bottom:none}
+ul.pts li:before{content:"";position:absolute;left:2px;top:17px;width:7px;height:7px;background:#a294c9;border-radius:50%}
+strong{color:#2b2340;font-weight:700}
+.box{background:#f4f1fa;border-left:4px solid #5b4a8a;border-radius:0 10px 10px 0;padding:16px 18px;margin:18px 0;font-size:15px}
+.box.warn{background:#fdf3f2;border-left-color:#b8474a}
+.box.tip{background:#f1f8f4;border-left-color:#3d8b5f}
+.box b{display:block;margin-bottom:6px;font-size:14px}
+.tbl{width:100%;overflow-x:auto;margin:18px 0}
+table{width:100%;border-collapse:collapse;font-size:14.5px;min-width:460px}
+th{background:#2b2340;color:#fff;padding:11px 12px;text-align:left;font-weight:600;font-size:14px}
+td{padding:11px 12px;border-bottom:1px solid #ebe8f1;vertical-align:top}
+tr:nth-child(even) td{background:#fbfafd}
+td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:18px 0}
+.card{border:1px solid #e6e2ee;border-radius:11px;padding:16px 17px;background:#fdfcfe}
+.card h4{font-size:15px;color:#2b2340;margin-bottom:8px;font-weight:700}
+.card p{font-size:14px;margin:0;color:#544f61}
+.tag{display:inline-block;font-size:11.5px;padding:3px 9px;border-radius:5px;background:#efeaf8;color:#43356b;font-weight:600;margin-bottom:8px}
+.tag.red{background:#fbe9e9;color:#a03c3f}
+.tag.grn{background:#e7f4ec;color:#2f6f4a}
+.stage{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
+.st{flex:1 1 130px;background:#f7f5fb;border:1px solid #e3ddef;border-radius:10px;padding:13px 14px;text-align:center}
+.st b{display:block;font-size:15px;color:#43356b;margin-bottom:3px}
+.st span{font-size:12.5px;color:#6f6981}
+.yield{display:flex;align-items:baseline;gap:10px;background:linear-gradient(135deg,#f2ecfb,#e9e2f7);border:1px solid #d8cfee;border-radius:12px;padding:18px 20px;margin:18px 0}
+.yield .big{font-size:34px;font-weight:800;color:#43356b;line-height:1;font-variant-numeric:tabular-nums}
+.yield .lab{font-size:14px;color:#5c5570}
+a.ts{color:#5b4a8a;text-decoration:none;font-size:12.5px;font-weight:600;border-bottom:1px dotted #b0a3d1}
+a.ts:hover{color:#2b2340}
+ol.steps{list-style:none;counter-reset:st2;margin:16px 0}
+ol.steps li{counter-increment:st2;position:relative;padding:12px 0 12px 46px;border-bottom:1px solid #f2f0f6;font-size:15.5px}
+ol.steps li:last-child{border-bottom:none}
+ol.steps li:before{content:counter(st2);position:absolute;left:0;top:12px;width:29px;height:29px;background:#43356b;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700}
+.check{background:#fff;border-radius:14px;padding:32px 30px;box-shadow:0 2px 10px rgba(43,35,64,.06)}
+.check h2{font-size:22px;color:#2b2340;border-bottom:3px solid #43356b;padding-bottom:13px;margin-bottom:18px;font-weight:800}
+.check ul{list-style:none}
+.check li{padding:11px 0 11px 32px;position:relative;border-bottom:1px solid #f2f0f6;font-size:15.5px}
+.check li:last-child{border-bottom:none}
+.check li:before{content:"✓";position:absolute;left:4px;top:11px;color:#5b4a8a;font-weight:800}
+footer{text-align:center;padding:34px 20px 0;color:#8a8497;font-size:13px;line-height:1.9}
+footer a{color:#5b4a8a;text-decoration:none}
+@media(max-width:640px){
+header{padding:40px 18px 36px}
+header h1{font-size:23px}
+section,.check{padding:24px 18px}
+section h2{font-size:19px}
+.wrap{padding:0 14px 60px}
+.yield .big{font-size:28px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="inner">
+    <span class="kicker">시장 진단 리포트</span>
+    <h1>9월 증시 진단과 실전 대응<br>ISA 월배당 포트폴리오부터 물린 주식 대응까지</h1>
+    <p class="sub">시장 수급 진단, 2,000만원 ISA 월배당 구성, 손실 종목 대응, 거시경제 기초까지</p>
+    <div class="meta">작성일 2026-08-28 · 출처: 신사임당(김민수 대표), 박곰희TV, 쑥대밭 #6, 기초경제상식 편</div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<nav class="toc">
+  <h2>목차</h2>
+  <ol>
+    <li><a href="#s1">글로벌 증시와 섹터 동향</a></li>
+    <li><a href="#s2">국내 증시 - 금리·수급·선물 누름</a></li>
+    <li><a href="#s3">투자자 대응 전략</a></li>
+    <li><a href="#s4">2,000만원 ISA 월배당 포트폴리오</a></li>
+    <li><a href="#s5">물린 주식, 3가지 대응 시나리오</a></li>
+    <li><a href="#s6">리스크 줄이기와 자산배분 실행</a></li>
+    <li><a href="#s7">거시경제로 보는 투자 환경 - 족대와 어항</a></li>
+    <li><a href="#s8">실행 체크리스트</a></li>
+  </ol>
+</nav>
+
+<section id="s1">
+  <h2>1. 글로벌 증시와 섹터 동향</h2>
+  <div class="src">신사임당 · 김민수 대표 · <a class="ts" href="https://www.youtube.com/watch?v=4C-8oLWHhWo" target="_blank" rel="noopener">영상 보기</a></div>
+
+  <div class="grid">
+    <div class="card"><span class="tag grn">강세</span><h4>AI 소프트웨어</h4><p>엔비디아가 시장을 이끄는 가운데 팔란티어·크라우드스트라이크·세일즈포스 등 실적으로 증명하는 AI 소프트웨어 기업들의 강세가 두드러진다.</p></div>
+    <div class="card"><span class="tag red">약세</span><h4>반도체·메모리</h4><p>마이크론 테크놀로지가 가이던스 발표 후 메모리 가격 하락 우려 등으로 급락했다.</p></div>
+    <div class="card"><span class="tag">경계</span><h4>중간선거 해의 9월</h4><p>99년 기준 역사적 데이터상 미국 중간선거가 있는 해의 9월 증시는 대체로 부진한 경향이 있어 관망세가 짙다.</p></div>
+  </div>
+  <div class="src" style="margin:6px 0 0">
+    <a class="ts" href="https://www.youtube.com/watch?v=4C-8oLWHhWo&t=150" target="_blank" rel="noopener">02:30 AI 소프트웨어</a> ·
+    <a class="ts" href="https://www.youtube.com/watch?v=4C-8oLWHhWo&t=263" target="_blank" rel="noopener">04:23 마이크론</a> ·
+    <a class="ts" href="https://www.youtube.com/watch?v=4C-8oLWHhWo&t=1074" target="_blank" rel="noopener">17:54 중간선거 주기</a>
+  </div>
+</section>
+
+<section id="s2">
+  <h2>2. 국내 증시 - 금리·수급·선물 누름</h2>
+  <div class="src"><a class="ts" href="https://www.youtube.com/watch?v=4C-8oLWHhWo&t=679" target="_blank" rel="noopener">11:19</a></div>
+
+  <h3>한국은행의 매파적 전환</h3>
+  <p>한은이 매파적 태도로 돌아서면서 추가 금리 인상 가능성이 커졌다. <a class="ts" href="https://www.youtube.com/watch?v=4C-8oLWHhWo&t=700" target="_blank" rel="noopener">11:40</a> 이에 따라 <strong>원화 강세 전환</strong> 전망이 나오는 한편, 신용대출·영끌 투자자들의 이자 부담 증가 우려도 함께 커지고 있다. <a class="ts" href="https://www.youtube.com/watch?v=4C-8oLWHhWo&t=810" target="_blank" rel="noopener">13:30</a></p>
+
+  <h3>수급 주체 부재</h3>
+  <div class="tbl">
+  <table>
+    <tr><th>주체</th><th>현재 상태</th><th>배경</th></tr>
+    <tr><td><strong>연기금</strong></td><td>적극적 매수 어려움</td><td>리밸런싱 대응 타이밍을 놓친 상황</td></tr>
+    <tr><td><strong>개인</strong></td><td>유입 여력 감소</td><td>금리 인상·물가 상승으로 투자 심리 위축</td></tr>
+    <tr><td><strong>외국인</strong></td><td>관망세 유지</td><td>원화 강세 조건에도 미국 9월 증시 불확실성이 발목</td></tr>
+  </table>
+  </div>
+  <div class="src" style="margin:-6px 0 0">
+    <a class="ts" href="https://www.youtube.com/watch?v=4C-8oLWHhWo&t=972" target="_blank" rel="noopener">16:12</a> ·
+    <a class="ts" href="https://www.youtube.com/watch?v=4C-8oLWHhWo&t=996" target="_blank" rel="noopener">16:36</a> ·
+    <a class="ts" href="https://www.youtube.com/watch?v=4C-8oLWHhWo&t=1066" target="_blank" rel="noopener">17:46</a>
+  </div>
+
+  <h3>주식 선물 매도로 현물 상승 제한</h3>
+  <div class="box warn"><b>겉과 속이 다른 수급</b>외국인 등이 <strong>현물을 매수하는 것처럼 보여도</strong>, 삼성전자·SK하이닉스·현대차 같은 특정 종목의 <strong>주식 선물을 매도</strong>해 현물 가격 상승을 제한하는 흐름이 이어지고 있다. <a class="ts" href="https://www.youtube.com/watch?v=4C-8oLWHhWo&t=1123" target="_blank" rel="noopener">18:43</a></div>
+  <p>그 결과 코스피 지수는 상단이 막힌 채 박스권에서 거래량이 줄어드는 정체 흐름을 보이고 있다. <a class="ts" href="https://www.youtube.com/watch?v=4C-8oLWHhWo&t=1280" target="_blank" rel="noopener">21:20</a></p>
+</section>
+
+<section id="s3">
+  <h2>3. 투자자 대응 전략</h2>
+  <div class="src"><a class="ts" href="https://www.youtube.com/watch?v=4C-8oLWHhWo&t=1320" target="_blank" rel="noopener">22:00</a></div>
+  <ul class="pts">
+    <li><strong>대형주 호가창 집착 지양</strong> - 삼성전자·SK하이닉스의 단기 반등만 기다리기보다, 시장 체력이 회복될 때까지 느긋한 관점을 갖는 편이 낫다 <a class="ts" href="https://www.youtube.com/watch?v=4C-8oLWHhWo&t=1315" target="_blank" rel="noopener">21:55</a></li>
+    <li><strong>섹터 순환매 대응</strong> - 지수 전체의 폭등보다 개별 섹터별 빠른 순환매가 이어지므로, 순환이 돌 수 있는 섹터를 탐색하는 정교한 매매가 유효하다 <a class="ts" href="https://www.youtube.com/watch?v=4C-8oLWHhWo&t=1325" target="_blank" rel="noopener">22:05</a></li>
+  </ul>
+</section>
+
+<section id="s4">
+  <h2>4. 2,000만원 ISA 월배당 포트폴리오</h2>
+  <div class="src">박곰희TV · "2000만원으로 ISA 월배당 포트폴리오 따라하기" · <a class="ts" href="https://www.youtube.com/watch?v=0Qt8rm01SOg" target="_blank" rel="noopener">영상 보기</a></div>
+
+  <h3>배경 - 목표 조기 달성과 성향 확인</h3>
+  <ul class="pts">
+    <li>재정 목표였던 <strong>2,500만원 모으기를 8월에 조기 달성</strong> <a class="ts" href="https://www.youtube.com/watch?v=0Qt8rm01SOg&t=132" target="_blank" rel="noopener">02:12</a></li>
+    <li>코스피 상승장 대비 보유 가치주의 주가가 오르지 않아 수익률은 다소 아쉬웠지만, 남과의 비교나 FOMO를 크게 느끼지 않는 <strong>우직한 가치 투자 성향</strong>을 재확인 <a class="ts" href="https://www.youtube.com/watch?v=0Qt8rm01SOg&t=253" target="_blank" rel="noopener">04:13</a></li>
+    <li>연금계좌는 개별주·섹터 ETF의 큰 변동성에 지쳐 <strong>매월 50만원 기계적 적립의 자산배분 전략</strong>으로 복귀 <a class="ts" href="https://www.youtube.com/watch?v=0Qt8rm01SOg&t=685" target="_blank" rel="noopener">11:25</a></li>
+  </ul>
+
+  <h3>ISA 만기 후 재구성</h3>
+  <p>기존 ISA 만기 자금을 연금으로 전환한 뒤, 새로 개설한 ISA 계좌에 <strong>2,000만원</strong>을 납입해 포트폴리오를 다시 세팅했다. <a class="ts" href="https://www.youtube.com/watch?v=0Qt8rm01SOg&t=1438" target="_blank" rel="noopener">23:58</a></p>
+  <div class="tbl">
+  <table>
+    <tr><th>종목</th><th>역할</th></tr>
+    <tr><td>타이거 고배당플러스</td><td>국내 고배당 코어</td></tr>
+    <tr><td>ACE 미국하이일드액티브</td><td>해외 채권 인컴</td></tr>
+    <tr><td>TIGER 미국나스닥100 타겟데일리커버드콜</td><td>성장형 커버드콜 현금흐름</td></tr>
+    <tr><td>KODEX 한국부동산리츠인프라</td><td>리츠·인프라 분산</td></tr>
+  </table>
+  </div>
+  <div class="yield">
+    <div class="big">6.82%</div>
+    <div class="lab">매수 당시 기준 <strong>예상 연 배당수익률</strong><br>월환산 실적 기준 6.63%</div>
+  </div>
+  <div class="src" style="margin:-6px 0 0"><a class="ts" href="https://www.youtube.com/watch?v=0Qt8rm01SOg&t=1464" target="_blank" rel="noopener">24:24 수익률 설명</a></div>
+
+  <div class="box tip"><b>배당금 쓰는 법</b>ISA 배당금(월 약 23만원)을 파인 다이닝·디저트, 이벤트 케이크 구매 등 <strong>삶의 유연한 보상</strong>으로 활용한다. 독서 목표도 엄격한 리스트 대신 연간 권수 중심으로 현실적으로 수정했다. <a class="ts" href="https://www.youtube.com/watch?v=0Qt8rm01SOg&t=1095" target="_blank" rel="noopener">18:15</a></div>
+</section>
+
+<section id="s5">
+  <h2>5. 물린 주식, 3가지 대응 시나리오</h2>
+  <div class="src">쑥대밭 #6 · "삼전닉스에 물렸어요, 어떻게 해야 할까요?" · <a class="ts" href="https://www.youtube.com/watch?v=Dqv6t3cOlIM" target="_blank" rel="noopener">영상 보기</a></div>
+
+  <h3>겪게 되는 심리 단계</h3>
+  <div class="stage">
+    <div class="st"><b>초조함</b><span>주가가 빠지기 시작</span></div>
+    <div class="st"><b>분노</b><span>왜 나만 물렸나</span></div>
+    <div class="st"><b>항복(체념)</b><span>확인조차 하지 않음</span></div>
+  </div>
+  <div class="src" style="margin:-6px 0 12px"><a class="ts" href="https://www.youtube.com/watch?v=Dqv6t3cOlIM&t=210" target="_blank" rel="noopener">03:30 심리 단계</a></div>
+
+  <ul class="pts">
+    <li><strong>시장의 본질</strong> - 가치주라 해도 대중적 인기가 몰리면 테마주처럼 변동성이 커진다. 시장 심리가 밸류에이션을 압도한다 <a class="ts" href="https://www.youtube.com/watch?v=Dqv6t3cOlIM&t=467" target="_blank" rel="noopener">07:47</a></li>
+    <li><strong>핵심 교훈</strong> - 실패를 완벽히 없애려 하지 말고 <strong>실패의 크기를 작게 줄이는 리스크 관리</strong>가 훨씬 중요하다 <a class="ts" href="https://www.youtube.com/watch?v=Dqv6t3cOlIM&t=1103" target="_blank" rel="noopener">18:23</a></li>
+  </ul>
+
+  <h3>대응 전략 3가지</h3>
+  <div class="grid">
+    <div class="card"><span class="tag">전략 1 · 출연자 선택</span><h4>사이클 회복까지 보유</h4><p>반도체 업황 사이클이 회복될 때까지 기다려 손실폭을 줄인다. <a class="ts" href="https://www.youtube.com/watch?v=Dqv6t3cOlIM&t=1525" target="_blank" rel="noopener">25:25</a></p></div>
+    <div class="card"><span class="tag">전략 2</span><h4>손절 후 저평가 섹터로 교체</h4><p>반도체에 쏠린 수혜에서 소외된 화장품·음식료·엔터·바이오 등 저평가 가치주로 이동한다. <a class="ts" href="https://www.youtube.com/watch?v=Dqv6t3cOlIM&t=1632" target="_blank" rel="noopener">27:12</a></p></div>
+    <div class="card"><span class="tag">전략 3</span><h4>손절 후 고배당주로 회복</h4><p>연 10% 수준의 고배당주로 이동해 약 2~2.5년에 걸쳐 본전을 회복한다. <a class="ts" href="https://www.youtube.com/watch?v=Dqv6t3cOlIM&t=1672" target="_blank" rel="noopener">27:52</a></p></div>
+  </div>
+</section>
+
+<section id="s6">
+  <h2>6. 리스크 줄이기와 자산배분 실행</h2>
+  <ul class="pts">
+    <li><strong>ISA 계좌 개설</strong> - 배당소득세 절세와 자산 모으기를 위한 필수 계좌 <a class="ts" href="https://www.youtube.com/watch?v=Dqv6t3cOlIM&t=2274" target="_blank" rel="noopener">37:54</a></li>
+    <li><strong>청년 지원 제도 활용</strong> - 청년형 ISA, 내년 시행 예정인 청년 미래적금(최대 12% 수준 혜택) 등 제도적 혜택을 최대한 활용 <a class="ts" href="https://www.youtube.com/watch?v=Dqv6t3cOlIM&t=2320" target="_blank" rel="noopener">38:40</a></li>
+    <li><strong>자산배분 다지기</strong> - 주식 비중 일부와 안전자산(채권, 고배당주 등)을 적절히 배분해 시장 충격 시 방어력을 확보 <a class="ts" href="https://www.youtube.com/watch?v=Dqv6t3cOlIM&t=2116" target="_blank" rel="noopener">35:16</a></li>
+  </ul>
+
+  <h3>다음 회차 과제</h3>
+  <ol class="steps">
+    <li>ISA 계좌를 즉시 개설한다 <a class="ts" href="https://www.youtube.com/watch?v=Dqv6t3cOlIM&t=2349" target="_blank" rel="noopener">39:09</a></li>
+    <li>증권 정보 서비스로 <strong>저평가된 10개 산업 섹터</strong>를 훑어본 뒤, 직접 분석 가능한 <strong>5개 섹터의 대장주와 하락 이유</strong>를 정리한다 <a class="ts" href="https://www.youtube.com/watch?v=Dqv6t3cOlIM&t=2443" target="_blank" rel="noopener">40:43</a></li>
+  </ol>
+</section>
+
+<section id="s7">
+  <h2>7. 거시경제로 보는 투자 환경 - 족대와 어항</h2>
+  <div class="src">기초경제상식 · "투자를 안 해도 꼭 봤으면 하는 영상" · <a class="ts" href="https://www.youtube.com/watch?v=RVzQm3EsKZ0" target="_blank" rel="noopener">영상 보기</a></div>
+
+  <h3>개별주 분석 vs 매크로 환경</h3>
+  <div class="box"><b>축구와 경기장 비유</b>개별 기업 분석이 <strong>선수들의 실력</strong>을 파악하는 일이라면, 매크로 분석은 <strong>경기장 환경</strong>(예: 해발 2,000m 고지대 경기장)을 파악하는 일이다. <a class="ts" href="https://www.youtube.com/watch?v=RVzQm3EsKZ0&amp;t=161" target="_blank" rel="noopener">02:41</a></div>
+  <p>아무리 개별 실력이 뛰어난 기업이라도 <strong>매크로 환경, 즉 물 들어오는 시기</strong>가 맞아떨어져야 비로소 성장과 결실을 맺는다. <a class="ts" href="https://www.youtube.com/watch?v=RVzQm3EsKZ0&amp;t=394" target="_blank" rel="noopener">06:34</a></p>
+
+  <h3>한국이 미국 경제를 주목해야 하는 이유</h3>
+  <div class="tbl">
+  <table>
+    <tr><th>구분</th><th>한국</th><th>미국</th></tr>
+    <tr><td>경제 구조</td><td><strong>수출 중심</strong></td><td><strong>소비 중심</strong></td></tr>
+    <tr><td>특징</td><td>국내 소비 기반이 약해 생산 물량을 해외로 밀어냄</td><td>거대한 소비 시장이 수요를 만들어냄</td></tr>
+    <tr><td>연결 고리</td><td colspan="2">한국의 수출 성장은 미국의 소비 시장 흐름과 직결된다</td></tr>
+  </table>
+  </div>
+  <div class="src" style="margin:-6px 0 0">
+    <a class="ts" href="https://www.youtube.com/watch?v=RVzQm3EsKZ0&amp;t=476" target="_blank" rel="noopener">07:56</a> ·
+    <a class="ts" href="https://www.youtube.com/watch?v=RVzQm3EsKZ0&amp;t=512" target="_blank" rel="noopener">08:32</a>
+  </div>
+
+  <h3>대미 무역 흑자 이슈와 대응</h3>
+  <ul class="pts">
+    <li><strong>통상 압박의 해법</strong> - 무역 흑자국에 대한 압박이 커질 때의 대응은 수출을 줄이는 게 아니라 <strong>미국산 제품·자원의 수입을 늘리는</strong> 쪽이다 <a class="ts" href="https://www.youtube.com/watch?v=RVzQm3EsKZ0&amp;t=15" target="_blank" rel="noopener">00:15</a></li>
+    <li><strong>장기 수혜처 탐색</strong> - 그렇다면 어떤 품목·산업의 수입이 늘어날지를 미리 짚어보는 것이 투자 관점의 핵심이 된다 <a class="ts" href="https://www.youtube.com/watch?v=RVzQm3EsKZ0&amp;t=30" target="_blank" rel="noopener">00:30</a></li>
+  </ul>
+
+  <h3>족대와 어항 - 직장인의 현실적인 투자 태도</h3>
+  <div class="grid">
+    <div class="card"><span class="tag red">족대 들고 뛰기</span><h4>시세를 쫓는 투자</h4><p>단기 호재와 시세를 좇아 바쁘게 사고파는 방식. 시장에 널린 수많은 전문가·기관을 상대로 이기기 어렵다. <a class="ts" href="https://www.youtube.com/watch?v=RVzQm3EsKZ0&amp;t=4992" target="_blank" rel="noopener">1:23:12</a></p></div>
+    <div class="card"><span class="tag grn">어항 놓기</span><h4>길목을 지키는 투자</h4><p>긴 호흡에서 성장이 확실시되는 산업(AI, 미국 수혜 산업 등)에 미리 자리를 잡아두고 묵직하게 기다린다. <a class="ts" href="https://www.youtube.com/watch?v=RVzQm3EsKZ0&amp;t=4999" target="_blank" rel="noopener">1:23:19</a></p></div>
+  </div>
+  <div class="box tip"><b>태도</b>어항을 놔두고 자주 들여다보면 고기가 들어오지 않듯, 단기 변동성에 흔들리지 않고 <strong>장기적 안목으로 시장에 머무르는 관점</strong>이 필요하다. <a class="ts" href="https://www.youtube.com/watch?v=RVzQm3EsKZ0&amp;t=5088" target="_blank" rel="noopener">1:24:48</a></div>
+</section>
+
+<div class="check" id="s8">
+  <h2>8. 실행 체크리스트</h2>
+  <ul>
+    <li>9월은 <strong>중간선거 해의 계절적 부진</strong>과 수급 공백이 겹치는 구간임을 전제로 포지션을 잡는다</li>
+    <li>외국인 <strong>현물 매수만 보지 말고 주식 선물 포지션</strong>을 함께 확인한다</li>
+    <li>대형주 단기 반등에 호가창을 붙들지 않고, <strong>순환매가 돌 섹터</strong>를 미리 추린다</li>
+    <li>금리 인상 가능성에 대비해 <strong>신용·레버리지 비중</strong>을 점검한다</li>
+    <li>ISA 계좌를 개설하고 <strong>청년형 ISA 등 제도 혜택</strong> 해당 여부를 확인한다</li>
+    <li>월배당 포트폴리오는 <strong>국내 고배당 / 해외 채권 / 커버드콜 / 리츠</strong>로 역할을 나눠 담는다</li>
+    <li>배당수익률은 <strong>매수 시점 기준</strong>임을 기억하고, 실적 기준 월환산도 함께 본다</li>
+    <li>물린 종목은 <strong>보유·섹터 교체·고배당 전환</strong> 중 하나를 정하고 감정이 아닌 기준으로 실행한다</li>
+    <li>손실은 없애는 게 아니라 <strong>크기를 줄이는 것</strong>이 목표임을 원칙으로 삼는다</li>
+    <li>주식 비중 일부는 <strong>채권·고배당 등 안전자산</strong>으로 배분해 충격 방어력을 만든다</li>
+    <li>종목을 보기 전에 <strong>매크로 환경(경기장)</strong>이 우호적인지부터 확인한다</li>
+    <li>한국 수출주를 볼 때는 <strong>미국 소비 지표</strong>를 함께 본다</li>
+    <li>대미 통상 압박 국면에서는 <strong>수입이 늘어날 품목·산업</strong>을 수혜처로 미리 추린다</li>
+    <li>시세를 쫓는 '족대'가 아니라, 길목을 지키는 <strong>'어항'</strong> 방식으로 포지션을 잡는다</li>
+  </ul>
+</div>
+
+<footer>
+  본 문서는 공개된 유튜브 영상 4편의 내용을 정리한 요약 자료입니다.<br>
+  시장 전망과 개별 종목 언급은 출연자의 견해이며, 투자 판단과 그 책임은 본인에게 있습니다.<br>
+  <a href="https://loveggtop.github.io/hongstock-board">← 홍스탁 게시판으로 돌아가기</a>
+</footer>
+
+</div>
+</body>
+</html>
