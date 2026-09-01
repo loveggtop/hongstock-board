@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>그랜저 HG 블루투스 폰 등록·삭제 완전 가이드 (2011~2012년식)</title>
+<meta name="description" content="음성인식 없이 단말기 화면에서 직접 블루투스 휴대폰을 삭제하고 등록하는 방법 — 그랜저 HG 2011~2012년식 기준">
+<style>
+:root{
+  --bg:#f4f6f9; --card:#ffffff; --ink:#151a21; --ink2:#42505f; --ink3:#75838f;
+  --line:#e2e8f0; --accent:#1a4fa0; --accent-soft:#eaf1fc;
+  --warn:#b45309; --warn-soft:#fef3c7; --danger:#b91c1c; --danger-soft:#fee2e2;
+  --ok:#15803d; --ok-soft:#dcfce7;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;
+  line-height:1.72;-webkit-text-size-adjust:100%;}
+.wrap{max-width:860px;margin:0 auto;padding:0 18px 80px;}
+header{background:linear-gradient(135deg,#12233f 0%,#1a4fa0 100%);color:#fff;padding:44px 18px 40px;margin-bottom:28px;}
+header .inner{max-width:860px;margin:0 auto;}
+.badge{display:inline-block;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);
+  padding:5px 12px;border-radius:999px;font-size:12.5px;font-weight:600;letter-spacing:.02em;margin-bottom:14px;}
+header h1{font-size:27px;line-height:1.35;margin:0 0 12px;font-weight:800;letter-spacing:-.02em;}
+header p{margin:0;font-size:15px;color:#c8d8f0;}
+.meta{margin-top:18px;font-size:13px;color:#9fb6d8;}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px 24px;
+  margin-bottom:20px;box-shadow:0 1px 2px rgba(16,24,40,.04);}
+h2{font-size:20px;margin:0 0 6px;font-weight:800;letter-spacing:-.01em;display:flex;align-items:center;gap:10px;}
+h2 .num{flex:none;width:30px;height:30px;border-radius:9px;background:var(--accent);color:#fff;
+  font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.sub{color:var(--ink3);font-size:14px;margin:0 0 20px;padding-left:40px;}
+h3{font-size:16.5px;margin:26px 0 10px;font-weight:700;color:var(--ink);}
+h3:first-of-type{margin-top:14px;}
+p{margin:0 0 12px;color:var(--ink2);font-size:15px;}
+.lead{background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:0 10px 10px 0;padding:16px 18px;margin:0 0 8px;}
+.lead p{margin:0;color:#1b3a68;font-size:14.7px;}
+ol.steps{list-style:none;counter-reset:s;padding:0;margin:0;}
+ol.steps>li{counter-increment:s;position:relative;padding:0 0 20px 44px;border-left:2px solid var(--line);margin-left:14px;}
+ol.steps>li:last-child{border-left-color:transparent;padding-bottom:2px;}
+ol.steps>li::before{content:counter(s);position:absolute;left:-15px;top:0;width:28px;height:28px;border-radius:50%;
+  background:#fff;border:2px solid var(--accent);color:var(--accent);font-size:13px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;}
+ol.steps .t{font-weight:700;font-size:15.5px;display:block;margin-bottom:3px;color:var(--ink);}
+ol.steps .d{font-size:14.5px;color:var(--ink2);}
+ul.plain{margin:0 0 12px;padding-left:20px;}
+ul.plain li{margin-bottom:7px;font-size:14.8px;color:var(--ink2);}
+.path{display:inline-flex;flex-wrap:wrap;align-items:center;gap:6px;background:#0f172a;color:#e2e8f0;
+  border-radius:9px;padding:11px 14px;font-size:14px;font-weight:600;margin:6px 0 12px;
+  font-family:"SF Mono",Menlo,Consolas,monospace;}
+.path span{white-space:nowrap;}
+.path i{color:#64748b;font-style:normal;}
+kbd{display:inline-block;background:#f1f5f9;border:1px solid #cbd5e1;border-bottom-width:2px;border-radius:6px;
+  padding:1px 7px;font-size:13px;font-weight:700;font-family:inherit;color:#334155;}
+.note{border-radius:10px;padding:14px 16px;margin:16px 0;font-size:14.4px;}
+.note b{display:block;margin-bottom:5px;font-size:14px;}
+.note.warn{background:var(--warn-soft);border:1px solid #fcd34d;color:#78350f;}
+.note.danger{background:var(--danger-soft);border:1px solid #fca5a5;color:#7f1d1d;}
+.note.ok{background:var(--ok-soft);border:1px solid #86efac;color:#14532d;}
+.note.info{background:var(--accent-soft);border:1px solid #bfdbfe;color:#1b3a68;}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:14px 0;}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:14.2px;}
+th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top;}
+th{background:#f8fafc;font-weight:700;color:var(--ink);white-space:nowrap;}
+td{color:var(--ink2);}
+.grid{display:grid;grid-template-columns:1fr;gap:14px;margin:16px 0 4px;}
+@media(min-width:660px){.grid{grid-template-columns:1fr 1fr 1fr;}}
+.vcard{border:1px solid var(--line);border-radius:11px;padding:16px;background:#fbfcfe;}
+.vcard .tag{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.03em;background:var(--accent);
+  color:#fff;padding:3px 9px;border-radius:999px;margin-bottom:9px;}
+.vcard h4{margin:0 0 7px;font-size:15px;font-weight:700;}
+.vcard p{margin:0;font-size:13.6px;color:var(--ink3);line-height:1.6;}
+.check{list-style:none;padding:0;margin:12px 0;}
+.check li{position:relative;padding:9px 0 9px 30px;font-size:14.6px;color:var(--ink2);border-bottom:1px dashed var(--line);}
+.check li:last-child{border-bottom:none;}
+.check li::before{content:"✓";position:absolute;left:4px;top:9px;color:var(--ok);font-weight:800;font-size:15px;}
+footer{text-align:center;color:var(--ink3);font-size:13px;padding:26px 18px 10px;border-top:1px solid var(--line);margin-top:8px;}
+footer a{color:var(--accent);text-decoration:none;}
+.toc{background:#fbfcfe;}
+.toc ol{margin:0;padding-left:22px;}
+.toc li{margin-bottom:6px;font-size:14.8px;}
+.toc a{color:var(--accent);text-decoration:none;font-weight:600;}
+@media(max-width:520px){
+  header h1{font-size:22px;}
+  section{padding:22px 17px;}
+  .sub{padding-left:0;}
+  ol.steps>li{padding-left:36px;}
+}
+@media print{
+  body{background:#fff;}
+  header{background:#12233f !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  section{break-inside:avoid;box-shadow:none;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="inner">
+    <div class="badge">2011~2012년식 · 현대 그랜저 HG</div>
+    <h1>음성인식 없이 블루투스 폰<br>직접 삭제·등록하는 방법</h1>
+    <p>핸들 음성인식 버튼이 먹통이어도, 단말기 화면 메뉴만으로 등록 기기 삭제와 신규 등록이 모두 가능합니다.</p>
+    <div class="meta">최종 정리 2026-09-01 · 순정 내비게이션 / 모니터형 오디오 / 일반 오디오 3가지 사양 모두 수록</div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<section class="toc">
+  <h2 style="font-size:17px;"><span class="num" style="background:#475569;">目</span>목차</h2>
+  <ol>
+    <li><a href="#s1">먼저 내 차 단말기가 어떤 사양인지 확인</a></li>
+    <li><a href="#s2">등록된 휴대폰 삭제하기 (가장 먼저 할 것)</a></li>
+    <li><a href="#s3">새 휴대폰 등록하기</a></li>
+    <li><a href="#s4">화면 없는 일반 오디오 사양일 때</a></li>
+    <li><a href="#s5">음성인식이 정말 고장인지 자가 진단</a></li>
+    <li><a href="#s6">단말기 리셋 / 초기화 방법</a></li>
+    <li><a href="#s7">증상별 문제 해결표</a></li>
+    <li><a href="#s8">작업 전 최종 체크리스트</a></li>
+  </ol>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span>먼저 내 차 단말기가 어떤 사양인지 확인</h2>
+  <p class="sub">2011~2012년식 그랜저 HG는 출고 옵션에 따라 화면이 3종류입니다. 메뉴 이름이 조금씩 달라서 이것부터 구분해야 합니다.</p>
+
+  <div class="grid">
+    <div class="vcard">
+      <span class="tag">A 타입</span>
+      <h4>순정 8인치 내비게이션</h4>
+      <p>센터패시아 상단에 큰 터치 화면. 주변에 <b>NAVI · MEDIA · PHONE · SETUP</b> 하드키와 조그다이얼이 있음. HG300 로얄/노블 등 상위 트림에 다수.</p>
+    </div>
+    <div class="vcard">
+      <span class="tag">B 타입</span>
+      <h4>모니터형 오디오 (내비 없음)</h4>
+      <p>화면은 있는데 지도 안내가 없는 사양. <b>SETUP · PHONE</b> 키는 그대로 있어서 조작 방법은 A 타입과 거의 동일.</p>
+    </div>
+    <div class="vcard">
+      <span class="tag">C 타입</span>
+      <h4>일반 오디오 (소형 LCD)</h4>
+      <p>터치 화면 없이 라디오 주파수만 나오는 좁은 디스플레이. 블루투스 핸즈프리는 되지만 조작은 조그다이얼로만 함.</p>
+    </div>
+  </div>
+
+  <div class="note info">
+    <b>A · B 타입이면 2장과 3장을, C 타입이면 4장을 보세요.</b>
+    A와 B는 화면 메뉴가 사실상 같습니다. C 타입은 터치가 없어서 방식이 다릅니다.
+  </div>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span>등록된 휴대폰 삭제하기</h2>
+  <p class="sub">A · B 타입 기준. 새 폰을 등록하기 전에 기존 등록 정보를 지우는 것이 가장 확실한 방법입니다.</p>
+
+  <div class="lead">
+    <p><b>왜 삭제부터 하나요?</b> HG 세대 블루투스 모듈은 최대 5대까지만 저장되고, 목록이 가득 차면 신규 등록 자체가 시작되지 않습니다. 또 예전에 연결됐던 폰 정보가 남아 있으면 단말기가 계속 그 폰만 찾으려고 해서 새 폰이 안 붙습니다.</p>
+  </div>
+
+  <div class="path">
+    <span>시동 ON · P단 정차</span><i>›</i><span>SETUP</span><i>›</i><span>전화</span><i>›</i><span>블루투스 연결</span><i>›</i><span>기기 목록</span><i>›</i><span>삭제</span>
+  </div>
+
+  <ol class="steps">
+    <li>
+      <span class="t">차를 세우고 시동을 켭니다</span>
+      <span class="d">반드시 <b>P단 · 정차 상태</b>여야 합니다. 주행 중에는 안전 규정 때문에 블루투스 등록·삭제 메뉴가 통째로 잠겨서 눌러도 반응이 없습니다. 이걸 몰라서 "고장났다"고 오해하는 경우가 가장 많습니다.</span>
+    </li>
+    <li>
+      <span class="t"><kbd>SETUP</kbd> 버튼을 누릅니다</span>
+      <span class="d">화면 우측 또는 하단의 물리 버튼입니다. 설정 화면이 뜨면 상단 탭에서 <b>전화</b>(또는 <b>Phone</b>)를 고릅니다. 일부 연식은 <kbd>PHONE</kbd> 버튼을 누른 뒤 화면 안의 <b>설정</b>을 눌러도 같은 곳으로 들어갑니다.</span>
+    </li>
+    <li>
+      <span class="t">"블루투스 연결" 또는 "휴대폰 연결"을 선택</span>
+      <span class="d">현재 등록된 기기 목록이 뜹니다. 전 차주의 폰 이름이나 예전에 쓰던 폰 이름이 그대로 남아 있는 경우가 흔합니다.</span>
+    </li>
+    <li>
+      <span class="t">지울 기기를 선택하고 <b>삭제</b>를 누릅니다</span>
+      <span class="d">목록에서 기기 이름을 한 번 탭하면 <b>연결 / 연결해제 / 삭제</b> 버튼이 나타납니다. 삭제 → <b>예</b>를 누르면 끝입니다. 아무것도 안 남기고 새로 시작하려면 등록된 기기를 <b>전부</b> 지우세요.</span>
+    </li>
+    <li>
+      <span class="t">휴대폰에서도 반드시 지웁니다</span>
+      <span class="d">이 단계를 빼먹으면 재등록이 거의 실패합니다. 폰의 <b>설정 → 블루투스 → 등록된 기기 목록</b>에서 <b>HYUNDAI</b> / <b>GRANDEUR</b> / <b>CARKIT</b> 같은 이름을 찾아 <b>연결 해제(등록 해제·이 기기 삭제)</b> 하세요. 양쪽 다 지워야 완전히 초기화된 상태가 됩니다.</span>
+    </li>
+  </ol>
+
+  <div class="note warn">
+    <b>삭제하면 같이 사라지는 것</b>
+    해당 폰으로 내려받았던 전화번호부와 통화 기록도 함께 지워집니다. 재등록하면 다시 내려받으니 문제는 없지만, 연락처가 수천 건이면 동기화에 몇 분 걸립니다.
+  </div>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span>새 휴대폰 등록하기</h2>
+  <p class="sub">음성 안내를 전혀 쓰지 않고 화면 터치만으로 진행합니다.</p>
+
+  <div class="path">
+    <span>SETUP</span><i>›</i><span>전화</span><i>›</i><span>블루투스 연결</span><i>›</i><span>추가 / 신규등록</span><i>›</i><span>폰에서 검색</span><i>›</i><span>0000</span>
+  </div>
+
+  <ol class="steps">
+    <li>
+      <span class="t">휴대폰 블루투스를 먼저 켭니다</span>
+      <span class="d">설정 → 블루투스 ON. 화면을 켜 둔 채로 두세요. 화면이 꺼지면 일부 안드로이드 폰은 검색 대상에서 빠집니다.</span>
+    </li>
+    <li>
+      <span class="t"><kbd>SETUP</kbd> → <b>전화</b> → <b>블루투스 연결</b>로 들어갑니다</span>
+      <span class="d">삭제할 때와 같은 화면입니다.</span>
+    </li>
+    <li>
+      <span class="t"><b>추가</b> / <b>신규 등록</b> / <b>기기 추가</b> 버튼을 누릅니다</span>
+      <span class="d">화면에 "휴대폰에서 검색하십시오" 안내와 함께 <b>기기 이름</b>과 <b>인증번호</b>가 표시됩니다. 이 대기 상태는 보통 <b>2~3분</b> 유지되니 그 안에 폰 조작을 마쳐야 합니다.</span>
+    </li>
+    <li>
+      <span class="t">폰의 블루투스 검색 목록에서 차량을 선택</span>
+      <span class="d">이름은 보통 <b>HYUNDAI</b>, <b>GRANDEUR</b>, <b>CARKIT</b>, <b>HandsFree</b> 중 하나입니다. 화면에 표시된 이름과 같은 것을 고르세요.</span>
+    </li>
+    <li>
+      <span class="t">인증번호 <b>0000</b> 입력 또는 숫자 일치 확인</span>
+      <span class="d">구형 방식은 폰에 <b>0000</b>(경우에 따라 <b>1234</b>)을 직접 입력합니다. 최신 폰이면 양쪽 화면에 같은 6자리 숫자가 뜨고 <b>확인</b>만 누르면 됩니다.</span>
+    </li>
+    <li>
+      <span class="t">폰에 뜨는 <b>연락처·통화기록 접근 허용</b>을 승인</span>
+      <span class="d">이걸 거절하면 통화는 되는데 <b>전화번호부가 안 뜨는</b> 상태가 됩니다. 나중에 폰의 블루투스 기기 상세 설정에서 다시 켤 수 있습니다.</span>
+    </li>
+    <li>
+      <span class="t">연결 확인</span>
+      <span class="d">단말기 화면 상단에 블루투스 아이콘이 뜨고, <kbd>PHONE</kbd> 버튼을 눌렀을 때 전화번호부와 최근 통화 목록이 보이면 정상입니다. 음악을 재생해 스피커로 나오는지도 확인해 보세요.</span>
+    </li>
+  </ol>
+
+  <div class="note ok">
+    <b>등록 성공률을 크게 올리는 3가지</b>
+    ① 차 안에 다른 블루투스 기기(블랙박스, 이어폰, 다른 가족 폰)의 전원을 잠시 꺼 둘 것 ② 폰을 단말기에서 1m 이내로 가까이 둘 것 ③ 한 번 실패하면 곧바로 재시도하지 말고 폰 블루투스를 껐다 켠 뒤 다시 시작할 것.
+  </div>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span>화면 없는 일반 오디오(C 타입)일 때</h2>
+  <p class="sub">터치 화면이 없으면 조그다이얼과 물리 버튼으로 같은 메뉴에 들어갑니다.</p>
+
+  <ol class="steps">
+    <li>
+      <span class="t"><kbd>SETUP</kbd> 버튼을 누릅니다</span>
+      <span class="d">좁은 LCD에 설정 항목이 한 줄씩 표시됩니다.</span>
+    </li>
+    <li>
+      <span class="t">조그다이얼을 돌려 <b>Phone</b> / <b>블루투스</b> 항목을 찾습니다</span>
+      <span class="d">다이얼을 눌러 선택합니다. 항목 이름은 <b>Bluetooth</b>, <b>Pairing</b>, <b>휴대폰 연결</b> 등으로 표기됩니다.</span>
+    </li>
+    <li>
+      <span class="t">하위 메뉴에서 <b>Pair</b>(등록) 또는 <b>Delete</b>(삭제)를 고릅니다</span>
+      <span class="d">등록을 고르면 검색 대기 상태가 되고, 삭제를 고르면 등록된 기기 이름이 순서대로 표시됩니다. 지울 기기에서 다이얼을 길게 누르거나 <b>확인</b>을 누르면 삭제됩니다.</span>
+    </li>
+    <li>
+      <span class="t">폰에서 검색 → 선택 → <b>0000</b> 입력</span>
+      <span class="d">이후는 3장과 동일합니다.</span>
+    </li>
+  </ol>
+
+  <div class="note warn">
+    <b>C 타입에서 SETUP에 전화 메뉴가 아예 없다면</b>
+    그 차는 <b>블루투스 핸즈프리 미장착 사양</b>일 수 있습니다. 이 경우 핸들에 통화(수화기) 버튼이 있는지 확인해 보세요. 통화 버튼이 없으면 하드웨어가 없는 것이라 메뉴로 해결되지 않습니다.
+  </div>
+</section>
+
+<section id="s5">
+  <h2><span class="num">5</span>음성인식이 정말 고장인지 자가 진단</h2>
+  <p class="sub">블루투스 등록은 위 방법으로 해결되지만, 음성인식 자체가 왜 안 되는지도 나눠서 볼 수 있습니다.</p>
+
+  <div class="tw">
+    <table>
+      <thead>
+        <tr><th>증상</th><th>추정 원인</th><th>대응</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>핸들 음성인식 버튼을 눌러도 <b>"삐" 소리조차 안 남</b></td><td>핸들 리모컨 스위치 접점 불량, 클럭 스프링, 배선 단선</td><td>다른 핸들 버튼(볼륨·채널)은 되는지 먼저 확인. 다른 버튼도 다 안 되면 클럭 스프링 쪽</td></tr>
+        <tr><td>"삐" 소리는 나는데 <b>말을 못 알아들음</b></td><td>마이크 불량 또는 마이크 배선 접촉 불량</td><td>통화할 때 상대방이 내 목소리를 듣는지 확인</td></tr>
+        <tr><td>통화 시 <b>상대방이 내 목소리를 못 들음</b></td><td>마이크 고장 확정</td><td>오버헤드 콘솔(룸미러 부근) 마이크 교체. 부품값 자체는 비싸지 않은 편</td></tr>
+        <tr><td>통화는 잘 되는데 <b>음성인식만</b> 안 됨</td><td>음성인식 엔진·소프트웨어 문제, 또는 인식률 저하</td><td>단말기 리셋 후 재시도. 안 되면 서비스센터 진단</td></tr>
+        <tr><td>블루투스 아이콘도 안 뜨고 전화 메뉴 전체가 먹통</td><td>블루투스 모듈 자체 불량</td><td>모듈 교체 필요. 이 경우 등록 절차로는 해결 불가</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note info">
+    <b>핵심</b>
+    음성인식이 고장이어도 <b>블루투스 등록·삭제는 화면 메뉴만으로 100% 가능</b>합니다. 음성인식은 편의 기능일 뿐 등록의 필수 경로가 아닙니다. 다만 마이크가 고장이면 등록에 성공해도 <b>핸즈프리 통화 시 상대가 내 말을 못 듣습니다</b>. 등록 후 반드시 통화 테스트를 해 보세요.
+  </div>
+</section>
+
+<section id="s6">
+  <h2><span class="num">6</span>단말기 리셋 / 초기화 방법</h2>
+  <p class="sub">메뉴가 반응이 없거나 등록 대기 화면에서 멈출 때 순서대로 시도합니다.</p>
+
+  <h3>1단계 — 단말기 리셋 (가장 가벼움)</h3>
+  <ul class="plain">
+    <li>단말기 전면 또는 조그다이얼 주변의 <b>바늘구멍(RESET)</b>을 클립·이쑤시개로 3초 정도 누릅니다.</li>
+    <li>구멍이 안 보이면 <b>전원 노브를 10초 이상 길게</b> 누르거나, <b>MAP + SEEK</b>를 동시에 길게 누르는 조합이 먹히는 연식도 있습니다.</li>
+    <li>저장된 설정과 등록 기기는 대부분 유지됩니다.</li>
+  </ul>
+
+  <h3>2단계 — 시동 완전 껐다 켜기</h3>
+  <ul class="plain">
+    <li>시동을 끄고 <b>운전석 문을 열었다가 닫은 뒤 5분 정도</b> 두면 단말기가 완전히 슬립에 들어갑니다. ACC만 껐다 켜는 것과는 다릅니다.</li>
+  </ul>
+
+  <h3>3단계 — 배터리 단자 분리 (최후)</h3>
+  <ul class="plain">
+    <li>보닛을 열고 배터리 <b>(−) 단자만</b> 분리, <b>10분</b> 뒤 재결합합니다.</li>
+    <li>블루투스 모듈까지 완전 초기화되어 잔여 페어링 정보가 지워집니다.</li>
+  </ul>
+
+  <div class="note danger">
+    <b>배터리 분리 전 반드시 확인</b>
+    라디오 프리셋·시계·트립 정보가 초기화되고, 차종에 따라 <b>오토 윈도우(원터치 상승) 초기화</b>가 필요해집니다. 재연결 후 각 창문을 <b>끝까지 올린 상태로 스위치를 3초 더 당겨</b> 학습시켜 주세요. 블랙박스 상시전원 설정도 다시 확인하시고요. 자신 없으면 이 단계는 건너뛰고 서비스센터를 이용하는 편이 낫습니다.
+  </div>
+</section>
+
+<section id="s7">
+  <h2><span class="num">7</span>증상별 문제 해결표</h2>
+  <p class="sub">등록 과정에서 자주 걸리는 지점들입니다.</p>
+
+  <div class="tw">
+    <table>
+      <thead>
+        <tr><th>증상</th><th>원인</th><th>해결</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>SETUP → 전화 메뉴가 회색으로 눌리지 않음</td><td>주행 중 잠금</td><td><b>P단에 놓고 완전히 정차</b>한 상태에서 다시 시도</td></tr>
+        <tr><td>"등록 가능한 기기 수를 초과했습니다"</td><td>5대 한도 초과</td><td>기존 기기를 1대 이상 삭제한 뒤 재시도</td></tr>
+        <tr><td>폰 검색 목록에 차량이 안 보임</td><td>단말기 검색 대기 시간(2~3분) 만료</td><td>단말기에서 <b>추가</b>를 다시 누른 직후에 폰에서 검색</td></tr>
+        <tr><td>전 차주 폰만 찾으며 새 폰이 안 붙음</td><td>기존 페어링 정보 잔존</td><td>등록 기기 <b>전부 삭제</b> → 단말기 리셋 → 신규 등록</td></tr>
+        <tr><td>통화는 되는데 전화번호부가 비어 있음</td><td>연락처 접근 권한 거부</td><td>폰 → 블루투스 → 차량 기기 옆 설정(⚙) → <b>연락처 공유 허용</b> ON</td></tr>
+        <tr><td>아이폰에서 연락처 동기화가 계속 안 됨</td><td>구형 블루투스 프로파일과 최신 iOS의 호환 문제</td><td>iPhone 설정 → 블루투스 → 차량 ⓘ → <b>연락처 동기화</b> ON. 그래도 안 되면 이 조합에서는 통화만 쓰는 것이 현실적</td></tr>
+        <tr><td>연결은 되는데 음악(미디어) 소리가 안 남</td><td>핸즈프리만 연결되고 오디오 프로파일 미연결</td><td>등록 시 <b>핸즈프리 + 오디오 둘 다</b> 선택. 재생 소스를 <b>BT Audio</b>로 변경</td></tr>
+        <tr><td>매번 시동 걸 때 자동 연결이 안 됨</td><td>우선 연결 기기 설정 문제, 폰의 배터리 최적화</td><td>단말기에서 해당 폰을 <b>우선 연결(자동 연결)</b>로 지정. 폰에서 블루투스 관련 절전 최적화 해제</td></tr>
+        <tr><td>연결이 자꾸 끊겼다 붙었다 반복</td><td>안테나·모듈 접촉 불량 또는 전파 간섭</td><td>차 안 다른 블루투스 기기를 끄고 테스트. 그래도면 모듈 점검</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="s8">
+  <h2><span class="num">8</span>작업 전 최종 체크리스트</h2>
+  <p class="sub">이 순서대로만 하면 대부분 해결됩니다.</p>
+
+  <ul class="check">
+    <li>시동 ON, 기어 <b>P단</b>, 완전 정차 상태인가</li>
+    <li>단말기에서 <b>등록된 기기를 전부 삭제</b>했는가</li>
+    <li>휴대폰에서도 <b>차량 기기 등록을 해제</b>했는가</li>
+    <li>단말기 <b>리셋</b>을 한 번 해줬는가</li>
+    <li>차 안의 다른 블루투스 기기 전원을 껐는가</li>
+    <li>휴대폰 블루투스가 켜져 있고 화면이 켜진 상태인가</li>
+    <li>단말기에서 <b>추가</b>를 누른 직후 2~3분 안에 폰 조작을 마쳤는가</li>
+    <li>인증번호 <b>0000</b>을 입력했거나 숫자 일치를 확인했는가</li>
+    <li>폰의 <b>연락처 접근 허용</b>을 승인했는가</li>
+    <li>등록 후 <b>통화 테스트</b>로 상대방이 내 목소리를 듣는지 확인했는가</li>
+  </ul>
+
+  <div class="note info">
+    <b>여기까지 다 해도 안 될 때</b>
+    블루투스 모듈이나 마이크 하드웨어 고장일 가능성이 높습니다. 현대 블루핸즈에서 진단받거나, 연식을 고려해 <b>안드로이드 올인원 매립</b>으로 헤드유닛을 통째로 바꾸는 것도 실제로 많이 선택하는 대안입니다. 최신 폰 연동과 화면 크기 문제까지 한 번에 해결됩니다.
+  </div>
+</section>
+
+<footer>
+  <p style="margin-bottom:6px;">그랜저 HG (2011~2012년식) 블루투스 폰 등록·삭제 가이드 · 2026-09-01 정리</p>
+  <p style="font-size:12.5px;color:#94a3b8;margin:0;">차량 출고 옵션과 소프트웨어 버전에 따라 메뉴 이름이 조금씩 다를 수 있습니다.<br>정확한 절차는 차량 취급설명서 또는 현대 블루핸즈 문의를 함께 참고하세요.</p>
+  <p style="margin-top:16px;"><a href="./index.html">← 게시판 목록으로</a></p>
+</footer>
+
+</div>
+</body>
+</html>
