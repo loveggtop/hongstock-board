@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>종합건강검진 결과 분석 · 진료 우선순위</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0f3460; --navy-d:#16213e; --ink:#1a2d4e; --accent:#e94560;
+  --bg:#f0f4f8; --card:#fff; --line:#e3eaf3; --muted:#6b7a94;
+  --red:#c62828; --red-bg:#fdecea; --red-line:#f5c2bd;
+  --orange:#e07b19; --orange-bg:#fff5e8; --orange-line:#f7d9ae;
+  --yellow:#a67c00; --yellow-bg:#fffbe8; --yellow-line:#f0e2a8;
+  --green:#2e7d32; --green-bg:#eef7ef; --green-line:#c6e2c8;
+}
+body{font-family:'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',-apple-system,sans-serif;
+  background:var(--bg);color:#222;line-height:1.62;-webkit-text-size-adjust:100%}
+header{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);color:#fff;
+  padding:34px 24px 28px;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+.hwrap{max-width:940px;margin:0 auto}
+header h1{font-size:1.62rem;font-weight:700;letter-spacing:-.6px;margin-bottom:8px}
+header .meta{font-size:.83rem;opacity:.75;line-height:1.7}
+.privacy{display:inline-block;margin-top:12px;padding:5px 12px;background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.22);border-radius:6px;font-size:.76rem;opacity:.9}
+.container{max-width:940px;margin:26px auto;padding:0 16px 56px}
+
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:24px}
+.tile{background:var(--card);border-radius:11px;padding:16px 14px;text-align:center;
+  box-shadow:0 1px 6px rgba(0,0,0,.07);border-top:3px solid var(--line)}
+.tile .n{font-size:1.75rem;font-weight:800;line-height:1.15;letter-spacing:-1px}
+.tile .l{font-size:.75rem;color:var(--muted);margin-top:3px;font-weight:600}
+.tile.t1{border-top-color:var(--red)} .tile.t1 .n{color:var(--red)}
+.tile.t2{border-top-color:var(--orange)} .tile.t2 .n{color:var(--orange)}
+.tile.t3{border-top-color:var(--yellow)} .tile.t3 .n{color:var(--yellow)}
+.tile.t4{border-top-color:var(--green)} .tile.t4 .n{color:var(--green)}
+
+.alert{background:var(--red-bg);border:1.5px solid var(--red-line);border-left:5px solid var(--red);
+  border-radius:10px;padding:18px 20px;margin-bottom:26px}
+.alert h2{font-size:1rem;color:var(--red);margin-bottom:9px;font-weight:800}
+.alert ul{margin-left:18px;font-size:.9rem;color:#5c2320}
+.alert li{margin-bottom:5px}
+
+h2.sec{font-size:1.12rem;font-weight:800;color:var(--navy);margin:34px 0 15px;
+  padding-bottom:10px;border-bottom:2px solid #dde8f5;letter-spacing:-.3px}
+
+.item{background:var(--card);border-radius:12px;box-shadow:0 1px 6px rgba(0,0,0,.08);
+  margin-bottom:14px;overflow:hidden;border-left:5px solid var(--line)}
+.item.p1{border-left-color:var(--red)}
+.item.p2{border-left-color:var(--orange)}
+.item.p3{border-left-color:var(--yellow)}
+.item-h{padding:15px 20px 13px;border-bottom:1px solid #f0f3f8;display:flex;
+  align-items:flex-start;gap:11px;flex-wrap:wrap}
+.item-h .ttl{font-size:1.02rem;font-weight:700;color:var(--ink);flex:1;min-width:200px;letter-spacing:-.3px}
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:.71rem;font-weight:700;white-space:nowrap}
+.b-red{background:var(--red-bg);color:var(--red);border:1px solid var(--red-line)}
+.b-org{background:var(--orange-bg);color:var(--orange);border:1px solid var(--orange-line)}
+.b-yel{background:var(--yellow-bg);color:var(--yellow);border:1px solid var(--yellow-line)}
+.b-grn{background:var(--green-bg);color:var(--green);border:1px solid var(--green-line)}
+.b-dept{background:#eef2ff;color:#4a5bb8;border:1px solid #d9e0f7}
+.item-b{padding:15px 20px 18px}
+.finding{background:#f7f9fc;border-radius:7px;padding:10px 13px;font-size:.85rem;color:#4a5568;
+  margin-bottom:13px;border-left:3px solid #d5dfec}
+.finding b{color:var(--ink)}
+.row{display:flex;gap:9px;margin-bottom:9px;font-size:.9rem;align-items:baseline}
+.row .k{flex:0 0 82px;font-weight:700;color:var(--navy);font-size:.82rem}
+.row .v{flex:1;color:#333}
+.row .v em{font-style:normal;background:#fff3cd;padding:1px 4px;border-radius:3px;font-weight:600}
+.row .v strong{color:var(--red)}
+
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:11px;
+  overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,.08);margin-bottom:16px;font-size:.87rem}
+thead tr{background:#edf1f7}
+th{padding:11px 13px;text-align:left;font-size:.74rem;font-weight:800;color:var(--muted);
+  letter-spacing:.5px;text-transform:uppercase}
+td{padding:11px 13px;border-top:1px solid #f0f2f6;vertical-align:top}
+td.c{text-align:center;white-space:nowrap}
+tbody tr:hover{background:#f7faff}
+.ok{color:var(--green);font-weight:700}
+.no{color:var(--red);font-weight:700}
+
+.tl{position:relative;padding-left:26px;margin-bottom:8px}
+.tl::before{content:'';position:absolute;left:7px;top:6px;bottom:-8px;width:2px;background:#dde8f5}
+.tl:last-child::before{display:none}
+.tl .dot{position:absolute;left:0;top:5px;width:16px;height:16px;border-radius:50%;
+  border:3px solid #fff;box-shadow:0 0 0 2px #dde8f5;background:var(--navy)}
+.tl.d1 .dot{background:var(--red);box-shadow:0 0 0 2px var(--red-line)}
+.tl.d2 .dot{background:var(--orange);box-shadow:0 0 0 2px var(--orange-line)}
+.tl.d3 .dot{background:var(--yellow);box-shadow:0 0 0 2px var(--yellow-line)}
+.tl .when{font-weight:800;color:var(--ink);font-size:.93rem;margin-bottom:3px}
+.tl ul{margin-left:17px;font-size:.87rem;color:#444;margin-bottom:15px}
+.tl li{margin-bottom:3px}
+
+.qbox{background:var(--card);border-radius:12px;padding:18px 22px;box-shadow:0 1px 6px rgba(0,0,0,.08);margin-bottom:14px}
+.qbox h3{font-size:.95rem;color:var(--navy);margin-bottom:10px;font-weight:800}
+.qbox ol{margin-left:19px;font-size:.88rem;color:#3a4658}
+.qbox li{margin-bottom:7px}
+
+.note{background:#f7f9fc;border:1px solid var(--line);border-radius:10px;padding:16px 20px;
+  font-size:.83rem;color:#5a6577;margin-top:26px;line-height:1.75}
+.note b{color:var(--ink)}
+.src{font-size:.79rem;color:var(--muted);margin-top:14px;line-height:1.9}
+.src a{color:#4a5bb8;text-decoration:none} .src a:hover{text-decoration:underline}
+footer{text-align:center;padding:26px 24px;font-size:.75rem;color:#b0b8c4;border-top:1px solid #e8ecf2}
+
+@media (max-width:640px){
+  header h1{font-size:1.3rem}
+  .tiles{grid-template-columns:repeat(2,1fr)}
+  .row{flex-direction:column;gap:2px}
+  .row .k{flex:none}
+  table{font-size:.8rem} th,td{padding:9px 8px}
+}
+@media print{
+  body{background:#fff} header{background:var(--navy)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .item,.tile,table,.qbox{box-shadow:none;border:1px solid #ddd;break-inside:avoid}
+  .alert{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hwrap">
+    <h1>🩺 종합건강검진 결과 분석 &middot; 진료 우선순위</h1>
+    <div class="meta">
+      검진 소견 17개 항목 분석 &nbsp;·&nbsp; 작성일 2026-09-04<br>
+      의학적 진단이 아니라, <b>어느 과를 언제 가야 하는지</b> 정리한 진료 준비 자료입니다.
+    </div>
+    <div class="privacy">🔒 비공개 문서 · 게시판 목록 미등록 · 검색엔진 수집 차단</div>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="tiles">
+    <div class="tile t1"><div class="n">1</div><div class="l">즉시 (1~2주)</div></div>
+    <div class="tile t2"><div class="n">4</div><div class="l">조기 (4주 내)</div></div>
+    <div class="tile t3"><div class="n">6</div><div class="l">정기 추적</div></div>
+    <div class="tile t4"><div class="n">7</div><div class="l">정상 소견</div></div>
+  </div>
+
+  <div class="alert">
+    <h2>⚠️ 이런 증상이 생기면 즉시 응급실</h2>
+    <ul>
+      <li><b>38℃ 이상 발열 + 옆구리/등 통증</b> — 막힌 신장에 감염이 겹친 상태(감염성 수신증)일 수 있습니다. 요로패혈증으로 빠르게 진행할 수 있어 응급 배액이 필요한, 비뇨의학과에서 가장 급한 상황입니다.</li>
+      <li><b>소변량이 갑자기 줄거나 나오지 않을 때</b></li>
+      <li><b>명치·오른쪽 윗배 통증이 6시간 넘게 지속 + 발열 또는 눈·피부 노래짐</b> — 급성 담낭염 또는 담관염 가능성</li>
+      <li><b>가슴 압박감·조이는 통증, 식은땀, 팔·턱으로 뻗치는 통증</b> — 관상동맥 석회화가 확인된 상태이므로 흉통은 가볍게 넘기지 마십시오</li>
+    </ul>
+  </div>
+
+  <h2 class="sec">🔴 1순위 · 1~2주 안에 반드시 진료</h2>
+
+  <div class="item p1">
+    <div class="item-h">
+      <div class="ttl">우측 요관 결석 21mm + 우측 수신증</div>
+      <span class="badge b-red">가장 시급</span>
+      <span class="badge b-dept">비뇨의학과</span>
+    </div>
+    <div class="item-b">
+      <div class="finding"><b>검진 소견</b> — 우측 신장에 수신증이 관찰됨. 우측 하부 요관에 약 21mm 크기의 결석이 관찰됨.</div>
+      <div class="row"><div class="k">왜 급한가</div><div class="v">
+        요관 결석은 <em>10mm를 넘으면 저절로 빠져나올 가능성이 사실상 없습니다.</em>
+        유럽비뇨의학회(EAU) 자료에서 5mm 미만도 자연 배출률이 약 75%이고, 21mm는 요관 결석으로는 매우 큰 축에 듭니다.
+        게다가 <strong>이미 수신증(소변이 막혀 신장이 부어오른 상태)이 동반</strong>되어 있습니다.
+        가이드라인상 "지속적인 폐색"은 기다리지 말고 적극적으로 제거해야 하는 명확한 적응증입니다.
+      </div></div>
+      <div class="row"><div class="k">방치하면</div><div class="v">
+        막힌 상태가 길어질수록 해당 신장의 기능이 <strong>비가역적으로 손상</strong>됩니다.
+        통증이 없다고 안심할 일이 아닙니다 — 서서히 막힌 신장은 아프지 않게 기능을 잃는 경우가 오히려 흔합니다.
+      </div></div>
+      <div class="row"><div class="k">필요 검사</div><div class="v">
+        비조영 복부 CT(요로결석 프로토콜) · 소변검사 · 혈청 크레아티닌/eGFR ·
+        필요 시 신스캔(DTPA/MAG3)으로 <b>우측 신장이 현재 얼마나 일하고 있는지</b> 평가
+      </div></div>
+      <div class="row"><div class="k">치료 방향</div><div class="v">
+        요관경 쇄석술(URS/RIRS)이 일반적입니다. 크기가 커서 체외충격파(ESWL) 단독은 적합하지 않을 수 있고,
+        먼저 요관 스텐트로 막힌 길을 뚫어 신장을 살린 뒤 단계적으로 결석을 제거하기도 합니다. 술식은 CT 결과를 보고 결정됩니다.
+      </div></div>
+      <div class="row"><div class="k">확인 요청</div><div class="v">
+        21mm는 <b>하부 요관</b> 결석으로는 이례적으로 큰 크기입니다. 초음파 계측 오차이거나 다른 구조물이 함께 측정됐을 가능성도 있으니,
+        CT로 실제 크기와 위치를 반드시 확진받으십시오. 다만 그 확인 자체가 급한 일이므로 <b>"CT부터 빨리 찍자"</b>는 결론은 동일합니다.
+      </div></div>
+    </div>
+  </div>
+
+  <h2 class="sec">🟠 2순위 · 4주 안에 진료 예약</h2>
+
+  <div class="item p2">
+    <div class="item-h">
+      <div class="ttl">심혈관 위험 — 관상동맥 석회화(칼슘 스코어 87) + 대사증후군</div>
+      <span class="badge b-org">누적 위험</span>
+      <span class="badge b-dept">순환기내과</span>
+    </div>
+    <div class="item-b">
+      <div class="finding"><b>검진 소견</b> — 관상동맥 혈관벽에 중등도의 석회화 침착 (Calcium score 87). 혈압 132/92 (약물치료 중). 공복혈당 당뇨병전단계. 총콜레스테롤·LDL 상승. BMI 29.5, 허리둘레 94.1cm.</div>
+      <div class="row"><div class="k">핵심</div><div class="v">
+        칼슘 스코어에서 중요한 건 등급이 아니라 <em>0이 아니라는 사실</em>입니다.
+        87점은 심장에 <strong>이미 동맥경화가 진행 중</strong>이라는 객관적 증거입니다.
+        (검진지는 "중등도"로 적었지만 널리 쓰이는 Agatston 분류로는 1~99 구간에 해당합니다. 어느 쪽이든 적극 관리 대상인 것은 같습니다.)
+        연구에서 1~99점 구간은 0점 대비 주요 관상동맥 사건 위험이 약 1.9배였습니다.
+      </div></div>
+      <div class="row"><div class="k">대사증후군</div><div class="v">아래 5개 중 3개 이상이면 진단됩니다. 이미 3개가 확정입니다.</div></div>
+      <table>
+        <thead><tr><th>진단 기준</th><th class="c">기준값</th><th class="c">내 수치</th><th class="c">해당</th></tr></thead>
+        <tbody>
+          <tr><td>허리둘레 (남성)</td><td class="c">≥ 90 cm</td><td class="c">94.1 cm</td><td class="c no">해당</td></tr>
+          <tr><td>혈압</td><td class="c">≥130/85 또는 치료 중</td><td class="c">132/92 · 치료 중</td><td class="c no">해당</td></tr>
+          <tr><td>공복혈당</td><td class="c">≥ 100 mg/dL</td><td class="c">110~125</td><td class="c no">해당</td></tr>
+          <tr><td>중성지방</td><td class="c">≥ 150 mg/dL</td><td class="c">수치 미제공</td><td class="c">확인 필요</td></tr>
+          <tr><td>HDL 콜레스테롤 (남성)</td><td class="c">&lt; 40 mg/dL</td><td class="c">수치 미제공</td><td class="c">확인 필요</td></tr>
+        </tbody>
+      </table>
+      <div class="row"><div class="k">혈압</div><div class="v">
+        약을 드시는데도 <strong>이완기 92mmHg</strong>는 조절이 덜 된 상태입니다.
+        칼슘 스코어 양성 + 당뇨병전단계라면 목표는 보통 <em>130/80 미만</em>으로 더 낮게 잡습니다. 약제 조정을 상의하십시오.
+      </div></div>
+      <div class="row"><div class="k">콜레스테롤</div><div class="v">
+        검진지는 "3개월 후 추적"만 권했지만, <b>칼슘 스코어가 0이 아닌 사람</b>에게는 해석이 달라집니다.
+        단순 경과관찰이 아니라 스타틴 시작 여부와 LDL 목표치(대개 100 미만, 위험도 따라 70 미만)를 의사와 정하는 것이 순서입니다.
+      </div></div>
+      <div class="row"><div class="k">가져갈 것</div><div class="v">칼슘 스코어 CT 영상과 판독지 원본 — 순환기내과에서 가장 중요한 자료입니다.</div></div>
+    </div>
+  </div>
+
+  <div class="item p2">
+    <div class="item-h">
+      <div class="ttl">담낭 결석 25.6mm + 담낭 선근종증 + 빌리루빈 상승</div>
+      <span class="badge b-org">묶어서 판단</span>
+      <span class="badge b-dept">소화기내과 · 외과</span>
+    </div>
+    <div class="item-b">
+      <div class="finding"><b>검진 소견</b> — 담낭 선근종증 의심(양성질환). 담낭에 약 25.6mm 담석. 빌리루빈 수치 경미하게 상승.</div>
+      <div class="row"><div class="k">왜 묶나</div><div class="v">
+        검진지는 이 셋을 각각 다른 항목에 적어 두었지만, <em>담석이 있는 사람의 빌리루빈 상승은 따로 볼 일이 아닙니다.</em>
+        담관으로 돌이 내려갔을 가능성(총담관결석)을 먼저 배제해야 합니다.
+      </div></div>
+      <div class="row"><div class="k">확인 검사</div><div class="v">
+        빌리루빈 <b>직접/간접 분획</b> + ALP + GGT + AST/ALT.
+        간접형만 오르고 나머지가 정상이면 체질성 황달(길버트 증후군) 같은 양성 상태일 가능성이 큽니다.
+        직접형이나 ALP·GGT가 함께 오르면 담도 폐색을 의심해 추가 영상검사가 필요합니다.
+      </div></div>
+      <div class="row"><div class="k">담석 크기</div><div class="v">
+        무증상 담석은 예방적 수술을 권하지 않는 것이 원칙입니다(세계소화기학회 지침).
+        다만 <em>3cm를 넘는 결석은 담낭암 위험이 높아진다</em>는 보고가 있고, 25.6mm는 그 기준에 가깝습니다.
+        여기에 선근종증까지 동반되어 있으므로, 1년 방치보다는 <b>외과 상담을 한 번 받아 두는 편</b>을 권합니다.
+      </div></div>
+      <div class="row"><div class="k">수술 판단</div><div class="v">
+        기름진 음식 후 명치·오른쪽 윗배 통증, 만성 소화불량이 있다면 담낭절제술 적응증에 해당합니다.
+        증상 유무가 결정적이므로, 진료 전에 <b>언제·무엇을 먹고·어떻게 아팠는지</b> 메모해 가시면 판단이 빨라집니다.
+      </div></div>
+    </div>
+  </div>
+
+  <div class="item p2">
+    <div class="item-h">
+      <div class="ttl">당뇨병전단계 (공복혈당 110~125)</div>
+      <span class="badge b-org">되돌릴 수 있는 단계</span>
+      <span class="badge b-dept">내분비내과 · 가정의학과</span>
+    </div>
+    <div class="item-b">
+      <div class="finding"><b>검진 소견</b> — 혈당이 경미하게 상승되어 당뇨병전단계(고위험군). 당부하검사 또는 6개월 이내 추적 권고.</div>
+      <div class="row"><div class="k">필요 검사</div><div class="v"><b>당화혈색소(HbA1c)</b> — 지난 2~3개월 평균 혈당을 보여줍니다. 필요 시 경구당부하검사(75g OGTT)</div></div>
+      <div class="row"><div class="k">기회</div><div class="v">
+        아직 당뇨가 아닙니다. 대규모 연구(DPP)에서 <em>체중 7% 감량 + 주 150분 운동</em>으로 당뇨 진행이 약 58% 줄었습니다.
+        약보다 생활습관이 더 효과적이었던, 흔치 않은 영역입니다.
+      </div></div>
+      <div class="row"><div class="k">주의</div><div class="v">
+        혈압·콜레스테롤·칼슘 스코어와 <b>같은 뿌리(내장지방)</b>에서 나온 문제입니다. 따로따로 관리할 게 아니라 체중·허리둘레 하나를 잡으면 넷이 같이 좋아집니다.
+      </div></div>
+    </div>
+  </div>
+
+  <div class="item p2">
+    <div class="item-h">
+      <div class="ttl">만성 위축성 위염 — 헬리코박터 검사 권장</div>
+      <span class="badge b-org">검진지에 빠진 항목</span>
+      <span class="badge b-dept">소화기내과</span>
+    </div>
+    <div class="item-b">
+      <div class="finding"><b>검진 소견</b> — 만성 위축성 위염 관찰. 위점막이 얇아진 상태로 위암 위험이 조금 더 높아 1년 후 정기 위내시경 권고.</div>
+      <div class="row"><div class="k">보완점</div><div class="v">
+        검진지가 헬리코박터를 <em>원인으로 언급만 하고 검사는 권하지 않았습니다.</em>
+        위축성 위염이 확인된 경우 헬리코박터 검사(요소호기검사 또는 조직검사)를 하고, 양성이면 제균 치료를 받는 것이 표준입니다.
+      </div></div>
+      <div class="row"><div class="k">근거</div><div class="v">제균 치료는 위암 발생 위험을 유의하게 낮추는 것으로 여러 연구에서 확인되었습니다. 검진 때 조직검사를 했다면 그 결과부터 확인해 보십시오.</div></div>
+      <div class="row"><div class="k">생활</div><div class="v">금연, 절주, 짠 음식·탄 음식 줄이기 — 위축성 위염에서는 실제로 효과가 확인된 항목입니다.</div></div>
+    </div>
+  </div>
+
+  <h2 class="sec">🟡 3순위 · 정기 추적 항목</h2>
+
+  <table>
+    <thead><tr><th>항목</th><th>소견</th><th class="c">시기</th><th class="c">진료과</th></tr></thead>
+    <tbody>
+      <tr><td><b>지질 추적</b></td><td>총콜레스테롤·LDL 상승. 스타틴을 시작하면 6~8주 후, 아니면 3개월 후 공복 채혈</td><td class="c">3개월</td><td class="c">순환기·가정의학</td></tr>
+      <tr><td><b>빌리루빈 재검</b></td><td>분획 검사와 함께. 담낭 항목과 묶어서 판단</td><td class="c">1~3개월</td><td class="c">소화기내과</td></tr>
+      <tr><td><b>복부 CT</b></td><td>장내 가스로 간·췌장 관찰이 제한적이었음. <b>요관결석 CT를 찍을 때 함께 해결됩니다</b></td><td class="c">1순위와 동시</td><td class="c">비뇨의학·영상의학</td></tr>
+      <tr><td><b>폐 석회화·섬유성 반흔</b></td><td>우상엽. 과거 염증(결핵 등)이 아문 흔적으로 보이며 대개 문제되지 않음</td><td class="c">1년</td><td class="c">호흡기내과</td></tr>
+      <tr><td><b>위내시경</b></td><td>위축성 위염 추적</td><td class="c">1년</td><td class="c">소화기내과</td></tr>
+      <tr><td><b>대장내시경</b></td><td>특이소견 없음. 증상(체중감소·혈변·대변 굵기 변화) 생기면 즉시</td><td class="c">3년</td><td class="c">소화기내과</td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="sec">🟢 정상 · 걱정하지 않아도 되는 항목</h2>
+
+  <table>
+    <thead><tr><th>검사</th><th>결과</th></tr></thead>
+    <tbody>
+      <tr><td>갑상선 초음파</td><td class="ok">정상</td></tr>
+      <tr><td>경동맥 초음파</td><td class="ok">정상 — 심장에는 석회화가 있지만 목동맥은 깨끗합니다</td></tr>
+      <tr><td>전립선 초음파</td><td class="ok">크기 정상, 이상소견 없음 (PSA 정기 확인 권장)</td></tr>
+      <tr><td>골밀도</td><td class="ok">정상</td></tr>
+      <tr><td>대장내시경</td><td class="ok">특이소견 없음</td></tr>
+      <tr><td>종양표지자 (간·대장·췌장·전립선)</td><td class="ok">특이소견 없음</td></tr>
+      <tr><td>간염</td><td class="ok">A형·B형 항체 형성됨(접종 불필요), C형 음성</td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="sec">📅 실행 타임라인</h2>
+
+  <div class="tl d1">
+    <div class="dot"></div>
+    <div class="when">이번 주 ~ 2주 내</div>
+    <ul>
+      <li><b>비뇨의학과 예약</b> — "우측 요관 결석 21mm, 수신증 동반, 검진에서 발견"이라고 접수 시 그대로 말씀하십시오. 대기가 길면 다른 병원을 알아보는 편이 낫습니다.</li>
+      <li>검진 결과지 원본 + 초음파 영상 CD 지참</li>
+      <li>비조영 복부 CT 촬영 (간·췌장 관찰 제한 문제도 동시 해결)</li>
+    </ul>
+  </div>
+  <div class="tl d2">
+    <div class="dot"></div>
+    <div class="when">4주 내</div>
+    <ul>
+      <li><b>순환기내과</b> — 칼슘 스코어 CT 지참. 스타틴 시작 여부, LDL 목표, 혈압약 조정</li>
+      <li><b>소화기내과</b> — 담낭 결석·선근종증·빌리루빈 분획·헬리코박터 검사를 한 번에 상담</li>
+      <li>당화혈색소(HbA1c) 검사 (순환기 또는 가정의학과 방문 시 함께 채혈)</li>
+    </ul>
+  </div>
+  <div class="tl d3">
+    <div class="dot"></div>
+    <div class="when">3개월</div>
+    <ul>
+      <li>공복 지질검사 재검 (스타틴 시작 시 6~8주 후)</li>
+      <li>혈압 가정 측정 기록 정리 — 아침·저녁 각 2회, 2주치를 들고 가면 약 조정이 정확해집니다</li>
+      <li>체중·허리둘레 재측정</li>
+    </ul>
+  </div>
+  <div class="tl">
+    <div class="dot"></div>
+    <div class="when">6개월 ~ 1년</div>
+    <ul>
+      <li>혈당·당화혈색소 재검</li>
+      <li>담낭 초음파 추적 (수술을 안 한 경우)</li>
+      <li>위내시경, 흉부영상, 신장 초음파 추적</li>
+      <li>다음 종합검진 시 중성지방·HDL 수치 반드시 확인</li>
+    </ul>
+  </div>
+
+  <h2 class="sec">🎯 생활 목표</h2>
+
+  <table>
+    <thead><tr><th>항목</th><th class="c">현재</th><th class="c">목표</th><th>왜</th></tr></thead>
+    <tbody>
+      <tr><td><b>체중</b></td><td class="c">BMI 29.5</td><td class="c">7~10% 감량<br>(BMI 25 미만)</td><td>대한비만학회 기준 BMI 25~29.9는 <b>1단계 비만</b>입니다. 검진지의 "과체중"은 서구 기준 표현입니다. 7% 감량만으로 당뇨 진행 위험이 절반 이하로 떨어집니다.</td></tr>
+      <tr><td><b>허리둘레</b></td><td class="c">94.1 cm</td><td class="c">90 cm 미만</td><td>남성 복부비만 기준선. 내장지방이 혈압·혈당·콜레스테롤·동맥경화의 공통 원인입니다.</td></tr>
+      <tr><td><b>혈압</b></td><td class="c">132/92</td><td class="c">130/80 미만</td><td>칼슘 스코어 양성 + 당뇨병전단계라면 더 낮은 목표를 적용합니다.</td></tr>
+      <tr><td><b>운동</b></td><td class="c">—</td><td class="c">주 150분 이상<br>중강도 유산소</td><td>1회 30분 이상, 주 3회 이상. 혈당·혈압·지질에 동시에 작용합니다.</td></tr>
+      <tr><td><b>수분</b></td><td class="c">—</td><td class="c">하루 2~2.5L</td><td>요로결석 재발 예방의 가장 확실한 방법입니다. 결석 제거 후에도 계속 유지하십시오.</td></tr>
+      <tr><td><b>식이</b></td><td class="c">—</td><td class="c">저염 · 저당 · 동물성지방 제한</td><td>짠 음식은 혈압과 위축성 위염 모두에 불리합니다. 나트륨 제한은 요로결석 예방에도 도움이 됩니다.</td></tr>
+      <tr><td><b>금연 · 절주</b></td><td class="c">—</td><td class="c">금연 / 절주</td><td>흡연 중이라면 관상동맥 석회화와 위축성 위염 양쪽에서 가장 큰 단일 위험인자입니다.</td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="sec">💬 진료실에서 물어볼 것</h2>
+
+  <div class="qbox">
+    <h3>비뇨의학과</h3>
+    <ol>
+      <li>CT상 결석의 실제 크기와 정확한 위치는 어디입니까? (초음파 21mm가 맞습니까?)</li>
+      <li>수신증이 얼마나 진행됐고, <b>우측 신장 기능이 현재 몇 % 남아 있습니까?</b></li>
+      <li>스텐트를 먼저 넣어야 합니까, 바로 제거가 가능합니까?</li>
+      <li>수술까지 대기하는 동안 조심해야 할 신호는 무엇입니까?</li>
+      <li>결석 성분 분석을 해서 재발 예방 식이를 정할 수 있습니까?</li>
+    </ol>
+  </div>
+
+  <div class="qbox">
+    <h3>순환기내과</h3>
+    <ol>
+      <li>칼슘 스코어 87점은 제 나이·성별 기준으로 몇 백분위수입니까?</li>
+      <li>스타틴을 시작해야 합니까? 제 <b>LDL 목표치는 몇입니까?</b></li>
+      <li>혈압약 조정이 필요합니까? (이완기 92)</li>
+      <li>운동부하검사나 관상동맥 CT 조영술이 추가로 필요합니까?</li>
+      <li>아스피린을 먹어야 하는 상황입니까?</li>
+    </ol>
+  </div>
+
+  <div class="qbox">
+    <h3>소화기내과 · 외과</h3>
+    <ol>
+      <li>빌리루빈 상승이 담석 때문입니까, 체질(길버트 증후군)입니까? <b>직접/간접 분획</b>을 확인해 주십시오.</li>
+      <li>25.6mm 담석 + 선근종증인데 지금 담낭절제술을 고려할 상황입니까?</li>
+      <li>총담관에 돌이 내려갔을 가능성은 배제됐습니까?</li>
+      <li>검진 때 헬리코박터 검사를 했습니까? 안 했다면 지금 할 수 있습니까?</li>
+      <li>위축성 위염의 범위(위축·장상피화생 정도)는 어느 단계입니까?</li>
+    </ol>
+  </div>
+
+  <div class="note">
+    <b>이 문서에 대하여</b><br>
+    저는 의사가 아니고, 이 문서는 진단이나 처방이 아닙니다. 검진 결과지에 적힌 소견을 공개된 진료 지침과 대조해
+    <b>무엇이 더 급하고 어느 과에 가야 하는지</b> 정리한 진료 준비 자료입니다.
+    실제 판단은 영상과 전체 수치를 직접 보는 담당 의사만 할 수 있습니다.<br><br>
+    특히 <b>검진 결과지보다 이 문서가 더 급하게 표현한 항목</b>이 두 개 있습니다 —
+    요관 결석(결과지: "전문의와 상담" → 이 문서: 1~2주 내 필수)과
+    담낭 결석(결과지: "1년 후 추적" → 이 문서: 외과 상담 권장).
+    결석 크기와 수신증 동반, 담석 크기와 선근종증 동반이라는 조합 때문이며,
+    이 판단이 맞는지도 진료실에서 확인받으시기 바랍니다.<br><br>
+    중성지방과 HDL 콜레스테롤 수치가 결과지에 없어 대사증후군 진단 항목 2개는 평가하지 못했습니다.
+    다음 진료 때 확인해 보십시오.
+
+    <div class="src">
+      <b>참고 자료</b><br>
+      · <a href="https://uroweb.org/guidelines/urolithiasis/chapter/guidelines" target="_blank" rel="noopener">EAU Guidelines on Urolithiasis — 요관결석 자연배출률 및 적극적 제거 적응증</a><br>
+      · <a href="https://www.auanet.org/guidelines-and-quality/guidelines/surgical-management-of-kidney-and-ureteral-stones" target="_blank" rel="noopener">AUA — Surgical Management of Kidney and Ureteral Stones (2025)</a><br>
+      · <a href="https://worldgastroenterology.org/guidelines/global-guidelines/asymptomatic-gallstone-disease/asymptomatic-gallstone-disease-english" target="_blank" rel="noopener">World Gastroenterology Organisation — 무증상 담석 진료지침 (3cm 초과 결석의 담낭암 위험 언급)</a><br>
+      · <a href="https://www.aafp.org/pubs/afp/issues/2022/0700/diagnostic-tests-coronary-artery-calcium-scoring.html" target="_blank" rel="noopener">AAFP — Coronary Artery Calcium Scoring (CAC 1~99 구간 위험도 1.9배)</a><br>
+      · <a href="https://health.kdca.go.kr/healthinfo/biz/health/gnrlzHealthInfo/gnrlzHealthInfo/gnrlzHealthInfoView.do?cntnts_sn=6694" target="_blank" rel="noopener">질병관리청 국가건강정보포털 — 한국 비만 진단기준 (BMI 25~29.9 = 1단계 비만, 남성 허리둘레 90cm)</a><br>
+      · <a href="https://www.frontiersin.org/journals/medicine/articles/10.3389/fmed.2025.1504749/full" target="_blank" rel="noopener">헬리코박터 관련 만성 위축성 위염과 위암 위험 (2025)</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>종합건강검진 결과 분석 · 2026-09-04 작성 · 비공개 문서</footer>
+
+</body>
+</html>
