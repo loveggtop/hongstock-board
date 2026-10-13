@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>은퇴자 맞춤형 ETF 투자 전략</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif; background: #f0f4f8; color: #222; line-height: 1.75; }
+header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: #fff; padding: 32px 24px 28px; }
+header .inner { max-width: 860px; margin: 0 auto; }
+header h1 { font-size: 1.55rem; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 8px; line-height: 1.4; }
+header .meta { font-size: 0.85rem; opacity: 0.78; line-height: 1.7; }
+header .meta a { color: #9fd0ff; text-decoration: none; }
+header .meta a:hover { text-decoration: underline; }
+.back { display: inline-block; margin-bottom: 14px; font-size: 0.82rem; color: #cfe6ff; text-decoration: none; }
+.back:hover { text-decoration: underline; }
+.container { max-width: 860px; margin: 24px auto 48px; padding: 0 16px; }
+.card { background: #fff; border-radius: 12px; box-shadow: 0 1px 6px rgba(0,0,0,.09); padding: 24px 24px 20px; margin-bottom: 18px; }
+.card h2 { font-size: 1.15rem; color: #0f3460; margin-bottom: 14px; padding-bottom: 9px; border-bottom: 2px solid #dde8f5; }
+.card h3 { font-size: 0.98rem; color: #16213e; margin: 18px 0 8px; }
+.card p { margin-bottom: 10px; font-size: 0.95rem; }
+.card ul, .card ol { margin: 6px 0 10px 20px; font-size: 0.95rem; }
+.card li { margin-bottom: 7px; }
+.card ul ul { margin-top: 6px; }
+.summary { border-left: 5px solid #0f3460; background: #f5f9ff; }
+.formula { text-align: center; background: #fff8e1; border: 1px solid #ffe08a; border-radius: 10px; padding: 14px; margin: 12px 0; font-size: 1.15rem; font-weight: 700; color: #7a5a00; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 14px 0 6px; }
+.stat { background: #f5f9ff; border: 1px solid #dde8f5; border-radius: 10px; padding: 14px 12px; text-align: center; }
+.stat .num { font-size: 1.3rem; font-weight: 700; color: #0f3460; }
+.stat .label { font-size: 0.78rem; color: #666; margin-top: 2px; }
+table { width: 100%; border-collapse: collapse; margin: 10px 0 8px; font-size: 0.9rem; }
+th { background: #edf1f7; color: #44506a; text-align: left; padding: 10px 12px; font-size: 0.8rem; }
+td { padding: 10px 12px; border-top: 1px solid #eef0f6; vertical-align: top; }
+.tag { display: inline-block; font-size: 0.72rem; font-weight: 700; padding: 2px 9px; border-radius: 10px; margin-right: 6px; }
+.tag.good { background: #e6f4ea; color: #1e7e34; }
+.tag.bad { background: #fdecea; color: #c0392b; }
+.tag.note { background: #eef2ff; color: #3b4cca; }
+.warn { background: #fdf0ef; border: 1px solid #f3c9c5; border-radius: 10px; padding: 12px 16px; font-size: 0.92rem; margin: 10px 0; }
+.disclaimer { font-size: 0.8rem; color: #777; line-height: 1.6; padding: 14px 4px 0; }
+footer { text-align: center; font-size: 0.78rem; color: #888; padding: 8px 0 32px; }
+@media (max-width: 600px) {
+  header h1 { font-size: 1.25rem; }
+  .card { padding: 18px 16px 14px; }
+  table { font-size: 0.82rem; }
+  th, td { padding: 8px 8px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="inner">
+    <a class="back" href="index.html">← 보고서 게시판으로</a>
+    <h1>은퇴자 맞춤형 ETF 투자 전략<br><span style="font-size:1rem;font-weight:500;opacity:.85">은퇴자 및 고령층을 위한 ETF 투자 전략 및 자산 배분 브리핑</span></h1>
+    <div class="meta">
+      작성일 2026-10-13 · NotebookLM 브리핑 문서 기반<br>
+      원본 영상:
+      <a href="https://www.youtube.com/watch?v=e3EY2JJMgDw" target="_blank" rel="noopener">https://www.youtube.com/watch?v=e3EY2JJMgDw</a>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <section class="card summary">
+    <h2>1. 핵심 요약</h2>
+    <p>기대수명 100세 시대에 60대 이상 은퇴자와 투자 초보자가 갖춰야 할 주식·ETF 투자 방향과 자산 배분 전략을 정리했습니다.</p>
+    <ul>
+      <li><strong>투자의 당위성과 시기</strong>: 60대 이후에도 남은 생애주기(약 40년)를 고려하면 노후 자금 운용을 위한 투자는 필수이며, 가장 좋은 시점은 '바로 지금'입니다.</li>
+      <li><strong>실패와 불안의 근원</strong>: 단기 마켓 타이밍 시도, 여유 자금이 아닌 생활비·전세 자금·차입금(빚) 활용, 숲(장기)을 보지 못하고 나무(단기 평단가 변화)만 보는 태도가 불안을 키웁니다.</li>
+      <li><strong>연령별 자산 배분 원칙</strong>: '110 − 자기 나이' 공식으로 주식 비중을 정합니다. 60대는 주식 비중을 40~50%로 낮추고, 나머지는 채권·리츠(REITs)·고배당 ETF처럼 변동성이 적고 이자·배당을 주는 자산에 분산합니다.</li>
+      <li><strong>채권형 ETF 활용</strong>: 개별 채권은 최소 매수 단위(500억~1,000억 원)가 커서, 개인은 국채·회사채와 다양한 만기가 섞인 채권형 ETF를 쓰는 것이 최선입니다.</li>
+      <li><strong>운용과 인출 전략</strong>: 연금저축펀드 계좌로 강제 장기 보유(최소 5~10년 이상)하고, 자산이 형성된 뒤에는 연 4% 수준만 인출하거나 채권 이자·배당금으로 생활비를 충당합니다.</li>
+    </ul>
+    <div class="stats">
+      <div class="stat"><div class="num">110 − 나이</div><div class="label">주식 비중(%) 공식</div></div>
+      <div class="stat"><div class="num">40~50%</div><div class="label">60대 권장 주식 비중</div></div>
+      <div class="stat"><div class="num">5~10년</div><div class="label">최소 인출 유예 기간</div></div>
+      <div class="stat"><div class="num">연 4%</div><div class="label">안전 인출률</div></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>2. 고령층 투자자의 불안 원인과 마인드셋 전환</h2>
+    <h3>2.1 불안이 생기는 구조적 원인</h3>
+    <p>60대 초반처럼 늦게 투자를 시작한 은퇴자가 느끼는 불안은 경험 부족이 아니라 <strong>'현명함의 부재'</strong>와 잘못된 자금 운용에서 나옵니다.</p>
+    <ol>
+      <li><strong>단기 시세 변화에 대한 과도한 몰입</strong>: 매수 후 단기 평가 손실이나 평균 단가 상승에 연연하는 것은 운전하면서 바로 앞 1미터만 보는 것과 같아 어지럼증과 불안을 유발합니다.</li>
+      <li><strong>마켓 타이밍 추구</strong>: 오를 때 계속 사고 떨어질 때는 두려워 사지 않거나, 단기 시장 방향을 맞히려는 시도는 투자가 아니라 '도박'에 가깝습니다.</li>
+      <li><strong>자금의 성격 오류</strong>: 투자금에 생활비, 전세 자금, 빚(차입금)이 섞여 있으면 주가 하락 시 원금 손실의 공포를 이겨낼 수 없습니다.</li>
+    </ol>
+
+    <h3>2.2 현명한 투자자의 태도</h3>
+    <ul>
+      <li><strong>장기적 관점 유지</strong>: 1만 원에 산 주식이 12,000원, 13,000원으로 오르거나 9,000원으로 떨어지는 단기 변동성은, 10년 뒤 주가가 50,000원이 된다면 의미가 없습니다.</li>
+      <li><strong>여유 자금의 철칙</strong>: 5년 또는 10년 뒤에 찾을 '여유 자금'으로만 투자하면 쌀 때와 비쌀 때를 가리지 않고 기계적으로 꾸준히 사 모을 수 있습니다.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>3. 연령대별 자산 배분 전략과 포트폴리오 구성</h2>
+    <p>60대 은퇴자는 젊은 층과 같은 위험 자산 비중을 가져가서는 안 되며, 나이에 맞는 자산 구성(Asset Allocation)이 필요합니다.</p>
+
+    <h3>3.1 주식 비중 산출 공식</h3>
+    <div class="formula">주식 비중(%) = 110 − 본인 나이</div>
+    <table>
+      <thead><tr><th>연령대</th><th>공식</th><th>권장 주식 비중</th><th>주요 자산 구성 전략</th></tr></thead>
+      <tbody>
+        <tr><td><strong>30대</strong></td><td>110 − 30</td><td><strong>80% ~ 100%</strong></td><td>투자 가능 기간(30년 이상)이 길어 100% 주식 투자도 가능</td></tr>
+        <tr><td><strong>60대</strong></td><td>110 − 60</td><td><strong>40% ~ 50%</strong></td><td>주식 비중을 줄이고 채권·리츠·배당 ETF 등 안정성 자산 확대</td></tr>
+      </tbody>
+    </table>
+
+    <h3>3.2 60대 이상 은퇴자의 포트폴리오 다변화</h3>
+    <ul>
+      <li><strong>주식형 ETF</strong>: 전체 자산의 40~50% 수준을 유지합니다.</li>
+      <li><strong>고배당 ETF</strong>: 주식 자산 안에서 연 6~7% 수준의 높은 배당을 주는 ETF 비중을 늘려 현금 흐름을 만듭니다.</li>
+      <li><strong>채권형 ETF</strong>: 변동성이 적고 정기적인 이자 수익을 주는 채권 자산 비중을 확대합니다.</li>
+      <li><strong>리츠(REITs) ETF</strong>: 부동산 관련 수익을 배당 형태로 받습니다.</li>
+      <li><strong>부동산 자산 재조정</strong>: 보유 자산 중 부동산 비중이 과도하게 높다면 줄여서 금융 자산과 분산 포트폴리오로 옮길 필요가 있습니다.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>4. 채권 및 채권형 ETF의 개념과 활용법</h2>
+    <p>주식이 기업의 주인이 되는 권리라면, 채권은 기업이나 국가가 자금을 조달하려고 발행하는 채무 증서입니다.</p>
+
+    <h3>4.1 채권의 기본 구조와 종류</h3>
+    <ul>
+      <li><strong>채권의 요소</strong>: 액면가(예: 1만 원), 만기(5년, 10년, 20년, 30년 등), 표면 이자율(예: 5%)로 구성됩니다. 만기에 원금을 돌려받고 주기적으로 이자를 받습니다.</li>
+      <li><strong>만기별 특징</strong>: 만기가 많이 남은 장기채일수록 이자율(수익률)이 높습니다. 이자율이 매우 낮은 단기채는 노후 준비 목적에 적합하지 않습니다.</li>
+      <li><strong>발행 주체별 구분</strong>
+        <ul>
+          <li><strong>국채(국가 발행)</strong>: 안전성이 가장 높지만 이자율은 상대적으로 낮습니다.</li>
+          <li><strong>회사채(기업 발행)</strong>: 국가보다 위험이 있는 대신, 적절히 위험을 관리하면 국채보다 높은 이자율을 받을 수 있습니다.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>4.2 개인 투자자에게 채권형 ETF가 필요한 이유</h3>
+    <ul>
+      <li><strong>최소 투자 단위 한계 극복</strong>: 개별 채권은 기관 중심 거래라 단위가 500억 원, 1,000억 원 등으로 매우 커서 개인이 직접 사기 어렵습니다.</li>
+      <li><strong>전문적 포트폴리오 구성</strong>: 채권 ETF는 펀드매니저가 국채, 회사채, 다양한 만기(5년, 10년, 30년 등)를 묶어 구성하므로 개인이 만기 구조를 일일이 챙길 필요가 없습니다.</li>
+      <li><strong>유동성 확보</strong>: 만기까지 기다리지 않고 주식처럼 언제든 시장에서 팔아 현금화할 수 있습니다.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>5. 실행 방안과 인출 전략</h2>
+    <h3>5.1 계좌 개설과 매수 방식</h3>
+    <ul>
+      <li><strong>연금저축펀드 계좌 활용</strong>: 5년 이상 유지라는 강제성이 장기 투자를 가능하게 하므로, 가장 먼저 개설해야 할 필수 계좌입니다.</li>
+      <li><strong>자동 적립식 매수</strong>: 매달 정해진 날(예: 매월 15일)에 일정 금액을 자동으로 사고, 매일 시세를 들여다보지 않는 것이 바람직합니다.</li>
+      <li><strong>소수점 투자 경계</strong>: 하루 10원, 100원 단위의 소수점 투자는 진정성이 부족하다는 지적입니다. 노후 준비라면 본인이 할 수 있는 최대한의 금액을 진지하게 투자해야 합니다.</li>
+    </ul>
+
+    <h3>5.2 자금 인출 전략</h3>
+    <ul>
+      <li><strong>인출 시점 지연</strong>: 투자를 시작한 뒤 최소 5~10년은 인출하지 않고 자산을 키웁니다. 단기간 안에 쓸 돈이라면 예금에 두는 것이 맞습니다.</li>
+      <li><strong>안전 인출률 룰</strong>: 5~10년 운용해 노후 자금이 1억 원 정도 쌓였다면, 원금을 지키면서 살아가기 위해 <strong>연 4% 수준</strong>만 인출해 생활비로 쓰는 것이 적절합니다.</li>
+      <li><strong>이자·배당 중심의 생활비 충당</strong>: 고령층은 포트폴리오 안의 채권 이자와 고배당 ETF 배당금으로 원금을 훼손하지 않고 생활비를 충당하는 구조를 만들어야 합니다.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>6. 투자 위험 요소와 대원칙</h2>
+    <div class="warn"><span class="tag bad">금지</span><strong>빚(차입) 투자는 절대 하지 않습니다.</strong> 빚을 내거나 여유 자금이 아닌 돈으로 투자하면 변동성을 견디지 못하고 실패합니다.</div>
+    <ul>
+      <li><strong>타인·전문가 의존 금지, 주체성 확립</strong>
+        <ul>
+          <li>소위 '전문가'나 '리딩방'의 감언이설은 개인의 자금을 노리는 것이며, 그들은 전문가가 아니라는 경고입니다.</li>
+          <li>자신의 삶과 노후는 스스로 책임져야 하므로, 스스로 전문가라는 인식으로 결정해야 합니다.</li>
+        </ul>
+      </li>
+      <li><strong>ETF 선택의 용이성</strong>: 삼성, 미래에셋, 한국투자 등 여러 운용사의 ETF가 있지만, 슈퍼마켓에서 라면 브랜드(삼양, 롯데, 농심 등)를 고르는 것처럼 본질은 같으므로 복잡하게 생각할 필요가 없습니다.</li>
+      <li><strong>지금 당장 시작</strong>: 20대든 50대든 60대든 투자는 길게 보고 평생 하는 것이며, 시작하기 가장 좋은 시점은 '지금 이 순간'입니다.</li>
+    </ul>
+  </section>
+
+  <p class="disclaimer">
+    ※ 이 문서는 유튜브 영상 내용을 NotebookLM으로 요약·정리한 참고 자료이며 투자 권유가 아닙니다. 주식 비중 공식, 배당률, 인출률 등은 영상에서 소개된 일반적인 가이드라인이므로 개인의 재무 상황에 따라 달라질 수 있습니다. 투자 판단과 그 결과는 본인 책임입니다.
+  </p>
+</div>
+
+<footer>NotebookLM × YouTube 종목분석 보고서 게시판 &nbsp;|&nbsp; Powered by GitHub Pages</footer>
+</body>
+</html>
