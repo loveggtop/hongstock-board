@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>커버드콜 ETF 투자 전략 및 성과 분석 브리핑</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif;background:#f4f6fb;color:#222;line-height:1.75}
+header{background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);color:#fff;padding:36px 20px 40px}
+.wrap{max-width:900px;margin:0 auto}
+.back{display:inline-block;color:#cfd8ff;text-decoration:none;font-size:14px;margin-bottom:16px}
+.back:hover{color:#fff}
+h1{font-size:28px;line-height:1.35;margin-bottom:12px}
+.meta{font-size:14px;color:#b9c3e6}
+.meta a{color:#ffd166;text-decoration:none}
+main{padding:28px 20px 60px}
+.card{background:#fff;border-radius:14px;padding:26px 28px;margin-bottom:20px;box-shadow:0 2px 10px rgba(15,52,96,.07)}
+.toc h2{font-size:17px;margin-bottom:10px;color:#0f3460}
+.toc ol{padding-left:20px}
+.toc a{color:#16213e;text-decoration:none}
+.toc a:hover{text-decoration:underline}
+.summary{border-left:5px solid #0f3460;background:#eef2fb}
+h2{font-size:21px;color:#0f3460;margin-bottom:14px}
+h3{font-size:17px;color:#16213e;margin:18px 0 8px}
+p{margin-bottom:10px}
+ul{padding-left:20px;margin-bottom:10px}
+li{margin-bottom:6px}
+ul ul{margin-top:6px}
+.hl{background:#fff3c4;padding:0 3px;border-radius:3px}
+.tbl{overflow-x:auto;margin:12px 0}
+table{border-collapse:collapse;width:100%;min-width:620px;font-size:14px}
+th{background:#16213e;color:#fff;padding:10px;text-align:left;white-space:nowrap}
+td{border-bottom:1px solid #e3e7f1;padding:10px;vertical-align:top}
+tr:nth-child(even) td{background:#f8f9fd}
+.note{font-size:13px;color:#666}
+.phase{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:12px 0}
+.phase div{border:1px solid #e3e7f1;border-radius:10px;padding:14px;background:#fafbfe}
+.phase b{display:block;color:#0f3460;margin-bottom:4px}
+.conclusion{background:#16213e;color:#eef1fb}
+.conclusion h2{color:#ffd166}
+.conclusion b{color:#fff}
+@media (max-width:600px){
+header{padding:26px 16px 30px}
+h1{font-size:22px}
+main{padding:20px 16px 40px}
+.card{padding:20px 18px}
+h2{font-size:19px}
+}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<a class="back" href="index.html">← 보고서 게시판으로</a>
+<h1>커버드콜 ETF 투자 전략 및 성과 분석 브리핑</h1>
+<div class="meta">브리핑 문서 · 2026-11-02 · 원본 영상: <a href="https://www.youtube.com/watch?v=7_hNBtSeNlA" target="_blank" rel="noopener">YouTube</a></div>
+</div></header>
+
+<main class="wrap">
+
+<div class="card toc">
+<h2>목차</h2>
+<ol>
+<li><a href="#summary">핵심 요약</a></li>
+<li><a href="#s1">커버드콜 ETF의 구조 및 동작 메커니즘</a></li>
+<li><a href="#s2">시장 국면별 성과 실증 분석</a></li>
+<li><a href="#s3">주요 커버드콜 ETF 상품 비교</a></li>
+<li><a href="#s4">투자 목적별 포트폴리오 구성 전략</a></li>
+<li><a href="#s5">계좌별 절세 및 매매 전략</a></li>
+<li><a href="#s6">최종 결론</a></li>
+</ol>
+</div>
+
+<div class="card summary" id="summary">
+<h2>핵심 요약 (Executive Summary)</h2>
+<p>최근 시장 변동성 확대 속에서 주목받는 국내 커버드콜 ETF의 구조적 특징, 시장 국면별 성과 시뮬레이션, 주요 상품 간 수익률 비교, 효과적인 계좌 활용 전략을 정리한 보고서입니다.</p>
+<ul>
+<li><b>핵심 구조:</b> 주식을 보유한 채 상승 여력(콜옵션)의 일부 또는 전체를 매도해 매월 현금(분배금, 월세 개념)을 확보. 시장 변동성(공포지수)이 커질수록 옵션 프리미엄(분배금 재원)이 비싸짐.</li>
+<li><b>원금 방어의 한계:</b> 상승장에서는 일반 지수 ETF보다 수익이 제한되고, 하락장에서는 프리미엄만으로 하락 폭을 막지 못함 <span class="hl">(시장 40% 폭락 시 지수 ETF와 유사하게 하락)</span>.</li>
+<li><b>옵션 매도 비중에 따른 성과 차이:</b>
+<ul>
+<li>소량 매도(연 7% 목표) <b>TIGER 200타겟위클리</b> → 상승장 추종에 유리, <span class="hl">총수익률 최고</span></li>
+<li>다량 매도(연 15% 목표) <b>KODEX 200타겟위클리</b> → 분배금은 2배 이상, 주가 상승 폭은 낮음</li>
+<li>전량 매도 <b>RISE 200위클리</b> → 강세장에서도 원금 손실(970만 원)</li>
+</ul></li>
+<li><b>투자 원칙:</b> 단일 올인 상품이 아닌 자산 배분·분할 매수 도구로 활용하고, <b>분배금까지 합친 총수익(Total Return)</b>으로 성과를 평가.</li>
+</ul>
+</div>
+
+<div class="card" id="s1">
+<h2>1. 커버드콜 ETF의 구조 및 동작 메커니즘</h2>
+<h3>1.1 기본 개념 및 수익 구조</h3>
+<p>기초 자산(주식)을 보유하면서 향후 주가가 오를 권리(콜옵션)의 일부를 미리 매도하고, 그 대가(프리미엄)를 월세 형태의 분배금으로 받는 구조입니다.</p>
+<ul>
+<li><b>수익의 본질:</b> 분배금은 ETF 자산(오른쪽 주머니)에서 차감되어 투자자(왼쪽 주머니)로 옮겨지는 것이므로, 분배금 지급 시 ETF의 순자산가치(NAV)와 주가는 그만큼 낮아짐.</li>
+<li><b>변동성과 프리미엄:</b> 공포지수(VIX 등)가 평소 20 안팎에서 50 이상으로 치솟는 등 변동성이 커질수록 옵션 가격(프리미엄)이 비싸져, 시장이 불안할수록 현금 흐름 재원이 커짐. <span class="hl">최근 한 달간 배당 커버드콜 액티브 ETF에 4,000억 원 이상 자금 유입</span>.</li>
+</ul>
+<h3>1.2 구조적 단점 및 위험요인</h3>
+<ul>
+<li><b>하락 방어력의 한계:</b> 급락 시 옵션 매도 수익만으로 주가 하락 폭을 메꿔주지 못함.</li>
+<li><b>상승장 수익 제약:</b> 매도한 옵션 때문에 상승 수익 상단에 캡(Cap)이 씌워짐.</li>
+<li><b>원금 손실 가능성:</b> 예금자 보호가 되지 않는 투자형 상품.</li>
+</ul>
+</div>
+
+<div class="card" id="s2">
+<h2>2. 시장 국면별 성과 실증 분석 (1,000만 원 투자 시뮬레이션)</h2>
+<p>지난 1년간 초기 투자금 1,000만 원과 수령 분배금을 합산해 분석한 결과입니다.</p>
+<div class="phase">
+<div><b>📈 상승장 (3월 말~6월)</b>지수 ETF ≈ TIGER 타겟위클리(1,995만 원) &gt; KODEX 타겟위클리(1,900만 원)</div>
+<div><b>📉 하락장 (6월 고점~7월 말, 지수 -40%)</b>지수 ETF와 커버드콜 3종 모두 약 600만 원 수준으로 동일하게 하락</div>
+<div><b>➡️ 횡보장 (8월 중순~9월)</b>3개 상품 모두 약 1,000만 원 수준으로 비슷하게 유지</div>
+</div>
+<h3>국면별 시사점</h3>
+<ul>
+<li><b>상승 국면:</b> 오를 몫을 적게 파는 상품일수록 지수 상승률을 그대로 추종. 분배금을 미리 받는 대신 자산 가치 상승 일부를 양보하는 구조.</li>
+<li><b>하락 국면:</b> 40% 이상 폭락장에서는 옵션 프리미엄도 하락을 막지 못해 지수 ETF와 같은 수준으로 자산이 감소. <span class="hl">한 번에 매수하기보다 분할 매수(DCA)가 필수</span>.</li>
+</ul>
+</div>
+
+<div class="card" id="s3">
+<h2>3. 주요 커버드콜 ETF 상품 유형별 비교</h2>
+<p>옵션 매도 비중과 기초 자산 구성에 따라 주가 상승률, 분배금, 총수익률에 명확한 차이가 납니다.</p>
+<h3>3.1 성과 데이터 비교 (1,000만 원 투자, 1년 경과)</h3>
+<div class="tbl"><table>
+<thead><tr><th>상품명</th><th>옵션 매도 방식 / 목표</th><th>1년 후 주가 자산</th><th>1년간 받은 분배금</th><th>총수익</th></tr></thead>
+<tbody>
+<tr><td><b>TIGER 200타겟위클리</b></td><td>오를 몫 일부 매도 (연 ~7% 목표)</td><td>약 1,490만 원</td><td>약 115만 원</td><td><b>약 1,600만 원</b></td></tr>
+<tr><td><b>KODEX 200타겟위클리</b></td><td>오를 몫 많이 매도 (연 ~15% 목표)</td><td>약 1,250만 원</td><td>약 250만 원</td><td>약 1,500만 원</td></tr>
+<tr><td><b>RISE 200위클리</b></td><td>오를 몫 전부 매도 (100% 매도)</td><td>약 970만 원</td><td>(상대적 고분배)</td><td>원금 손실 기록</td></tr>
+<tr><td><b>TIGER 배당 커버드콜 액티브</b></td><td>배당 우수주 + 커버드콜 결합</td><td>-</td><td>월 약 20만 원 (9월 기준)</td><td>약 1,040만 원</td></tr>
+</tbody></table></div>
+<p class="note">주: 지수가 60% 이상 상승했던 연간 데이터 기준.</p>
+<h3>3.2 상품별 특징</h3>
+<ul>
+<li><b>TIGER 200타겟위클리:</b> 옵션 매도량을 최소화해 상승장 추종력을 높임. 주가 상승분(1,490만 원)이 커서 총수익(1,600만 원) 최우수.</li>
+<li><b>KODEX 200타겟위클리:</b> 분배금(250만 원)은 TIGER 대비 2배 이상이나, 주가 상승 제한으로 총수익(1,500만 원)은 더 낮음.</li>
+<li><b>RISE 200위클리:</b> 오를 몫을 전량 매도해 강세장에서도 평가금액이 970만 원으로 줄어 원금 훼손 발생.</li>
+<li><b>TIGER 배당 커버드콜 액티브:</b> 배당성향이 높거나 배당을 늘리는 우수 기업 + 커버드콜. 1,000만 원 투자 시 월 약 20만 원의 안정적 현금 흐름. 강세장 총수익(1,040만 원)은 낮지만 안정적 월세 흐름이 강점.</li>
+</ul>
+</div>
+
+<div class="card" id="s4">
+<h2>4. 투자 목적별 포트폴리오 구성 전략</h2>
+<p>시장 방향성은 예측하기 어려우므로 투자 목적과 성향에 따라 비중을 정해 운용해야 합니다.</p>
+<div class="phase">
+<div><b>① 성장·자산 모으기 (시세 차익 중심)</b>메인: 성장형 지수 ETF<br>서브: 저매도 커버드콜(TIGER 200타겟위클리 등) 소량 편입</div>
+<div><b>② 현금 흐름 확보 (당장 현금 필요)</b>커버드콜 비중 확대 — 고분배형 KODEX 타겟위클리 또는 TIGER 배당 커버드콜 액티브</div>
+<div><b>③ 리밸런싱</b>지수가 크게 올라 시세 차익이 나면 일부 이익 실현 후 현금 흐름 상품으로 이동</div>
+</div>
+<h3>매수 및 운용 원칙</h3>
+<ul>
+<li><b>분할 매수(DCA):</b> 하락장·세일 기간에 주기적으로 나눠 매수해 평균 단가를 낮춤.</li>
+<li><b>공포에 매수, 환희에 부분 이익 실현:</b> 폭락 시 분할 매수, 급등 시 일부를 현금성·분배형 자산으로 이동.</li>
+<li><b>평가 기준:</b> 분배금 액수만 보지 말고 <span class="hl">받은 돈(분배금) + 남은 주가 잔액</span>을 합친 실제 총수익을 지속 관찰.</li>
+</ul>
+</div>
+
+<div class="card" id="s5">
+<h2>5. 계좌별 절세 및 매매 전략</h2>
+<h3>5.1 ISA vs 일반 계좌 활용</h3>
+<ul>
+<li><b>과세 특징:</b> 국내 주식형 커버드콜 ETF는 원래 세금 부담이 상대적으로 적음.</li>
+<li><b>ISA 한도:</b> 연간 납입 한도 2,000만 원, 납입 원금 이상 인출 시 제약.</li>
+<li><b>계좌 배분 우선순위:</b>
+<ul>
+<li>ISA 한도가 부족하면 해외 투자 ETF 등 과세 부담이 큰 상품을 ISA에 우선 배치.</li>
+<li>매달 생활비로 인출해야 하거나 ISA 한도가 찼다면, 국내 커버드콜 ETF는 일반 계좌에 담아도 무방.</li>
+<li>ISA 안에서 배당 ETF와 커버드콜 ETF를 함께 담아 복리 재투자하는 것도 유효.</li>
+</ul></li>
+</ul>
+<h3>5.2 수수료(보수)</h3>
+<p>커버드콜 ETF 운용보수는 <b>약 0.5% 수준</b>으로 일반 지수 ETF보다 높을 수 있어 참고가 필요합니다.</p>
+</div>
+
+<div class="card conclusion" id="s6">
+<h2>6. 최종 결론</h2>
+<ul>
+<li><b>원금 보장 상품이 아니다:</b> 급락 시 주가 하락 위험에 그대로 노출되며 예금자 보호 대상이 아님.</li>
+<li><b>분배금 착시 경계:</b> 높은 분배금 뒤의 주가 하락(원금 훼손) 가능성을 확인하고 총수익(주가+분배금) 관점으로 접근.</li>
+<li><b>목적별 분할 매수:</b>
+<ul>
+<li>자산 형성기: 지수 ETF 위주 + 소량의 저매도 커버드콜</li>
+<li>현금 필요기: 배당형·고매도 커버드콜 비중 확대</li>
+</ul></li>
+<li>하락 시 분할 매수, 상승 시 리밸런싱으로 <b>평균 단가 관리</b>가 성공 투자의 핵심.</li>
+</ul>
+</div>
+
+</main>
+</body>
+</html>
