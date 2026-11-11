@@ -45,6 +45,7 @@ td.del { width: 64px; text-align: center; }
 .delBtn:disabled { opacity: 0.5; cursor: not-allowed; }
 footer { text-align: center; padding: 28px 24px; font-size: 0.75rem; color: #b0b8c4; border-top: 1px solid #e8ecf2; margin-top: 8px; }
 @media (max-width: 600px) { td.num { display: none; } td.date { width: 76px; font-size: 0.75rem; } }
+.ytlink{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:10px;background:#ffe5e5;color:#c4302b;font-size:11px;font-weight:700;text-decoration:none;white-space:nowrap}.ytlink:hover{background:#c4302b;color:#fff}
 </style>
 </head>
 <body>
@@ -81,31 +82,31 @@ const GH_OWNER = "loveggtop";
 const GH_REPO = "hongstock-board";
 const GH_PATH = "index.html";
 const ALL_REPORTS = [
-{title:"클로드 프롬프트만으로 제작하는 기업형 홈페이지 구축 프로세스 및 시사점",date:"2026-11-11",url:"claude-prompt-corporate-homepage-process.html",tag:"guide"},
-{title:"클로드(Claude) AI와 아임웹을 활용한 노코드 웹사이트 제작 기법 및 수익화 전략",date:"2026-11-10",url:"claude-imweb-nocode-website-guide.html",tag:"guide"},
+{title:"클로드 프롬프트만으로 제작하는 기업형 홈페이지 구축 프로세스 및 시사점",date:"2026-11-11",url:"claude-prompt-corporate-homepage-process.html",yt:["1JR58iizG7g"],tag:"guide"},
+{title:"클로드(Claude) AI와 아임웹을 활용한 노코드 웹사이트 제작 기법 및 수익화 전략",date:"2026-11-10",url:"claude-imweb-nocode-website-guide.html",yt:["sUG01AUl8FY"],tag:"guide"},
 {title:"보유종목 손실 점검 보고서 (2026-11-05)",date:"2026-11-05",url:"portfolio-loss-hold-review-2026-11-05.html",tag:"guide"},
-{title:"소득 공백기 극복 및 자산 증식을 위한 핵심 전략 브리핑",date:"2026-11-04",url:"income-gap-asset-growth-briefing-2026-11-04.html",tag:"guide"},
-{title:"은퇴 후 연 6% 배당 수익 창출 및 자산 관리 전략",date:"2026-11-04",url:"retirement-6pct-dividend-strategy-2026-11-04.html",tag:"guide"},
-{title:"거대한 부의 갈림길과 매크로 시장 전망 브리핑 보고서",date:"2026-11-03",url:"macro-crossroads-briefing-2026-11-03.html",tag:"guide"},
-{title:"커버드콜 ETF 투자 전략 및 성과 분석 브리핑",date:"2026-11-02",url:"covered-call-etf-strategy-1year.html",tag:"guide"},
-{title:"현금 보유의 위험성과 현금성 자산(파킹형 ETF) 활용 전략",date:"2026-10-26",url:"cash-equivalents-parking-etf-strategy.html",tag:"guide"},
-{title:"IRP 퇴직연금 수령 전략 및 퇴직소득세 절세 방안",date:"2026-10-26",url:"irp-pension-withdrawal-tax-strategy.html",tag:"guide"},
-{title:"노후 자산 관리 및 월배당 ETF 포트폴리오 구성 전략",date:"2026-10-21",url:"monthly-dividend-etf-retirement-cashflow.html",tag:"guide"},
-{title:"존리의 주식 투자 철학과 금융 문맹 탈출 전략",date:"2026-10-15",url:"john-lee-investment-philosophy.html",tag:"guide"},
-    {title:"ISA(개인자산관리계좌) 시장 실태 및 최적 활용 전략",date:"2026-10-13",url:"isa-account-optimization-strategy.html",tag:"guide"},
-    {title:"은퇴자 맞춤형 ETF 투자 전략",date:"2026-10-13",url:"retiree-etf-strategy.html",tag:"guide"},
+{title:"소득 공백기 극복 및 자산 증식을 위한 핵심 전략 브리핑",date:"2026-11-04",url:"income-gap-asset-growth-briefing-2026-11-04.html",yt:["WTss0qSbPVg"],tag:"guide"},
+{title:"은퇴 후 연 6% 배당 수익 창출 및 자산 관리 전략",date:"2026-11-04",url:"retirement-6pct-dividend-strategy-2026-11-04.html",yt:["SCgzgn-BIuM"],tag:"guide"},
+{title:"거대한 부의 갈림길과 매크로 시장 전망 브리핑 보고서",date:"2026-11-03",url:"macro-crossroads-briefing-2026-11-03.html",yt:["vwRI2St07GA"],tag:"guide"},
+{title:"커버드콜 ETF 투자 전략 및 성과 분석 브리핑",date:"2026-11-02",url:"covered-call-etf-strategy-1year.html",yt:["7_hNBtSeNlA"],tag:"guide"},
+{title:"현금 보유의 위험성과 현금성 자산(파킹형 ETF) 활용 전략",date:"2026-10-26",url:"cash-equivalents-parking-etf-strategy.html",yt:["LF6m5BUKhQc"],tag:"guide"},
+{title:"IRP 퇴직연금 수령 전략 및 퇴직소득세 절세 방안",date:"2026-10-26",url:"irp-pension-withdrawal-tax-strategy.html",yt:["YqX1Ga6OpJs"],tag:"guide"},
+{title:"노후 자산 관리 및 월배당 ETF 포트폴리오 구성 전략",date:"2026-10-21",url:"monthly-dividend-etf-retirement-cashflow.html",yt:["i0Uw89_AcY0"],tag:"guide"},
+{title:"존리의 주식 투자 철학과 금융 문맹 탈출 전략",date:"2026-10-15",url:"john-lee-investment-philosophy.html",yt:["yzFcWRov45c"],tag:"guide"},
+    {title:"ISA(개인자산관리계좌) 시장 실태 및 최적 활용 전략",date:"2026-10-13",url:"isa-account-optimization-strategy.html",yt:["nttINf-CD18"],tag:"guide"},
+    {title:"은퇴자 맞춤형 ETF 투자 전략",date:"2026-10-13",url:"retiree-etf-strategy.html",yt:["e3EY2JJMgDw"],tag:"guide"},
 {title:"그랜저 HG 블루투스 폰 등록·삭제 완전 가이드 (음성인식 고장 시 단말기 직접 조작)",date:"2026-09-01",url:"grandeur-hg-bluetooth-guide.html",tag:"guide"},
-{title:"9월 증시 진단과 실전 대응 (수급·ISA 월배당·물린주식 대응·거시경제)",date:"2026-08-28",url:"market-isa-dividend-playbook.html",tag:"guide"},
-{title:"연금·ETF 절세 실전 가이드 (4·4·2 포트폴리오·자녀증여·인출전략)",date:"2026-08-28",url:"pension-etf-tax-strategy.html",tag:"guide"},
-{title:"노후 자산관리 종합 가이드 (상속·증여 절세부터 월 배당 300만원까지)",date:"2026-08-28",url:"retirement-wealth-guide.html",tag:"guide"},
-{title:"노후 복지 주요 혜택 Best 5 — 돈줄남(김경필)",date:"2026-08-27",url:"senior-welfare-benefits-2026.html",tag:"guide"},
-{title:"증시 인사이트 종합 브리핑 (금리·원전·반도체·ETF·자산배분)",date:"2026-08-27",url:"market-insight-2026-08-27.html",tag:"guide"},
+{title:"9월 증시 진단과 실전 대응 (수급·ISA 월배당·물린주식 대응·거시경제)",date:"2026-08-28",url:"market-isa-dividend-playbook.html",yt:["4C-8oLWHhWo","0Qt8rm01SOg","Dqv6t3cOlIM","RVzQm3EsKZ0"],tag:"guide"},
+{title:"연금·ETF 절세 실전 가이드 (4·4·2 포트폴리오·자녀증여·인출전략)",date:"2026-08-28",url:"pension-etf-tax-strategy.html",yt:["uF1TvthA6y0","Dwv2y_p9098","lnfIxyC60n8","KnOUDREtqC8"],tag:"guide"},
+{title:"노후 자산관리 종합 가이드 (상속·증여 절세부터 월 배당 300만원까지)",date:"2026-08-28",url:"retirement-wealth-guide.html",yt:["GP7XnT4VOkA","VwYtJYDFokI","Wc52vsC6q4U"],tag:"guide"},
+{title:"노후 복지 주요 혜택 Best 5 — 돈줄남(김경필)",date:"2026-08-27",url:"senior-welfare-benefits-2026.html",yt:["5R6Y_FUVVIY"],tag:"guide"},
+{title:"증시 인사이트 종합 브리핑 (금리·원전·반도체·ETF·자산배분)",date:"2026-08-27",url:"market-insight-2026-08-27.html",yt:["fqFdOluYvPw","j2JIq20tsZg","Wn98anui1OQ","Hvsx5HUxfHA","dfxDUXSu_Mw","29QFxM8FXsE","NEAFxOftLBY"],tag:"guide"},
 {title:"데이터로 보는 국민임대주택 (2026년 모집공고 분석)",date:"2026-08-27",url:"https://ayounghome.com/260821.html",tag:"guide"},
 {title:"데이터로 보는 장기전세주택2 미리내집 (제8차 모집공고 분석)",date:"2026-08-27",url:"https://ayounghome.com/260826015.html",tag:"guide"},
 {title:"BMW 뉴 X3 (G45) 오너 사용 가이드",date:"2026-08-27",url:"bmw-x3-g45-owner-guide.html",tag:"guide"},
 {title:"그랜저 HG 3.0 TPMS 센서·뒷문 도어락 수리 가이드 (당진 정비소 비교)",date:"2026-08-26",url:"grandeur-hg-tpms-doorlock-repair-guide.html",tag:"guide"},
-{title:"55세, 연금 준비 늦은 걸까요? (자산 전환 전략 가이드)",date:"2026-08-20",url:"pension-age55-restart-guide.html",tag:"guide"},
-{title:"은퇴 후 월 300만 원, 어떻게 만들 수 있을까? (연금 설계 가이드)",date:"2026-08-20",url:"monthly-pension-300-guide.html",tag:"guide"},
+{title:"55세, 연금 준비 늦은 걸까요? (자산 전환 전략 가이드)",date:"2026-08-20",url:"pension-age55-restart-guide.html",yt:["w1ZgJwm-_KU"],tag:"guide"},
+{title:"은퇴 후 월 300만 원, 어떻게 만들 수 있을까? (연금 설계 가이드)",date:"2026-08-20",url:"monthly-pension-300-guide.html",yt:["Yd5qnDtW2TM"],tag:"guide"},
 {title:"25세 의대생 아들 장기 투자·절세 플랜",date:"2026-08-20",url:"25yo-medical-student-investment-tax-plan.html",tag:"guide"},
 {title:"중학생 자녀 연금저축계좌 개설·증여 설계 전략",date:"2026-08-20",url:"junior-pension-gift-strategy.html",tag:"guide"},
     {title:"자녀 자산 증식을 위한 연금저축계좌 활용 및 증여 전략 브리핑",date:"2026-08-20",url:"https://docs.google.com/document/d/1RWvjq7jpQT-qg-0vdl82m6LE26z8OcukAB--MjGAB6Y/edit",tag:"guide"},
@@ -196,7 +197,7 @@ const end=pageSize>=9999?filtered.length:Math.min(start+pageSize,filtered.length
 tbody.innerHTML=filtered.slice(start,end).map((r,i)=>{
 const tag=r.tag==='guide'?'<span class="source guide">가이드</span>':'<span class="source">NotebookLM</span>';
 const origIdx=ALL_REPORTS.indexOf(r);
-return '<tr><td class="num">'+(start+i+1)+'</td><td class="date">'+r.date+'</td><td class="title"><a href="'+r.url+'" target="_blank" rel="noopener">'+r.title+'</a>'+tag+'</td><td class="del"><button class="delBtn" onclick="deleteReportByIndex('+origIdx+',this)">삭제</button></td></tr>';
+return '<tr><td class="num">'+(start+i+1)+'</td><td class="date">'+r.date+'</td><td class="title"><a href="'+r.url+'" target="_blank" rel="noopener">'+r.title+'</a>'+tag+(r.yt?r.yt.map(function(id,k){return '<a class="ytlink" href="https://youtu.be/'+id+'" target="_blank" rel="noopener" title="원본 유튜브 영상">▶ 영상'+(r.yt.length>1?(k+1):'')+'</a>';}).join(''):'')+'</td><td class="del"><button class="delBtn" onclick="deleteReportByIndex('+origIdx+',this)">삭제</button></td></tr>';
 }).join('');
 const pg=document.getElementById('pagination');
 if(totalPages<=1){pg.innerHTML='';return;}
