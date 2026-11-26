@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>지도로 보는 바이블 — 지명 사전</title>
+<meta name="description" content="성경에 나오는 지명을 검색하고, 지명마다 설명·성경 구절·현대 지명·미니 지도·연관 지명을 사전처럼 보는 페이지. 사전/지도 전환, 다크 모드, 현대 지명, 세력도, 글씨 크기 설정을 지원합니다.">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<style>
+:root{
+  --bg:#f3efe6; --panel:#fbf8f0; --card:#ffffff; --ink:#2f2a22; --sub:#7a6e5a; --line:#e2d8c2;
+  --accent:#c0392b; --green:#1f8a5b; --green-soft:#e3f2ea; --chip:#2f2a22; --chip-ink:#fbf8f0;
+  --seg:#2f2a22; --seg-on:#fbf8f0; --seg-ink:#b9ae98; --seg-on-ink:#2f2a22; --shadow:0 10px 30px -12px rgba(0,0,0,.35);
+  --map-bg:#cfe0e6; --label-halo:#fff; --label-ink:#1f1b16;
+  --fs:16px;
+}
+:root[data-theme="dark"]{
+  --bg:#141414; --panel:#1c1c1e; --card:#232326; --ink:#ececec; --sub:#9a9a9f; --line:#333338;
+  --accent:#e0675a; --green:#4cc38a; --green-soft:#16362a; --chip:#2c2c30; --chip-ink:#ececec;
+  --seg:#2c2c30; --seg-on:#ececec; --seg-ink:#9a9a9f; --seg-on-ink:#141414; --shadow:0 10px 30px -10px rgba(0,0,0,.8);
+  --map-bg:#1d2a30; --label-halo:#111; --label-ink:#f2f2f2;
+}
+:root[data-size="large"]{--fs:18.5px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:var(--fs)}
+html,body{height:100%}
+body{font-family:"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;background:var(--bg);color:var(--ink);overflow:hidden;transition:background .2s,color .2s}
+button{font-family:inherit;color:inherit}
+#app{position:fixed;inset:0;display:flex;flex-direction:column}
+.view{position:absolute;inset:0;display:none}
+.view.on{display:block}
+
+/* ───── 사전(목록·상세) 공통 스크롤 영역 ───── */
+.scroll{position:absolute;inset:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:110px}
+.wrap{max-width:760px;margin:0 auto;padding:14px 18px 0}
+
+/* 상단 */
+.top{display:flex;align-items:center;gap:10px;padding:6px 0 10px}
+.back{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--sub);font-size:.92rem;padding:6px 2px;background:none;border:0;cursor:pointer}
+.back b{font-size:1.25rem;font-weight:400;line-height:1}
+.top .sp{flex:1}
+.top .lnk{font-size:.78rem;color:var(--sub);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:5px 10px;white-space:nowrap}
+
+/* 목록 (P8) */
+.h1{font-size:1.6rem;font-weight:900;letter-spacing:-.5px}
+.h1 small{font-size:.85rem;font-weight:600;color:var(--sub);margin-left:6px}
+.lead{color:var(--sub);font-size:.88rem;margin:4px 0 14px;line-height:1.55}
+.search{position:sticky;top:0;z-index:5;background:var(--bg);padding:6px 0 8px}
+.sbox{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:0 12px;height:46px}
+.sbox svg{flex:0 0 auto;opacity:.6}
+.sbox input{flex:1;min-width:0;border:0;outline:0;background:transparent;color:var(--ink);font-size:1rem;font-family:inherit}
+.sbox input::-webkit-search-cancel-button{display:none;-webkit-appearance:none}
+.sbox .x{border:0;background:none;color:var(--sub);font-size:1.2rem;cursor:pointer;display:none}
+.sbox.has .x{display:block}
+.chips{display:flex;gap:6px;overflow-x:auto;padding:8px 0 2px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 11px;font-size:.8rem;cursor:pointer;white-space:nowrap;color:var(--sub)}
+.chip.on{background:var(--chip);color:var(--chip-ink);border-color:var(--chip);font-weight:700}
+:root[data-theme="dark"] .chip.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.count{font-size:.78rem;color:var(--sub);margin:8px 2px 4px}
+.list{list-style:none}
+.item{display:flex;gap:12px;align-items:flex-start;padding:13px 4px;border-bottom:1px solid var(--line);cursor:pointer}
+.item:hover{background:rgba(127,127,127,.06)}
+.item .ic{flex:0 0 34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--green-soft);color:var(--green);font-size:1rem}
+.item .bd{flex:1;min-width:0}
+.item .nm{font-size:1.06rem;font-weight:800}
+.item .nm span{font-size:.78rem;font-weight:500;color:var(--sub);margin-left:6px}
+.item .sm{font-size:.86rem;color:var(--sub);margin-top:2px;line-height:1.45;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.item .md{font-size:.74rem;color:var(--green);margin-top:3px}
+.hide-modern .item .md{display:none}
+.item .ar{color:var(--sub);align-self:center}
+mark{background:rgba(201,162,75,.35);color:inherit;border-radius:3px;padding:0 1px}
+.empty{padding:40px 10px;text-align:center;color:var(--sub);font-size:.9rem;line-height:1.7}
+
+/* 상세 (P6) */
+.dt-name{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-top:4px}
+.dt-name h1{font-size:2.1rem;font-weight:900;letter-spacing:-1px}
+.dt-name .en{font-size:1.15rem;color:var(--sub);font-weight:500}
+.dt-meta{display:flex;align-items:center;gap:8px;margin-top:10px;flex-wrap:wrap}
+.dt-cat{color:var(--green);font-weight:800;font-size:.95rem;display:inline-flex;align-items:center;gap:5px;flex:1;min-width:0}
+.ibtn{border:1px solid var(--line);background:transparent;border-radius:999px;height:36px;padding:0 13px;display:inline-flex;align-items:center;gap:6px;cursor:pointer;font-size:.84rem;color:var(--ink)}
+.ibtn.sq{width:36px;padding:0;justify-content:center;border:0}
+.dt-sum{color:var(--green);font-size:1.18rem;font-weight:700;line-height:1.5;margin:14px 0 16px}
+.mini{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--map-bg)}
+#miniMap{height:250px}
+.mini .hint{position:absolute;left:12px;top:12px;z-index:500;background:rgba(255,255,255,.88);color:#6b6457;border-radius:999px;font-size:.74rem;padding:5px 11px;pointer-events:none;transition:opacity .4s}
+.mini .bar{position:relative;z-index:500;display:flex;align-items:center;gap:8px;background:#2a2a2d;color:#ececec;padding:11px 14px;font-size:.86rem}
+.mini .bar .t{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mini .bar button{border:0;background:none;color:#7fb2ff;font-weight:800;cursor:pointer;font-size:.88rem;white-space:nowrap}
+.dt-body{font-size:1.06rem;line-height:1.85;margin:18px 0 6px;word-break:keep-all}
+.dt-body p+p{margin-top:10px}
+.sec{margin-top:22px}
+.sec h3{font-size:.84rem;color:var(--sub);font-weight:700;margin-bottom:9px}
+.verses{list-style:none;display:flex;flex-direction:column;gap:8px}
+.verses li{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:.92rem;line-height:1.55}
+.verses b{color:var(--accent);font-size:.8rem;display:block;margin-bottom:2px}
+.kw{display:flex;flex-wrap:wrap;gap:8px}
+.kw button{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:8px 13px;font-size:.88rem;cursor:pointer}
+.kw button i{color:var(--green);font-style:normal}
+.kw span.tag{display:inline-flex;align-items:center;border:1px dashed var(--line);border-radius:999px;padding:8px 13px;font-size:.86rem;color:var(--sub)}
+.eras{display:flex;flex-wrap:wrap;gap:6px}
+.eras a{font-size:.8rem;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:5px 10px}
+.eras a:hover{border-color:var(--accent)}
+.note{font-size:.76rem;color:var(--sub);margin-top:22px;line-height:1.6}
+
+/* ───── 지도 보기 ───── */
+#bigMap{position:absolute;inset:0;background:var(--map-bg)}
+.leaflet-container{font-family:inherit;background:var(--map-bg)}
+.mtop{position:absolute;left:12px;right:70px;top:12px;z-index:600;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:9px 13px;box-shadow:var(--shadow)}
+.mtop .t1{font-weight:800;font-size:.92rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mtop .t2{font-size:.74rem;color:var(--sub);margin-top:1px}
+.mfab{position:absolute;right:12px;top:12px;z-index:600;display:flex;flex-direction:column;gap:8px}
+.mfab button{width:44px;height:44px;border-radius:12px;border:0;background:var(--chip);color:var(--chip-ink);font-size:1.35rem;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.25);display:grid;place-items:center}
+:root[data-theme="dark"] .mfab button{background:#3a3a3f}
+.pcard{position:absolute;left:50%;transform:translateX(-50%);bottom:96px;z-index:650;width:min(520px,calc(100% - 24px));background:var(--panel);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:13px 15px;display:none}
+.pcard.on{display:block}
+.pcard .r1{display:flex;align-items:baseline;gap:8px}
+.pcard .r1 b{font-size:1.15rem}
+.pcard .r1 span{color:var(--sub);font-size:.82rem;flex:1}
+.pcard .r1 button{border:0;background:none;color:var(--sub);font-size:1.1rem;cursor:pointer}
+.pcard p{font-size:.88rem;color:var(--sub);margin-top:4px;line-height:1.5}
+.pcard .md{font-size:.78rem;color:var(--green);margin-top:4px}
+.pcard .go{margin-top:10px;border:0;background:var(--green);color:#fff;border-radius:10px;padding:9px 14px;font-weight:800;cursor:pointer;font-size:.88rem}
+
+/* 지도 라벨·핀 */
+.pin{width:13px;height:13px;border-radius:50%;background:var(--green);border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.45)}
+.pin.geo{background:#3f78b5}
+.pin.reg{background:#a0703c}
+.pin.sel{width:22px;height:22px;background:#d33b2c;border:3px solid #fff;box-shadow:0 0 0 7px rgba(211,59,44,.28),0 1px 4px rgba(0,0,0,.4)}
+.leaflet-tooltip.pl{background:transparent;border:0;box-shadow:none;padding:0;font-weight:800;color:var(--label-ink);font-size:calc(var(--fs)*.8);text-shadow:0 0 3px var(--label-halo),0 0 3px var(--label-halo),0 0 4px var(--label-halo);text-align:center;line-height:1.2}
+.leaflet-tooltip.pl::before{display:none}
+.leaflet-tooltip.pl.sel{color:#d33b2c;font-size:calc(var(--fs)*.92)}
+.leaflet-tooltip.pl small{display:block;font-weight:600;font-size:.78em;color:var(--green)}
+.hide-modern .leaflet-tooltip.pl small{display:none}
+.rlabel{white-space:nowrap;font-weight:800;font-size:calc(var(--fs)*.78);text-align:center;text-shadow:0 0 3px var(--label-halo),0 0 3px var(--label-halo);pointer-events:none}
+.leaflet-control-scale-line{border-color:#555;border-top:0;background:rgba(255,255,255,.75);font-size:11px;color:#333}
+.leaflet-control-attribution{font-size:10px}
+:root[data-theme="dark"] .leaflet-control-attribution{background:rgba(30,30,30,.7);color:#aaa}
+:root[data-theme="dark"] .leaflet-control-attribution a{color:#9cc}
+
+/* ───── 하단 고정 바: 검색 · 사전/지도 · 설정 ───── */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:800;display:flex;align-items:center;justify-content:center;gap:12px;padding:12px 14px calc(14px + env(safe-area-inset-bottom));pointer-events:none}
+.dock>*{pointer-events:auto}
+.round{width:52px;height:52px;border-radius:50%;border:1px solid var(--line);background:var(--panel);display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow)}
+:root[data-theme="dark"] .round{background:#2a2a2d;border-color:#3a3a3f}
+.seg{display:flex;background:var(--seg);border-radius:999px;padding:4px;box-shadow:var(--shadow);width:min(300px,52vw)}
+.seg button{flex:1;border:0;background:transparent;color:var(--seg-ink);font-weight:800;font-size:1.02rem;height:44px;border-radius:999px;cursor:pointer;transition:all .2s}
+.seg button.on{background:var(--seg-on);color:var(--seg-on-ink)}
+
+/* 설정 패널 (P7) */
+.sheet{position:fixed;right:14px;bottom:84px;z-index:900;width:min(360px,calc(100% - 28px));background:#2a2a2d;color:#ececec;border-radius:20px;box-shadow:0 18px 40px -10px rgba(0,0,0,.55);padding:16px 18px 10px;display:none}
+.sheet.on{display:block}
+.sheet .hd{display:flex;align-items:center;justify-content:space-between;padding-bottom:12px;border-bottom:1px solid #3d3d42;margin-bottom:4px}
+.sheet .hd b{font-size:1.08rem}
+.sheet .hd button{border:0;background:none;color:#9a9a9f;font-size:1.3rem;cursor:pointer}
+.row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;gap:10px}
+.row label{font-size:1rem;cursor:pointer}
+.row .d{display:block;font-size:.72rem;color:#9a9a9f;margin-top:2px}
+.sw{position:relative;width:52px;height:30px;flex:0 0 auto}
+.sw input{position:absolute;opacity:0;inset:0;cursor:pointer;margin:0;z-index:1}
+.sw span{position:absolute;inset:0;background:#46464c;border-radius:999px;transition:.2s}
+.sw span::after{content:"";position:absolute;left:3px;top:3px;width:24px;height:24px;border-radius:50%;background:#1b1b1d;transition:.2s}
+.sw input:checked+span{background:#6aa2e0}
+.sw input:checked+span::after{left:25px;background:#fff}
+.sw input:focus-visible+span{outline:2px solid #fff;outline-offset:2px}
+.fsz{display:flex;background:#3a3a3f;border-radius:999px;padding:3px}
+.fsz button{border:0;background:transparent;color:#9a9a9f;padding:8px 16px;border-radius:999px;cursor:pointer;font-weight:700;font-size:.92rem}
+.fsz button.on{background:#ececec;color:#1b1b1d}
+
+.toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%);z-index:1000;background:rgba(30,30,30,.92);color:#fff;border-radius:999px;padding:9px 16px;font-size:.84rem;opacity:0;transition:opacity .25s;pointer-events:none}
+.toast.on{opacity:1}
+
+@media (max-width:520px){
+  .wrap{padding:10px 16px 0}
+  .dt-name h1{font-size:1.85rem}
+  #miniMap{height:210px}
+  .seg button{font-size:.95rem;height:42px}
+  .round{width:48px;height:48px}
+  .dock{gap:8px}
+}
+</style>
+</head>
+<body>
+<div id="app">
+
+  <!-- 목록 (P8) -->
+  <section class="view" id="vList" aria-label="지명 목록">
+    <div class="scroll" id="listScroll">
+      <div class="wrap">
+        <div class="top">
+          <a class="back" href="bible66-biblical-background.html"><b>←</b> 66권</a>
+          <span class="sp"></span>
+          <a class="lnk" href="bible-map-eras.html">시대별 세력도 ›</a>
+        </div>
+        <div class="h1">지명 사전<small id="totalCnt"></small></div>
+        <p class="lead">성경에 나오는 성읍·산·강·나라를 찾아보세요. 지명을 누르면 설명과 성경 구절, 미니 지도가 열립니다.</p>
+        <div class="search">
+          <div class="sbox" id="sbox">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <input id="q" type="search" placeholder="지명, 영문, 현대 지명, 인물·사건으로 검색" autocomplete="off" aria-label="지명 검색">
+            <button class="x" id="qx" aria-label="검색어 지우기">×</button>
+          </div>
+          <div class="chips" id="catChips" aria-label="분류"></div>
+          <div class="chips" id="eraChips" aria-label="시대"></div>
+        </div>
+        <div class="count" id="count"></div>
+        <ul class="list" id="list"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 상세 (P6) -->
+  <section class="view" id="vDetail" aria-label="지명 상세">
+    <div class="scroll" id="detailScroll">
+      <div class="wrap">
+        <div class="top">
+          <button class="back" id="dBack"><b>←</b> <span>목록</span></button>
+        </div>
+        <div class="dt-name"><h1 id="dName"></h1><span class="en" id="dEn"></span></div>
+        <div class="dt-meta">
+          <span class="dt-cat" id="dCat"></span>
+          <button class="ibtn sq" id="dCopy" title="설명 복사" aria-label="설명 복사"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h2"/></svg></button>
+          <button class="ibtn" id="dShare" title="이 지명 링크 복사">🔗 링크</button>
+        </div>
+        <p class="dt-sum" id="dSum"></p>
+        <div class="mini">
+          <div id="miniMap" aria-label="미니 지도"></div>
+          <span class="hint" id="miniHint">두 손가락 확대·이동</span>
+          <div class="bar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14"/></svg><span class="t" id="dBar"></span><button id="dFull">전체 지도 ›</button></div>
+        </div>
+        <div class="dt-body" id="dBody"></div>
+        <div class="sec"><h3>성경 구절</h3><ul class="verses" id="dVerses"></ul></div>
+        <div class="sec"><h3>연관 키워드</h3><div class="kw" id="dKw"></div></div>
+        <div class="sec" id="dErasSec"><h3>시대별 지도에서 보기</h3><div class="eras" id="dEras"></div></div>
+        <p class="note">위치는 학습용으로 표시한 대략적 지점입니다. ‘위치 추정’ 표시가 있는 곳은 학자마다 의견이 갈립니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 지도 -->
+  <section class="view" id="vMap" aria-label="지명 지도">
+    <div id="bigMap" role="application" aria-label="성경 지명 지도"></div>
+    <div class="mtop"><div class="t1" id="mT1">지명 사전 지도</div><div class="t2" id="mT2"></div></div>
+    <div class="mfab">
+      <button id="mzin" aria-label="확대">+</button>
+      <button id="mzout" aria-label="축소">−</button>
+      <button id="mlist" aria-label="지명 목록" title="지명 목록"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1.2" fill="currentColor"/><circle cx="4.5" cy="12" r="1.2" fill="currentColor"/><circle cx="4.5" cy="18" r="1.2" fill="currentColor"/></svg></button>
+    </div>
+    <div class="pcard" id="pcard">
+      <div class="r1"><b id="pcName"></b><span id="pcCat"></span><button id="pcX" aria-label="닫기">×</button></div>
+      <p id="pcSum"></p>
+      <div class="md" id="pcMd"></div>
+      <button class="go" id="pcGo">사전에서 보기 ›</button>
+    </div>
+  </section>
+</div>
+
+<!-- 하단 바 -->
+<nav class="dock" aria-label="보기 전환">
+  <button class="round" id="bSearch" aria-label="지명 검색"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+  <div class="seg" role="tablist">
+    <button id="tDict" role="tab" class="on" aria-selected="true">사전</button>
+    <button id="tMap" role="tab" aria-selected="false">지도</button>
+  </div>
+  <button class="round" id="bSet" aria-label="지도 설정" aria-expanded="false"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
+</nav>
+
+<!-- 지도 설정 (P7) -->
+<div class="sheet" id="sheet" role="dialog" aria-label="지도 설정">
+  <div class="hd"><b>지도 설정</b><button id="sheetX" aria-label="닫기">×</button></div>
+  <div class="row"><label for="sDark">다크 모드</label><span class="sw"><input type="checkbox" id="sDark"><span></span></span></div>
+  <div class="row"><label for="sModern">현대 지명<span class="d">지명 아래 오늘날 이름 표시</span></label><span class="sw"><input type="checkbox" id="sModern"><span></span></span></div>
+  <div class="row"><label for="sPower">세력도<span class="d">예수 시대 지역 구분 점선 표시</span></label><span class="sw"><input type="checkbox" id="sPower"><span></span></span></div>
+  <div class="row"><span>글씨 크기</span><div class="fsz" id="sSize"><button data-v="normal">보통</button><button data-v="large">크게</button></div></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+/* ══════════════════════════════════════════════
+   지명 데이터
+   cat: town(성읍·마을) city(도시) mount(산) water(강·바다) region(지역·나라) island(섬)
+   era: creation patriarchs exodus judges united divided exile return jesus church
+   q: 위치 추정(학자 간 이견)
+   ══════════════════════════════════════════════ */
+const CATS={town:["성읍·마을","📍"],city:["도시","🏛"],mount:["산","⛰"],water:["강·바다","🌊"],region:["지역·나라","🗺"],island:["섬","🏝"]};
+const ERA_NAMES={creation:"태초",patriarchs:"족장",exodus:"출애굽",judges:"사사",united:"통일",divided:"분열",exile:"포로",return:"귀환",jesus:"예수",church:"교회"};
+const ERA_LINKABLE=new Set(Object.keys(ERA_NAMES)); // bible-map-eras.html 의 시대 id와 동일
+
+const PLACES=[
+{id:"jerusalem",ko:"예루살렘",en:"Jerusalem",cat:"city",ll:[31.778,35.235],modern:"이스라엘·팔레스타인 예루살렘",era:["patriarchs","united","divided","exile","return","jesus","church"],
+ sum:"다윗이 수도로 삼고 성전이 세워진 하나님의 도성",
+ body:["유다 산지 해발 약 760m의 고원 위에 자리한 성읍으로, 아브라함이 멜기세덱을 만난 살렘으로 여겨진다. 다윗이 여부스 족속에게서 빼앗아 이스라엘의 수도로 삼았고, 솔로몬이 모리아 산 위에 성전을 지었다.","바벨론에게 무너졌다가(주전 586년) 포로 귀환 뒤 성전과 성벽이 재건되었다. 예수께서 십자가에 못 박히시고 부활하신 곳이며, 오순절 성령 강림으로 교회가 시작된 곳이다."],
+ verses:[["삼하 5:6–7","다윗이 시온 산성을 빼앗았으니 이는 다윗 성이더라"],["왕상 6:1","솔로몬이 여호와의 성전 건축하기를 시작하였더라"],["행 1:8","예루살렘과 온 유대와 사마리아와 땅 끝까지 이르러 내 증인이 되리라"]],
+ rel:["olives","bethlehem","bethany","zion"],tags:["다윗","솔로몬 성전","시온","십자가","오순절"]},
+{id:"zion",ko:"시온산",en:"Mount Zion",cat:"mount",ll:[31.772,35.229],modern:"예루살렘 구시가지 남서쪽 언덕",era:["united","divided","exile","return","jesus"],
+ sum:"다윗 성이 있던 언덕, 하나님이 거하시는 곳의 상징",
+ body:["원래 다윗이 점령한 여부스 산성(다윗 성)을 가리키던 이름이다. 성전이 세워진 뒤에는 성전 산과 예루살렘 전체를 가리키는 말로 넓어졌고, 시편과 선지서에서 하나님이 왕으로 다스리시는 도성의 상징이 되었다."],
+ verses:[["시 48:2","터가 높고 아름다워 온 세계가 즐거워함이여 큰 왕의 성 곧 북방에 있는 시온 산이 그러하도다"],["히 12:22","너희가 이른 곳은 시온 산과 살아 계신 하나님의 도성인 하늘의 예루살렘"]],
+ rel:["jerusalem","olives"],tags:["다윗 성","시편","새 예루살렘"]},
+{id:"olives",ko:"감람산",en:"Mount of Olives",cat:"mount",ll:[31.778,35.245],modern:"예루살렘 동쪽 올리브산",era:["united","jesus","church"],
+ sum:"예루살렘 동쪽, 예수께서 기도하시고 승천하신 산",
+ body:["기드론 골짜기 건너 예루살렘 동쪽에 있는 해발 약 800m의 산등성이다. 다윗이 압살롬을 피해 울며 넘어간 길이었고, 예수께서는 이곳에서 종말에 관해 가르치시고(감람산 강화), 산기슭 겟세마네 동산에서 기도하셨으며, 부활 후 이곳에서 승천하셨다."],
+ verses:[["삼하 15:30","다윗이 감람 산 길로 올라갈 때에 머리를 가리고 맨발로 울며 가고"],["마 24:3","예수께서 감람 산 위에 앉으셨을 때에 제자들이 조용히 와서"],["행 1:12","제자들이 감람원이라 하는 산으로부터 예루살렘에 돌아오니"]],
+ rel:["jerusalem","bethany"],tags:["겟세마네","승천","감람산 강화"]},
+{id:"bethlehem",ko:"베들레헴",en:"Bethlehem",cat:"town",ll:[31.705,35.200],modern:"팔레스타인 베들레헴",era:["patriarchs","judges","united","jesus"],
+ sum:"다윗의 고향이자 예수께서 탄생하신 ‘떡집’",
+ body:["예루살렘 남쪽 약 9km 유다 산지에 있는 마을로, 이름은 ‘떡집’이라는 뜻이다. 라헬이 이 길에서 베냐민을 낳다 죽었고, 룻과 보아스의 이야기가 펼쳐졌으며, 다윗이 기름 부음을 받은 고향이다.","미가 선지자의 예언대로 다윗의 자손 예수께서 이곳에서 나셨다."],
+ verses:[["룻 1:19","이에 그 두 사람이 베들레헴까지 갔더라"],["미 5:2","베들레헴 에브라다야 너는 유다 족속 중에 작을지라도 이스라엘을 다스릴 자가 네게서 내게로 나올 것이라"],["눅 2:4","요셉도 다윗의 집 족속이므로 갈릴리 나사렛 동네에서 유대를 향하여 베들레헴이라 하는 다윗의 동네로"]],
+ rel:["jerusalem","hebron"],tags:["룻","다윗","예수 탄생","라헬"]},
+{id:"hebron",ko:"헤브론",en:"Hebron",cat:"city",ll:[31.524,35.110],modern:"팔레스타인 헤브론(알칼릴)",era:["patriarchs","exodus","judges","united"],
+ sum:"족장들이 묻힌 막벨라 굴이 있는 유다 산지의 성읍",
+ body:["유다 산지에서 가장 높은 곳(해발 약 930m)에 있는 오래된 성읍으로, 옛 이름은 기럇 아르바다. 아브라함이 마므레 상수리나무 곁에 장막을 쳤고, 막벨라 굴을 사서 사라를 장사했으며, 이삭과 야곱도 이곳에 묻혔다.","갈렙이 기업으로 받은 땅이며, 다윗이 처음 7년 반 동안 유다의 왕으로 다스린 수도였다."],
+ verses:[["창 13:18","아브람이 장막을 옮겨 헤브론에 있는 마므레 상수리 수풀에 이르러 거주하며"],["수 14:13","여호수아가 여분네의 아들 갈렙을 위하여 축복하고 헤브론을 그에게 주어 기업을 삼게 하매"],["삼하 5:5","헤브론에서 칠 년 육 개월 동안 유다를 다스렸고"]],
+ rel:["beersheba","bethlehem","jerusalem"],tags:["아브라함","막벨라 굴","갈렙","다윗"]},
+{id:"beersheba",ko:"브엘세바",en:"Beersheba",cat:"town",ll:[31.245,34.840],modern:"이스라엘 베에르셰바",era:["patriarchs","judges","united","divided"],
+ sum:"‘맹세의 우물’, 이스라엘 땅의 남쪽 끝",
+ body:["네게브 북쪽의 우물 성읍으로, 아브라함이 아비멜렉과 우물을 두고 맹세한 데서 이름(맹세의 우물)이 나왔다. 이삭과 야곱도 이곳에 머물렀다.","‘단에서 브엘세바까지’라는 말은 이스라엘 땅의 북쪽 끝부터 남쪽 끝까지를 뜻한다. 엘리야가 이세벨을 피해 이곳을 지나 광야로 도망하였다."],
+ verses:[["창 21:31","두 사람이 거기서 서로 맹세하였으므로 그 곳을 브엘세바라 이름하였더라"],["삿 20:1","이에 모든 이스라엘 자손이 단부터 브엘세바까지 … 미스바에 모였으니"],["왕상 19:3","그가 … 유다에 속한 브엘세바에 이르러 자기의 사환을 그 곳에 머물게 하고"]],
+ rel:["dan","hebron"],tags:["아브라함","이삭","엘리야","우물"]},
+{id:"dan",ko:"단",en:"Dan",cat:"town",ll:[33.249,35.652],modern:"이스라엘 텔 단",era:["judges","united","divided"],
+ sum:"이스라엘 땅의 북쪽 끝, 여로보암의 금송아지가 있던 곳",
+ body:["헤르몬산 기슭, 요단강 수원지 가운데 하나 곁에 있는 성읍이다. 원래 이름은 라이스였는데 단 지파가 북쪽으로 옮겨와 차지하고 단이라 불렀다.","나라가 갈라진 뒤 여로보암이 백성들이 예루살렘으로 가지 않도록 벧엘과 단에 금송아지를 세웠다."],
+ verses:[["삿 18:29","그 성읍을 단이라 하니라 그 성읍의 본 이름은 라이스였더라"],["왕상 12:29","하나는 벧엘에 두고 하나는 단에 둔지라"]],
+ rel:["bethel","beersheba","hermon","caesarea-philippi"],tags:["단 지파","금송아지","여로보암"]},
+{id:"bethel",ko:"벧엘",en:"Bethel",cat:"town",ll:[31.930,35.222],modern:"팔레스타인 베이틴(추정)",era:["patriarchs","judges","divided"],
+ sum:"야곱이 사닥다리 꿈을 꾼 ‘하나님의 집’",
+ body:["예루살렘 북쪽 약 17km, 베냐민과 에브라임 경계에 있던 성읍이다. 옛 이름은 루스. 형 에서를 피해 도망하던 야곱이 하늘에 닿은 사닥다리 꿈을 꾸고 ‘하나님의 집(벧엘)’이라 불렀다.","북이스라엘 시대에는 여로보암이 금송아지를 세운 국가 성소가 되어 아모스와 호세아에게 책망을 받았다."],
+ verses:[["창 28:19","그 곳 이름을 벧엘이라 하였더라 이 성의 옛 이름은 루스더라"],["암 5:5","벧엘을 찾지 말며 길갈로 들어가지 말며"]],
+ rel:["dan","shiloh","jerusalem"],tags:["야곱","사닥다리","금송아지","아모스"]},
+{id:"shechem",ko:"세겜",en:"Shechem",cat:"city",ll:[32.214,35.282],modern:"팔레스타인 나블루스 텔 발라타",era:["patriarchs","exodus","judges","divided"],
+ sum:"에발산과 그리심산 사이, 언약이 갱신된 성읍",
+ body:["에발산과 그리심산 사이 골짜기 입구의 교통 요지다. 아브라함이 가나안에 들어와 처음 제단을 쌓았고, 야곱이 밭을 사서 머물렀으며, 요셉의 뼈가 묻혔다.","여호수아가 온 이스라엘을 모아 언약을 새롭게 한 곳이고, 솔로몬 사후 르호보암이 왕이 되려다 나라가 갈라진 곳이기도 하다."],
+ verses:[["창 12:6–7","아브람이 그 땅을 지나 세겜 땅 모레 상수리나무에 이르니 … 그가 거기서 제단을 쌓고"],["수 24:25","여호수아가 그 날에 세겜에서 백성과 더불어 언약을 세우고"],["왕상 12:1","르호보암이 세겜으로 갔으니 이는 온 이스라엘이 그를 왕으로 삼고자 하여 세겜에 이르렀음이더라"]],
+ rel:["sychar","gerizim","samaria"],tags:["아브라함","요셉의 뼈","언약 갱신","왕국 분열"]},
+{id:"sychar",ko:"수가",en:"Sychar",cat:"town",ll:[32.222,35.297],modern:"팔레스타인 나블루스(Nablus) 아스카르",era:["jesus"],q:true,
+ sum:"야곱의 우물에서 예수께서 사마리아 여인을 만나신 성읍",
+ body:["에발산과 그리심산 사이 옛 세겜 동편 기슭에 자리한 사마리아 마을이다(오늘날 아스카르로 추정). 조상 야곱이 요셉에게 준 밭과 우물이 있던 역사적 장소였다.","예수께서 낮 정오에 피곤하여 야곱의 우물가에 앉으셨다가 사마리아 여인에게 영원히 목마르지 않는 생수를 약속하시고, 영과 진리로 드리는 참된 예배를 가르치셨다(요 4:5–42)."],
+ verses:[["요 4:5–6","사마리아에 있는 수가라 하는 동네에 이르시니 야곱이 그 아들 요셉에게 준 땅이 가깝고 거기 또 야곱의 우물이 있더라"],["요 4:14","내가 주는 물을 마시는 자는 영원히 목마르지 아니하리니"],["요 4:24","하나님은 영이시니 예배하는 자가 영과 진리로 예배할지니라"]],
+ rel:["samaria","shechem","gerizim"],tags:["사마리아 여인","야곱의 우물","생수","영과 진리"]},
+{id:"gerizim",ko:"그리심산",en:"Mount Gerizim",cat:"mount",ll:[32.200,35.273],modern:"팔레스타인 나블루스 남쪽 그리심산",era:["exodus","judges","return","jesus"],
+ sum:"축복이 선포된 산, 사마리아인의 성전이 있던 곳",
+ body:["세겜 남쪽에 솟은 해발 약 880m의 산이다. 가나안에 들어온 이스라엘이 그리심산에서는 축복을, 맞은편 에발산에서는 저주를 선포했다.","포로 귀환 이후 사마리아인들이 이 산에 자기들의 성전을 세웠다. 사마리아 여인이 ‘우리 조상들은 이 산에서 예배하였는데’라고 말한 산이 이곳이다."],
+ verses:[["신 11:29","너는 그리심 산에서 축복을 선포하고 에발 산에서 저주를 선포하라"],["요 4:20","우리 조상들은 이 산에서 예배하였는데 당신들의 말은 예배할 곳이 예루살렘에 있다 하더라"]],
+ rel:["sychar","shechem","samaria"],tags:["축복과 저주","사마리아인","예배"]},
+{id:"samaria",ko:"사마리아",en:"Samaria",cat:"city",ll:[32.276,35.197],modern:"팔레스타인 세바스티아",era:["divided","exile","return","jesus","church"],
+ sum:"오므리가 세운 북이스라엘의 수도",
+ body:["오므리 왕이 세멜에게서 산을 사서 세운 북이스라엘의 수도다. 아합과 이세벨의 상아궁이 있었고 엘리야와 엘리사가 활동했다. 주전 722년 앗수르에게 함락되며 북이스라엘이 멸망했다.","이후 이 지역 전체를 사마리아라 불렀고, 신약 시대에 헤롯이 ‘세바스테’로 재건했다. 빌립이 이곳에 복음을 전했다."],
+ verses:[["왕상 16:24","그가 은 두 달란트로 세멜에게서 사마리아 산을 사고 … 그 산 위에 성을 건축하고"],["왕하 17:6","호세아 제구년에 앗수르 왕이 사마리아를 점령하고"],["행 8:5","빌립이 사마리아 성에 내려가 그리스도를 백성에게 전파하니"]],
+ rel:["shechem","sychar","megiddo"],tags:["오므리","아합","북이스라엘 멸망","빌립"]},
+{id:"shiloh",ko:"실로",en:"Shiloh",cat:"town",ll:[32.056,35.289],modern:"팔레스타인 키르벳 셀룬(텔 실로)",era:["judges"],
+ sum:"사사 시대 성막과 언약궤가 있던 곳",
+ body:["벧엘 북쪽 에브라임 산지의 성읍이다. 가나안 정복 뒤 회막이 이곳에 세워져 사사 시대 내내 이스라엘 예배의 중심이었다.","한나가 기도하여 사무엘을 얻었고, 엘리 제사장이 섬겼다. 블레셋과의 전쟁에서 언약궤를 빼앗긴 뒤 쇠락했다."],
+ verses:[["수 18:1","이스라엘 자손의 온 회중이 실로에 모여서 거기에 회막을 세웠으며"],["삼상 1:24","젖을 뗀 후에 그를 데리고 실로 여호와의 집에 올라갔는데"]],
+ rel:["bethel","jerusalem"],tags:["회막","한나","사무엘","엘리"]},
+{id:"jericho",ko:"여리고",en:"Jericho",cat:"city",ll:[31.871,35.444],modern:"팔레스타인 예리코(텔 에스술탄)",era:["exodus","judges","divided","jesus"],
+ sum:"요단을 건넌 이스라엘이 처음 무너뜨린 ‘종려나무 성읍’",
+ body:["요단강 서쪽, 해수면보다 약 250m 낮은 오아시스 성읍으로 ‘종려나무 성읍’이라 불렸다. 여호수아가 이끄는 이스라엘이 일곱 날 성을 돌자 성벽이 무너졌고, 라합과 그 가족은 구원받았다.","신약에서는 예수께서 맹인 바디매오의 눈을 뜨게 하시고, 세리장 삭개오의 집에 머무신 곳이다."],
+ verses:[["수 6:20","백성이 큰 소리로 외쳐 부를 때에 성벽이 무너져 내린지라"],["눅 19:1–5","예수께서 여리고로 들어가 지나가시더라 … 삭개오야 속히 내려오라"]],
+ rel:["jordan","nebo","jerusalem","dead-sea"],tags:["여호수아","라합","삭개오","바디매오"]},
+{id:"jordan",ko:"요단강",en:"Jordan River",cat:"water",ll:[32.31,35.57],modern:"이스라엘·요르단 국경의 요르단강",era:["patriarchs","exodus","judges","divided","jesus"],
+ sum:"갈릴리 바다에서 사해로 흐르는, 약속의 땅의 동쪽 경계",
+ body:["헤르몬산 기슭에서 시작해 갈릴리 바다를 거쳐 사해로 흘러드는 강이다. 이름은 ‘내려가는 강’이란 뜻으로, 굽이치며 해수면 아래로 깊이 내려간다.","이스라엘이 마른 땅처럼 건넜고, 엘리야가 하늘로 올라간 곳이며, 나아만이 몸을 씻어 나은 곳이다. 세례 요한이 이 강에서 예수께 세례를 베풀었다."],
+ verses:[["수 3:17","모든 이스라엘 백성이 마른 땅으로 행하여 요단을 건너니라"],["왕하 5:14","나아만이 … 요단 강에 일곱 번 몸을 잠그니 그의 살이 어린 아이의 살 같이 회복되어"],["마 3:13","이 때에 예수께서 갈릴리로부터 요단 강에 이르러 요한에게 세례를 받으려 하시니"]],
+ rel:["galilee-sea","dead-sea","jericho","hermon"],tags:["요단 도하","엘리야","나아만","세례"]},
+{id:"galilee-sea",ko:"갈릴리 바다",en:"Sea of Galilee",cat:"water",ll:[32.83,35.59],modern:"이스라엘 키네렛 호수(티베리아스 호)",era:["exodus","jesus"],
+ sum:"예수 공생애 사역의 무대가 된 호수",
+ body:["남북 약 21km, 동서 약 11km의 민물 호수로 해수면보다 약 210m 낮다. 구약에서는 긴네렛 바다, 신약에서는 게네사렛 호수·디베랴 바다라고도 불렀다.","예수께서 이 호숫가에서 어부들을 제자로 부르시고, 풍랑을 잠잠케 하시고, 물 위를 걸으셨다. 부활 후 베드로에게 ‘내 양을 먹이라’고 하신 곳도 이 호숫가다."],
+ verses:[["마 4:18","갈릴리 해변에 다니시다가 두 형제 곧 베드로라 하는 시몬과 그의 형제 안드레가 바다에 그물 던지는 것을 보시니"],["막 4:39","바람을 꾸짖으시며 바다더러 잠잠하라 고요하라 하시니"],["요 21:1","그 후에 예수께서 디베랴 호수에서 또 제자들에게 자기를 나타내셨으니"]],
+ rel:["capernaum","bethsaida","jordan","nazareth"],tags:["제자 부르심","풍랑","물 위를 걸으심","오병이어"]},
+{id:"dead-sea",ko:"사해(염해)",en:"Dead Sea",cat:"water",ll:[31.50,35.49],modern:"이스라엘·요르단 사해",era:["patriarchs","exodus","divided","jesus"],
+ sum:"지구에서 가장 낮은 곳의 소금 바다",
+ body:["해수면보다 약 430m 낮은, 지표에서 가장 낮은 호수다. 염도가 매우 높아 생물이 살지 못해 성경은 ‘염해’, ‘아라바 바다’라 불렀다. 소돔과 고모라가 이 남쪽 어딘가에 있었다고 여겨진다.","에스겔은 성전에서 흘러나온 물이 이 바다를 되살리는 환상을 보았다. 북서쪽 쿰란에서 사해 사본이 발견되었다."],
+ verses:[["창 14:3","이들이 다 싯딤 골짜기 곧 지금의 염해에 모였더라"],["겔 47:8","이 물이 동쪽으로 향하여 흘러 아라바로 내려가서 바다에 이르리니 … 바다의 물이 되살아나리라"]],
+ rel:["jordan","jericho","nebo"],tags:["소돔과 고모라","에스겔 환상","사해 사본"]},
+{id:"nebo",ko:"느보산",en:"Mount Nebo",cat:"mount",ll:[31.768,35.725],modern:"요르단 느보산(시야가)",era:["exodus"],
+ sum:"모세가 약속의 땅을 바라보고 죽은 산",
+ body:["사해 북동쪽 모압 평지 위로 솟은 산으로, 꼭대기를 비스가라 부른다. 맑은 날에는 여리고와 예루살렘 쪽까지 내려다보인다.","모세는 이 산에서 하나님이 보여 주신 약속의 땅을 바라보았으나 들어가지 못하고 이곳에서 죽었다."],
+ verses:[["신 34:1","모세가 모압 평지에서 느보 산에 올라가 여리고 맞은편 비스가 산 꼭대기에 이르매 여호와께서 … 온 땅을 보이시고"],["신 34:5","여호와의 종 모세가 여호와의 말씀대로 모압 땅에서 죽어"]],
+ rel:["jericho","jordan","sinai"],tags:["모세","비스가","약속의 땅"]},
+{id:"sinai",ko:"시내산",en:"Mount Sinai",cat:"mount",ll:[28.539,33.975],modern:"이집트 시나이반도 예벨 무사(전통적 위치)",era:["exodus","divided"],q:true,
+ sum:"하나님이 모세에게 율법을 주신 언약의 산",
+ body:["호렙산이라고도 불린다. 모세가 떨기나무 불꽃 가운데서 부르심을 받았고, 출애굽 후 이스라엘이 약 1년 동안 이 산 아래 머물며 십계명과 율법을 받고 성막을 지었다.","전통적으로 시나이반도 남부의 예벨 무사로 보지만, 정확한 위치는 학자마다 의견이 다르다. 엘리야가 이세벨을 피해 찾아간 하나님의 산도 이곳이다."],
+ verses:[["출 3:1–2","하나님의 산 호렙에 이르매 여호와의 사자가 떨기나무 가운데로부터 나오는 불꽃 안에서 그에게 나타나시니라"],["출 19:20","여호와께서 시내 산 곧 그 산 꼭대기에 강림하시고"],["왕상 19:8","사십 주 사십 야를 가서 하나님의 산 호렙에 이르니라"]],
+ rel:["red-sea","goshen","nebo"],tags:["모세","십계명","떨기나무","엘리야"]},
+{id:"red-sea",ko:"홍해",en:"Red Sea",cat:"water",ll:[29.6,32.6],modern:"이집트 수에즈만 일대(통과 지점은 추정)",era:["exodus","united"],q:true,
+ sum:"이스라엘이 마른 땅처럼 건넌 바다",
+ body:["히브리어로는 ‘얌 숩(갈대 바다)’이다. 애굽을 떠난 이스라엘이 바로의 군대에 쫓기다 하나님께서 바다를 가르시자 마른 땅으로 건넜다.","정확한 통과 지점은 수에즈만, 비터 호수, 아카바만 등 여러 설이 있다. 솔로몬은 아카바만의 에시온게벨에서 배를 지었다."],
+ verses:[["출 14:21–22","여호와께서 큰 동풍이 밤새도록 바닷물을 물러가게 하시니 … 이스라엘 자손이 바다 가운데를 육지로 걸어가고"],["히 11:29","믿음으로 그들은 홍해를 육지 같이 건넜으나"]],
+ rel:["goshen","sinai","egypt"],tags:["출애굽","모세의 지팡이","갈대 바다"]},
+{id:"goshen",ko:"고센",en:"Goshen",cat:"region",ll:[30.75,31.75],modern:"이집트 나일 삼각주 동부(와디 투밀랏 일대)",era:["patriarchs","exodus"],q:true,
+ sum:"야곱 가족이 애굽에서 정착한 나일 삼각주의 목초지",
+ body:["나일 삼각주 동쪽의 비옥한 목초지다. 요셉의 초청으로 야곱의 가족 70명이 이곳에 정착했고, 이스라엘 자손은 이곳에서 큰 민족으로 번성했다.","열 가지 재앙 때 고센 땅은 파리와 우박과 흑암의 재앙을 피했다."],
+ verses:[["창 47:6","애굽 땅이 네 앞에 있으니 땅의 좋은 곳에 네 아버지와 네 형들이 거주하게 하되 고센 땅에 그들이 거주하게 하고"],["출 9:26","이스라엘 자손이 있는 그 곳 고센 땅에는 우박이 없었더라"]],
+ rel:["egypt","red-sea"],tags:["요셉","야곱","열 가지 재앙"]},
+{id:"egypt",ko:"애굽",en:"Egypt",cat:"region",ll:[30.05,31.24],modern:"이집트",era:["patriarchs","exodus","united","divided","exile","jesus"],
+ sum:"이스라엘이 종살이하다 출애굽한 나일강의 나라",
+ body:["나일강을 따라 발달한 고대 문명국이다. 아브라함이 기근을 피해 내려갔고, 요셉이 총리가 되어 가족을 살렸다. 이스라엘은 400여 년 뒤 이곳에서 종살이하다 모세를 통해 탈출했다(출애굽).","분열 왕국 시대에는 유다가 앗수르·바벨론을 막으려고 의지하던 강국이었고, 아기 예수의 가족이 헤롯을 피해 피난한 곳이기도 하다."],
+ verses:[["창 41:41","내가 너를 애굽 온 땅의 총리가 되게 하노라"],["출 12:41","사백삼십 년이 끝나는 그 날에 여호와의 군대가 다 애굽 땅에서 나왔은즉"],["마 2:14","요셉이 일어나서 밤에 아기와 그의 어머니를 데리고 애굽으로 떠나가"]],
+ rel:["goshen","red-sea","sinai"],tags:["요셉","모세","유월절","예수 피난"]},
+{id:"ur",ko:"갈대아 우르",en:"Ur of the Chaldeans",cat:"city",ll:[30.962,46.103],modern:"이라크 텔 알무카이야르",era:["patriarchs"],
+ sum:"아브라함의 고향, 유프라테스강 하류의 도시",
+ body:["메소포타미아 남부 유프라테스강 하류에 있던 수메르의 큰 도시로, 달신 난나를 섬기는 지구라트가 있었다. 아브라함(아브람)이 아버지 데라와 함께 이곳을 떠나 하란으로 갔다."],
+ verses:[["창 11:31","데라가 … 갈대아 우르에서 떠나 가나안 땅으로 가고자 하더니 하란에 이르러 거기 거류하였으며"],["창 15:7","나는 이 땅을 네게 주어 소유를 삼게 하려고 너를 갈대아인의 우르에서 이끌어 낸 여호와니라"]],
+ rel:["haran","babylon"],tags:["아브라함","데라","메소포타미아"]},
+{id:"haran",ko:"하란",en:"Haran",cat:"city",ll:[36.865,39.031],modern:"튀르키예 하란",era:["patriarchs"],
+ sum:"아브라함이 가나안으로 떠나기 전 머문 상업 도시",
+ body:["메소포타미아 북부 발리크강 가의 교역 도시다. 아브라함이 이곳에서 ‘너는 너의 고향과 친척과 아버지의 집을 떠나’라는 부르심을 받았다.","리브가의 친정이 이 근처였고, 야곱이 에서를 피해 와서 외삼촌 라반 밑에서 20년을 지냈다."],
+ verses:[["창 12:4","아브람이 하란을 떠날 때에 칠십오 세였더라"],["창 29:4","야곱이 그들에게 이르되 내 형제여 어디서 왔느냐 그들이 이르되 하란에서 왔노라"]],
+ rel:["ur","shechem","bethel"],tags:["아브라함의 부르심","라반","야곱"]},
+{id:"ararat",ko:"아라랏산",en:"Mount Ararat",cat:"mount",ll:[39.70,44.30],modern:"튀르키예 동부 아라랏산(아으르산)",era:["creation"],q:true,
+ sum:"홍수가 끝나고 노아의 방주가 머문 산지",
+ body:["성경은 방주가 ‘아라랏 산들’ 위에 머물렀다고 한다. 아라랏은 오늘날 튀르키예 동부·아르메니아 일대의 옛 우라르투 지역 이름으로, 특정 봉우리라기보다 그 산지를 가리킨다. 전통적으로 해발 5,137m의 아라랏산과 연결 짓는다."],
+ verses:[["창 8:4","일곱째 달 곧 그 달 열이렛날에 방주가 아라랏 산에 머물렀으며"]],
+ rel:["babel","ur"],tags:["노아","방주","홍수"]},
+{id:"babel",ko:"바벨(시날 평지)",en:"Babel / Shinar",cat:"region",ll:[32.54,44.42],modern:"이라크 바빌 유적 일대",era:["creation","exile"],q:true,
+ sum:"사람들이 탑을 쌓다 언어가 흩어진 시날 평지",
+ body:["홍수 뒤 사람들이 시날 평지에 모여 꼭대기가 하늘에 닿는 탑을 쌓아 이름을 내려 하자, 하나님께서 언어를 혼잡하게 하여 온 땅에 흩으셨다. 이 도시 이름 바벨은 훗날의 바벨론과 같은 이름이다."],
+ verses:[["창 11:4","성읍과 탑을 건설하여 그 탑 꼭대기를 하늘에 닿게 하여 우리 이름을 내고 온 지면에 흩어짐을 면하자"],["창 11:9","그러므로 그 이름을 바벨이라 하니 이는 여호와께서 거기서 온 땅의 언어를 혼잡하게 하셨음이니라"]],
+ rel:["babylon","ararat","ur"],tags:["바벨탑","언어의 혼잡","니므롯"]},
+{id:"babylon",ko:"바벨론",en:"Babylon",cat:"city",ll:[32.536,44.421],modern:"이라크 바빌(힐라 북쪽)",era:["exile","return"],
+ sum:"유다를 멸망시키고 포로로 데려간 제국의 수도",
+ body:["유프라테스강 가의 거대한 도시로, 느부갓네살 시대에 신바빌로니아 제국의 수도로 번성했다. 주전 586년 예루살렘을 멸망시키고 유다 백성을 포로로 끌고 왔다.","다니엘과 세 친구가 이곳에서 신앙을 지켰고, 주전 539년 페르시아의 고레스에게 함락되었다. 요한계시록에서 바벨론은 하나님을 대적하는 세상 권세의 상징이 된다."],
+ verses:[["왕하 25:11","느부사라단이 … 바벨론 왕에게 항복한 자들과 무리 중 남은 자는 다 사로잡아 가고"],["시 137:1","우리가 바벨론의 여러 강변 거기에 앉아서 시온을 기억하며 울었도다"],["단 5:30","그 날 밤에 갈대아 왕 벨사살이 죽임을 당하였고"]],
+ rel:["babel","jerusalem","susa","nineveh"],tags:["느부갓네살","다니엘","포로","고레스"]},
+{id:"nineveh",ko:"니느웨",en:"Nineveh",cat:"city",ll:[36.359,43.152],modern:"이라크 모술 동편 쿠윤지크",era:["divided","exile"],
+ sum:"요나가 회개를 외친 앗수르 제국의 수도",
+ body:["티그리스강 동쪽의 큰 도시로, 산헤립 이후 앗수르 제국의 수도였다. 북이스라엘을 멸망시킨 앗수르의 중심지였다.","요나가 이 성에 하나님의 심판을 외치자 왕부터 백성까지 회개했다. 그러나 훗날 나훔의 예언대로 주전 612년 바벨론과 메대 연합군에게 멸망했다."],
+ verses:[["욘 3:4","사십 일이 지나면 니느웨가 무너지리라"],["욘 4:11","하물며 이 큰 성읍 니느웨에는 … 십이만여 명이요"],["나 3:7","니느웨가 황폐하였도다"]],
+ rel:["babylon","samaria"],tags:["요나","앗수르","나훔"]},
+{id:"susa",ko:"수산",en:"Susa (Shushan)",cat:"city",ll:[32.190,48.257],modern:"이란 슈시",era:["exile","return"],
+ sum:"에스더가 왕후가 된 페르시아의 왕도",
+ body:["엘람 지방의 오래된 도시로 페르시아 제국의 겨울 왕도였다. 에스더가 아하수에로 왕의 왕후가 되어 유다 민족을 구했고, 느헤미야가 아닥사스다 왕의 술 맡은 관원으로 섬기다 예루살렘 성벽 재건을 위해 떠난 곳이다. 다니엘도 이곳에서 환상을 보았다."],
+ verses:[["에 1:2","아하수에로 왕이 수산 궁에서 즉위하고"],["느 1:1","아닥사스다 왕 제이십년 기슬르월에 내가 수산 궁에 있는데"]],
+ rel:["babylon","jerusalem"],tags:["에스더","느헤미야","부림절","페르시아"]},
+{id:"nazareth",ko:"나사렛",en:"Nazareth",cat:"town",ll:[32.700,35.297],modern:"이스라엘 나사렛",era:["jesus"],
+ sum:"예수께서 자라신 갈릴리 산지의 작은 마을",
+ body:["갈릴리 남쪽 구릉지의 작은 마을로, 구약에는 한 번도 나오지 않는다. 천사 가브리엘이 마리아에게 수태를 고지했고, 예수께서 이곳에서 자라 ‘나사렛 예수’라 불리셨다.","예수께서 회당에서 이사야서를 읽으시고 사역을 선포하셨으나 고향 사람들은 그를 배척했다."],
+ verses:[["눅 1:26–27","천사 가브리엘이 … 갈릴리 나사렛이란 동네에 가서 … 마리아라"],["요 1:46","나다나엘이 이르되 나사렛에서 무슨 선한 것이 날 수 있느냐"],["눅 4:16","예수께서 그 자라나신 곳 나사렛에 이르사 안식일에 늘 하시던 대로 회당에 들어가사"]],
+ rel:["cana","galilee-sea","capernaum","tabor","nain"],tags:["수태고지","나사렛 예수","회당 선포"]},
+{id:"cana",ko:"가나",en:"Cana",cat:"town",ll:[32.747,35.339],modern:"이스라엘 카프르 칸나(추정)",era:["jesus"],q:true,
+ sum:"혼인 잔치에서 물로 포도주를 만드신 첫 표적의 마을",
+ body:["나사렛 북동쪽의 갈릴리 마을이다. 예수께서 혼인 잔치에서 물을 포도주로 바꾸신 첫 표적이 일어났고, 이곳에서 말씀만으로 가버나움에 있는 왕의 신하의 아들을 고치셨다. 제자 나다나엘의 고향이다.","전통적 위치는 카프르 칸나지만 북쪽의 키르벳 가나로 보는 견해도 있다."],
+ verses:[["요 2:11","예수께서 이 처음 표적을 갈릴리 가나에서 행하여 그의 영광을 나타내시매"],["요 4:46","예수께서 다시 갈릴리 가나에 이르시니 전에 물로 포도주를 만드신 곳이라"]],
+ rel:["nazareth","capernaum"],tags:["첫 표적","혼인 잔치","나다나엘"]},
+{id:"capernaum",ko:"가버나움",en:"Capernaum",cat:"town",ll:[32.881,35.575],modern:"이스라엘 크파르 나훔(유적)",era:["jesus"],
+ sum:"예수께서 갈릴리 사역의 본거지로 삼으신 호숫가 마을",
+ body:["갈릴리 바다 북서쪽 호숫가의 어촌으로 ‘나훔의 마을’이라는 뜻이다. 예수께서 나사렛을 떠나 이곳을 ‘본 동네’로 삼으셨다.","베드로의 장모와 중풍병자, 백부장의 종을 고치셨고, 세리 마태를 부르셨다. 많은 기적을 보고도 회개하지 않아 책망을 받았다."],
+ verses:[["마 4:13","나사렛을 떠나 스불론과 납달리 지경 해변에 있는 가버나움에 가서 사시니"],["막 2:3–5","한 중풍병자를 네 사람이 메워 가지고 … 작은 자야 네 죄 사함을 받았느니라"],["마 11:23","가버나움아 네가 하늘에까지 높아지겠느냐"]],
+ rel:["galilee-sea","bethsaida","cana","nazareth"],tags:["베드로의 집","중풍병자","마태","백부장"]},
+{id:"bethsaida",ko:"벳새다",en:"Bethsaida",cat:"town",ll:[32.910,35.630],modern:"이스라엘 엣텔 또는 엘아라즈(추정)",era:["jesus"],q:true,
+ sum:"베드로·안드레·빌립의 고향, 오병이어 기적 인근 마을",
+ body:["갈릴리 바다 북쪽, 요단강이 호수로 들어가는 어귀 근처의 마을로 ‘어부의 집’이라는 뜻이다. 베드로와 안드레, 빌립의 고향이다.","예수께서 이 근처 빈 들에서 오천 명을 먹이셨고, 맹인의 눈에 침을 뱉어 두 단계로 고치셨다."],
+ verses:[["요 1:44","빌립은 안드레와 베드로와 한 동네 벳새다 사람이라"],["눅 9:10","따로 벳새다라는 고을로 떠나 가셨으나"],["막 8:22–25","벳새다에 이르매 사람들이 맹인 한 사람을 데리고"]],
+ rel:["capernaum","galilee-sea","caesarea-philippi"],tags:["오병이어","베드로","안드레","빌립"]},
+{id:"nain",ko:"나인",en:"Nain",cat:"town",ll:[32.630,35.348],modern:"이스라엘 나인 마을",era:["jesus"],
+ sum:"과부의 외아들을 살리신 마을",
+ body:["다볼산 남쪽, 모레산 북쪽 기슭에 있는 작은 마을이다. 예수께서 장례 행렬을 만나 과부의 외아들의 관에 손을 대시고 ‘청년아 일어나라’ 하여 살리셨다."],
+ verses:[["눅 7:11–15","그 후에 예수께서 나인이란 성으로 가실새 … 청년아 내가 네게 말하노니 일어나라 하시매"]],
+ rel:["nazareth","tabor"],tags:["과부의 아들","죽은 자를 살리심"]},
+{id:"tabor",ko:"다볼산",en:"Mount Tabor",cat:"mount",ll:[32.687,35.390],modern:"이스라엘 타보르산",era:["judges","jesus"],
+ sum:"이스르엘 평원 위의 둥근 산, 드보라와 바락의 집결지",
+ body:["이스르엘 평원 북동쪽에 홀로 솟은 해발 575m의 둥근 산이다. 사사 드보라 때 바락이 일만 명을 이끌고 이 산에서 내려가 시스라의 철병거를 물리쳤다.","교회 전통은 예수께서 변화하신 ‘높은 산’을 이 산으로 보지만, 헤르몬산으로 보는 견해도 있다."],
+ verses:[["삿 4:14","이에 바락이 만 명을 거느리고 다볼 산에서 내려가니"],["마 17:1–2","높은 산에 올라가셨더니 그들 앞에서 변형되사"]],
+ rel:["megiddo","nazareth","nain","hermon"],tags:["드보라","바락","변화산(전통)"]},
+{id:"megiddo",ko:"므깃도",en:"Megiddo",cat:"city",ll:[32.585,35.185],modern:"이스라엘 텔 므깃도",era:["judges","united","divided","church"],
+ sum:"이스르엘 평원 입구의 요새, ‘아마겟돈’의 어원",
+ body:["갈멜산 줄기를 넘어 이스르엘 평원으로 들어가는 길목을 지키던 요새 도시다. 솔로몬이 병거성으로 강화했고, 요시야 왕이 애굽 왕 느고와 싸우다 이곳에서 전사했다.","‘므깃도의 산’을 뜻하는 아마겟돈은 요한계시록에서 마지막 전쟁의 장소로 등장한다."],
+ verses:[["왕상 9:15","솔로몬 왕이 역군을 일으킨 까닭은 … 하솔과 므깃도와 게셀을 건축하려 하였음이라"],["왕하 23:29","요시야 왕이 맞서 나갔더니 애굽 왕이 요시야를 므깃도에서 만났을 때에 죽인지라"],["계 16:16","세 영이 히브리어로 아마겟돈이라 하는 곳으로 왕들을 모으더라"]],
+ rel:["carmel","tabor","samaria"],tags:["솔로몬 병거성","요시야","아마겟돈"]},
+{id:"carmel",ko:"갈멜산",en:"Mount Carmel",cat:"mount",ll:[32.665,35.090],modern:"이스라엘 하이파 남동쪽 카르멜산",era:["divided"],
+ sum:"엘리야가 바알 선지자 450명과 대결한 산",
+ body:["지중해 쪽으로 길게 뻗은 산줄기로 ‘하나님의 포도원’이라는 뜻이다. 아합 왕 때 엘리야가 이곳에서 바알 선지자 450명과 대결했고, 하늘에서 불이 내려 제물을 태워 여호와가 참 하나님이심이 드러났다."],
+ verses:[["왕상 18:19","온 이스라엘과 이세벨의 상에서 먹는 바알의 선지자 사백오십 명과 … 갈멜 산으로 모아 내게로 나아오게 하소서"],["왕상 18:38","이에 여호와의 불이 내려서 번제물과 나무와 돌과 흙을 태우고"]],
+ rel:["megiddo","samaria"],tags:["엘리야","바알 선지자","불의 응답"]},
+{id:"hermon",ko:"헤르몬산",en:"Mount Hermon",cat:"mount",ll:[33.416,35.857],modern:"레바논·시리아·이스라엘 접경 헤르몬산",era:["exodus","judges","jesus"],
+ sum:"요단강의 수원, 만년설이 덮인 북쪽의 높은 산",
+ body:["해발 약 2,814m로 이스라엘 땅 북쪽 경계에 솟은 산이다. 겨울 눈이 녹아 요단강의 수원이 되고, 시편은 그 이슬을 형제의 연합에 비유했다. 가이사랴 빌립보가 남쪽 기슭에 있어 변화산을 이 산으로 보는 견해도 있다."],
+ verses:[["신 3:8","아르논 골짜기에서부터 헤르몬 산까지 빼앗았으니"],["시 133:3","헤르몬의 이슬이 시온의 산들에 내림 같도다"]],
+ rel:["caesarea-philippi","dan","jordan"],tags:["요단강 수원","형제 연합","변화산(일설)"]},
+{id:"caesarea-philippi",ko:"가이사랴 빌립보",en:"Caesarea Philippi",cat:"town",ll:[33.248,35.694],modern:"이스라엘 골란 고원 바니아스",era:["jesus"],
+ sum:"베드로가 ‘주는 그리스도시요’라고 고백한 곳",
+ body:["헤르몬산 남쪽 기슭, 요단강 수원 근처의 도시다. 이방 신 판(Pan)의 신당이 있어 파네아스라 불렸고, 분봉왕 빌립이 재건해 가이사(황제)에게 바쳤다.","예수께서 이곳에서 ‘너희는 나를 누구라 하느냐’ 물으셨고, 베드로가 ‘주는 그리스도시요 살아 계신 하나님의 아들이시니이다’라고 고백했다."],
+ verses:[["마 16:13","예수께서 빌립보 가이사랴 지방에 이르러 제자들에게 물어 이르시되 사람들이 인자를 누구라 하느냐"],["마 16:16","시몬 베드로가 대답하여 이르되 주는 그리스도시요 살아 계신 하나님의 아들이시니이다"]],
+ rel:["hermon","dan","bethsaida"],tags:["베드로의 고백","반석 위의 교회"]},
+{id:"bethany",ko:"베다니",en:"Bethany",cat:"town",ll:[31.771,35.261],modern:"팔레스타인 알에이자리야",era:["jesus"],
+ sum:"마르다·마리아·나사로의 마을, 나사로를 살리신 곳",
+ body:["감람산 동쪽 기슭, 예루살렘에서 약 3km 떨어진 마을이다. 마르다와 마리아, 나사로 남매가 살았고 예수께서 예루살렘에 오시면 자주 머무셨다.","예수께서 죽은 지 나흘 된 나사로를 살리셨고, 마리아가 향유를 부었으며, 승천도 베다니 앞에서 이루어졌다."],
+ verses:[["요 11:43–44","나사로야 나오라 하시니 죽은 자가 … 나오는데"],["요 12:3","마리아는 지극히 비싼 향유 곧 순전한 나드 한 근을 가져다가 예수의 발에 붓고"],["눅 24:50","예수께서 그들을 데리고 베다니 앞까지 나가사 손을 들어 그들에게 축복하시더니"]],
+ rel:["olives","jerusalem","jericho"],tags:["나사로","마르다","마리아","향유"]},
+{id:"emmaus",ko:"엠마오",en:"Emmaus",cat:"town",ll:[31.839,34.989],modern:"이스라엘 암와스(엠마오 니코폴리스 설 등)",era:["jesus"],q:true,
+ sum:"부활하신 예수께서 두 제자와 함께 걸으신 마을",
+ body:["예루살렘에서 ‘이십오 리(약 11km)’ 떨어진 마을이다. 부활하신 날, 글로바와 다른 제자가 엠마오로 가는 길에 예수께서 동행하시며 성경을 풀어 주셨고, 떡을 떼실 때 그들의 눈이 밝아졌다.","위치는 암와스(니코폴리스), 쿠베이베, 모짜 등 여러 후보가 있다."],
+ verses:[["눅 24:13","그 날에 그들 중 둘이 예루살렘에서 이십오 리 되는 엠마오라 하는 마을로 가면서"],["눅 24:32","길에서 우리에게 말씀하시고 우리에게 성경을 풀어 주실 때에 우리 속에서 마음이 뜨겁지 아니하더냐"]],
+ rel:["jerusalem","joppa"],tags:["부활","엠마오 도상","떡을 떼심"]},
+{id:"joppa",ko:"욥바",en:"Joppa",cat:"city",ll:[32.054,34.752],modern:"이스라엘 텔아비브 야파",era:["united","divided","return","church"],
+ sum:"요나가 배를 탄 항구, 베드로가 환상을 본 곳",
+ body:["지중해 연안의 오래된 항구로 예루살렘의 관문이었다. 솔로몬 성전과 귀환 후 제2성전을 지을 레바논 백향목이 이곳으로 들어왔다. 요나가 다시스로 도망하려고 배를 탄 곳이다.","베드로가 이곳에서 다비다(도르가)를 살렸고, 피장 시몬의 집 지붕에서 보자기 환상을 보고 이방인 고넬료에게 갔다."],
+ verses:[["욘 1:3","요나가 … 다시스로 도망하려 하여 욥바로 내려갔더니"],["행 9:40","베드로가 … 다비다야 일어나라 하니"],["행 10:11","하늘이 열리며 한 그릇이 내려오는 것을 보니 큰 보자기 같고"]],
+ rel:["caesarea","jerusalem"],tags:["요나","다비다","보자기 환상","백향목"]},
+{id:"caesarea",ko:"가이사랴",en:"Caesarea Maritima",cat:"city",ll:[32.500,34.892],modern:"이스라엘 케이사리아 국립공원",era:["jesus","church"],
+ sum:"헤롯이 세운 로마의 항구 도시, 이방인 선교의 문",
+ body:["헤롯 대왕이 아우구스투스 황제를 기려 세운 인공 항구 도시로, 로마 총독이 머문 유대 속주의 행정 수도였다.","베드로가 백부장 고넬료의 집에서 복음을 전해 이방인이 처음 성령을 받았다. 바울은 이곳에 2년간 갇혀 있다가 가이사에게 상소하여 로마로 떠났다."],
+ verses:[["행 10:1","가이사랴에 고넬료라 하는 사람이 있으니 이달리야 부대라 하는 군대의 백부장이라"],["행 25:11","내가 가이사께 상소하노라"]],
+ rel:["joppa","jerusalem","rome"],tags:["고넬료","헤롯","바울 투옥","빌립 집사"]},
+{id:"damascus",ko:"다메섹",en:"Damascus",cat:"city",ll:[33.513,36.292],modern:"시리아 수도 다마스쿠스",era:["patriarchs","united","divided","church"],
+ sum:"사울이 부활하신 예수를 만난 아람의 수도",
+ body:["세계에서 가장 오래 사람이 살아온 도시 중 하나로, 구약 시대 아람(시리아)의 수도였다. 아브라함의 종 엘리에셀이 다메섹 사람이었고, 아람 군대장관 나아만도 이곳 출신이다.","그리스도인을 잡으러 가던 사울이 다메섹 가까이에서 빛 가운데 부활하신 예수를 만나 회심했다."],
+ verses:[["왕하 5:12","다메섹 강 아바나와 바르발은 이스라엘 모든 강물보다 낫지 아니하냐"],["행 9:3","사울이 길을 가다가 다메섹에 가까이 이르더니 홀연히 하늘로부터 빛이 그를 둘러 비추는지라"]],
+ rel:["antioch","jordan","hermon"],tags:["바울의 회심","나아만","아나니아","직가"]},
+{id:"tyre",ko:"두로",en:"Tyre",cat:"city",ll:[33.271,35.196],modern:"레바논 수르(티레)",era:["united","divided","exile","jesus","church"],
+ sum:"솔로몬 성전 건축을 도운 페니키아의 해상 도시",
+ body:["지중해 동부를 주름잡은 페니키아의 섬 항구 도시다. 두로 왕 히람이 다윗 궁과 솔로몬 성전을 짓도록 백향목과 기술자를 보냈다.","에스겔은 교만한 두로의 몰락을 예언했다. 예수께서 두로와 시돈 지방에서 수로보니게 여인의 딸을 고치셨다."],
+ verses:[["왕상 5:1","두로 왕 히람은 항상 다윗을 사랑하였더니"],["겔 27:3","너 바다 어귀에 거주하면서 여러 섬 백성과 거래하는 자여"],["막 7:24","예수께서 일어나사 거기를 떠나 두로 지방으로 가서"]],
+ rel:["sidon","carmel","galilee-sea"],tags:["히람","백향목","수로보니게 여인"]},
+{id:"sidon",ko:"시돈",en:"Sidon",cat:"city",ll:[33.563,35.371],modern:"레바논 사이다",era:["judges","divided","jesus","church"],
+ sum:"이세벨의 고향, 페니키아의 오래된 항구",
+ body:["두로 북쪽의 페니키아 항구 도시로 가나안의 맏아들 이름을 땄다. 아합의 아내 이세벨이 시돈 왕의 딸이었고, 엘리야가 기근 때 머문 사르밧 과부의 집이 이 근처에 있었다.","로마로 호송되던 바울이 이곳에서 친구들의 돌봄을 받았다."],
+ verses:[["왕상 16:31","시돈 사람의 왕 엣바알의 딸 이세벨을 아내로 삼고"],["왕상 17:9","일어나 시돈에 속한 사르밧으로 가서 거기 머물라"],["행 27:3","이튿날 시돈에 대니 율리오가 바울을 친절히 대하여"]],
+ rel:["tyre","carmel"],tags:["이세벨","사르밧 과부","엘리야"]},
+{id:"antioch",ko:"안디옥",en:"Antioch (Syria)",cat:"city",ll:[36.202,36.160],modern:"튀르키예 안타키아",era:["church"],
+ sum:"제자들이 처음 ‘그리스도인’이라 불린 이방인 선교 기지",
+ body:["오론테스강 가의 로마 제국 셋째 도시로 시리아 속주의 수도였다. 스데반 사건 후 흩어진 성도들이 헬라인에게도 복음을 전해 교회가 세워졌다.","바나바와 바울이 이곳에서 가르쳤고, 제자들이 처음으로 그리스도인이라 불렸다. 바울의 세 차례 선교 여행이 모두 이곳에서 출발했다."],
+ verses:[["행 11:26","제자들이 안디옥에서 비로소 그리스도인이라 일컬음을 받게 되었더라"],["행 13:2–3","내가 불러 시키는 일을 위하여 바나바와 사울을 따로 세우라 … 안수하여 보내니라"]],
+ rel:["tarsus","damascus","cyprus","jerusalem"],tags:["그리스도인","바나바","선교 여행 출발지"]},
+{id:"tarsus",ko:"다소",en:"Tarsus",cat:"city",ll:[36.918,34.895],modern:"튀르키예 타르수스",era:["church"],
+ sum:"사도 바울의 고향, 길리기아의 학문 도시",
+ body:["길리기아 지방의 중심 도시로 키드노스강 가에 있었고 철학과 학문으로 이름났다. 바울은 이곳에서 로마 시민권을 가진 유대인으로 태어났다. 회심 후 한동안 고향에 머물다 바나바의 부름으로 안디옥에 갔다."],
+ verses:[["행 21:39","나는 유대인이라 소읍이 아닌 길리기아 다소 시의 시민이니"],["행 11:25","바나바가 사울을 찾으러 다소에 가서"]],
+ rel:["antioch","jerusalem"],tags:["바울","로마 시민권","길리기아"]},
+{id:"cyprus",ko:"구브로",en:"Cyprus",cat:"island",ll:[35.10,33.40],modern:"키프로스",era:["church"],
+ sum:"바나바의 고향, 1차 선교 여행의 첫 방문지",
+ body:["지중해 동쪽의 큰 섬이다. 바나바의 고향이며, 1차 선교 여행 때 바나바와 바울이 살라미에서 바보까지 섬을 가로지르며 복음을 전했다. 바보에서 총독 서기오 바울이 믿게 되었다."],
+ verses:[["행 4:36","구브로에서 난 레위족 사람이 있으니 이름은 요셉이라 사도들이 일컬어 바나바"],["행 13:4","두 사람이 성령의 보내심을 받아 … 거기서 배 타고 구브로에 가서"]],
+ rel:["antioch","tarsus"],tags:["바나바","서기오 바울","1차 선교 여행"]},
+{id:"ephesus",ko:"에베소",en:"Ephesus",cat:"city",ll:[37.941,27.342],modern:"튀르키예 셀추크(에페스 유적)",era:["church"],
+ sum:"바울이 3년간 머문 아시아 속주의 중심 도시",
+ body:["아시아 속주의 수도급 항구 도시로, 세계 7대 불가사의인 아데미 신전이 있었다. 바울이 3년 가까이 머물며 두란노 서원에서 가르쳐 온 아시아가 말씀을 들었다.","은장색 데메드리오의 소동이 일어났고, 훗날 요한계시록 일곱 교회 중 첫 번째 교회로 ‘처음 사랑’을 회복하라는 말씀을 받았다."],
+ verses:[["행 19:10","두 해 동안 이같이 하니 아시아에 사는 자는 유대인이나 헬라인이나 다 주의 말씀을 듣더라"],["엡 1:1","하나님의 뜻으로 그리스도 예수의 사도 된 바울은 에베소에 있는 성도들 … 에게 편지하노니"],["계 2:4","그러나 너를 책망할 것이 있나니 너의 처음 사랑을 버렸느니라"]],
+ rel:["patmos","corinth","philippi"],tags:["두란노 서원","아데미 신전","에베소서","일곱 교회"]},
+{id:"philippi",ko:"빌립보",en:"Philippi",cat:"city",ll:[41.013,24.286],modern:"그리스 필리포이 유적",era:["church"],
+ sum:"유럽 최초의 교회가 세워진 마게도냐의 로마 식민 도시",
+ body:["마게도냐 동부의 로마 식민 도시다. 바울이 ‘마게도냐로 건너와서 우리를 도우라’는 환상을 보고 건너와, 자색 옷감 장사 루디아에게 처음 세례를 주며 유럽 최초의 교회가 시작되었다.","바울과 실라가 매 맞고 옥에 갇혔으나 한밤중 찬송할 때 옥문이 열리고 간수의 가정이 구원받았다."],
+ verses:[["행 16:14","두아디라 시에 있는 자색 옷감 장사로서 하나님을 섬기는 루디아라 하는 한 여자가 … 주께서 그 마음을 열어"],["행 16:25","한밤중에 바울과 실라가 기도하고 하나님을 찬송하매"],["빌 4:4","주 안에서 항상 기뻐하라"]],
+ rel:["thessalonica","corinth","ephesus"],tags:["루디아","빌립보 간수","빌립보서","마게도냐 환상"]},
+{id:"thessalonica",ko:"데살로니가",en:"Thessalonica",cat:"city",ll:[40.640,22.944],modern:"그리스 테살로니키",era:["church"],
+ sum:"바울이 짧게 머물렀으나 믿음이 널리 소문난 교회",
+ body:["마게도냐 속주의 수도로 에그나티아 대로가 지나는 항구 도시다. 바울이 세 안식일 동안 회당에서 강론하여 교회가 세워졌으나 유대인들의 소동으로 급히 떠나야 했다. 이 교회에 보낸 두 편지는 바울 서신 가운데 가장 이른 편지에 속한다."],
+ verses:[["행 17:2","바울이 자기의 관례대로 그들에게로 들어가서 세 안식일에 성경을 가지고 강론하며"],["살전 1:8","주의 말씀이 너희에게로부터 마게도냐와 아가야에만 들릴 뿐 아니라 하나님을 향하는 너희 믿음의 소문이 각처에 퍼졌으므로"]],
+ rel:["philippi","athens","corinth"],tags:["데살로니가전후서","재림","야손"]},
+{id:"athens",ko:"아덴",en:"Athens",cat:"city",ll:[37.972,23.726],modern:"그리스 수도 아테네",era:["church"],
+ sum:"바울이 아레오바고에서 ‘알지 못하는 신’을 전한 철학의 도시",
+ body:["그리스 철학과 문화의 중심지다. 우상으로 가득한 도시를 보고 마음에 격분한 바울이 아레오바고 법정에서 철학자들에게 ‘알지 못하는 신에게’라고 새긴 제단을 들어 천지의 창조주와 부활을 전했다."],
+ verses:[["행 17:22–23","아덴 사람들아 너희를 보니 범사에 종교심이 많도다 … 알지 못하는 신에게라 새긴 단도 보았으니"],["행 17:34","몇 사람이 그를 가까이하여 믿으니 그 중에는 아레오바고 관리 디오누시오 … 가 있었더라"]],
+ rel:["corinth","thessalonica"],tags:["아레오바고","알지 못하는 신","철학자"]},
+{id:"corinth",ko:"고린도",en:"Corinth",cat:"city",ll:[37.906,22.879],modern:"그리스 옛 코린토스 유적",era:["church"],
+ sum:"바울이 1년 6개월 머문 아가야의 상업 도시",
+ body:["두 바다를 잇는 지협 위의 부유한 상업 도시이자 아가야 속주의 수도로, 도덕적으로 문란하기로 이름났다. 바울이 브리스길라·아굴라 부부와 함께 천막을 만들며 1년 6개월 동안 복음을 전했다.","분쟁과 은사 문제로 흔들린 이 교회에 보낸 편지에 ‘사랑장(고전 13장)’이 담겨 있다."],
+ verses:[["행 18:11","일 년 육 개월을 머물며 그들 가운데서 하나님의 말씀을 가르치니라"],["고전 13:13","그런즉 믿음, 소망, 사랑, 이 세 가지는 항상 있을 것인데 그 중의 제일은 사랑이라"]],
+ rel:["athens","ephesus","rome"],tags:["브리스길라와 아굴라","사랑장","고린도전후서"]},
+{id:"malta",ko:"멜리데",en:"Malta",cat:"island",ll:[35.90,14.43],modern:"몰타 공화국",era:["church"],
+ sum:"로마로 가던 바울이 파선하여 닿은 섬",
+ body:["시칠리아 남쪽의 섬이다. 죄수로 로마에 호송되던 바울이 탄 배가 14일 동안 광풍에 시달리다 이 섬에서 파선했으나 276명 모두 살아남았다. 바울은 독사에 물리고도 해를 입지 않았고, 추장 보블리오의 부친을 고쳤다."],
+ verses:[["행 28:1","우리가 구조된 후에 안즉 그 섬은 멜리데라 하더라"],["행 28:5","바울이 그 짐승을 불에 떨어 버리매 조금도 상함이 없더라"]],
+ rel:["rome","caesarea"],tags:["파선","독사","보블리오"]},
+{id:"rome",ko:"로마",en:"Rome",cat:"city",ll:[41.893,12.483],modern:"이탈리아 수도 로마",era:["jesus","church"],
+ sum:"제국의 수도, 바울이 셋집에서 복음을 전한 땅 끝",
+ body:["로마 제국의 수도이자 당시 세계의 중심이다. 오순절에 로마에서 온 유대인들이 있었고 일찍부터 교회가 세워져 바울이 로마서를 보냈다.","바울은 죄수로 이곳에 와서 2년 동안 셋집에 머물며 거침없이 하나님 나라를 전했다. 전승에 따르면 베드로와 바울이 네로 황제 때 이곳에서 순교했다."],
+ verses:[["롬 1:15","나는 할 수 있는 대로 로마에 있는 너희에게도 복음 전하기를 원하노라"],["행 28:30–31","바울이 온 이태를 자기 셋집에 머물면서 … 담대하게 거침없이 하나님의 나라를 전파하며"]],
+ rel:["malta","corinth","caesarea"],tags:["로마서","네로","순교","땅 끝"]},
+{id:"patmos",ko:"밧모섬",en:"Patmos",cat:"island",ll:[37.315,26.548],modern:"그리스 파트모스섬",era:["church"],
+ sum:"사도 요한이 유배되어 계시를 받은 섬",
+ body:["에게해의 작은 바위섬으로, 에베소 남서쪽 약 90km에 있다. 사도 요한이 하나님의 말씀과 예수를 증언한 까닭에 이곳에 유배되어 주의 날에 계시를 받고 요한계시록을 기록했다."],
+ verses:[["계 1:9","나 요한은 … 하나님의 말씀과 예수의 증거로 말미암아 밧모라 하는 섬에 있었더니"]],
+ rel:["ephesus"],tags:["사도 요한","요한계시록","일곱 교회"]}
+];
+
+/* 세력도: 예수 시대 팔레스타인 지역 구분 (학습용 개략 경계) */
+const REGIONS=[
+ {n:"갈릴리",c:"#3f9a6e",at:[32.80,35.36],p:[[33.10,35.12],[33.12,35.55],[32.95,35.64],[32.72,35.57],[32.62,35.52],[32.54,35.30],[32.62,35.10],[32.85,35.08]]},
+ {n:"사마리아",c:"#c98236",at:[32.25,35.20],p:[[32.54,35.30],[32.48,35.52],[32.15,35.55],[31.98,35.48],[32.02,35.10],[32.12,34.95],[32.40,34.92],[32.55,35.02]]},
+ {n:"유대",c:"#c8574b",at:[31.62,35.02],p:[[32.02,35.10],[31.98,35.48],[31.70,35.46],[31.35,35.38],[31.28,35.05],[31.40,34.65],[31.70,34.62],[32.05,34.75]]},
+ {n:"베레아",c:"#8a63c4",at:[31.95,35.68],p:[[32.40,35.58],[32.35,35.78],[31.95,35.85],[31.55,35.72],[31.55,35.56],[31.90,35.54],[32.15,35.56]]},
+ {n:"데가볼리",c:"#3a9aa0",at:[32.58,35.90],p:[[32.95,35.64],[32.92,35.95],[32.70,36.20],[32.30,36.10],[32.35,35.78],[32.40,35.58],[32.62,35.56],[32.72,35.60]]},
+ {n:"이두매",c:"#9b8a3c",at:[31.15,35.00],p:[[31.35,35.38],[31.05,35.42],[30.90,35.10],[31.00,34.70],[31.28,35.05]]}
+];
+
+/* ══════════ 유틸 ══════════ */
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const byId=Object.fromEntries(PLACES.map(p=>[p.id,p]));
+const catLabel=p=>CATS[p.cat][0];
+function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("on");clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove("on"),1600)}
+function copy(text,msg){
+  const done=()=>toast(msg);
+  if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(text).then(done,()=>fallback())}else fallback();
+  function fallback(){const ta=document.createElement("textarea");ta.value=text;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();try{document.execCommand("copy");done()}catch(_){toast("복사하지 못했어요")}ta.remove()}
+}
+
+/* ══════════ 설정 (P7) — localStorage 'bibleMapSettings' 에 저장, 다른 지도 페이지와 공유 가능 ══════════ */
+const SKEY="bibleMapSettings";
+const settings=Object.assign({dark:false,modern:true,power:true,size:"normal"},(()=>{try{return JSON.parse(localStorage.getItem(SKEY))||{}}catch(_){return {}}})());
+function saveSettings(){try{localStorage.setItem(SKEY,JSON.stringify(settings))}catch(_){}}
+function applySettings(){
+  const r=document.documentElement;
+  r.dataset.theme=settings.dark?"dark":"light";
+  r.dataset.size=settings.size;
+  document.body.classList.toggle("hide-modern",!settings.modern);
+  $("#sDark").checked=settings.dark; $("#sModern").checked=settings.modern; $("#sPower").checked=settings.power;
+  document.querySelectorAll("#sSize button").forEach(b=>b.classList.toggle("on",b.dataset.v===settings.size));
+  setTiles(); setPower();
+  [bigMap,miniMap].forEach(m=>m&&setTimeout(()=>m.invalidateSize(),50));
+}
+$("#sDark").onchange=e=>{settings.dark=e.target.checked;saveSettings();applySettings()};
+$("#sModern").onchange=e=>{settings.modern=e.target.checked;saveSettings();applySettings();renderList();if(cur)renderDetail(cur,true)};
+$("#sPower").onchange=e=>{settings.power=e.target.checked;saveSettings();applySettings()};
+document.querySelectorAll("#sSize button").forEach(b=>b.onclick=()=>{settings.size=b.dataset.v;saveSettings();applySettings()});
+function openSheet(on){$("#sheet").classList.toggle("on",on);$("#bSet").setAttribute("aria-expanded",String(on))}
+$("#bSet").onclick=()=>openSheet(!$("#sheet").classList.contains("on"));
+$("#sheetX").onclick=()=>openSheet(false);
+document.addEventListener("keydown",e=>{if(e.key==="Escape")openSheet(false)});
+
+/* ══════════ 타일 ══════════ */
+const ATTR='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>';
+const tileUrl=()=>`https://{s}.basemaps.cartocdn.com/${settings.dark?"dark_nolabels":"rastertiles/voyager_nolabels"}/{z}/{x}/{y}{r}.png`;
+let bigMap=null,miniMap=null,bigTiles=null,miniTiles=null,powerLayer=null,miniPower=null;
+function setTiles(){
+  if(bigTiles)bigTiles.setUrl(tileUrl());
+  if(miniTiles)miniTiles.setUrl(tileUrl());
+}
+function buildPower(){
+  const g=L.layerGroup();
+  REGIONS.forEach(r=>{
+    g.addLayer(L.polygon(r.p,{color:r.c,weight:2,dashArray:"7 6",fillColor:r.c,fillOpacity:.13,interactive:false,smoothFactor:1.5}));
+    g.addLayer(L.marker(r.at,{interactive:false,keyboard:false,icon:L.divIcon({className:"",html:`<div class="rlabel" style="color:${r.c}">${esc(r.n)}</div>`,iconSize:null})}));
+  });
+  return g;
+}
+function setPower(){
+  requestAnimationFrame(()=>updateLabels&&updateLabels());
+  [[bigMap,()=>powerLayer],[miniMap,()=>miniPower]].forEach(([m,get])=>{
+    if(!m)return; const g=get(); if(!g)return;
+    settings.power?m.addLayer(g):m.removeLayer(g);
+  });
+}
+function pinIcon(p,sel){
+  if(sel)return L.divIcon({className:"",html:'<div class="pin sel"></div>',iconSize:[22,22],iconAnchor:[11,11]});
+  const cls=p.cat==="water"||p.cat==="mount"?"pin geo":p.cat==="region"?"pin reg":"pin";
+  return L.divIcon({className:"",html:`<div class="${cls}"></div>`,iconSize:[13,13],iconAnchor:[6.5,6.5]});
+}
+const modernShort=p=>p.modern.replace(/\(.*?\)/g,"").trim();
+const labelHtml=p=>`${esc(p.ko)}${p.q?" ?":""}<small>현 ${esc(modernShort(p))}</small>`;
+
+/* ══════════ 목록 (P8) ══════════ */
+let fCat="all",fEra="all",q="";
+const catChips=$("#catChips"),eraChips=$("#eraChips");
+function chip(container,val,label,get,set){
+  const b=document.createElement("button");b.className="chip";b.textContent=label;b.dataset.v=val;
+  b.onclick=()=>{set(val);container.querySelectorAll(".chip").forEach(x=>x.classList.toggle("on",x.dataset.v===val));renderList();if(view==="map")drawBig()};
+  if(get()===val)b.classList.add("on");container.appendChild(b);
+}
+chip(catChips,"all","전체 분류",()=>fCat,v=>fCat=v);
+Object.entries(CATS).forEach(([k,[n,ic]])=>chip(catChips,k,ic+" "+n,()=>fCat,v=>fCat=v));
+chip(eraChips,"all","전체 시대",()=>fEra,v=>fEra=v);
+Object.entries(ERA_NAMES).forEach(([k,n])=>chip(eraChips,k,n,()=>fEra,v=>fEra=v));
+
+const norm=s=>String(s).toLowerCase().replace(/\s+/g,"");
+function hay(p){return norm([p.ko,p.en,p.modern,p.sum,p.tags.join(" "),p.verses.map(v=>v[0]).join(" ")].join(" "))}
+function score(p,nq){
+  if(!nq)return 1;
+  const ko=norm(p.ko),en=norm(p.en);
+  if(ko===nq||en===nq)return 100;
+  if(ko.startsWith(nq)||en.startsWith(nq))return 60;
+  if(ko.includes(nq)||en.includes(nq))return 40;
+  if(norm(p.modern).includes(nq))return 25;
+  if(norm(p.tags.join(" ")).includes(nq))return 20;
+  if(hay(p).includes(nq))return 10;
+  return 0;
+}
+function hl(text,raw){
+  const s=esc(text); if(!raw)return s;
+  const t=esc(raw.trim()); if(!t)return s;
+  const i=s.toLowerCase().indexOf(t.toLowerCase()); if(i<0)return s;
+  return s.slice(0,i)+"<mark>"+s.slice(i,i+t.length)+"</mark>"+s.slice(i+t.length);
+}
+function filtered(){
+  const nq=norm(q);
+  return PLACES.map(p=>[p,score(p,nq)])
+    .filter(([p,s])=>s>0&&(fCat==="all"||p.cat===fCat)&&(fEra==="all"||p.era.includes(fEra)))
+    .sort((a,b)=>b[1]-a[1]||a[0].ko.localeCompare(b[0].ko,"ko"))
+    .map(x=>x[0]);
+}
+function renderList(){
+  const arr=filtered(),ul=$("#list");
+  $("#totalCnt").textContent=PLACES.length+"곳";
+  $("#count").textContent=(q||fCat!=="all"||fEra!=="all")?`검색 결과 ${arr.length}곳`:`가나다순 ${arr.length}곳`;
+  if(!arr.length){ul.innerHTML=`<li class="empty">‘${esc(q)}’에 맞는 지명이 없어요.<br>다른 이름(영문·현대 지명)이나 인물·사건으로 찾아보세요.</li>`;return}
+  ul.innerHTML=arr.map(p=>`<li class="item" data-id="${p.id}" tabindex="0" role="button">
+    <span class="ic" aria-hidden="true">${CATS[p.cat][1]}</span>
+    <div class="bd"><div class="nm">${hl(p.ko,q)}<span>${hl(p.en,q)}</span></div>
+    <div class="sm">${hl(p.sum,q)}</div>
+    <div class="md">📍 현 ${hl(p.modern,q)}${p.q?" · 위치 추정":""}</div></div>
+    <span class="ar">›</span></li>`).join("");
+}
+$("#list").addEventListener("click",e=>{const li=e.target.closest(".item");if(li)go("place",li.dataset.id)});
+$("#list").addEventListener("keydown",e=>{if(e.key==="Enter"){const li=e.target.closest(".item");if(li)go("place",li.dataset.id)}});
+const qi=$("#q");
+qi.addEventListener("input",()=>{q=qi.value;$("#sbox").classList.toggle("has",!!q);renderList()});
+qi.addEventListener("keydown",e=>{if(e.key==="Enter"){const a=filtered();if(a.length===1||(a.length&&score(a[0],norm(q))>=60))go("place",a[0].id)}});
+$("#qx").onclick=()=>{qi.value="";q="";$("#sbox").classList.remove("has");renderList();qi.focus()};
+
+/* ══════════ 상세 (P6) ══════════ */
+let cur=null, miniMarkers=null, lastFrom="list";
+function renderDetail(id,keepScroll){
+  const p=byId[id]; if(!p)return; cur=id;
+  document.title=`${p.ko} — 지명 사전 | 지도로 보는 바이블`;
+  $("#dName").textContent=p.ko; $("#dEn").textContent=p.en;
+  $("#dCat").innerHTML=`<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg> 지명 · ${esc(catLabel(p))}${p.q?' <span style="color:var(--sub);font-weight:600;font-size:.8rem">· 위치 추정</span>':""}`;
+  $("#dSum").textContent=p.sum;
+  $("#dBar").textContent=`${p.ko} · 현 ${p.modern}`;
+  $("#dBody").innerHTML=p.body.map(t=>`<p>${esc(t)}</p>`).join("");
+  $("#dVerses").innerHTML=p.verses.map(v=>`<li><b>📖 ${esc(v[0])}</b>${esc(v[1])}</li>`).join("");
+  $("#dKw").innerHTML=p.rel.filter(r=>byId[r]).map(r=>`<button data-id="${r}"><i>📍</i>${esc(byId[r].ko)}</button>`).join("")+p.tags.map(t=>`<span class="tag"># ${esc(t)}</span>`).join("");
+  const links=p.era.map(e=>ERA_LINKABLE.has(e)?`<a href="bible-map-eras.html#${e}">${esc(ERA_NAMES[e])} 시대 ›</a>`:`<a href="bible-map-eras.html" title="시대별 세력도에서 보기">${esc(ERA_NAMES[e])} 시대 ›</a>`);
+  $("#dEras").innerHTML=links.join(""); $("#dErasSec").style.display=links.length?"":"none";
+  if(!keepScroll)$("#detailScroll").scrollTop=0;
+  $("#dBack span").textContent=lastFrom==="map"?"지도":"목록";
+  drawMini(p);
+}
+$("#dKw").addEventListener("click",e=>{const b=e.target.closest("button[data-id]");if(b)go("place",b.dataset.id)});
+$("#dBack").onclick=()=>{lastFrom==="map"?go("map",cur):go("list")};
+$("#dFull").onclick=()=>go("map",cur);
+$("#dCopy").onclick=()=>{const p=byId[cur];copy(`${p.ko} (${p.en}) — ${catLabel(p)}\n${p.sum}\n현 ${p.modern}\n\n${p.body.join("\n")}\n\n${p.verses.map(v=>`${v[0]} ${v[1]}`).join("\n")}`,"설명을 복사했어요")};
+$("#dShare").onclick=()=>copy(location.href.split("#")[0]+"#place="+cur,"링크를 복사했어요");
+
+function initMini(){
+  miniMap=L.map("miniMap",{zoomControl:false,attributionControl:false,scrollWheelZoom:false,dragging:!L.Browser.mobile,tap:false,minZoom:3,maxZoom:13});
+  miniTiles=L.tileLayer(tileUrl(),{subdomains:"abcd",maxZoom:19}).addTo(miniMap);
+  miniPower=buildPower(); if(settings.power)miniMap.addLayer(miniPower);
+  miniMarkers=L.layerGroup().addTo(miniMap);
+  // 모바일: 두 손가락으로만 이동 (페이지 스크롤 방해 방지)
+  const el=$("#miniMap");
+  el.addEventListener("touchstart",e=>{if(e.touches.length>1){miniMap.dragging.enable();$("#miniHint").style.opacity="0"}},{passive:true});
+  el.addEventListener("touchend",e=>{if(L.Browser.mobile&&e.touches.length<2)miniMap.dragging.disable()},{passive:true});
+  el.addEventListener("mouseenter",()=>{miniMap.scrollWheelZoom.enable();$("#miniHint").style.opacity="0"});
+  el.addEventListener("mouseleave",()=>miniMap.scrollWheelZoom.disable());
+  if(!L.Browser.mobile)$("#miniHint").textContent="휠 확대 · 끌어서 이동";
+}
+function drawMini(p){
+  if(!miniMap)initMini();
+  miniMarkers.clearLayers();
+  const near=PLACES.filter(o=>o.id!==p.id&&Math.abs(o.ll[0]-p.ll[0])<1.6&&Math.abs(o.ll[1]-p.ll[1])<1.6);
+  near.forEach(o=>{const m=L.marker(o.ll,{icon:pinIcon(o),title:o.ko}).bindTooltip(esc(o.ko),{permanent:true,direction:"top",offset:[0,-5],className:"pl"});m.on("click",()=>go("place",o.id));miniMarkers.addLayer(m)});
+  const m=L.marker(p.ll,{icon:pinIcon(p,true),zIndexOffset:1000}).bindTooltip(esc(p.ko),{permanent:true,direction:"bottom",offset:[0,10],className:"pl sel"});
+  miniMarkers.addLayer(m);
+  const z=p.cat==="region"||p.cat==="island"?6.5:p.ll[0]<34&&p.ll[0]>30&&p.ll[1]>34&&p.ll[1]<36.5?9.5:7.5;
+  setTimeout(()=>{miniMap.invalidateSize();miniMap.setView(p.ll,z,{animate:false})},0);
+}
+
+/* ══════════ 지도 보기 ══════════ */
+let bigMarkers=null,bigSel=null;
+function initBig(){
+  bigMap=L.map("bigMap",{zoomControl:false,minZoom:3,maxZoom:13,zoomSnap:.25,worldCopyJump:false});
+  bigTiles=L.tileLayer(tileUrl(),{subdomains:"abcd",maxZoom:19,attribution:ATTR}).addTo(bigMap);
+  L.control.scale({metric:true,imperial:false,position:"bottomleft",maxWidth:140}).addTo(bigMap);
+  powerLayer=buildPower(); if(settings.power)bigMap.addLayer(powerLayer);
+  bigMarkers=L.layerGroup().addTo(bigMap);
+  bigMap.on("zoomend moveend",()=>requestAnimationFrame(updateLabels)); bigMap.on("click",()=>{$("#pcard").classList.remove("on")});
+  bigMap.setView([31.9,35.2],7.5);
+}
+/* 라벨 겹침 정리: 중요도 순으로 표시하고, 겹치는 라벨은 숨김(확대하면 나타남) */
+const prio=p=>p.era.length*2+p.verses.length+(p.cat==="city"?3:0)+(p.cat==="region"?2:0);
+function updateLabels(){
+  if(!bigMap||!bigMarkers)return;
+  const shown=[];
+  const ms=[];bigMarkers.eachLayer(m=>ms.push(m));
+  ms.sort((a,b)=>(b._sel-a._sel)||(prio(b._p)-prio(a._p)));
+  ms.forEach(m=>{
+    const el=m.getTooltip()&&m.getTooltip().getElement(); if(!el)return;
+    el.style.visibility="";
+    const r=el.getBoundingClientRect(),pad=2;
+    const hit=shown.some(o=>!(r.right+pad<o.left||r.left-pad>o.right||r.bottom+pad<o.top||r.top-pad>o.bottom));
+    if(hit&&!m._sel){el.style.visibility="hidden"}else shown.push(r);
+  });
+  if(settings.power&&powerLayer)document.querySelectorAll("#bigMap .rlabel").forEach(el=>{
+    el.style.visibility="";const r=el.getBoundingClientRect();
+    if(shown.some(o=>!(r.right<o.left||r.left>o.right||r.bottom<o.top||r.top>o.bottom)))el.style.visibility="hidden";
+  });
+}
+function drawBig(focusId){
+  if(!bigMap)initBig();
+  bigMarkers.clearLayers();
+  const arr=filtered();
+  if(focusId&&!arr.some(p=>p.id===focusId))arr.push(byId[focusId]);
+  arr.forEach(p=>{
+    const sel=p.id===focusId;
+    const m=L.marker(p.ll,{icon:pinIcon(p,sel),title:p.ko,riseOnHover:true,zIndexOffset:sel?1000:0});
+    m.bindTooltip(labelHtml(p),{permanent:true,direction:"bottom",offset:[0,sel?10:5],className:"pl"+(sel?" sel":"")});
+    m._p=p; m._sel=sel?1:0;
+    m.on("click",ev=>{L.DomEvent.stopPropagation(ev);showCard(p.id);drawBig(p.id)});
+    bigMarkers.addLayer(m);
+  });
+  const filt=[fCat!=="all"?CATS[fCat][0]:null,fEra!=="all"?ERA_NAMES[fEra]+" 시대":null,q?`‘${q}’`:null].filter(Boolean).join(" · ");
+  $("#mT1").textContent=focusId?`${byId[focusId].ko} · 현 ${byId[focusId].modern}`:"지명 사전 지도";
+  $("#mT2").textContent=`${arr.length}곳 표시${filt?" · "+filt:""} — 지명을 누르면 설명이 열립니다`;
+  requestAnimationFrame(updateLabels);
+}
+function showCard(id){
+  const p=byId[id]; bigSel=id;
+  $("#pcName").textContent=p.ko; $("#pcCat").textContent=`${p.en} · ${catLabel(p)}`;
+  $("#pcSum").textContent=p.sum; $("#pcMd").textContent=settings.modern?`📍 현 ${p.modern}${p.q?" · 위치 추정":""}`:"";
+  $("#pcard").classList.add("on");
+}
+$("#pcX").onclick=()=>{$("#pcard").classList.remove("on");bigSel=null;drawBig()};
+$("#pcGo").onclick=()=>{lastFrom="map";go("place",bigSel,true)};
+$("#mzin").onclick=()=>bigMap.zoomIn();
+$("#mzout").onclick=()=>bigMap.zoomOut();
+$("#mlist").onclick=()=>go("list");
+
+/* ══════════ 화면 전환 / 해시 라우팅 ══════════
+   #place=sychar  → 상세   #map=sychar → 지도에서 강조   #map → 지도   (없음) → 목록 */
+let view="list";
+function show(v){
+  view=v;
+  ["vList","vDetail","vMap"].forEach(id=>$("#"+id).classList.toggle("on",id===({list:"vList",place:"vDetail",map:"vMap"})[v]));
+  const isMap=v==="map";
+  $("#tDict").classList.toggle("on",!isMap);$("#tMap").classList.toggle("on",isMap);
+  $("#tDict").setAttribute("aria-selected",String(!isMap));$("#tMap").setAttribute("aria-selected",String(isMap));
+}
+function go(v,id,keepFrom){
+  if(v==="place"&&!keepFrom&&view!=="place")lastFrom=view==="map"?"map":"list";
+  if(v==="place"&&!keepFrom&&view==="place"){} // 연관 지명 이동 시 출발점 유지
+  const h=v==="place"?"#place="+id:v==="map"?(id?"#map="+id:"#map"):"#";
+  if(location.hash!==h){history.pushState(null,"",h==="#"?location.pathname+location.search:h)}
+  route();
+}
+function route(){
+  const h=decodeURIComponent(location.hash||"");
+  let m;
+  if((m=h.match(/^#place=([\w-]+)/))&&byId[m[1]]){show("place");renderDetail(m[1]);document.title=`${byId[m[1]].ko} — 지명 사전 | 지도로 보는 바이블`}
+  else if((m=h.match(/^#map(?:=([\w-]+))?/))){
+    show("map"); const id=m[1]&&byId[m[1]]?m[1]:null;
+    if(id){fEra="all";fCat="all";syncChips();}
+    drawBig(id);
+    setTimeout(()=>{bigMap.invalidateSize();if(id){const p=byId[id];bigMap.setView(p.ll,p.ll[0]<34&&p.ll[0]>30&&p.ll[1]>34&&p.ll[1]<36.5?8.25:6.5,{animate:false});showCard(id)}else if(q||fCat!=="all"||fEra!=="all")fitAll();else bigMap.setView([31.95,35.35],L.Browser.mobile?7.6:8,{animate:false})},0);
+    document.title="지도 — 지명 사전 | 지도로 보는 바이블";
+  }
+  else{show("list");document.title="지도로 보는 바이블 — 지명 사전"}
+}
+function syncChips(){
+  catChips.querySelectorAll(".chip").forEach(x=>x.classList.toggle("on",x.dataset.v===fCat));
+  eraChips.querySelectorAll(".chip").forEach(x=>x.classList.toggle("on",x.dataset.v===fEra));
+  renderList();
+}
+function fitAll(){
+  const arr=filtered(); if(!arr.length)return;
+  const b=L.latLngBounds(arr.map(p=>p.ll));
+  bigMap.fitBounds(b,{paddingTopLeft:[20,80],paddingBottomRight:[70,110],maxZoom:9});
+}
+window.addEventListener("popstate",route);
+window.addEventListener("hashchange",route);
+
+$("#tDict").onclick=()=>{if(view==="map"){bigSel&&byId[bigSel]?(lastFrom="map",go("place",bigSel,true)):cur?go("place",cur):go("list")}};
+$("#tMap").onclick=()=>{if(view!=="map")go("map",view==="place"?cur:null)};
+$("#bSearch").onclick=()=>{if(view!=="list")go("list");setTimeout(()=>{qi.focus();qi.select()},30)};
+
+/* 시작 */
+renderList();
+applySettings();
+route();
+</script>
+</body>
+</html>
