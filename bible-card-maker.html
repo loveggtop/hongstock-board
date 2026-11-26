@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>말씀 감성 카드 만들기</title>
+<meta name="description" content="성경 구절·묵상·적용을 노을빛 배경 위에 담아 1080×1080 말씀 카드 이미지로 저장합니다.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --olive:#6b7a4f; --moss:#556b3d; --gold:#c9a24b; --gold-light:#e8cf8a;
+    --beige:#f5efe0; --ivory:#fbf8f0; --brown:#5a4633; --ink:#3a3226; --line:#e4d8bc;
+    --rust:#b5532f;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:"Nanum Gothic","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;
+    background:linear-gradient(180deg,var(--ivory) 0%,var(--beige) 100%);
+    color:var(--ink);line-height:1.6;padding-bottom:60px;min-height:100vh;
+  }
+  header{
+    background:linear-gradient(135deg,#3a3226 0%,#5a4633 40%,#8a6a3e 75%,var(--gold) 100%);
+    color:var(--ivory);padding:40px 20px 30px;text-align:center;position:relative;overflow:hidden;
+  }
+  header::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 70% 20%,rgba(255,220,150,.25),transparent 60%);pointer-events:none}
+  header h1{font-size:1.9rem;font-weight:800;letter-spacing:-.5px;position:relative}
+  header p{margin:10px auto 0;font-size:.95rem;color:#e9dcc0;position:relative;max-width:640px}
+  .crumbs{position:relative;margin-top:14px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+  .crumbs a{color:#efe7d4;font-size:.82rem;text-decoration:none;border:1px solid rgba(239,231,212,.4);border-radius:999px;padding:4px 12px}
+  .crumbs a:hover{background:rgba(255,255,255,.12)}
+
+  main{max-width:1180px;margin:0 auto;padding:22px 16px 0}
+  .section-title{font-size:1.02rem;font-weight:800;color:var(--brown);margin:0 0 10px;display:flex;align-items:center;gap:8px}
+  .section-title small{font-weight:400;color:#8a7a5c;font-size:.8rem}
+
+  /* 예시 카드 */
+  .presets{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:24px}
+  .preset{
+    border:1px solid var(--line);background:#fff;border-radius:14px;padding:10px 12px;cursor:pointer;text-align:left;
+    font-family:inherit;color:var(--ink);transition:transform .12s,box-shadow .12s;display:flex;flex-direction:column;gap:2px
+  }
+  .preset:hover{transform:translateY(-2px);box-shadow:0 8px 18px -12px rgba(58,50,38,.6)}
+  .preset.on{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold-light)}
+  .preset .sw{height:6px;border-radius:4px;margin-bottom:6px}
+  .preset b{font-size:.9rem}
+  .preset span{font-size:.76rem;color:#8a7a5c}
+
+  .workspace{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:22px;align-items:start}
+  @media (max-width:860px){.workspace{grid-template-columns:1fr}}
+
+  .panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 8px 24px -18px rgba(58,50,38,.5)}
+  .field{margin-bottom:14px}
+  .field label{display:block;font-size:.84rem;font-weight:700;color:var(--brown);margin-bottom:5px}
+  .field label em{font-style:normal;font-weight:400;color:#9a8a6a;font-size:.76rem;margin-left:4px}
+  .field input,.field textarea,.field select{
+    width:100%;font-family:inherit;font-size:.95rem;color:var(--ink);background:var(--ivory);
+    border:1px solid #d9c79a;border-radius:10px;padding:9px 12px;outline:none
+  }
+  .field textarea{resize:vertical;min-height:70px;line-height:1.55}
+  .field input:focus,.field textarea:focus,.field select:focus{border-color:var(--gold);background:#fff}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media (max-width:420px){.row2{grid-template-columns:1fr}}
+
+  .seg{display:flex;gap:6px;flex-wrap:wrap}
+  .seg button{
+    font-family:inherit;font-size:.85rem;border:1px solid #d9c79a;background:var(--ivory);color:var(--brown);
+    border-radius:999px;padding:6px 13px;cursor:pointer
+  }
+  .seg button.on{background:var(--olive);border-color:var(--olive);color:#fff}
+
+  .themes{display:flex;gap:8px;flex-wrap:wrap}
+  .theme{width:46px;height:46px;border-radius:12px;border:2px solid transparent;cursor:pointer;position:relative}
+  .theme.on{border-color:var(--ink);box-shadow:0 0 0 2px #fff inset}
+  .theme span{position:absolute;bottom:-18px;left:50%;transform:translateX(-50%);font-size:.66rem;color:#8a7a5c;white-space:nowrap}
+  .themes-wrap{padding-bottom:16px}
+
+  .hint{font-size:.78rem;color:#8a7a5c;margin-top:4px}
+
+  .preview{position:sticky;top:12px}
+  .tabs{display:flex;gap:6px;margin-bottom:10px}
+  .tabs button{flex:1;font-family:inherit;font-weight:700;font-size:.88rem;padding:8px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--brown);cursor:pointer}
+  .tabs button.on{background:var(--brown);color:var(--ivory);border-color:var(--brown)}
+  canvas{width:100%;height:auto;display:block;border-radius:14px;box-shadow:0 14px 34px -18px rgba(30,20,10,.7);background:#3a3226;aspect-ratio:1/1}
+  .actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+  .btn{
+    flex:1 1 140px;font-family:inherit;font-weight:800;font-size:.92rem;border:none;border-radius:12px;padding:12px 14px;cursor:pointer;
+    display:inline-flex;align-items:center;justify-content:center;gap:6px
+  }
+  .btn.primary{background:var(--rust);color:#fff}
+  .btn.primary:hover{background:#9c4526}
+  .btn.ghost{background:var(--beige);color:var(--brown);border:1px solid #d9c79a}
+  .btn.ghost:hover{background:var(--gold-light)}
+  .btn[hidden]{display:none}
+  .status{font-size:.8rem;color:#8a7a5c;margin-top:8px;min-height:1.2em}
+
+  .guide{margin-top:26px;background:#3f4a2f;color:#efe7d4;border-radius:18px;padding:18px 20px;font-size:.88rem}
+  .guide b{color:var(--gold-light)}
+  .guide ol{padding-left:20px;margin-top:6px}
+  .guide li{margin:3px 0}
+  footer{text-align:center;padding:28px 16px 0;font-size:.76rem;color:#a89568}
+</style>
+</head>
+<body>
+<header>
+  <h1>✨ 말씀 감성 카드 만들기</h1>
+  <p>성경 구절은 왼쪽에, 묵상과 적용은 오른쪽에. 노을빛 배경 위에 담아 1080×1080 이미지로 저장하세요.</p>
+  <div class="crumbs">
+    <a href="bible66-biblical-background.html">📖 성경 66권 배경</a>
+    <a href="bible-atlas-9parts.html">🗺️ 성경 지리 아틀라스</a>
+  </div>
+</header>
+
+<main>
+  <div class="section-title">예시 카드에서 시작하기 <small>누르면 내용이 채워져요. 그대로 저장하거나 고쳐 쓰세요.</small></div>
+  <div class="presets" id="presets"></div>
+
+  <div class="workspace">
+    <section class="panel" aria-label="카드 내용 입력">
+      <div class="field">
+        <label>카드 유형</label>
+        <div class="seg" id="typeSeg">
+          <button type="button" data-v="verse" class="on">본문 묵상 카드</button>
+          <button type="button" data-v="character">성경 인물 카드</button>
+        </div>
+      </div>
+      <div class="field" id="charField" hidden>
+        <label for="character">성경 인물 <em>예: 다윗, 룻, 바울</em></label>
+        <input id="character" maxlength="12">
+      </div>
+      <div class="field">
+        <label for="verseRef">성경 본문 <em>예: 하박국 3:17-18</em></label>
+        <input id="verseRef" maxlength="40">
+      </div>
+      <div class="field">
+        <label for="verseText">구절 전문</label>
+        <textarea id="verseText" rows="4"></textarea>
+      </div>
+      <div class="field">
+        <label for="meditation">묵상 <em>2~4문장</em></label>
+        <textarea id="meditation" rows="4"></textarea>
+      </div>
+      <div class="field">
+        <label for="application">적용 <em>한 줄에 한 항목, 2~3개</em></label>
+        <textarea id="application" rows="3"></textarea>
+      </div>
+      <div class="field">
+        <label>적용 대상 <em>대상에 맞는 배경이 자동으로 골라져요</em></label>
+        <div class="seg" id="audSeg">
+          <button type="button" data-v="어린이">어린이</button>
+          <button type="button" data-v="청소년">청소년</button>
+          <button type="button" data-v="성인">성인</button>
+          <button type="button" data-v="공용" class="on">공용</button>
+        </div>
+      </div>
+      <div class="field themes-wrap">
+        <label>배경 테마</label>
+        <div class="themes" id="themes"></div>
+      </div>
+      <div class="field">
+        <button type="button" class="btn ghost" id="shuffle" style="width:100%">🎲 구름·빛 위치 다시 섞기</button>
+        <div class="hint">같은 무늬 번호를 쓰면 시리즈 카드의 배경이 똑같이 맞춰져요. 현재 무늬 번호: <b id="seedLabel">42</b></div>
+      </div>
+    </section>
+
+    <section class="preview" aria-label="미리보기">
+      <div class="tabs" id="modeTabs">
+        <button type="button" data-v="text" class="on">텍스트 포함</button>
+        <button type="button" data-v="none">텍스트 없는 배경</button>
+      </div>
+      <canvas id="card" width="1080" height="1080" role="img" aria-label="말씀 카드 미리보기"></canvas>
+      <div class="actions">
+        <button type="button" class="btn primary" id="dl">⬇ 이 카드 PNG 저장</button>
+        <button type="button" class="btn ghost" id="dlBoth">두 버전 모두 저장</button>
+        <button type="button" class="btn ghost" id="share" hidden>📤 공유하기</button>
+      </div>
+      <div class="status" id="status"></div>
+    </section>
+  </div>
+
+  <div class="guide">
+    <b>이렇게 쓰세요</b>
+    <ol>
+      <li>예시 카드를 누르거나, 성경 본문·구절·묵상·적용을 직접 입력합니다.</li>
+      <li>적용 대상을 고르면 배경이 어울리는 색으로 바뀌어요. (어린이 분홍, 청소년 바다, 성인·공용 석양)</li>
+      <li><b>PNG 저장</b>을 누르면 1080×1080 이미지가 내려받아집니다. 휴대폰에서는 공유하기로 카카오톡에 바로 보낼 수 있어요.</li>
+      <li>시리즈로 만들 때는 테마와 무늬 번호를 그대로 두고 본문만 바꾸면 같은 배경으로 이어집니다.</li>
+    </ol>
+    <div style="margin-top:8px;font-size:.78rem;color:#cbbf9f">예시 구절은 개역한글판입니다. 입력한 내용은 이 브라우저에만 임시로 저장되고 어디로도 전송되지 않아요.</div>
+  </div>
+</main>
+<footer>지도로 보는 바이블 · 성경공부 시리즈</footer>
+
+<script>
+(function(){
+  'use strict';
+  var W = 1080, H = 1080;
+
+  /* ── 배경 테마 (원본 카드 생성기와 동일한 색) ── */
+  var THEMES = {
+    golden_sunset: {name:'황금 석양', colors:[[255,200,100],[255,160,50],[200,100,30],[120,60,20],[60,30,10]], glow:[255,220,100,80], clouds:[[255,180,80],[240,160,60],[255,200,120]], overlay:[20,10,5,120]},
+    dawn_purple:   {name:'새벽 보라', colors:[[80,60,120],[140,90,160],[200,140,190],[240,200,220],[255,230,240]], glow:[200,160,255,70], clouds:[[160,120,200],[180,140,210],[220,180,230]], overlay:[20,10,30,110]},
+    spring_morning:{name:'봄 아침', colors:[[100,160,80],[160,200,100],[200,230,150],[220,240,180],[240,250,210]], glow:[200,240,160,70], clouds:[[180,220,140],[200,235,160],[220,245,180]], overlay:[20,40,10,80]},
+    ocean_blue:    {name:'바다 소망', colors:[[20,60,120],[40,100,180],[80,150,220],[140,200,240],[200,230,255]], glow:[100,180,255,70], clouds:[[60,130,200],[100,160,220],[150,200,240]], overlay:[10,20,40,110]},
+    warm_pink:     {name:'따뜻한 분홍', colors:[[200,80,100],[240,120,130],[255,170,160],[255,210,200],[255,235,225]], glow:[255,200,180,80], clouds:[[240,150,160],[250,180,175],[255,210,200]], overlay:[30,10,15,100]}
+  };
+  var AUTO = {'어린이':'warm_pink','청소년':'ocean_blue','성인':'golden_sunset','공용':'golden_sunset'};
+
+  /* ── 예시 카드 (개역한글) ── */
+  var PRESETS = [
+    {id:'hab3', label:'하박국 3:17-18', sub:'상황보다 하나님', type:'verse', aud:'성인', theme:'golden_sunset',
+     ref:'하박국 3:17-18',
+     text:'비록 무화과나무가 무성치 못하며 포도나무에 열매가 없으며 감람나무에 소출이 없으며 밭에 식물이 없으며 우리에 양이 없으며 외양간에 소가 없을지라도 나는 여호와를 인하여 즐거워하며 나의 구원의 하나님을 인하여 기뻐하리로다',
+     med:'상황이 어렵고 환경이 변해도 하나님은 변하지 않으십니다. 보이는 조건보다 하나님 자신이 우리의 기쁨이 될 때, 우리는 어떤 상황에서도 흔들리지 않는 참된 만족과 평안을 경험합니다.',
+     app:'내 삶의 중심을 환경이 아닌 하나님께 둡니다.\n부족함 속에서도 지금 가진 것에 감사를 표현합니다.\n오늘 하루를 감사와 찬양으로 시작합니다.'},
+    {id:'ps23', label:'시편 23:1-2', sub:'나의 목자', type:'verse', aud:'공용', theme:'spring_morning',
+     ref:'시편 23:1-2',
+     text:'여호와는 나의 목자시니 내가 부족함이 없으리로다 그가 나를 푸른 초장에 누이시며 쉴만한 물가으로 인도하시는도다',
+     med:'목자는 양이 무엇을 필요로 하는지 양보다 먼저 압니다. 하나님은 우리를 쉬게 하시고 바른 길로 이끄시는 선한 목자이시기에, 우리는 내일을 염려하는 대신 그분의 인도하심을 신뢰할 수 있습니다.',
+     app:'걱정이 떠오를 때 "주는 나의 목자"라고 고백합니다.\n바쁜 하루 중에도 말씀 앞에 잠시 멈춰 쉼을 누립니다.\n오늘 채워주신 것 세 가지를 적어 봅니다.'},
+    {id:'isa41', label:'이사야 41:10', sub:'두려움 대신 신뢰', type:'verse', aud:'청소년', theme:'ocean_blue',
+     ref:'이사야 41:10',
+     text:'두려워 말라 내가 너와 함께 함이니라 놀라지 말라 나는 네 하나님이 됨이니라 내가 너를 굳세게 하리라 참으로 너를 도와 주리라 참으로 나의 의로운 오른손으로 너를 붙들리라',
+     med:'시험, 친구 관계, 진로처럼 두려운 일이 많아도 하나님은 "내가 너와 함께 한다"고 약속하십니다. 두려움이 사라지는 것보다 더 큰 은혜는, 두려움 속에서도 나를 붙드시는 하나님의 손을 경험하는 것입니다.',
+     app:'불안할 때 이 구절을 소리 내어 읽습니다.\n혼자 끙끙대지 말고 믿을 만한 사람에게 기도를 부탁합니다.\n오늘 할 수 있는 작은 한 걸음을 용기 있게 내딛습니다.'},
+    {id:'jn14', label:'요한복음 14:6', sub:'길·진리·생명', type:'verse', aud:'공용', theme:'dawn_purple',
+     ref:'요한복음 14:6',
+     text:'예수께서 가라사대 내가 곧 길이요 진리요 생명이니 나로 말미암지 않고는 아버지께로 올 자가 없느니라',
+     med:'제자들이 길을 몰라 불안해할 때 예수님은 길을 가르쳐 주시는 대신 "내가 곧 길"이라고 말씀하셨습니다. 길을 찾는 것보다 길 되신 예수님과 동행하는 것이 신앙의 핵심입니다.',
+     app:'결정을 앞두고 먼저 예수님께 묻는 기도를 드립니다.\n오늘 만나는 사람에게 예수님의 진리를 삶으로 보여줍니다.'},
+    {id:'jos1', label:'여호수아 1:9', sub:'강하고 담대하라', type:'verse', aud:'청소년', theme:'ocean_blue',
+     ref:'여호수아 1:9',
+     text:'내가 네게 명한 것이 아니냐 마음을 강하게 하고 담대히 하라 두려워 말며 놀라지 말라 네가 어디로 가든지 네 하나님 여호와가 너와 함께 하느니라 하시니라',
+     med:'모세를 잃고 큰 사명을 떠안은 여호수아에게 하나님은 능력보다 동행을 약속하셨습니다. 담대함은 내 실력에서가 아니라 어디로 가든 함께하시는 하나님에게서 나옵니다.',
+     app:'새로운 도전 앞에서 "하나님이 함께하신다"를 먼저 기억합니다.\n두려움 때문에 미뤄 둔 일 하나를 오늘 시작합니다.'},
+    {id:'ps46', label:'시편 46:10', sub:'가만히 있어', type:'verse', aud:'성인', theme:'dawn_purple',
+     ref:'시편 46:10',
+     text:'이르시기를 너희는 가만히 있어 내가 하나님 됨을 알지어다 내가 열방 중에서 높임을 받으리라 내가 세계 중에서 높임을 받으리라 하시도다',
+     med:'세상이 흔들리고 마음이 분주할 때 하나님은 "멈추라"고 말씀하십니다. 내 손을 내려놓는 그 자리에서 비로소 하나님이 하나님 되심을 알게 됩니다.',
+     app:'하루 10분, 휴대폰을 내려놓고 조용히 머뭅니다.\n통제하려던 일 하나를 기도로 하나님께 맡깁니다.'},
+    {id:'david', label:'다윗', sub:'사무엘상 17:45', type:'character', aud:'어린이', theme:'warm_pink', character:'다윗',
+     ref:'사무엘상 17:45',
+     text:'너는 칼과 창과 단창으로 내게 오거니와 나는 만군의 여호와의 이름 곧 네가 모욕하는 이스라엘 군대의 하나님의 이름으로 네게 가노라',
+     med:'어린 다윗은 커다란 골리앗 앞에서도 무섭지 않았어요. 다윗이 믿은 것은 자기 힘이 아니라 함께하시는 하나님이었기 때문이에요.',
+     app:'무서운 일이 있을 때 하나님께 먼저 기도해요.\n하나님이 함께하심을 믿고 용기 있게 말해요.'},
+    {id:'ruth', label:'룻', sub:'룻기 1:16', type:'character', aud:'성인', theme:'golden_sunset', character:'룻',
+     ref:'룻기 1:16',
+     text:'어머니께서 가시는 곳에 나도 가고 어머니께서 유숙하시는 곳에서 나도 유숙하겠나이다 어머니의 백성이 나의 백성이 되고 어머니의 하나님이 나의 하나님이 되시리니',
+     med:'모든 것을 잃은 시어머니 곁을 떠나지 않은 룻의 선택은 사랑이자 믿음의 고백이었습니다. 하나님은 이 작은 신실함을 다윗 왕가와 메시아의 족보로 이어 가셨습니다.',
+     app:'힘든 시간을 지나는 가족 곁을 끝까지 지킵니다.\n작은 신실함을 하나님이 쓰실 것을 믿고 오늘의 자리를 지킵니다.'},
+    {id:'paul', label:'바울', sub:'빌립보서 4:13', type:'character', aud:'공용', theme:'golden_sunset', character:'바울',
+     ref:'빌립보서 4:13',
+     text:'내게 능력 주시는 자 안에서 내가 모든 것을 할 수 있느니라',
+     med:'감옥에 갇힌 바울은 배부름과 배고픔, 풍부와 궁핍을 모두 겪으며 자족하는 비결을 배웠다고 고백합니다. 이 말씀은 무엇이든 이룬다는 자신감이 아니라, 어떤 형편에서도 그리스도 안에서 견딜 수 있다는 고백입니다.',
+     app:'부족한 형편에서도 불평 대신 자족을 연습합니다.\n내 힘이 다했을 때 그리스도의 능력을 구하는 기도를 드립니다.'}
+  ];
+
+  /* ── 상태 ── */
+  var st = {type:'verse', character:'', ref:'', text:'', med:'', app:'', aud:'공용', theme:'auto', seed:42, mode:'text', preset:null};
+  var $ = function(id){ return document.getElementById(id); };
+  var canvas = $('card'), ctx = canvas.getContext('2d');
+
+  /* ── 시드 고정 난수 (mulberry32) ── */
+  function rng(seed){
+    var a = seed >>> 0;
+    return function(){
+      a |= 0; a = a + 0x6D2B79F5 | 0;
+      var t = Math.imul(a ^ a >>> 15, 1 | a);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function rint(r, a, b){ return a + Math.floor(r() * (b - a + 1)); }
+  function rgba(c, a){ return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a + ')'; }
+  function themeKey(){ return st.theme === 'auto' ? (AUTO[st.aud] || 'golden_sunset') : st.theme; }
+
+  /* 부드러운 타원 (블러 대신 방사형 그라데이션) */
+  function softEllipse(c, cx, cy, rx, ry, col, alpha, soft){
+    c.save();
+    c.translate(cx, cy);
+    c.scale(1, ry / rx);
+    var R = rx * soft;
+    var g = c.createRadialGradient(0, 0, 0, 0, 0, R);
+    g.addColorStop(0, rgba(col, alpha));
+    g.addColorStop(0.55, rgba(col, alpha * 0.75));
+    g.addColorStop(1, rgba(col, 0));
+    c.fillStyle = g;
+    c.beginPath(); c.arc(0, 0, R, 0, Math.PI * 2); c.fill();
+    c.restore();
+  }
+
+  function drawBackground(c, key, seed){
+    var th = THEMES[key], r = rng(seed);
+    var cols = th.colors, n = cols.length - 1;
+    var g = c.createLinearGradient(0, 0, 0, H);
+    cols.forEach(function(col, i){ g.addColorStop(i / n, rgba(col, 1)); });
+    c.fillStyle = g; c.fillRect(0, 0, W, H);
+
+    // 구름·빛살
+    for (var i = 0; i < 12; i++){
+      var cx = rint(r, 0, W), cy = rint(r, 0, H / 2);
+      var rx = rint(r, 80, 320), ry = rx * (0.2 + r() * 0.3);
+      var col = th.clouds[rint(r, 0, th.clouds.length - 1)];
+      var a = rint(r, 20, 70) / 255;
+      for (var L = 0; L < 3; L++){
+        var ox = rint(r, -20, 20), oy = rint(r, -10, 10);
+        var la = Math.max(5 / 255, a - L * 18 / 255);
+        softEllipse(c, cx + ox, cy + oy, rx, ry, col, la * 1.6, 1.35);
+      }
+    }
+    // 태양빛 번짐
+    var sx = W / 2 + rint(r, -W / 6, W / 6), sy = H * 0.35 + rint(r, -50, 50);
+    var sg = c.createRadialGradient(sx, sy, 0, sx, sy, 380);
+    var ga = th.glow[3] / 255;
+    sg.addColorStop(0, rgba(th.glow, ga * 1.6));
+    sg.addColorStop(0.35, rgba(th.glow, ga * 0.9));
+    sg.addColorStop(1, rgba(th.glow, 0));
+    c.fillStyle = sg; c.fillRect(0, 0, W, H);
+    // 가독성 오버레이
+    c.fillStyle = rgba(th.overlay, th.overlay[3] / 255);
+    c.fillRect(0, 0, W, H);
+  }
+
+  /* ── 텍스트 유틸 ── */
+  function font(size, weight){ return weight + ' ' + size + 'px "Nanum Gothic","Apple SD Gothic Neo","Malgun Gothic",sans-serif'; }
+  function wrap(c, text, maxW){
+    var out = [], words = String(text).replace(/\s+/g, ' ').trim().split(' '), cur = '';
+    words.forEach(function(w){
+      var test = cur ? cur + ' ' + w : w;
+      if (c.measureText(test).width <= maxW){ cur = test; return; }
+      if (cur) out.push(cur);
+      if (c.measureText(w).width <= maxW){ cur = w; return; }
+      cur = '';
+      for (var i = 0; i < w.length; i++){
+        if (c.measureText(cur + w[i]).width > maxW && cur){ out.push(cur); cur = w[i]; }
+        else cur += w[i];
+      }
+    });
+    if (cur) out.push(cur);
+    return out;
+  }
+  function shadowText(c, t, x, y, fill){
+    c.save();
+    c.shadowColor = 'rgba(0,0,0,.6)'; c.shadowBlur = 6; c.shadowOffsetX = 1; c.shadowOffsetY = 2;
+    c.fillStyle = fill; c.fillText(t, x, y);
+    c.restore();
+  }
+  function rrect(c, x, y, w, h, rad){
+    c.beginPath();
+    c.moveTo(x + rad, y); c.arcTo(x + w, y, x + w, y + h, rad); c.arcTo(x + w, y + h, x, y + h, rad);
+    c.arcTo(x, y + h, x, y, rad); c.arcTo(x, y, x + w, y, rad); c.closePath();
+  }
+
+  /* ── 텍스트 포함 카드 ── */
+  var PAD = 44, MID = W / 2 - 20, LEFT_W = MID - PAD - 10, RIGHT_X = MID + 20, RIGHT_W = W - MID - PAD - 10;
+
+  function layoutLeft(c, s){
+    var vSize = Math.round(40 * s), lh = Math.round(vSize * 1.42);
+    c.font = font(vSize, 700);
+    var lines = st.text ? wrap(c, st.text, LEFT_W - 24) : [];
+    var charH = (st.type === 'character' && st.character) ? Math.round(80 * s) + 44 : 0;
+    var h = charH + (lines.length ? 60 + lines.length * lh : 0) + (st.ref ? 60 : 0);
+    return {vSize:vSize, lh:lh, lines:lines, charH:charH, h:h, s:s};
+  }
+  function layoutRight(c, s){
+    var bSize = Math.round(30 * s), aSize = Math.round(28 * s);
+    c.font = font(bSize, 400);
+    var med = st.med ? wrap(c, st.med, RIGHT_W - 32) : [];
+    c.font = font(aSize, 400);
+    var items = st.app.split('\n').map(function(x){ return x.replace(/^\s*[•\-·*]\s*/, '').trim(); }).filter(Boolean)
+      .map(function(x){ return wrap(c, x, RIGHT_W - 44); });
+    var labelH = Math.round(28 * s) + 34;
+    var h = 50 + (med.length ? labelH + med.length * (bSize * 1.45) + 24 : 0);
+    if (items.length){ h += labelH; items.forEach(function(it){ h += it.length * aSize * 1.42 + 10; }); }
+    return {bSize:bSize, aSize:aSize, med:med, items:items, h:h, s:s};
+  }
+
+  function drawTextCard(c){
+    var key = themeKey(), th = THEMES[key];
+    drawBackground(c, key, st.seed);
+    c.textBaseline = 'top';
+
+    // 좌측 반투명
+    var lg = c.createLinearGradient(0, 0, MID + 20, 0);
+    lg.addColorStop(0, 'rgba(0,0,0,.26)'); lg.addColorStop(0.9, 'rgba(0,0,0,.2)'); lg.addColorStop(1, 'rgba(0,0,0,0)');
+    c.fillStyle = lg; c.fillRect(0, 0, MID + 20, H);
+
+    // ── 좌측: 구절
+    var L, s = 1;
+    do { L = layoutLeft(c, s); s -= 0.05; } while (L.h > H - 2 * PAD - 40 && s > 0.55);
+    var ly = Math.max(PAD + 40, (H - L.h) / 2);
+    if (st.type === 'character' && st.character){
+      c.font = font(Math.round(80 * L.s), 800);
+      shadowText(c, st.character, PAD, ly, '#fff');
+      ly += Math.round(80 * L.s) + 22;
+      c.fillStyle = 'rgba(255,255,255,.7)'; c.fillRect(PAD, ly, 120, 2);
+      ly += 22;
+    }
+    if (L.lines.length){
+      c.font = font(90, 400);
+      shadowText(c, '“', PAD - 6, ly - 14, 'rgba(255,255,255,.5)');
+      ly += 52;
+      c.font = font(L.vSize, 700);
+      L.lines.forEach(function(line){ shadowText(c, line, PAD, ly, 'rgba(255,255,255,.96)'); ly += L.lh; });
+      var lastW = c.measureText(L.lines[L.lines.length - 1]).width;
+      c.font = font(90, 400);
+      shadowText(c, '”', Math.min(PAD + lastW + 6, MID - 40), ly - L.lh - 4, 'rgba(255,255,255,.4)');
+      ly += 18;
+    }
+    if (st.ref){
+      c.font = font(32, 700);
+      shadowText(c, '- ' + st.ref + ' -', PAD, ly, 'rgba(255,230,160,.95)');
+    }
+
+    // ── 우측 패널
+    c.fillStyle = 'rgba(0,0,0,.55)';
+    rrect(c, MID + 10, PAD, W - PAD / 2 - (MID + 10), H - 2 * PAD, 24); c.fill();
+
+    var R, s2 = 1;
+    do { R = layoutRight(c, s2); s2 -= 0.04; } while (R.h > H - 2 * PAD - 30 && s2 > 0.6);
+    var ry = PAD + Math.max(40, (H - 2 * PAD - R.h) / 2);
+    var labSize = Math.round(28 * R.s);
+    function label(t){
+      c.font = font(labSize, 800);
+      shadowText(c, t, RIGHT_X + 8, ry, 'rgb(255,230,130)');
+      ry += labSize + 12;
+      c.fillStyle = 'rgba(255,200,80,.65)'; c.fillRect(RIGHT_X + 8, ry, W - PAD - RIGHT_X - 8, 1.5);
+      ry += 18;
+    }
+    if (R.med.length){
+      label('묵상');
+      c.font = font(R.bSize, 400);
+      R.med.forEach(function(line){ shadowText(c, line, RIGHT_X + 16, ry, 'rgba(255,250,240,.95)'); ry += R.bSize * 1.45; });
+      ry += 24;
+    }
+    if (R.items.length){
+      label('적용');
+      R.items.forEach(function(lines){
+        c.font = font(R.aSize, 800);
+        shadowText(c, '•', RIGHT_X + 12, ry, 'rgb(255,210,80)');
+        c.font = font(R.aSize, 400);
+        lines.forEach(function(il){ shadowText(c, il, RIGHT_X + 36, ry, 'rgba(255,250,240,.93)'); ry += R.aSize * 1.42; });
+        ry += 10;
+      });
+    }
+
+    // 하단 페이드
+    var fg = c.createLinearGradient(0, H - 80, 0, H);
+    fg.addColorStop(0, 'rgba(0,0,0,0)'); fg.addColorStop(1, 'rgba(0,0,0,.31)');
+    c.fillStyle = fg; c.fillRect(0, H - 80, W, 80);
+  }
+
+  /* ── 텍스트 없는 배경 카드 ── */
+  function drawPlainCard(c){
+    var key = themeKey();
+    drawBackground(c, key, st.seed);
+    var g = c.createRadialGradient(W / 2, H / 2, 0, W / 2, H / 2, 400);
+    g.addColorStop(0, 'rgba(255,220,150,.32)'); g.addColorStop(1, 'rgba(255,220,150,0)');
+    c.fillStyle = g; c.fillRect(0, 0, W, H);
+    if (st.ref){
+      c.textBaseline = 'top'; c.font = font(30, 700);
+      var t = '- ' + st.ref + ' -';
+      shadowText(c, t, (W - c.measureText(t).width) / 2, H - 80, 'rgba(255,230,160,.9)');
+    }
+  }
+
+  function render(target, mode){
+    var c = target.getContext('2d');
+    c.clearRect(0, 0, W, H);
+    (mode === 'none' ? drawPlainCard : drawTextCard)(c);
+  }
+  var raf = 0;
+  function redraw(){
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(function(){ render(canvas, st.mode); save(); });
+  }
+
+  /* ── 저장/공유 ── */
+  function stamp(){
+    var d = new Date(), p = function(n){ return String(n).padStart(2, '0'); };
+    return d.getFullYear() + p(d.getMonth() + 1) + p(d.getDate()) + '_' + p(d.getHours()) + p(d.getMinutes()) + p(d.getSeconds());
+  }
+  function fileName(mode){
+    var base = (st.ref || '말씀카드').replace(/[\\/:*?"<>|\s]+/g, '_');
+    return base + (mode === 'none' ? '_배경' : '_카드') + '_' + stamp() + '.png';
+  }
+  function toBlob(mode){
+    return new Promise(function(res){
+      var off = document.createElement('canvas'); off.width = W; off.height = H;
+      render(off, mode);
+      off.toBlob(function(b){ res(b); }, 'image/png');
+    });
+  }
+  function download(blob, name){
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = name;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 4000);
+  }
+  function setStatus(t){ $('status').textContent = t; }
+
+  $('dl').addEventListener('click', function(){
+    toBlob(st.mode).then(function(b){ var n = fileName(st.mode); download(b, n); setStatus('저장했어요: ' + n); });
+  });
+  $('dlBoth').addEventListener('click', function(){
+    Promise.all([toBlob('text'), toBlob('none')]).then(function(bs){
+      download(bs[0], fileName('text'));
+      setTimeout(function(){ download(bs[1], fileName('none')); }, 400);
+      setStatus('텍스트 포함 버전과 배경 버전을 저장했어요.');
+    });
+  });
+  try {
+    var probe = new File([new Blob()], 'x.png', {type:'image/png'});
+    if (navigator.canShare && navigator.canShare({files:[probe]})) $('share').hidden = false;
+  } catch (e) {}
+  $('share').addEventListener('click', function(){
+    toBlob(st.mode).then(function(b){
+      var f = new File([b], fileName(st.mode), {type:'image/png'});
+      return navigator.share({files:[f], title:st.ref || '말씀 카드'});
+    }).catch(function(e){ if (e && e.name !== 'AbortError') setStatus('공유하지 못했어요. PNG 저장을 이용해 주세요.'); });
+  });
+
+  /* ── 입력 바인딩 ── */
+  var fields = {character:'character', verseRef:'ref', verseText:'text', meditation:'med', application:'app'};
+  Object.keys(fields).forEach(function(id){
+    $(id).addEventListener('input', function(){ st[fields[id]] = this.value; markPreset(null); redraw(); });
+  });
+  function segBind(id, key, after){
+    $(id).addEventListener('click', function(e){
+      var b = e.target.closest('button'); if (!b) return;
+      st[key] = b.dataset.v; syncSeg(id, st[key]); if (after) after(); redraw();
+    });
+  }
+  function syncSeg(id, v){ [].forEach.call($(id).querySelectorAll('button'), function(b){ b.classList.toggle('on', b.dataset.v === v); }); }
+  segBind('typeSeg', 'type', function(){ $('charField').hidden = st.type !== 'character'; });
+  segBind('audSeg', 'aud', function(){ st.theme = 'auto'; syncThemes(); });
+  segBind('modeTabs', 'mode');
+
+  // 테마 스와치
+  var themesEl = $('themes');
+  var autoBtn = document.createElement('button');
+  autoBtn.type = 'button'; autoBtn.className = 'theme'; autoBtn.dataset.v = 'auto';
+  autoBtn.style.background = 'conic-gradient(#ffa032,#8c5aa0,#a0c864,#2864b4,#f07882,#ffa032)';
+  autoBtn.innerHTML = '<span>자동</span>'; autoBtn.title = '적용 대상에 맞춰 자동';
+  themesEl.appendChild(autoBtn);
+  Object.keys(THEMES).forEach(function(k){
+    var t = THEMES[k], b = document.createElement('button');
+    b.type = 'button'; b.className = 'theme'; b.dataset.v = k; b.title = t.name;
+    b.style.background = 'linear-gradient(180deg,' + t.colors.map(function(c){ return rgba(c, 1); }).join(',') + ')';
+    b.innerHTML = '<span>' + t.name + '</span>';
+    themesEl.appendChild(b);
+  });
+  themesEl.addEventListener('click', function(e){
+    var b = e.target.closest('.theme'); if (!b) return;
+    st.theme = b.dataset.v; syncThemes(); redraw();
+  });
+  function syncThemes(){ [].forEach.call(themesEl.children, function(b){ b.classList.toggle('on', b.dataset.v === st.theme); }); }
+
+  $('shuffle').addEventListener('click', function(){
+    st.seed = Math.floor(Math.random() * 9000) + 100; $('seedLabel').textContent = st.seed; redraw();
+  });
+
+  // 예시
+  var presetsEl = $('presets');
+  PRESETS.forEach(function(p){
+    var b = document.createElement('button'), t = THEMES[p.theme];
+    b.type = 'button'; b.className = 'preset'; b.dataset.id = p.id;
+    b.innerHTML = '<div class="sw" style="background:linear-gradient(90deg,' + t.colors.map(function(c){ return rgba(c, 1); }).join(',') + ')"></div>'
+      + '<b>' + (p.type === 'character' ? '👤 ' : '📖 ') + p.label + '</b><span>' + p.sub + '</span>';
+    presetsEl.appendChild(b);
+  });
+  presetsEl.addEventListener('click', function(e){
+    var b = e.target.closest('.preset'); if (!b) return;
+    applyPreset(b.dataset.id, true);
+  });
+  function markPreset(id){ st.preset = id; [].forEach.call(presetsEl.children, function(b){ b.classList.toggle('on', b.dataset.id === id); }); }
+  function applyPreset(id, scroll){
+    var p = PRESETS.filter(function(x){ return x.id === id; })[0]; if (!p) return false;
+    st.type = p.type; st.character = p.character || ''; st.ref = p.ref; st.text = p.text; st.med = p.med; st.app = p.app;
+    st.aud = p.aud; st.theme = p.theme; st.seed = 42;
+    syncForm(); markPreset(id); redraw();
+    if (scroll && window.innerWidth <= 860) document.querySelector('.preview').scrollIntoView({behavior:'smooth'});
+    return true;
+  }
+  function syncForm(){
+    $('character').value = st.character; $('verseRef').value = st.ref; $('verseText').value = st.text;
+    $('meditation').value = st.med; $('application').value = st.app;
+    syncSeg('typeSeg', st.type); syncSeg('audSeg', st.aud); syncSeg('modeTabs', st.mode); syncThemes();
+    $('charField').hidden = st.type !== 'character'; $('seedLabel').textContent = st.seed;
+  }
+
+  /* ── 브라우저 임시 저장 ── */
+  var KEY = 'bibleCardMaker.v1';
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} }
+  function load(){ try { var v = JSON.parse(localStorage.getItem(KEY) || 'null'); if (v && typeof v === 'object') Object.assign(st, v); return !!v; } catch (e) { return false; } }
+
+  /* ── 시작: #하박국 같은 해시가 있으면 해당 예시로 ── */
+  var hash = decodeURIComponent(location.hash.replace('#', ''));
+  if (!(hash && applyPreset(hash))){
+    if (!load()) applyPreset('hab3'); else { syncForm(); markPreset(st.preset); }
+  }
+  syncForm();
+  window.addEventListener('hashchange', function(){ applyPreset(decodeURIComponent(location.hash.replace('#', ''))); });
+
+  // 웹폰트가 늦게 도착하면 다시 그림
+  redraw();
+  if (document.fonts && document.fonts.load){
+    Promise.all([document.fonts.load(font(40, 400)), document.fonts.load(font(40, 700)), document.fonts.load(font(40, 800))])
+      .then(function(){ redraw(); }, function(){});
+  }
+})();
+</script>
+</body>
+</html>
